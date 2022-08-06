@@ -22,6 +22,8 @@
 		0DB2B287289E96C300A81149 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B286289E96C300A81149 /* WebView.swift */; };
 		0DB2B289289E96E800A81149 /* CompanyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B288289E96E800A81149 /* CompanyViewModel.swift */; };
 		0DB2B28B289E96F100A81149 /* CompanyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B28A289E96F100A81149 /* CompanyModel.swift */; };
+		0DB2B28D289EA70E00A81149 /* NoteListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B28C289EA70E00A81149 /* NoteListView.swift */; };
+		0DB2B28F289EA71700A81149 /* NoteEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B28E289EA71700A81149 /* NoteEditView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +43,8 @@
 		0DB2B286289E96C300A81149 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		0DB2B288289E96E800A81149 /* CompanyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyViewModel.swift; sourceTree = "<group>"; };
 		0DB2B28A289E96F100A81149 /* CompanyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyModel.swift; sourceTree = "<group>"; };
+		0DB2B28C289EA70E00A81149 /* NoteListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteListView.swift; sourceTree = "<group>"; };
+		0DB2B28E289EA71700A81149 /* NoteEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteEditView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +129,8 @@
 				0DB2B278289E967100A81149 /* MainListRowView.swift */,
 				0DB2B27A289E967E00A81149 /* CompanyView.swift */,
 				0DB2B27C289E968C00A81149 /* AddCompanyView.swift */,
+				0DB2B28C289EA70E00A81149 /* NoteListView.swift */,
+				0DB2B28E289EA71700A81149 /* NoteEditView.swift */,
 			);
 			path = CompanyList;
 			sourceTree = "<group>";
@@ -222,10 +228,12 @@
 				0DB2B279289E967100A81149 /* MainListRowView.swift in Sources */,
 				0DB2B270289E95B800A81149 /* MyListView.swift in Sources */,
 				0DB2B283289E96AF00A81149 /* AddTodoView.swift in Sources */,
+				0DB2B28D289EA70E00A81149 /* NoteListView.swift in Sources */,
 				0DB2B27D289E968C00A81149 /* AddCompanyView.swift in Sources */,
 				0DB2B264289E952800A81149 /* MainView.swift in Sources */,
 				0DB2B28B289E96F100A81149 /* CompanyModel.swift in Sources */,
 				0DB2B285289E96BC00A81149 /* SettingsView.swift in Sources */,
+				0DB2B28F289EA71700A81149 /* NoteEditView.swift in Sources */,
 				0DB2B27F289E969800A81149 /* TodoListView.swift in Sources */,
 				0DB2B281289E96A300A81149 /* TodoListRowView.swift in Sources */,
 				0DB2B27B289E967E00A81149 /* CompanyView.swift in Sources */,
