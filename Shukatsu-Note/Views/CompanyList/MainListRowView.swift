@@ -8,13 +8,25 @@
 import SwiftUI
 
 struct MainListRowView: View {
+    
+    var company: Company
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack {
+            Color.blue
+                .frame(width: 50, height: 50)
+            
+            Spacer()
+            
+            Text(company.name)
+        }
     }
 }
 
 struct MainListRowView_Previews: PreviewProvider {
     static var previews: some View {
-        MainListRowView()
+        MainListRowView(company: .init(name: "JR九州"))
+            .previewLayout(.sizeThatFits)
+            .padding()
     }
 }

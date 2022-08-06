@@ -7,14 +7,54 @@
 
 import SwiftUI
 
+
+struct Company: Identifiable {
+    let id = UUID()
+    let name: String
+}
+
 struct MyListView: View {
+    
+    private var companies = [
+        Company(name: "A社"),
+        Company(name: "B社"),
+        Company(name: "C社")
+    ]
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            
+            ZStack {
+                
+                Color.init(uiColor: .systemBackground)
+                    .ignoresSafeArea()
+                
+                VStack {
+                    
+                    List {
+                        ForEach(companies) { company in
+                            NavigationLink(destination: CompanyView(company: company)) {
+                                MainListRowView(company: company)
+                                    .padding(10)
+                            }
+                        }
+                    }
+                    .listStyle(GroupedListStyle())
+                    
+                }
+                
+            }
+            
+            .navigationTitle("MyList")
+        }
     }
 }
 
 struct MyListView_Previews: PreviewProvider {
     static var previews: some View {
         MyListView()
+        
+        MyListView()
+            .preferredColorScheme(.dark)
     }
 }

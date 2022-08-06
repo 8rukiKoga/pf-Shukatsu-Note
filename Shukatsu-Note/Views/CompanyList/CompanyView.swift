@@ -8,13 +8,16 @@
 import SwiftUI
 
 struct CompanyView: View {
+    
+    var company: Company
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text(company.name)
     }
 }
 
 struct CompanyView_Previews: PreviewProvider {
     static var previews: some View {
-        CompanyView()
+        CompanyView(company: .init(name: "A社"))
     }
 }

@@ -9,8 +9,25 @@ import SwiftUI
 
 struct MainView: View {
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        TabView {
+            
+            MyListView()
+                .tabItem {
+                    Label("MyList", systemImage: "newspaper.circle.fill")
+                }
+            
+            TodoListView()
+                .tabItem {
+                    Label("Todo", systemImage: "list.bullet.circle.fill")
+                }
+            
+            SettingsView()
+                .tabItem {
+                    Label("Settings", systemImage: "gearshape.circle.fill")
+                }
+            
+        }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
