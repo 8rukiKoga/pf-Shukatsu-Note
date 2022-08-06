@@ -11,7 +11,7 @@ import SwiftUI
 struct Shukatsu_NoteApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainView()
         }
     }
 }

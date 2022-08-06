@@ -8,17 +8,39 @@
 
 /* Begin PBXBuildFile section */
 		0DB2B262289E952800A81149 /* Shukatsu_NoteApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B261289E952800A81149 /* Shukatsu_NoteApp.swift */; };
-		0DB2B264289E952800A81149 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B263289E952800A81149 /* ContentView.swift */; };
+		0DB2B264289E952800A81149 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B263289E952800A81149 /* MainView.swift */; };
 		0DB2B266289E952B00A81149 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0DB2B265289E952B00A81149 /* Assets.xcassets */; };
 		0DB2B269289E952B00A81149 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0DB2B268289E952B00A81149 /* Preview Assets.xcassets */; };
+		0DB2B270289E95B800A81149 /* MyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B26F289E95B700A81149 /* MyListView.swift */; };
+		0DB2B279289E967100A81149 /* MainListRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B278289E967100A81149 /* MainListRowView.swift */; };
+		0DB2B27B289E967E00A81149 /* CompanyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B27A289E967E00A81149 /* CompanyView.swift */; };
+		0DB2B27D289E968C00A81149 /* AddCompanyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B27C289E968C00A81149 /* AddCompanyView.swift */; };
+		0DB2B27F289E969800A81149 /* TodoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B27E289E969800A81149 /* TodoListView.swift */; };
+		0DB2B281289E96A300A81149 /* TodoListRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B280289E96A300A81149 /* TodoListRowView.swift */; };
+		0DB2B283289E96AF00A81149 /* AddTodoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B282289E96AF00A81149 /* AddTodoView.swift */; };
+		0DB2B285289E96BC00A81149 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B284289E96BC00A81149 /* SettingsView.swift */; };
+		0DB2B287289E96C300A81149 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B286289E96C300A81149 /* WebView.swift */; };
+		0DB2B289289E96E800A81149 /* CompanyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B288289E96E800A81149 /* CompanyViewModel.swift */; };
+		0DB2B28B289E96F100A81149 /* CompanyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B28A289E96F100A81149 /* CompanyModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0DB2B25E289E952800A81149 /* Shukatsu-Note.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Shukatsu-Note.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DB2B261289E952800A81149 /* Shukatsu_NoteApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shukatsu_NoteApp.swift; sourceTree = "<group>"; };
-		0DB2B263289E952800A81149 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		0DB2B263289E952800A81149 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		0DB2B265289E952B00A81149 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0DB2B268289E952B00A81149 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		0DB2B26F289E95B700A81149 /* MyListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyListView.swift; sourceTree = "<group>"; };
+		0DB2B278289E967100A81149 /* MainListRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainListRowView.swift; sourceTree = "<group>"; };
+		0DB2B27A289E967E00A81149 /* CompanyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyView.swift; sourceTree = "<group>"; };
+		0DB2B27C289E968C00A81149 /* AddCompanyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCompanyView.swift; sourceTree = "<group>"; };
+		0DB2B27E289E969800A81149 /* TodoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListView.swift; sourceTree = "<group>"; };
+		0DB2B280289E96A300A81149 /* TodoListRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListRowView.swift; sourceTree = "<group>"; };
+		0DB2B282289E96AF00A81149 /* AddTodoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTodoView.swift; sourceTree = "<group>"; };
+		0DB2B284289E96BC00A81149 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		0DB2B286289E96C300A81149 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
+		0DB2B288289E96E800A81149 /* CompanyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyViewModel.swift; sourceTree = "<group>"; };
+		0DB2B28A289E96F100A81149 /* CompanyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,7 +74,9 @@
 			isa = PBXGroup;
 			children = (
 				0DB2B261289E952800A81149 /* Shukatsu_NoteApp.swift */,
-				0DB2B263289E952800A81149 /* ContentView.swift */,
+				0DB2B271289E95D800A81149 /* Views */,
+				0DB2B272289E95E400A81149 /* ViewModel */,
+				0DB2B273289E95ED00A81149 /* Model */,
 				0DB2B265289E952B00A81149 /* Assets.xcassets */,
 				0DB2B267289E952B00A81149 /* Preview Content */,
 			);
@@ -65,6 +89,63 @@
 				0DB2B268289E952B00A81149 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		0DB2B271289E95D800A81149 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0DB2B263289E952800A81149 /* MainView.swift */,
+				0DB2B274289E95F500A81149 /* CompanyList */,
+				0DB2B275289E960400A81149 /* TodoList */,
+				0DB2B277289E962500A81149 /* Settings */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		0DB2B272289E95E400A81149 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				0DB2B288289E96E800A81149 /* CompanyViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		0DB2B273289E95ED00A81149 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0DB2B28A289E96F100A81149 /* CompanyModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0DB2B274289E95F500A81149 /* CompanyList */ = {
+			isa = PBXGroup;
+			children = (
+				0DB2B26F289E95B700A81149 /* MyListView.swift */,
+				0DB2B278289E967100A81149 /* MainListRowView.swift */,
+				0DB2B27A289E967E00A81149 /* CompanyView.swift */,
+				0DB2B27C289E968C00A81149 /* AddCompanyView.swift */,
+			);
+			path = CompanyList;
+			sourceTree = "<group>";
+		};
+		0DB2B275289E960400A81149 /* TodoList */ = {
+			isa = PBXGroup;
+			children = (
+				0DB2B27E289E969800A81149 /* TodoListView.swift */,
+				0DB2B280289E96A300A81149 /* TodoListRowView.swift */,
+				0DB2B282289E96AF00A81149 /* AddTodoView.swift */,
+			);
+			path = TodoList;
+			sourceTree = "<group>";
+		};
+		0DB2B277289E962500A81149 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				0DB2B284289E96BC00A81149 /* SettingsView.swift */,
+				0DB2B286289E96C300A81149 /* WebView.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +218,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0DB2B264289E952800A81149 /* ContentView.swift in Sources */,
+				0DB2B289289E96E800A81149 /* CompanyViewModel.swift in Sources */,
+				0DB2B279289E967100A81149 /* MainListRowView.swift in Sources */,
+				0DB2B270289E95B800A81149 /* MyListView.swift in Sources */,
+				0DB2B283289E96AF00A81149 /* AddTodoView.swift in Sources */,
+				0DB2B27D289E968C00A81149 /* AddCompanyView.swift in Sources */,
+				0DB2B264289E952800A81149 /* MainView.swift in Sources */,
+				0DB2B28B289E96F100A81149 /* CompanyModel.swift in Sources */,
+				0DB2B285289E96BC00A81149 /* SettingsView.swift in Sources */,
+				0DB2B27F289E969800A81149 /* TodoListView.swift in Sources */,
+				0DB2B281289E96A300A81149 /* TodoListRowView.swift in Sources */,
+				0DB2B27B289E967E00A81149 /* CompanyView.swift in Sources */,
 				0DB2B262289E952800A81149 /* Shukatsu_NoteApp.swift in Sources */,
+				0DB2B287289E96C300A81149 /* WebView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
