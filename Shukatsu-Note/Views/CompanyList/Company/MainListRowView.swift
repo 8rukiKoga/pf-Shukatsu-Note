@@ -9,16 +9,18 @@ import SwiftUI
 
 struct MainListRowView: View {
     
-    var company: Company
+    var company: CompanyModel
     
     var body: some View {
         HStack {
-            Color.blue
-                .frame(width: 50, height: 50)
+            Image(systemName: "folder.fill")
+                .foregroundColor(Color(.systemBrown))
+                .font(.system(size: 20))
+            Text(company.name)
+                .padding(.leading)
+            
             
             Spacer()
-            
-            Text(company.name)
         }
     }
 }

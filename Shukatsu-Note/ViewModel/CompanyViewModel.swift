@@ -6,3 +6,13 @@
 //
 
 import Foundation
+
+class CompanyViewModel: ObservableObject {
+    @Published var companyList = [CompanyModel]()
+}
+
+var sampleCompanies = [
+    CompanyModel(name: "A社"),
+    CompanyModel(name: "B社"),
+    CompanyModel(name: "C社")
+]

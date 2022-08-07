@@ -7,19 +7,9 @@
 
 import SwiftUI
 
-
-struct Company: Identifiable {
-    let id = UUID()
-    let name: String
-}
-
 struct MyListView: View {
     
-    private var companies = [
-        Company(name: "A社"),
-        Company(name: "B社"),
-        Company(name: "C社")
-    ]
+    @ObservedObject var companyVm: CompanyViewModel
     
     var body: some View {
         NavigationView {
@@ -32,29 +22,70 @@ struct MyListView: View {
                 VStack {
                     
                     List {
-                        ForEach(companies) { company in
-                            NavigationLink(destination: CompanyView(company: company)) {
-                                MainListRowView(company: company)
-                                    .padding(10)
+                        Section {
+                            
+                        } header: {
+                            HStack {
+                                Text("Memo")
+                                Spacer()
+                                Button {
+                                    print("new memo")
+                                } label: {
+                                    Image(systemName: "square.and.pencil")
+                                        .font(.system(size: 15))
+                                }
+                                .padding(.trailing, 10)
+
+                            }
+                        }
+
+
+                        
+                        Section {
+                            ForEach(companyVm.companyList) { company in
+                                NavigationLink(destination: CompanyView(company: company)) {
+                                    MainListRowView(company: company)
+                                        .padding(10)
+                                }
+                            }
+                        } header: {
+                            HStack {
+                                Text("企業リスト")
+                                Spacer()
+                                Button {
+                                    print("new folder")
+                                } label: {
+                                    Image(systemName: "folder.badge.plus")
+                                        .font(.system(size: 15))
+                                }
+                                .padding(.trailing, 10)
+
                             }
                         }
                     }
-                    .listStyle(GroupedListStyle())
+                    .listStyle(InsetGroupedListStyle())
                     
                 }
                 
             }
             
-            .navigationTitle("MyList")
+            .navigationTitle("Notes")
         }
     }
 }
 
 struct MyListView_Previews: PreviewProvider {
     static var previews: some View {
-        MyListView()
         
-        MyListView()
-            .preferredColorScheme(.dark)
+        
+        let testCompany = CompanyViewModel()
+        testCompany.companyList = sampleCompanies
+        
+        return Group {
+            MyListView(companyVm: testCompany)
+            
+            MyListView(companyVm: testCompany)
+                .preferredColorScheme(.dark)
+        }
     }
 }

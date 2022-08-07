@@ -9,10 +9,11 @@ import SwiftUI
 
 struct CompanyView: View {
     
-    var company: Company
+    var company: CompanyModel
     
     var body: some View {
         Text(company.name)
+        
     }
 }
 

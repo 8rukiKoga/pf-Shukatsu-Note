@@ -8,10 +8,12 @@
 import SwiftUI
 
 struct MainView: View {
+    @StateObject private var companyVm = CompanyViewModel()
+    
     var body: some View {
         TabView {
             
-            MyListView()
+            MyListView(companyVm: companyVm)
                 .tabItem {
                     Label("MyList", systemImage: "newspaper.circle.fill")
                 }
