@@ -10,66 +10,73 @@ import SwiftUI
 struct MyListView: View {
     
     @ObservedObject var companyVm: CompanyViewModel
+    @State var showingPopup: Bool = false
     
     var body: some View {
-        NavigationView {
-            
-            ZStack {
+        ZStack {
+            NavigationView {
                 
-                Color.init(uiColor: .systemBackground)
-                    .ignoresSafeArea()
-                
-                VStack {
+                ZStack {
                     
-                    List {
-                        Section {
-                            
-                        } header: {
-                            HStack {
-                                Text("Memo")
-                                Spacer()
-                                Button {
-                                    print("new memo")
-                                } label: {
-                                    Image(systemName: "square.and.pencil")
-                                        .font(.system(size: 15))
-                                }
-                                .padding(.trailing, 10)
-
-                            }
-                        }
-
-
+                    Color.init(uiColor: .systemBackground)
+                        .ignoresSafeArea()
+                    
+                    VStack {
                         
-                        Section {
-                            ForEach(companyVm.companyList) { company in
-                                NavigationLink(destination: CompanyView(company: company)) {
-                                    MainListRowView(company: company)
-                                        .padding(10)
+                        List {
+                            Section {
+                                
+                            } header: {
+                                HStack {
+                                    Text("Memo")
+                                    Spacer()
+                                    Button {
+                                        print("new memo")
+                                    } label: {
+                                        Image(systemName: "square.and.pencil")
+                                            .font(.system(size: 15))
+                                    }
+                                    .padding(.trailing, 10)
+
                                 }
                             }
-                        } header: {
-                            HStack {
-                                Text("企業リスト")
-                                Spacer()
-                                Button {
-                                    print("new folder")
-                                } label: {
-                                    Image(systemName: "folder.badge.plus")
-                                        .font(.system(size: 15))
-                                }
-                                .padding(.trailing, 10)
+                            .textCase(nil)
 
+                            Section {
+                                ForEach(companyVm.companyList) { company in
+                                    NavigationLink(destination: CompanyView(company: company)) {
+                                        MainListRowView(company: company)
+                                            .padding(10)
+                                    }
+                                }
+                            } header: {
+                                HStack {
+                                    Text("企業リスト")
+                                    Spacer()
+                                    Button {
+                                        showingPopup = true
+                                    } label: {
+                                        Image(systemName: "folder.badge.plus")
+                                            .font(.system(size: 15))
+                                    }
+                                    .padding(.trailing, 10)
+
+                                }
                             }
                         }
+                        .listStyle(InsetGroupedListStyle())
+                        
                     }
-                    .listStyle(InsetGroupedListStyle())
                     
                 }
                 
+                .navigationTitle("Notes")
             }
             
-            .navigationTitle("Notes")
+            if showingPopup {
+                AddNewCompanyPopupView(companyVm: companyVm, showingPopup: $showingPopup)
+            }
+            
         }
     }
 }
