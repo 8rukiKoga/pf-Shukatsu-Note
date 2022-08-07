@@ -6,3 +6,20 @@
 //
 
 import Foundation
+
+struct CompanyModel: Identifiable {
+    var id = UUID()
+    
+    var name: String
+    var location: String?
+    var url: URL?
+    var memo: String?
+    var notes: [NoteModel]?
+}
+
+struct NoteModel: Identifiable {
+    var id = UUID()
+    
+    var title: String
+    var text: String?
+}
