@@ -10,6 +10,8 @@ import SwiftUI
 struct MyListView: View {
     
     @ObservedObject var companyVm: CompanyViewModel
+    @ObservedObject var noteVm: NoteViewModel
+    
     @State var showingPopup: Bool = false
     
     var body: some View {
@@ -25,19 +27,28 @@ struct MyListView: View {
                         
                         List {
                             Section {
-                                
+                                ForEach(noteVm.noteList) { note in
+                                    NavigationLink(destination: NoteView(note: note)) {
+                                        NoteRowView(note: note)
+                                    }
+                                }
+                                .onMove { (indexSet, index) in
+                                    noteVm.noteList.move(fromOffsets: indexSet, toOffset: index)
+                                }
+                                .onDelete { indexSet in
+                                    noteVm.noteList.remove(atOffsets: indexSet)
+                                }
                             } header: {
                                 HStack {
                                     Text("Memo")
                                     Spacer()
                                     Button {
-                                        print("new memo")
+                                        noteVm.noteList.append(NoteModel(title: "New Memo", text: ""))
                                     } label: {
                                         Image(systemName: "square.and.pencil")
                                             .font(.system(size: 15))
                                     }
                                     .padding(.trailing, 5)
-
                                 }
                             }
                             .textCase(nil)
@@ -45,14 +56,26 @@ struct MyListView: View {
                             Section {
                                 ForEach(companyVm.companyList) { company in
                                     NavigationLink(destination: CompanyView(company: company)) {
-                                        MainListRowView(company: company)
-                                            .padding(10)
+                                        FolderRowView(company: company)
                                     }
                                 }
+                                .onDelete { indexSet in
+                                    companyVm.companyList.remove(atOffsets: indexSet)
+                                }
+                                
                             } header: {
                                 HStack {
                                     Text("企業リスト")
                                     Spacer()
+                                    
+                                    Button {
+                                        print("sort")
+                                    } label: {
+                                        Image(systemName: "square.3.stack.3d")
+                                            .font(.system(size: 15))
+                                    }
+                                    .padding(.trailing, 10)
+                                    
                                     Button {
                                         showingPopup = true
                                     } label: {
@@ -60,7 +83,6 @@ struct MyListView: View {
                                             .font(.system(size: 15))
                                     }
                                     .padding(.trailing, 5)
-
                                 }
                             }
                         }
@@ -71,6 +93,11 @@ struct MyListView: View {
                 }
                 
                 .navigationTitle("Notes")
+                .toolbar {
+                    ToolbarItemGroup(placement: .navigationBarTrailing) {
+                        EditButton()
+                    }
+                }
             }
             
             if showingPopup {
@@ -88,10 +115,13 @@ struct MyListView_Previews: PreviewProvider {
         let testCompany = CompanyViewModel()
         testCompany.companyList = sampleCompanies
         
+        let testNote = NoteViewModel()
+        testNote.noteList = sampleNotes
+        
         return Group {
-            MyListView(companyVm: testCompany)
+            MyListView(companyVm: testCompany, noteVm: testNote)
             
-            MyListView(companyVm: testCompany)
+            MyListView(companyVm: testCompany, noteVm: testNote)
                 .preferredColorScheme(.dark)
         }
     }

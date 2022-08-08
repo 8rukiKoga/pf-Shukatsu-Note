@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MainListRowView: View {
+struct FolderRowView: View {
     
     var company: CompanyModel
     
@@ -25,9 +25,9 @@ struct MainListRowView: View {
     }
 }
 
-struct MainListRowView_Previews: PreviewProvider {
+struct FolderRowView_Previews: PreviewProvider {
     static var previews: some View {
-        MainListRowView(company: .init(name: "JR九州"))
+        FolderRowView(company: .init(name: "JR九州"))
             .previewLayout(.sizeThatFits)
             .padding()
     }

@@ -12,7 +12,7 @@
 		0DB2B266289E952B00A81149 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0DB2B265289E952B00A81149 /* Assets.xcassets */; };
 		0DB2B269289E952B00A81149 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0DB2B268289E952B00A81149 /* Preview Assets.xcassets */; };
 		0DB2B270289E95B800A81149 /* MyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B26F289E95B700A81149 /* MyListView.swift */; };
-		0DB2B279289E967100A81149 /* MainListRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B278289E967100A81149 /* MainListRowView.swift */; };
+		0DB2B279289E967100A81149 /* FolderRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B278289E967100A81149 /* FolderRowView.swift */; };
 		0DB2B27B289E967E00A81149 /* CompanyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B27A289E967E00A81149 /* CompanyView.swift */; };
 		0DB2B27F289E969800A81149 /* TodoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B27E289E969800A81149 /* TodoListView.swift */; };
 		0DB2B281289E96A300A81149 /* TodoListRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B280289E96A300A81149 /* TodoListRowView.swift */; };
@@ -26,6 +26,7 @@
 		0DB2B2B5289F841500A81149 /* NoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B2B4289F841500A81149 /* NoteViewModel.swift */; };
 		0DB2B2B7289F842C00A81149 /* NoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B2B6289F842C00A81149 /* NoteModel.swift */; };
 		0DB2B2B9289FE43F00A81149 /* AddNewCompanyPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B2B8289FE43F00A81149 /* AddNewCompanyPopupView.swift */; };
+		0DB2B2D528A0C6CD00A81149 /* NoteRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B2D428A0C6CD00A81149 /* NoteRowView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,7 +36,7 @@
 		0DB2B265289E952B00A81149 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0DB2B268289E952B00A81149 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0DB2B26F289E95B700A81149 /* MyListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyListView.swift; sourceTree = "<group>"; };
-		0DB2B278289E967100A81149 /* MainListRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainListRowView.swift; sourceTree = "<group>"; };
+		0DB2B278289E967100A81149 /* FolderRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderRowView.swift; sourceTree = "<group>"; };
 		0DB2B27A289E967E00A81149 /* CompanyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyView.swift; sourceTree = "<group>"; };
 		0DB2B27E289E969800A81149 /* TodoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListView.swift; sourceTree = "<group>"; };
 		0DB2B280289E96A300A81149 /* TodoListRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListRowView.swift; sourceTree = "<group>"; };
@@ -49,6 +50,7 @@
 		0DB2B2B4289F841500A81149 /* NoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewModel.swift; sourceTree = "<group>"; };
 		0DB2B2B6289F842C00A81149 /* NoteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteModel.swift; sourceTree = "<group>"; };
 		0DB2B2B8289FE43F00A81149 /* AddNewCompanyPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewCompanyPopupView.swift; sourceTree = "<group>"; };
+		0DB2B2D428A0C6CD00A81149 /* NoteRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteRowView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,7 +161,8 @@
 			isa = PBXGroup;
 			children = (
 				0DB2B26F289E95B700A81149 /* MyListView.swift */,
-				0DB2B278289E967100A81149 /* MainListRowView.swift */,
+				0DB2B278289E967100A81149 /* FolderRowView.swift */,
+				0DB2B2D428A0C6CD00A81149 /* NoteRowView.swift */,
 				0DB2B2B8289FE43F00A81149 /* AddNewCompanyPopupView.swift */,
 				0DB2B27A289E967E00A81149 /* CompanyView.swift */,
 				0DB2B2B3289F6A2700A81149 /* Note */,
@@ -248,7 +251,7 @@
 			files = (
 				0DB2B2B5289F841500A81149 /* NoteViewModel.swift in Sources */,
 				0DB2B289289E96E800A81149 /* CompanyViewModel.swift in Sources */,
-				0DB2B279289E967100A81149 /* MainListRowView.swift in Sources */,
+				0DB2B279289E967100A81149 /* FolderRowView.swift in Sources */,
 				0DB2B270289E95B800A81149 /* MyListView.swift in Sources */,
 				0DB2B283289E96AF00A81149 /* AddTodoView.swift in Sources */,
 				0DB2B28D289EA70E00A81149 /* NoteListView.swift in Sources */,
@@ -261,6 +264,7 @@
 				0DB2B27F289E969800A81149 /* TodoListView.swift in Sources */,
 				0DB2B281289E96A300A81149 /* TodoListRowView.swift in Sources */,
 				0DB2B27B289E967E00A81149 /* CompanyView.swift in Sources */,
+				0DB2B2D528A0C6CD00A81149 /* NoteRowView.swift in Sources */,
 				0DB2B262289E952800A81149 /* Shukatsu_NoteApp.swift in Sources */,
 				0DB2B287289E96C300A81149 /* WebView.swift in Sources */,
 			);
