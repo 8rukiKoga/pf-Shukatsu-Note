@@ -13,7 +13,7 @@ struct MainListRowView: View {
     
     var body: some View {
         HStack {
-            Image(systemName: "folder.fill")
+            Image(systemName: "folder")
                 .foregroundColor(Color(.systemBrown))
                 .font(.system(size: 20))
             Text(company.name)

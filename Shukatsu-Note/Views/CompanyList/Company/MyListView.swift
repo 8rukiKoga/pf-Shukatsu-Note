@@ -36,7 +36,7 @@ struct MyListView: View {
                                         Image(systemName: "square.and.pencil")
                                             .font(.system(size: 15))
                                     }
-                                    .padding(.trailing, 10)
+                                    .padding(.trailing, 5)
 
                                 }
                             }
@@ -59,7 +59,7 @@ struct MyListView: View {
                                         Image(systemName: "folder.badge.plus")
                                             .font(.system(size: 15))
                                     }
-                                    .padding(.trailing, 10)
+                                    .padding(.trailing, 5)
 
                                 }
                             }

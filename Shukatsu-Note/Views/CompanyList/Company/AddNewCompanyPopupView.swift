@@ -28,9 +28,10 @@ struct AddNewCompanyPopupView: View {
                     Text("企業名を入力してください")
                         .font(.subheadline)
                     TextField("例) さんぷる株式会社", text: $newCompanyName)
+                        .padding(.vertical)
+                        .padding(.horizontal, 5)
                         .frame(width: 230, height: 25)
                         .background(Color(.white))
-                        .padding()
                         .cornerRadius(7)
                     Spacer()
                     
@@ -41,10 +42,8 @@ struct AddNewCompanyPopupView: View {
                             showingPopup = false
                         } label: {
                             Text("キャンセル")
+                                .frame(width: screenWidth / 2)
                         }
-                        .frame(width: 150)
-                        
-                        Spacer()
                         
                         Button {
                             companyVm.companyList.append(CompanyModel(name: newCompanyName))
@@ -52,8 +51,8 @@ struct AddNewCompanyPopupView: View {
                         } label: {
                             Text("保存")
                                 .fontWeight(.bold)
+                                .frame(width: screenWidth / 2)
                         }
-                        .frame(width: 150)
                     }
                     .padding(3)
                     

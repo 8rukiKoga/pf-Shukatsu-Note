@@ -12,8 +12,9 @@ struct CompanyModel: Identifiable {
     
     var name: String
     var stars: Int?
+    var category: String?
     var location: String?
-    var url: URL?
+    var url: String?
     var memo: String?
     var notes: [NoteModel]?
 }
