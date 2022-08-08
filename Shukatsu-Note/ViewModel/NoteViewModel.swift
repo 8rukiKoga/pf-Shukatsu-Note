@@ -12,7 +12,7 @@ class NoteViewModel: ObservableObject {
 }
 
 var sampleNotes = [
-    NoteModel(title: "自己分析結果"),
-    NoteModel(title: "自己PR"),
-    NoteModel(title: "志望動機の書き方")
+    NoteModel(text: "自己分析結果"),
+    NoteModel(text: "自己PR"),
+    NoteModel(text: "志望動機の書き方")
 ]

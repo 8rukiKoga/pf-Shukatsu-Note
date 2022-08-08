@@ -10,6 +10,5 @@ import Foundation
 struct NoteModel: Identifiable {
     var id = UUID()
     
-    var title: String = ""
     var text: String = ""
 }

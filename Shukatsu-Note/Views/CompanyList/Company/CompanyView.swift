@@ -93,8 +93,10 @@ struct CompanyView: View {
             .textCase(nil)
             
             Section {
-                NoteRowView(note: .init(title: "インターンシップで学んだこと"))
-                NoteRowView(note: .init(title: "説明会で聞いたこと"))
+                NavigationLink(destination: NoteView(note: NoteModel(text: "インターンシップで学んだこと"))) {
+                    NoteRowView(note: .init(text: "インターンシップで学んだこと"))
+                }
+                NoteRowView(note: .init(text: "説明会で聞いたこと"))
             } header: {
                 HStack {
                     Text("Memo")
@@ -105,16 +107,20 @@ struct CompanyView: View {
                         Image(systemName: "square.and.pencil")
                             .font(.system(size: 15))
                     }
-
+                    
                 }
             }
             .textCase(nil)
             
         }
         .listStyle(InsetGroupedListStyle())
-        .onTapGesture {
-            inputFocus = false
-        }
+        .gesture(
+            DragGesture().onChanged({ value in
+                if value.translation.height > 0 {
+                    inputFocus = false
+                }
+            })
+        )
         
         .navigationTitle(company.name)
     }

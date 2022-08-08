@@ -32,6 +32,5 @@ struct FolderRowView_Previews: PreviewProvider {
     static var previews: some View {
         FolderRowView(company: .init(name: "JR九州"))
             .previewLayout(.sizeThatFits)
-            .padding()
     }
 }
