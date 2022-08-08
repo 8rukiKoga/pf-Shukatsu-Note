@@ -17,10 +17,13 @@ struct FolderRowView: View {
                 .foregroundColor(Color(.systemBrown))
                 .font(.system(size: 20))
             Text(company.name)
-                .padding(.leading)
-            
-            
+                .font(.system(size: 15))
             Spacer()
+            // ＊ 志望度 後々動的に変更
+            Text("★★★★☆")
+                .foregroundColor(Color(.systemYellow))
+                .font(.system(size: 10))
+                .fontWeight(.bold)
         }
     }
 }

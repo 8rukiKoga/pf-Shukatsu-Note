@@ -16,9 +16,7 @@ struct NoteRowView: View {
                 .foregroundColor(Color(.systemBrown))
                 .font(.system(size: 20))
             Text(note.title)
-                .padding(.leading)
-            
-            
+                .font(.system(size: 15))
             Spacer()
         }
     }
@@ -27,5 +25,7 @@ struct NoteRowView: View {
 struct NoteRowView_Previews: PreviewProvider {
     static var previews: some View {
         NoteRowView(note: .init(title: "就活ガムバル", text: "メモメモ"))
+            .previewLayout(.sizeThatFits)
+            .padding()
     }
 }

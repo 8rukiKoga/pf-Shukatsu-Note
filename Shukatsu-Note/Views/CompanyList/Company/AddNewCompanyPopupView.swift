@@ -27,6 +27,7 @@ struct AddNewCompanyPopupView: View {
                         .font(.headline)
                     Text("企業名を入力してください")
                         .font(.subheadline)
+                    Spacer()
                     TextField("例) さんぷる株式会社", text: $newCompanyName)
                         .padding(.vertical)
                         .padding(.horizontal, 5)

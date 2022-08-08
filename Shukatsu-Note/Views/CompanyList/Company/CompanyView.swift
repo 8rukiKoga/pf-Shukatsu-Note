@@ -18,6 +18,7 @@ struct CompanyView: View {
         List {
             Section {
                 VStack(alignment: .leading) {
+                    // ＊ 後々アイコンまたは画像を適用・変更できるようにする。
                     HStack {
                         Spacer()
                         ZStack {
@@ -29,6 +30,7 @@ struct CompanyView: View {
                         }
                         Spacer()
                     }
+                    // ＊ もっとコードを綺麗にできそう(?)
                     HStack {
                         Text("志望度 : ")
                             .font(.system(size: 15))
@@ -63,7 +65,7 @@ struct CompanyView: View {
                             .font(.system(size: 6))
                     }
                     .padding(1)
-                    
+                    // 簡易メモ
                     TextEditor(text: $memoText)
                         .padding(.horizontal, 2)
                         .frame(height: 100)
@@ -91,8 +93,8 @@ struct CompanyView: View {
             .textCase(nil)
             
             Section {
-                Text("インターンシップで学んだこと")
-                Text("説明会で聞いたこと")
+                NoteRowView(note: .init(title: "インターンシップで学んだこと"))
+                NoteRowView(note: .init(title: "説明会で聞いたこと"))
             } header: {
                 HStack {
                     Text("Memo")

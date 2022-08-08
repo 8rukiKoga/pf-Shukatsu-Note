@@ -15,82 +15,77 @@ struct MyListView: View {
     @State var showingPopup: Bool = false
     
     var body: some View {
+        // ポップアップ表示用Z
         ZStack {
             NavigationView {
                 
-                ZStack {
-                    
-                    Color.init(uiColor: .systemBackground)
-                        .ignoresSafeArea()
-                    
-                    VStack {
-                        
-                        List {
-                            Section {
-                                ForEach(noteVm.noteList) { note in
-                                    NavigationLink(destination: NoteView(note: note)) {
-                                        NoteRowView(note: note)
-                                    }
-                                }
-                                .onMove { (indexSet, index) in
-                                    noteVm.noteList.move(fromOffsets: indexSet, toOffset: index)
-                                }
-                                .onDelete { indexSet in
-                                    noteVm.noteList.remove(atOffsets: indexSet)
-                                }
-                            } header: {
-                                HStack {
-                                    Text("Memo")
-                                    Spacer()
-                                    Button {
-                                        noteVm.noteList.append(NoteModel(title: "New Memo", text: ""))
-                                    } label: {
-                                        Image(systemName: "square.and.pencil")
-                                            .font(.system(size: 15))
-                                    }
-                                    .padding(.trailing, 5)
-                                }
-                            }
-                            .textCase(nil)
-
-                            Section {
-                                ForEach(companyVm.companyList) { company in
-                                    NavigationLink(destination: CompanyView(company: company)) {
-                                        FolderRowView(company: company)
-                                    }
-                                }
-                                .onDelete { indexSet in
-                                    companyVm.companyList.remove(atOffsets: indexSet)
-                                }
-                                
-                            } header: {
-                                HStack {
-                                    Text("企業リスト")
-                                    Spacer()
-                                    
-                                    Button {
-                                        print("sort")
-                                    } label: {
-                                        Image(systemName: "square.3.stack.3d")
-                                            .font(.system(size: 15))
-                                    }
-                                    .padding(.trailing, 10)
-                                    
-                                    Button {
-                                        showingPopup = true
-                                    } label: {
-                                        Image(systemName: "folder.badge.plus")
-                                            .font(.system(size: 15))
-                                    }
-                                    .padding(.trailing, 5)
-                                }
+                List {
+                    // メモリスト
+                    Section {
+                        ForEach(noteVm.noteList) { note in
+                            NavigationLink(destination: NoteView(note: note)) {
+                                NoteRowView(note: note)
                             }
                         }
-                        .listStyle(InsetGroupedListStyle())
-                        
+                        // editbuttonの動作
+                        .onMove { (indexSet, index) in
+                            noteVm.noteList.move(fromOffsets: indexSet, toOffset: index)
+                        }
+                        .onDelete { indexSet in
+                            noteVm.noteList.remove(atOffsets: indexSet)
+                        }
+                    } header: {
+                        HStack {
+                            Text("Memo")
+                            Spacer()
+                            // ＊ 新しいメモを追加 後々ポップアップでtitle入力->追加ができるようにする
+                            Button {
+                                noteVm.noteList.append(NoteModel(title: "New Memo", text: ""))
+                            } label: {
+                                Image(systemName: "square.and.pencil")
+                                    .font(.system(size: 15))
+                            }
+                            .padding(.trailing, 5)
+                        }
                     }
+                    .textCase(nil)
                     
+                    // 企業リスト
+                    Section {
+                        ForEach(companyVm.companyList) { company in
+                            NavigationLink(destination: CompanyView(company: company)) {
+                                FolderRowView(company: company)
+                            }
+                        }
+                        // editbuttonの動作
+                        .onDelete { indexSet in
+                            companyVm.companyList.remove(atOffsets: indexSet)
+                        }
+                    } header: {
+                        HStack {
+                            Text("企業リスト")
+                            Spacer()
+                            
+                            Button {
+                                print("sort")
+                            } label: {
+                                Image(systemName: "square.3.stack.3d")
+                                    .font(.system(size: 15))
+                            }
+                            .padding(.trailing, 10)
+                            
+                            Button {
+                                // ポップアップ表示
+                                showingPopup = true
+                            } label: {
+                                Image(systemName: "folder.badge.plus")
+                                    .font(.system(size: 15))
+                            }
+                            .padding(.trailing, 5)
+                        }
+                    }
                 }
+                .listStyle(InsetGroupedListStyle())
                 
                 .navigationTitle("Notes")
                 .toolbar {
@@ -99,7 +94,7 @@ struct MyListView: View {
                     }
                 }
             }
-            
+            // popupView
             if showingPopup {
                 AddNewCompanyPopupView(companyVm: companyVm, showingPopup: $showingPopup)
             }
@@ -111,6 +106,7 @@ struct MyListView: View {
 struct MyListView_Previews: PreviewProvider {
     static var previews: some View {
         
+        // テストデータをプレビュー表示
         
         let testCompany = CompanyViewModel()
         testCompany.companyList = sampleCompanies
