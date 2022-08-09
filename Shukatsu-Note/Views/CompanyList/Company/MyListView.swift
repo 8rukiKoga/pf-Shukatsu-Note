@@ -53,7 +53,7 @@ struct MyListView: View {
                     // 企業リスト
                     Section {
                         ForEach(companyVm.companyList) { company in
-                            NavigationLink(destination: CompanyView(company: company)) {
+                            NavigationLink(destination: CompanyView(company: company, companyVm: companyVm)) {
                                 FolderRowView(company: company)
                             }
                         }

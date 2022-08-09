@@ -10,6 +10,7 @@ import SwiftUI
 struct CompanyView: View {
     
     var company: CompanyModel
+    @ObservedObject var companyVm: CompanyViewModel
     @State var memoText: String = "すぐに見たい情報をここに記載します。\n選考フローやマイページのID・パスワードなど"
     @FocusState private var inputFocus: Bool
     
@@ -92,25 +93,31 @@ struct CompanyView: View {
             }
             .textCase(nil)
             
-            Section {
-                NavigationLink(destination: NoteView(note: NoteModel(text: "インターンシップで学んだこと"))) {
-                    NoteRowView(note: .init(text: "インターンシップで学んだこと"))
-                }
-                NoteRowView(note: .init(text: "説明会で聞いたこと"))
-            } header: {
-                HStack {
-                    Text("Memo")
-                    Spacer()
-                    Button {
-                        print("new memo")
-                    } label: {
-                        Image(systemName: "square.and.pencil")
-                            .font(.system(size: 15))
+            // インデックス特定
+            if let index = companyVm.companyList.firstIndex(of: company) {
+                Section {
+                    ForEach(companyVm.companyList[index].notes) { note in
+                        NavigationLink(destination: NoteView(note: NoteModel(text: "New Memo"))) {
+                            NoteRowView(note: note)
+                        }
                     }
                     
+                } header: {
+                    HStack {
+                        Text("Memo")
+                        Spacer()
+                        // 新規メモボタン
+                        Button {
+                            print("new memo")
+                            companyVm.companyList[index].notes.append(NoteModel(text: "New Memo"))
+                        } label: {
+                            Image(systemName: "square.and.pencil")
+                                .font(.system(size: 15))
+                        }
+                    }
                 }
+                .textCase(nil)
             }
-            .textCase(nil)
             
         }
         .listStyle(InsetGroupedListStyle())
@@ -128,12 +135,18 @@ struct CompanyView: View {
 
 struct CompanyView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
-            CompanyView(company: .init(name: "A社"))
-        }
-        NavigationView {
-            CompanyView(company: .init(name: "A社"))
-                .preferredColorScheme(.dark)
+        
+        let testCompany = CompanyViewModel()
+        testCompany.companyList = sampleCompanies
+        
+        return Group {
+            NavigationView {
+                CompanyView(company: .init(name: "A社"), companyVm: testCompany)
+            }
+            NavigationView {
+                CompanyView(company: .init(name: "A社"), companyVm: testCompany)
+                    .preferredColorScheme(.dark)
+            }
         }
     }
 }
