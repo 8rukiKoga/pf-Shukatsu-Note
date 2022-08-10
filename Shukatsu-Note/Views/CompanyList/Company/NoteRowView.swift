@@ -8,23 +8,47 @@
 import SwiftUI
 
 struct NoteRowView: View {
+    
+    @ObservedObject var companyVm: CompanyViewModel
+    @ObservedObject var noteVm: NoteViewModel
+    var isInFolder: Bool
+    var companyIndex: Int?
+    
     var note: NoteModel
     
     var body: some View {
-        HStack {
-            Image(systemName: "note.text")
-                .foregroundColor(Color(.systemBrown))
-                .font(.system(size: 20))
-            Text(note.text)
-                .font(.system(size: 15))
-            Spacer()
+        // フォルダ内にあるノートの場合
+        if isInFolder {
+            if let noteIndex = companyVm.companyList[companyIndex!].notes.firstIndex(of: self.note) {
+                HStack {
+                    Image(systemName: "note.text")
+                        .foregroundColor(Color(.systemBrown))
+                        .font(.system(size: 20))
+                    Text(companyVm.companyList[companyIndex!].notes[noteIndex].text)
+                        .font(.system(size: 15))
+                    Spacer()
+                }
+            }
+        }
+        // MyListViewにあるノートの場合
+        else {
+            if let noteIndex = noteVm.noteList.firstIndex(of: note) {
+                HStack {
+                    Image(systemName: "note.text")
+                        .foregroundColor(Color(.systemBrown))
+                        .font(.system(size: 20))
+                    Text(noteVm.noteList[noteIndex].text)
+                        .font(.system(size: 15))
+                    Spacer()
+                }
+            }
         }
     }
 }
 
 struct NoteRowView_Previews: PreviewProvider {
     static var previews: some View {
-        NoteRowView(note: .init(text: "メモメモ"))
+        NoteRowView(companyVm: CompanyViewModel(), noteVm: NoteViewModel(), isInFolder: true, note: .init(text: "メモメモ"))
             .previewLayout(.sizeThatFits)
     }
 }

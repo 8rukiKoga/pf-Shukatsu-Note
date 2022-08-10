@@ -12,7 +12,9 @@ struct MyListView: View {
     @ObservedObject var companyVm: CompanyViewModel
     @ObservedObject var noteVm: NoteViewModel
     
-    @State var showingPopup: Bool = false
+    @State private var redraw: Bool = false
+    
+    @State private var showingPopup: Bool = false
     
     var body: some View {
         // ポップアップ表示用Z
@@ -23,8 +25,9 @@ struct MyListView: View {
                     // メモリスト
                     Section {
                         ForEach(noteVm.noteList) { note in
-                            NavigationLink(destination: NoteView(note: note)) {
-                                NoteRowView(note: note)
+                            NavigationLink(destination: NoteView(isInFolder: false, note: note, companyVm: companyVm, noteVm: noteVm)) {
+                                
+                                NoteRowView(companyVm: companyVm, noteVm: noteVm, isInFolder: false, note: note)
                             }
                         }
                         // editbuttonの動作
@@ -59,7 +62,7 @@ struct MyListView: View {
                         }
                         // editbuttonの動作
                         .onDelete { indexSet in
-                            companyVm.companyList.remove(atOffsets: indexSet)
+                            companyVm.deleteCompany(indexSet: indexSet)
                         }
                     } header: {
                         HStack {
@@ -99,6 +102,9 @@ struct MyListView: View {
                 AddNewCompanyPopupView(companyVm: companyVm, showingPopup: $showingPopup)
             }
             
+        }
+        .onAppear() {
+            redraw.toggle()
         }
     }
 }

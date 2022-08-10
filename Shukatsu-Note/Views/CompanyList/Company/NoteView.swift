@@ -8,10 +8,15 @@
 import SwiftUI
 
 struct NoteView: View {
-    var note: NoteModel
+    // フォルダ内にあるノートか、またはMainViewに表示するノートか
+    var isInFolder: Bool
     
-    @State var title: String = ""
-    @State var text: String = ""
+    var company: CompanyModel?
+    var note: NoteModel
+    var companyIndex: Int?
+    
+    @ObservedObject var companyVm: CompanyViewModel
+    @ObservedObject var noteVm: NoteViewModel
     
     @FocusState private var inputFocus: Bool
     
@@ -32,15 +37,34 @@ struct NoteView: View {
                 
                 // TextEditorの上に透明なTextを載せることで、TextEditorの高さの分、View自体の大きさを大きくしてくれる
                 ZStack {
-                    TextEditor(text: $text)
-                    // 渡されたnoteのtextを代入
-                        .onAppear() {
-                            self.text = note.text
+                    // 企業フォルダ内にあるノートの場合
+                    if isInFolder {
+                        if let noteIndex = companyVm.companyList[companyIndex!].notes.firstIndex(of: note) {
+                            TextEditor(text: $companyVm.companyList[companyIndex!].notes[noteIndex].text)
+                            // 渡されたnoteのtextを代入
+                                .focused($inputFocus)
+                                .font(.body)
+                                .padding(.horizontal)
+                            
+                            Text(companyVm.companyList[companyIndex!].notes[noteIndex].text)
+                                .opacity(0)
+                                .padding(8)
                         }
-                        .focused($inputFocus)
-                        .font(.body)
-                        .padding(.horizontal)
-                    Text(text).opacity(0).padding(.all, 8)
+                    }
+                    // MainViewにあるノートの場合
+                    else {
+                        if let noteIndex = noteVm.noteList.firstIndex(of: note) {
+                            TextEditor(text: $noteVm.noteList[noteIndex].text)
+                            // 渡されたnoteのtextを代入
+                                .focused($inputFocus)
+                                .font(.body)
+                                .padding(.horizontal)
+                            
+                            Text(noteVm.noteList[noteIndex].text)
+                                .opacity(0)
+                                .padding(8)
+                        }
+                    }
                 }
                 
             }
@@ -63,13 +87,23 @@ struct NoteView: View {
             
             .navigationTitle("Note")
         }
+        .onAppear() {
+            
+        }
     }
 }
 
 struct NoteView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
-            NoteView(note: .init(text: "メモメモ"))
+        
+        let testCompany = CompanyViewModel()
+        testCompany.companyList = sampleCompanies
+        
+        let testNote = NoteViewModel()
+        testNote.noteList = sampleNotes
+        
+        return NavigationView {
+            NoteView(isInFolder: true, note: NoteModel(text: "This is text"), companyVm: testCompany, noteVm: testNote)
         }
     }
 }

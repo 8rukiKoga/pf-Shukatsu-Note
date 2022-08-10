@@ -83,8 +83,8 @@
 			children = (
 				0DB2B261289E952800A81149 /* Shukatsu_NoteApp.swift */,
 				0DB2B271289E95D800A81149 /* Views */,
-				0DB2B272289E95E400A81149 /* ViewModel */,
-				0DB2B273289E95ED00A81149 /* Model */,
+				0DB2B272289E95E400A81149 /* ViewModels */,
+				0DB2B273289E95ED00A81149 /* Models */,
 				0DB2B265289E952B00A81149 /* Assets.xcassets */,
 				0DB2B267289E952B00A81149 /* Preview Content */,
 			);
@@ -110,22 +110,22 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		0DB2B272289E95E400A81149 /* ViewModel */ = {
+		0DB2B272289E95E400A81149 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
 				0DB2B288289E96E800A81149 /* CompanyViewModel.swift */,
 				0DB2B2B4289F841500A81149 /* NoteViewModel.swift */,
 			);
-			path = ViewModel;
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
-		0DB2B273289E95ED00A81149 /* Model */ = {
+		0DB2B273289E95ED00A81149 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				0DB2B28A289E96F100A81149 /* CompanyModel.swift */,
 				0DB2B2B6289F842C00A81149 /* NoteModel.swift */,
 			);
-			path = Model;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		0DB2B274289E95F500A81149 /* CompanyList */ = {

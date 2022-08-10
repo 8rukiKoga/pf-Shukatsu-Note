@@ -11,6 +11,7 @@ struct CompanyView: View {
     
     var company: CompanyModel
     @ObservedObject var companyVm: CompanyViewModel
+    
     @State var memoText: String = "すぐに見たい情報をここに記載します。\n選考フローやマイページのID・パスワードなど"
     @FocusState private var inputFocus: Bool
     
@@ -93,12 +94,12 @@ struct CompanyView: View {
             }
             .textCase(nil)
             
-            // インデックス特定
-            if let index = companyVm.companyList.firstIndex(of: company) {
+            // 企業インデックス特定
+            if let companyIndex = companyVm.companyList.firstIndex(of: company) {
                 Section {
-                    ForEach(companyVm.companyList[index].notes) { note in
-                        NavigationLink(destination: NoteView(note: NoteModel(text: "New Memo"))) {
-                            NoteRowView(note: note)
+                    ForEach(companyVm.companyList[companyIndex].notes) { note in
+                        NavigationLink(destination: NoteView(isInFolder: true, note: note, companyIndex: companyIndex, companyVm: companyVm, noteVm: NoteViewModel())) {
+                            NoteRowView(companyVm: companyVm, noteVm: NoteViewModel(), isInFolder: true, companyIndex: companyIndex, note: note)
                         }
                     }
                     
@@ -108,8 +109,7 @@ struct CompanyView: View {
                         Spacer()
                         // 新規メモボタン
                         Button {
-                            print("new memo")
-                            companyVm.companyList[index].notes.append(NoteModel(text: "New Memo"))
+                            companyVm.companyList[companyIndex].notes.append(NoteModel(text: "New Memo"))
                         } label: {
                             Image(systemName: "square.and.pencil")
                                 .font(.system(size: 15))
@@ -139,12 +139,15 @@ struct CompanyView_Previews: PreviewProvider {
         let testCompany = CompanyViewModel()
         testCompany.companyList = sampleCompanies
         
+        let testNote = NoteViewModel()
+        testNote.noteList = sampleNotes
+        
         return Group {
             NavigationView {
-                CompanyView(company: .init(name: "A社"), companyVm: testCompany)
+                CompanyView(company: CompanyModel(name: "name", stars: 1, category: "cat", location: "loc", url: "url", memo: "memo", notes: []), companyVm: testCompany)
             }
             NavigationView {
-                CompanyView(company: .init(name: "A社"), companyVm: testCompany)
+                CompanyView(company: CompanyModel(name: "name", stars: 1, category: "cat", location: "loc", url: "url", memo: "memo", notes: []), companyVm: testCompany)
                     .preferredColorScheme(.dark)
             }
         }

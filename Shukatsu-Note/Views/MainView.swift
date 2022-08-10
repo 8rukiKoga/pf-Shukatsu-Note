@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct MainView: View {
-    @StateObject private var companyVm = CompanyViewModel()
-    @StateObject private var noteVm = NoteViewModel()
+    @ObservedObject var companyVm = CompanyViewModel()
+    @ObservedObject var noteVm = NoteViewModel()
     
     var body: some View {
         TabView {

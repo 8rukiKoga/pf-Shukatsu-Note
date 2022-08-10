@@ -7,10 +7,10 @@
 
 import Foundation
 
-struct CompanyModel: Identifiable, Equatable {
-    // 企業名で同一か判断するようにする(＊ 後々同じ企業名は入力できないように制御する)
+struct CompanyModel: Identifiable, Codable, Equatable {
+    // idで同一か判断するようにする
     static func == (lhs: CompanyModel, rhs: CompanyModel) -> Bool {
-        return lhs.name == rhs.name
+        return lhs.id == rhs.id
     }
     
     var id = UUID()

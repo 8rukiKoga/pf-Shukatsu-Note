@@ -47,7 +47,7 @@ struct AddNewCompanyPopupView: View {
                         }
                         
                         Button {
-                            companyVm.companyList.append(CompanyModel(name: newCompanyName))
+                            companyVm.addCompany(name: newCompanyName)
                             showingPopup = false
                         } label: {
                             Text("保存")
