@@ -39,7 +39,7 @@ struct CompanyView: View {
                         Text("志望度 : ")
                             .font(.system(size: 15))
                         Spacer()
-                        Text("★★★★☆")
+                        Text("\(company.stars)")
                             .foregroundColor(Color(.systemYellow))
                             .fontWeight(.bold)
                     }
@@ -49,7 +49,7 @@ struct CompanyView: View {
                         Text("業界・業種 : ")
                             .font(.system(size: 15))
                         Spacer()
-                        Text("エンジニア")
+                        Text(company.category)
                             .font(.system(size: 15))
                     }
                     .padding(1)
@@ -57,7 +57,7 @@ struct CompanyView: View {
                         Text("所在地 : ")
                             .font(.system(size: 15))
                         Spacer()
-                        Text("東京都港区")
+                        Text(company.location)
                             .font(.system(size: 15))
                     }
                     .padding(1)
@@ -65,7 +65,7 @@ struct CompanyView: View {
                         Text("URL : ")
                             .font(.system(size: 15))
                         Spacer()
-                        Text("https://apps.apple.com/us/app/%E3%81%95%E3%81%B6%E3%81%99%E3%81%8F%E7%AE%A1%E7%90%86/id1617774926?itsct=apps_box_link&itscg=30200")
+                        Text(company.url)
                             .font(.system(size: 6))
                     }
                     .padding(1)
@@ -92,7 +92,7 @@ struct CompanyView: View {
                             .font(.system(size: 12))
                     }
                     .fullScreenCover(isPresented: $showingSheet, content: {
-                        EditCompanyView(showingSheet: $showingSheet, companyVm: companyVm, company: company, name: company.name, stars: company.stars, category: company.category, location: company.location, url: company.location)
+                        EditCompanyView(showingSheet: $showingSheet, companyVm: companyVm, company: company, name: company.name, stars: company.stars, category: company.category, location: company.location, url: company.url)
                     })
                 }
             }
