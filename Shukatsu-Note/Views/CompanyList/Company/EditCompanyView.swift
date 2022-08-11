@@ -30,14 +30,14 @@ struct EditCompanyView: View {
                     TextField("例) さんぷる株式会社", text: $name)
                 }
                 Section("志望度") {
-                    Picker("志望度", selection: $stars) {
+                    Picker("", selection: $stars) {
                         Text("★☆☆☆☆").tag(1)
                         Text("★★☆☆☆").tag(2)
                         Text("★★★☆☆").tag(3)
                         Text("★★★★☆").tag(4)
                         Text("★★★★★").tag(5)
                     }
-                    .pickerStyle(SegmentedPickerStyle())
+                    .pickerStyle(MenuPickerStyle())
                 }
                 Section("業界") {
                     TextField("例) サービス", text: $category)

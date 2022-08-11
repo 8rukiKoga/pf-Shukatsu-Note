@@ -19,7 +19,7 @@ struct CompanyModel: Identifiable, Codable, Equatable {
     var stars: Int = 0
     var category: String = "未設定"
     var location: String = "未設定"
-    var url: String = "未設定"
+    var url: String = ""
     var memo: String = ""
     var notes = [NoteModel]()
 }
