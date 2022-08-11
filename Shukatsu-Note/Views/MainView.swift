@@ -11,6 +11,11 @@ struct MainView: View {
     @ObservedObject var companyVm = CompanyViewModel()
     @ObservedObject var noteVm = NoteViewModel()
     
+    // noteViewにてtabviewの背景上にテキストが浮かび上がらないようにするために背景色を塗る
+    init() {
+        UITabBar.appearance().backgroundColor = UIColor.systemGray6
+    }
+    
     var body: some View {
         TabView {
             

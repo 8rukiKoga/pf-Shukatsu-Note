@@ -27,8 +27,9 @@ struct NoteView: View {
     
     var body: some View {
         
+        // 背景色
         ZStack {
-            Color(.systemGray5)
+            Color(.systemBackground)
                 .ignoresSafeArea()
             
             VStack {
