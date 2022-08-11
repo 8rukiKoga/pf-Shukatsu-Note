@@ -15,11 +15,11 @@ struct CompanyModel: Identifiable, Codable, Equatable {
     
     var id = UUID()
     
-    var name: String
-    var stars: Int?
-    var category: String?
-    var location: String?
-    var url: String?
-    var memo: String?
+    var name: String = "未設定"
+    var stars: Int = 0
+    var category: String = "未設定"
+    var location: String = "未設定"
+    var url: String = "未設定"
+    var memo: String = ""
     var notes = [NoteModel]()
 }

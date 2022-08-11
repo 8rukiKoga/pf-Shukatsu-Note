@@ -15,6 +15,8 @@ struct CompanyView: View {
     @State var memoText: String = "すぐに見たい情報をここに記載します。\n選考フローやマイページのID・パスワードなど"
     @FocusState private var inputFocus: Bool
     
+    @State private var showingSheet: Bool = false
+    
     var body: some View {
         
         List {
@@ -84,12 +86,14 @@ struct CompanyView: View {
                     Spacer()
                     Button {
                         // 編集画面を開く
-                        print("編集")
+                        showingSheet = true
                     } label: {
                         Text("編集")
                             .font(.system(size: 12))
                     }
-                    
+                    .fullScreenCover(isPresented: $showingSheet, content: {
+                        EditCompanyView(showingSheet: $showingSheet, companyVm: companyVm, company: company, name: company.name, stars: company.stars, category: company.category, location: company.location, url: company.location)
+                    })
                 }
             }
             .textCase(nil)

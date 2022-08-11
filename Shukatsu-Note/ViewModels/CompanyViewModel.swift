@@ -42,6 +42,13 @@ class CompanyViewModel: ObservableObject {
         companyList.append(newCompany)
     }
     
+    func updateCompany(currentData: CompanyModel, updatingData: CompanyModel) {
+        // firstIndex特定→代入でいけそう
+        if let companyIndex = companyList.firstIndex(of: currentData) {
+            companyList[companyIndex] = updatingData
+        }
+    }
+    
     func saveCompanies() {
         if let encodedData = try? JSONEncoder().encode(companyList) {
             UserDefaults.standard.set(encodedData, forKey: companyListKey)

@@ -12,8 +12,6 @@ struct MyListView: View {
     @ObservedObject var companyVm: CompanyViewModel
     @ObservedObject var noteVm: NoteViewModel
     
-    @State private var redraw: Bool = false
-    
     @State private var showingPopup: Bool = false
     
     var body: some View {
@@ -102,9 +100,6 @@ struct MyListView: View {
                 AddNewCompanyPopupView(companyVm: companyVm, showingPopup: $showingPopup)
             }
             
-        }
-        .onAppear() {
-            redraw.toggle()
         }
     }
 }

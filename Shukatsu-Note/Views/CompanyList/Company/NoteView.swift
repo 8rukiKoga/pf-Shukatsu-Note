@@ -86,9 +86,7 @@ struct NoteView: View {
             })
             
             .navigationTitle("Note")
-        }
-        .onAppear() {
-            
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }

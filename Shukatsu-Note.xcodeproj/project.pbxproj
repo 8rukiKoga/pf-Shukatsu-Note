@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D7875D228A3D6A70070BE05 /* EditCompanyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7875D128A3D6A60070BE05 /* EditCompanyView.swift */; };
 		0DB2B262289E952800A81149 /* Shukatsu_NoteApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B261289E952800A81149 /* Shukatsu_NoteApp.swift */; };
 		0DB2B264289E952800A81149 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B263289E952800A81149 /* MainView.swift */; };
 		0DB2B266289E952B00A81149 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0DB2B265289E952B00A81149 /* Assets.xcassets */; };
@@ -29,6 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0D7875D128A3D6A60070BE05 /* EditCompanyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCompanyView.swift; sourceTree = "<group>"; };
 		0DB2B25E289E952800A81149 /* Shukatsu-Note.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Shukatsu-Note.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DB2B261289E952800A81149 /* Shukatsu_NoteApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shukatsu_NoteApp.swift; sourceTree = "<group>"; };
 		0DB2B263289E952800A81149 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 				0DB2B2D428A0C6CD00A81149 /* NoteRowView.swift */,
 				0DB2B2B8289FE43F00A81149 /* AddNewCompanyPopupView.swift */,
 				0DB2B27A289E967E00A81149 /* CompanyView.swift */,
+				0D7875D128A3D6A60070BE05 /* EditCompanyView.swift */,
 				0DB2B28E289EA71700A81149 /* NoteView.swift */,
 			);
 			path = Company;
@@ -254,6 +257,7 @@
 				0DB2B27B289E967E00A81149 /* CompanyView.swift in Sources */,
 				0DB2B2D528A0C6CD00A81149 /* NoteRowView.swift in Sources */,
 				0DB2B262289E952800A81149 /* Shukatsu_NoteApp.swift in Sources */,
+				0D7875D228A3D6A70070BE05 /* EditCompanyView.swift in Sources */,
 				0DB2B287289E96C300A81149 /* WebView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
