@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D1162DB28A5C1CA0000FCBA /* SharingFuncs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1162DA28A5C1CA0000FCBA /* SharingFuncs.swift */; };
 		0D7875D228A3D6A70070BE05 /* EditCompanyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7875D128A3D6A60070BE05 /* EditCompanyView.swift */; };
 		0DB2B262289E952800A81149 /* Shukatsu_NoteApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B261289E952800A81149 /* Shukatsu_NoteApp.swift */; };
 		0DB2B264289E952800A81149 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B263289E952800A81149 /* MainView.swift */; };
@@ -30,6 +31,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0D1162DA28A5C1CA0000FCBA /* SharingFuncs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingFuncs.swift; sourceTree = "<group>"; };
 		0D7875D128A3D6A60070BE05 /* EditCompanyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCompanyView.swift; sourceTree = "<group>"; };
 		0DB2B25E289E952800A81149 /* Shukatsu-Note.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Shukatsu-Note.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DB2B261289E952800A81149 /* Shukatsu_NoteApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shukatsu_NoteApp.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 				0DB2B27A289E967E00A81149 /* CompanyView.swift */,
 				0D7875D128A3D6A60070BE05 /* EditCompanyView.swift */,
 				0DB2B28E289EA71700A81149 /* NoteView.swift */,
+				0D1162DA28A5C1CA0000FCBA /* SharingFuncs.swift */,
 			);
 			path = Company;
 			sourceTree = "<group>";
@@ -243,6 +246,7 @@
 			files = (
 				0DB2B2B5289F841500A81149 /* NoteViewModel.swift in Sources */,
 				0DB2B289289E96E800A81149 /* CompanyViewModel.swift in Sources */,
+				0D1162DB28A5C1CA0000FCBA /* SharingFuncs.swift in Sources */,
 				0DB2B279289E967100A81149 /* FolderRowView.swift in Sources */,
 				0DB2B270289E95B800A81149 /* MyListView.swift in Sources */,
 				0DB2B283289E96AF00A81149 /* AddTodoView.swift in Sources */,

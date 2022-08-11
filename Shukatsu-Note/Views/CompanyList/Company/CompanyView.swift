@@ -12,7 +12,7 @@ struct CompanyView: View {
     var company: CompanyModel
     @ObservedObject var companyVm: CompanyViewModel
     
-    @State var memoText: String = "すぐに見たい情報をここに記載します。\n選考フローやマイページのID・パスワードなど"
+    @State var memoText: String = "すぐに見たい情報をここに書きます。\n選考フローやマイページのID・パスワードなど"
     @FocusState private var inputFocus: Bool
     
     @State private var showingSheet: Bool = false
@@ -25,13 +25,11 @@ struct CompanyView: View {
                     // ＊ 後々アイコンまたは画像を適用・変更できるようにする。
                     HStack {
                         Spacer()
-                        ZStack {
-                            Circle()
-                                .frame(width: 120, height: 120)
-                            Image(systemName: "chevron.left.forwardslash.chevron.right")
-                                .foregroundColor(Color(.systemBackground))
-                                .font(.system(size: 60))
-                        }
+                        Image(uiImage: UIImage(named: "companyImage1")!)
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 120, height: 120)
+                            .clipShape(Circle())
                         Spacer()
                     }
                     // ＊ もっとコードを綺麗にできそう(?)
@@ -39,14 +37,14 @@ struct CompanyView: View {
                         Text("志望度 : ")
                             .font(.system(size: 15))
                         Spacer()
-                        Text("\(company.stars)")
+                        Text("\(ConvertIntToStars(count: company.stars))")
                             .foregroundColor(Color(.systemYellow))
                             .fontWeight(.bold)
                     }
                     .padding(.top, 10)
                     .padding(1)
                     HStack {
-                        Text("業界・業種 : ")
+                        Text("業界 : ")
                             .font(.system(size: 15))
                         Spacer()
                         Text(company.category)
@@ -65,19 +63,13 @@ struct CompanyView: View {
                         Text("URL : ")
                             .font(.system(size: 15))
                         Spacer()
-                        Text(company.url)
-                            .font(.system(size: 6))
+                        // URLが見つからなかったら404をはく
+                        // ＊後々404ページを自作して、そこへ飛ばすようにする
+                        Link(company.url, destination: (URL(string: company.url) ?? URL(string: "https://github.com/404"))!)
+                            .font(.system(size: 10))
+                            .frame(height: 10)
                     }
                     .padding(1)
-                    // 簡易メモ
-                    TextEditor(text: $memoText)
-                        .padding(.horizontal, 2)
-                        .frame(height: 100)
-                        .background(Color(.systemGray5))
-                        .cornerRadius(3)
-                        .focused($inputFocus)
-                        .padding(.top, 10)
-                        .font(.caption)
                 }
                 .padding()
             } header: {
@@ -101,6 +93,16 @@ struct CompanyView: View {
             // 企業インデックス特定
             if let companyIndex = companyVm.companyList.firstIndex(of: company) {
                 Section {
+                    // 簡易メモ
+                    TextEditor(text: $memoText)
+                        .padding(.horizontal, 2)
+                        .frame(height: 100)
+                        .background(Color(.systemGray5))
+                        .cornerRadius(3)
+                        .focused($inputFocus)
+                        .font(.caption)
+                        .padding(8)
+                    
                     ForEach(companyVm.companyList[companyIndex].notes) { note in
                         NavigationLink(destination: NoteView(isInFolder: true, note: note, companyIndex: companyIndex, companyVm: companyVm, noteVm: NoteViewModel())) {
                             NoteRowView(companyVm: companyVm, noteVm: NoteViewModel(), isInFolder: true, companyIndex: companyIndex, note: note)
@@ -132,7 +134,6 @@ struct CompanyView: View {
                 }
             })
         )
-        
         .navigationTitle(company.name)
     }
 }

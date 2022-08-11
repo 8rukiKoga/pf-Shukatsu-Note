@@ -19,8 +19,7 @@ struct FolderRowView: View {
             Text(company.name)
                 .font(.system(size: 15))
             Spacer()
-            // ＊ 志望度 後々動的に変更
-            Text("★★★★☆")
+            Text("\(ConvertIntToStars(count: company.stars))")
                 .foregroundColor(Color(.systemYellow))
                 .font(.system(size: 10))
                 .fontWeight(.bold)
