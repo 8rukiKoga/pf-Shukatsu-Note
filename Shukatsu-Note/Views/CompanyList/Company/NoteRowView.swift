@@ -23,11 +23,12 @@ struct NoteRowView: View {
                 HStack {
                     Image(systemName: "note.text")
                         .foregroundColor(Color(.systemBrown))
-                        .font(.system(size: 20))
+                        .font(.system(size: 15))
                     Text(companyVm.companyList[companyIndex!].notes[noteIndex].text)
                         .font(.system(size: 15))
                     Spacer()
                 }
+                .frame(height: 25)
             }
         }
         // MyListViewにあるノートの場合
@@ -36,11 +37,12 @@ struct NoteRowView: View {
                 HStack {
                     Image(systemName: "note.text")
                         .foregroundColor(Color(.systemBrown))
-                        .font(.system(size: 20))
-                    Text(noteVm.noteList[noteIndex].text)
+                        .font(.system(size: 15))
+                    Text( noteVm.noteList[noteIndex].text)
                         .font(.system(size: 15))
                     Spacer()
                 }
+                .frame(height: 25)
             }
         }
     }

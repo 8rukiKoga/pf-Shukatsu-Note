@@ -37,7 +37,7 @@ struct MyListView: View {
                         }
                     } header: {
                         HStack {
-                            Text("Memo")
+                            Text("Note")
                             Spacer()
                             // ＊ 新しいメモを追加 後々ポップアップでtitle入力->追加ができるようにする
                             Button {

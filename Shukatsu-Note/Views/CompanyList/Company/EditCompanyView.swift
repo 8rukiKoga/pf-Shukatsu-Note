@@ -9,6 +9,7 @@ import SwiftUI
 
 struct EditCompanyView: View {
     // シートの表示・非表示
+    // 今のままだと、編集画面を閉じたときにMainListViewまでもどってしまう。修正するにはどうしたらいい？
     @Binding var showingSheet: Bool
     
     @ObservedObject var companyVm: CompanyViewModel

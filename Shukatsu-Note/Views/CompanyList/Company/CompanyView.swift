@@ -109,7 +109,7 @@ struct CompanyView: View {
                     
                 } header: {
                     HStack {
-                        Text("Memo")
+                        Text("Note")
                         Spacer()
                         // 新規メモボタン
                         Button {
