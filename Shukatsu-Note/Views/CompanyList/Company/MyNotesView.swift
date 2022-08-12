@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MyListView: View {
+struct MyNotesView: View {
     
     @ObservedObject var companyVm: CompanyViewModel
     @ObservedObject var noteVm: NoteViewModel
@@ -116,9 +116,9 @@ struct MyListView_Previews: PreviewProvider {
         testNote.noteList = sampleNotes
         
         return Group {
-            MyListView(companyVm: testCompany, noteVm: testNote)
+            MyNotesView(companyVm: testCompany, noteVm: testNote)
             
-            MyListView(companyVm: testCompany, noteVm: testNote)
+            MyNotesView(companyVm: testCompany, noteVm: testNote)
                 .preferredColorScheme(.dark)
         }
     }

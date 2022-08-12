@@ -19,9 +19,9 @@ struct MainView: View {
     var body: some View {
         TabView {
             
-            MyListView(companyVm: companyVm, noteVm: noteVm)
+            MyNotesView(companyVm: companyVm, noteVm: noteVm)
                 .tabItem {
-                    Label("MyList", systemImage: "newspaper.circle.fill")
+                    Label("Notes", systemImage: "newspaper.circle.fill")
                 }
             
             TodoListView()

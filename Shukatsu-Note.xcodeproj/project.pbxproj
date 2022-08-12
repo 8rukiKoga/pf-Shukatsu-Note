@@ -13,7 +13,7 @@
 		0DB2B264289E952800A81149 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B263289E952800A81149 /* MainView.swift */; };
 		0DB2B266289E952B00A81149 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0DB2B265289E952B00A81149 /* Assets.xcassets */; };
 		0DB2B269289E952B00A81149 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0DB2B268289E952B00A81149 /* Preview Assets.xcassets */; };
-		0DB2B270289E95B800A81149 /* MyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B26F289E95B700A81149 /* MyListView.swift */; };
+		0DB2B270289E95B800A81149 /* MyNotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B26F289E95B700A81149 /* MyNotesView.swift */; };
 		0DB2B279289E967100A81149 /* FolderRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B278289E967100A81149 /* FolderRowView.swift */; };
 		0DB2B27B289E967E00A81149 /* CompanyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B27A289E967E00A81149 /* CompanyView.swift */; };
 		0DB2B27F289E969800A81149 /* TodoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B27E289E969800A81149 /* TodoListView.swift */; };
@@ -38,7 +38,7 @@
 		0DB2B263289E952800A81149 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		0DB2B265289E952B00A81149 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0DB2B268289E952B00A81149 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		0DB2B26F289E95B700A81149 /* MyListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyListView.swift; sourceTree = "<group>"; };
+		0DB2B26F289E95B700A81149 /* MyNotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNotesView.swift; sourceTree = "<group>"; };
 		0DB2B278289E967100A81149 /* FolderRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderRowView.swift; sourceTree = "<group>"; };
 		0DB2B27A289E967E00A81149 /* CompanyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyView.swift; sourceTree = "<group>"; };
 		0DB2B27E289E969800A81149 /* TodoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListView.swift; sourceTree = "<group>"; };
@@ -162,7 +162,7 @@
 		0DB2B2B2289F69D000A81149 /* Company */ = {
 			isa = PBXGroup;
 			children = (
-				0DB2B26F289E95B700A81149 /* MyListView.swift */,
+				0DB2B26F289E95B700A81149 /* MyNotesView.swift */,
 				0DB2B278289E967100A81149 /* FolderRowView.swift */,
 				0DB2B2D428A0C6CD00A81149 /* NoteRowView.swift */,
 				0DB2B2B8289FE43F00A81149 /* AddNewCompanyPopupView.swift */,
@@ -248,7 +248,7 @@
 				0DB2B289289E96E800A81149 /* CompanyViewModel.swift in Sources */,
 				0D1162DB28A5C1CA0000FCBA /* SharingFuncs.swift in Sources */,
 				0DB2B279289E967100A81149 /* FolderRowView.swift in Sources */,
-				0DB2B270289E95B800A81149 /* MyListView.swift in Sources */,
+				0DB2B270289E95B800A81149 /* MyNotesView.swift in Sources */,
 				0DB2B283289E96AF00A81149 /* AddTodoView.swift in Sources */,
 				0DB2B264289E952800A81149 /* MainView.swift in Sources */,
 				0DB2B2B9289FE43F00A81149 /* AddNewCompanyPopupView.swift in Sources */,
