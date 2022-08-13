@@ -38,8 +38,9 @@ struct CompanyView: View {
                             .font(.system(size: 15))
                         Spacer()
                         Text("\(ConvertIntToStars(count: company.stars))")
-                            .foregroundColor(Color(.systemYellow))
-                            .fontWeight(.bold)
+                            .font(StarsAreSet(stars: company.stars) ? .system(size: 18) : .system(size: 15))
+                            .foregroundColor(StarsAreSet(stars: company.stars) ? Color(.systemYellow) : Color(.gray))
+                            .fontWeight(StarsAreSet(stars: company.stars) ? .bold : .none)
                     }
                     .padding(.top, 10)
                     .padding(1)

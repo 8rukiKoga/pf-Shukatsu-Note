@@ -30,3 +30,8 @@ func ConvertIntToStars(count: Int) -> String {
     
     return "未設定"
 }
+
+func StarsAreSet(stars: Int) -> Bool {
+    let starString = ConvertIntToStars(count: stars)
+    return starString != "未設定"
+}
