@@ -12,9 +12,9 @@ struct CompanyView: View {
     var company: CompanyModel
     @ObservedObject var companyVm: CompanyViewModel
     
-    @State var memoText: String = "すぐに見たい情報をここに書きます。\n選考フローやマイページのID・パスワードなど"
+    // キーボードの開閉制御
     @FocusState private var inputFocus: Bool
-    
+    // 編集シート開閉制御
     @State private var showingSheet: Bool = false
     
     var body: some View {
@@ -95,14 +95,30 @@ struct CompanyView: View {
             if let companyIndex = companyVm.companyList.firstIndex(of: company) {
                 Section {
                     // 簡易メモ
-                    TextEditor(text: $memoText)
-                        .padding(.horizontal, 2)
-                        .frame(height: 100)
-                        .background(Color(.systemGray5))
-                        .cornerRadius(3)
-                        .focused($inputFocus)
-                        .font(.caption)
-                        .padding(8)
+                    ZStack {
+                        TextEditor(text: $companyVm.companyList[companyIndex].memo)
+                            .padding(.horizontal, 2)
+                            .frame(height: 100)
+                            .background(Color(.systemGray5))
+                            .cornerRadius(3)
+                            .focused($inputFocus)
+                            .font(.caption)
+                            .padding(8)
+                        
+                        if companyVm.companyList[companyIndex].memo.isEmpty {
+                            VStack {
+                                HStack {
+                                    Text("すぐに見たい情報をここに書きます。\n選考フローやマイページのID・パスワードなど")
+                                        .opacity(0.25)
+                                        .font(.caption)
+                                    
+                                    Spacer()
+                                }
+                                Spacer()
+                            }
+                            .padding()
+                        }
+                    }
                     
                     ForEach(companyVm.companyList[companyIndex].notes) { note in
                         NavigationLink(destination: NoteView(isInFolder: true, note: note, companyIndex: companyIndex, companyVm: companyVm, noteVm: NoteViewModel())) {
