@@ -41,7 +41,7 @@ struct MyNotesView: View {
                             Spacer()
                             // ＊ 新しいメモを追加 後々ポップアップでtitle入力->追加ができるようにする
                             Button {
-                                noteVm.noteList.append(NoteModel(text: "New Memo"))
+                                noteVm.noteList.append(NoteModel(text: "New Note"))
                             } label: {
                                 Image(systemName: "square.and.pencil")
                                     .font(.system(size: 15))

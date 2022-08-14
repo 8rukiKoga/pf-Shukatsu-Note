@@ -46,6 +46,11 @@ struct NoteView: View {
                                 .focused($inputFocus)
                                 .font(.body)
                                 .padding(.horizontal)
+                                .onAppear() {
+                                    if companyVm.companyList[companyIndex!].notes[noteIndex].text == "New Note" {
+                                        companyVm.companyList[companyIndex!].notes[noteIndex].text = ""
+                                    }
+                                }
                             
                             Text(companyVm.companyList[companyIndex!].notes[noteIndex].text)
                                 .opacity(0)
@@ -60,6 +65,11 @@ struct NoteView: View {
                                 .focused($inputFocus)
                                 .font(.body)
                                 .padding(.horizontal)
+                                .onAppear() {
+                                    if noteVm.noteList[noteIndex].text == "New Note" {
+                                        noteVm.noteList[noteIndex].text = ""
+                                    }
+                                }
                             
                             Text(noteVm.noteList[noteIndex].text)
                                 .opacity(0)

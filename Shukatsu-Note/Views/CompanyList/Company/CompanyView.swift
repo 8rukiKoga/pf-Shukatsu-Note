@@ -116,7 +116,7 @@ struct CompanyView: View {
                         Spacer()
                         // 新規メモボタン
                         Button {
-                            companyVm.companyList[companyIndex].notes.append(NoteModel(text: "New Memo"))
+                            companyVm.companyList[companyIndex].notes.append(NoteModel(text: "New Note"))
                         } label: {
                             Image(systemName: "square.and.pencil")
                                 .font(.system(size: 15))
