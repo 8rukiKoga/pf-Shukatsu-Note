@@ -29,7 +29,7 @@ struct MainView: View {
                     Label("Todo", systemImage: "list.bullet.circle.fill")
                 }
             
-            SettingsView()
+            SettingsView(companyVm: companyVm, noteVm: noteVm)
                 .tabItem {
                     Label("Settings", systemImage: "gearshape.circle.fill")
                 }

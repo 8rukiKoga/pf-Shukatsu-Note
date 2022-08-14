@@ -38,7 +38,7 @@ struct NoteRowView: View {
                     Image(systemName: "note.text")
                         .foregroundColor(Color(.systemBrown))
                         .font(.system(size: 15))
-                    Text( noteVm.noteList[noteIndex].text)
+                    Text(noteVm.noteList[noteIndex].text)
                         .font(.system(size: 15))
                     Spacer()
                 }

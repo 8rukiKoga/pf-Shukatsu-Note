@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct WebView: View {
+    @Binding var url: String
+    
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
@@ -15,6 +17,6 @@ struct WebView: View {
 
 struct WebView_Previews: PreviewProvider {
     static var previews: some View {
-        WebView()
+        WebView(url: .constant("google.com"))
     }
 }
