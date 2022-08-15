@@ -8,13 +8,38 @@
 import SwiftUI
 
 struct TodoListRowView: View {
+    @ObservedObject var todoVm: TodoViewModel
+    var task: TodoModel
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+        if let taskIndex = todoVm.todoList.firstIndex(of: task) {
+            HStack {
+                Button {
+                    todoVm.todoList[taskIndex].done.toggle()
+                    
+                } label: {
+                    if todoVm.todoList[taskIndex].done {
+                        Image(systemName: "checkmark.circle.fill")
+                            .font(.title2)
+                            .foregroundColor(Color(.systemYellow))
+                    } else {
+                        Image(systemName: "circle")
+                            .font(.title2)
+                            .foregroundColor(.gray)
+                    }
+                }
+                
+                Spacer()
+                Text(task.name)
+            }
+            .padding(.horizontal)
+        }
+        
     }
 }
 
 struct TodoListRowView_Previews: PreviewProvider {
     static var previews: some View {
-        TodoListRowView()
+        TodoListRowView(todoVm: TodoViewModel(), task: TodoModel(name: "wawawa", done: false))
     }
 }

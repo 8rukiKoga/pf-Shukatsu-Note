@@ -8,13 +8,51 @@
 import SwiftUI
 
 struct AddTodoView: View {
+    
+    @ObservedObject var todoVm: TodoViewModel
+    
+    @Binding var showSheet: Bool
+    @State var taskName: String = ""
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+        VStack {
+            HStack {
+                Spacer()
+                Button {
+                    showSheet = false
+                } label: {
+                    Image(systemName: "xmark")
+                        .font(.title)
+                }
+                .padding(6)
+            }
+            Spacer()
+            
+            TextField("タスク名を入力", text: $taskName)
+                .padding()
+            
+            Button {
+                todoVm.addTodo(name: taskName)
+                showSheet = false
+            } label: {
+                Text("追加")
+                    .font(.title3).bold()
+                    .foregroundColor(Color(.systemBackground))
+                    .frame(width: 200, height: 15)
+                    .padding()
+                    .background(Color(.systemBlue))
+                    .cornerRadius(5)
+            }
+            Spacer()
+        }
+        .padding()
+        
     }
 }
 
 struct AddTodoView_Previews: PreviewProvider {
     static var previews: some View {
-        AddTodoView()
+        AddTodoView(todoVm: TodoViewModel(), showSheet: .constant(true))
     }
 }

@@ -10,27 +10,15 @@ import SwiftUI
 struct TodoListView: View {
     
     @ObservedObject var todoVm: TodoViewModel
+    @State var showSheet: Bool = false
     
     var body: some View {
         NavigationView {
             ZStack {
-                
                 List {
-                    HStack {
-                        Image(systemName: "circle")
-                            .foregroundColor(.gray)
-                        Spacer()
-                        Text("task1")
+                    ForEach(todoVm.todoList) { task in
+                        TodoListRowView(todoVm: todoVm, task: task)
                     }
-                    .padding(.horizontal)
-                    
-                    HStack {
-                        Image(systemName: "circle")
-                            .foregroundColor(.gray)
-                        Spacer()
-                        Text("task1")
-                    }
-                    .padding(.horizontal)
                 }
                 .listStyle(PlainListStyle())
                 
@@ -39,7 +27,7 @@ struct TodoListView: View {
                     HStack {
                         Spacer()
                         Button {
-                            
+                            showSheet = true
                         } label: {
                             ZStack {
                                 Image(systemName: "plus")
@@ -53,6 +41,9 @@ struct TodoListView: View {
                                 // Buttonの端からの距離
                                     .padding(EdgeInsets(top: 0, leading: 0, bottom: 60, trailing: 25))
                             }
+                        }
+                        .sheet(isPresented: $showSheet) {
+                            AddTodoView(todoVm: todoVm, showSheet: $showSheet)
                         }
                         
                     }
