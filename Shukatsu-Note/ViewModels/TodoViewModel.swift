@@ -38,9 +38,9 @@ class TodoViewModel: ObservableObject {
         todoList.move(fromOffsets: from, toOffset: to)
     }
     
-    func addTodo(text: String) {
-        let newNote = TodoModel(name: text, done: false)
-        todoList.append(newNote)
+    func addTodo(name: String) {
+        let newTask = TodoModel(name: name, done: false)
+        todoList.append(newTask)
     }
     
     func saveTodo() {
