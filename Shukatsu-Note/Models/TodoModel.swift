@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Todo: Identifiable, Codable {
+struct TodoModel: Identifiable, Codable {
     var id = UUID()
     
     var name: String = ""
