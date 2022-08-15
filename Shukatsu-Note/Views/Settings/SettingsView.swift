@@ -119,8 +119,8 @@ struct SettingsView: View {
                 }
                 .listStyle(.plain)
             }
+            .navigationTitle("Settings")
         }
-        .navigationTitle("Settings")
     }
     
     // レビューアラート表示
