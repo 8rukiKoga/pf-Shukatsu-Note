@@ -93,6 +93,7 @@ struct CompanyView: View {
             
             // 企業インデックス特定
             if let companyIndex = companyVm.companyList.firstIndex(of: company) {
+                
                 Section {
                     // 簡易メモ
                     ZStack {
@@ -119,17 +120,25 @@ struct CompanyView: View {
                             .padding()
                         }
                     }
-                    
+                }
+                Section {
                     ForEach(companyVm.companyList[companyIndex].notes) { note in
                         NavigationLink(destination: NoteView(isInFolder: true, note: note, companyIndex: companyIndex, companyVm: companyVm, noteVm: NoteViewModel())) {
                             NoteRowView(companyVm: companyVm, noteVm: NoteViewModel(), isInFolder: true, companyIndex: companyIndex, note: note)
                         }
                     }
-                    
+                    // なぜか使用できない
+//                    .onMove { (indexSet, index) in
+//                        companyVm.moveNote(companyIndex: companyIndex, from: indexSet, to: index)
+//                    }
+//                    .onDelete { indexSet in
+//                        companyVm.deleteNote(companyIndex: companyIndex, indexSet: indexSet)
+//                    }
                 } header: {
                     HStack {
                         Text("Note")
                         Spacer()
+                        EditButton()
                         // 新規メモボタン
                         Button {
                             companyVm.companyList[companyIndex].notes.append(NoteModel(text: "New Note"))
@@ -152,6 +161,11 @@ struct CompanyView: View {
             })
         )
         .navigationTitle(company.name)
+        .toolbar {
+            ToolbarItemGroup(placement: .navigationBarTrailing) {
+                EditButton()
+            }
+        }
     }
 }
 
