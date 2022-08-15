@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct MainView: View {
-    @ObservedObject var companyVm = CompanyViewModel()
-    @ObservedObject var noteVm = NoteViewModel()
+    @StateObject var companyVm = CompanyViewModel()
+    @StateObject var noteVm = NoteViewModel()
+    @StateObject var todoVm = TodoViewModel()
     
     // noteViewにてtabviewの背景上にテキストが浮かび上がらないようにするために背景色を塗る
     init() {
@@ -24,7 +25,7 @@ struct MainView: View {
                     Label("Notes", systemImage: "newspaper.circle.fill")
                 }
             
-            TodoListView()
+            TodoListView(todoVm: todoVm)
                 .tabItem {
                     Label("Todo", systemImage: "list.bullet.circle.fill")
                 }

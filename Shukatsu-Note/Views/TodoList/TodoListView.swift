@@ -9,6 +9,8 @@ import SwiftUI
 
 struct TodoListView: View {
     
+    @ObservedObject var todoVm: TodoViewModel
+    
     var body: some View {
         NavigationView {
             ZStack {
@@ -37,7 +39,7 @@ struct TodoListView: View {
                     HStack {
                         Spacer()
                         Button {
-                            print("add task")
+                            
                         } label: {
                             ZStack {
                                 Image(systemName: "plus")
@@ -64,6 +66,6 @@ struct TodoListView: View {
 
 struct TodoListView_Previews: PreviewProvider {
     static var previews: some View {
-        TodoListView()
+        TodoListView(todoVm: TodoViewModel())
     }
 }

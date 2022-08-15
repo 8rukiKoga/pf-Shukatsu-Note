@@ -9,10 +9,6 @@ import SwiftUI
 
 @main
 struct Shukatsu_NoteApp: App {
-    
-    @StateObject private var companyVm = CompanyViewModel()
-    @StateObject private var noteVm = NoteViewModel()
-    
     var body: some Scene {
         WindowGroup {
             MainView()
