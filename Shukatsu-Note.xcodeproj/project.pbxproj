@@ -32,6 +32,7 @@
 		0DB2B2D528A0C6CD00A81149 /* NoteRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B2D428A0C6CD00A81149 /* NoteRowView.swift */; };
 		0DE5C23628A920C300865D72 /* TodoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE5C23528A920C300865D72 /* TodoModel.swift */; };
 		0DE5C23828A920D100865D72 /* TodoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE5C23728A920D100865D72 /* TodoViewModel.swift */; };
+		0DE5C23B28AB2CF500865D72 /* FloatingBtnMod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE5C23A28AB2CF500865D72 /* FloatingBtnMod.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +62,7 @@
 		0DB2B2D428A0C6CD00A81149 /* NoteRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteRowView.swift; sourceTree = "<group>"; };
 		0DE5C23528A920C300865D72 /* TodoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoModel.swift; sourceTree = "<group>"; };
 		0DE5C23728A920D100865D72 /* TodoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoViewModel.swift; sourceTree = "<group>"; };
+		0DE5C23A28AB2CF500865D72 /* FloatingBtnMod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingBtnMod.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +121,7 @@
 				0DB2B275289E960400A81149 /* TodoList */,
 				0DB2B277289E962500A81149 /* Settings */,
 				0DE5C23228A9107F00865D72 /* ViewFuncs */,
+				0DE5C23928AB2CC900865D72 /* ViewModifiers */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -184,6 +187,14 @@
 				0D1162DA28A5C1CA0000FCBA /* SharingFuncs.swift */,
 			);
 			path = ViewFuncs;
+			sourceTree = "<group>";
+		};
+		0DE5C23928AB2CC900865D72 /* ViewModifiers */ = {
+			isa = PBXGroup;
+			children = (
+				0DE5C23A28AB2CF500865D72 /* FloatingBtnMod.swift */,
+			);
+			path = ViewModifiers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -266,6 +277,7 @@
 				0DB2B264289E952800A81149 /* MainView.swift in Sources */,
 				0DB2B2B9289FE43F00A81149 /* AddNewCompanyPopupView.swift in Sources */,
 				0DB2B28B289E96F100A81149 /* CompanyModel.swift in Sources */,
+				0DE5C23B28AB2CF500865D72 /* FloatingBtnMod.swift in Sources */,
 				0DB2B285289E96BC00A81149 /* SettingsView.swift in Sources */,
 				0DB2B28F289EA71700A81149 /* NoteView.swift in Sources */,
 				0DB2B2B7289F842C00A81149 /* NoteModel.swift in Sources */,

@@ -37,15 +37,7 @@ struct TodoListView: View {
                         } label: {
                             ZStack {
                                 Image(systemName: "plus")
-                                    .font(.system(size: 24))
-                                    .foregroundColor(.white)
-                                    .frame(width: 55, height: 55)
-                                // うしろの青丸の設定
-                                    .background(Color.blue)
-                                    .cornerRadius(30.0)
-                                    .shadow(color: .gray, radius: 3, x: 3, y: 3)
-                                // Buttonの端からの距離
-                                    .padding(EdgeInsets(top: 0, leading: 0, bottom: 60, trailing: 25))
+                                    .modifier(FloatingBtnMod())
                             }
                         }
                         .sheet(isPresented: $showSheet) {
