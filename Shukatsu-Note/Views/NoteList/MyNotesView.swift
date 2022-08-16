@@ -24,7 +24,6 @@ struct MyNotesView: View {
                     Section {
                         ForEach(noteVm.noteList) { note in
                             NavigationLink(destination: NoteView(isInFolder: false, note: note, companyVm: companyVm, noteVm: noteVm)) {
-                                
                                 NoteRowView(companyVm: companyVm, noteVm: noteVm, isInFolder: false, note: note)
                             }
                         }
@@ -77,7 +76,9 @@ struct MyNotesView: View {
                             
                             Button {
                                 // ポップアップ表示
-                                showingPopup = true
+                                withAnimation {
+                                    showingPopup = true
+                                }
                             } label: {
                                 Image(systemName: "folder.badge.plus")
                                     .font(.system(size: 15))
@@ -98,6 +99,7 @@ struct MyNotesView: View {
             // popupView
             if showingPopup {
                 AddNewCompanyPopupView(companyVm: companyVm, showingPopup: $showingPopup)
+                    .transition(.asymmetric(insertion: .scale, removal: .opacity))
             }
             
         }
