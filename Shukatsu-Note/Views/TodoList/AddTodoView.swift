@@ -14,6 +14,8 @@ struct AddTodoView: View {
     @Binding var showSheet: Bool
     @State var taskName: String = ""
     
+    let screenWidth = UIScreen.main.bounds.width
+    
     var body: some View {
         
         VStack {
@@ -31,6 +33,9 @@ struct AddTodoView: View {
             
             TextField("タスク名を入力", text: $taskName)
                 .padding()
+                .frame(width: screenWidth - 50)
+                .background(Color(.systemGray5))
+                .padding(.bottom)
             
             Button {
                 todoVm.addTodo(name: taskName)
@@ -39,7 +44,7 @@ struct AddTodoView: View {
                 Text("追加")
                     .font(.title3).bold()
                     .foregroundColor(Color(.systemBackground))
-                    .frame(width: 200, height: 15)
+                    .frame(width: screenWidth - 200, height: 15)
                     .padding()
                     .background(Color(.systemBlue))
                     .cornerRadius(5)
