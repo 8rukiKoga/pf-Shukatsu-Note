@@ -19,6 +19,12 @@ struct TodoListView: View {
                     ForEach(todoVm.todoList) { task in
                         TodoListRowView(todoVm: todoVm, task: task)
                     }
+                    .onMove { (indexSet, index) in
+                        todoVm.todoList.move(fromOffsets: indexSet, toOffset: index)
+                    }
+                    .onDelete { indexSet in
+                        todoVm.todoList.remove(atOffsets: indexSet)
+                    }
                 }
                 .listStyle(PlainListStyle())
                 
@@ -51,6 +57,11 @@ struct TodoListView: View {
                 
             }
             .navigationTitle("Todo")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    EditButton()
+                }
+            }
         }
     }
 }
