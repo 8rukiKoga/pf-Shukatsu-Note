@@ -18,18 +18,13 @@ struct TodoListRowView: View {
                 Spacer()
                 
                 Button {
-                    todoVm.todoList[taskIndex].done.toggle()
-                    
-                } label: {
-                    if todoVm.todoList[taskIndex].done {
-                        Image(systemName: "checkmark.circle.fill")
-                            .font(.title2)
-                            .foregroundColor(Color(.systemYellow))
-                    } else {
-                        Image(systemName: "circle")
-                            .font(.title2)
-                            .foregroundColor(.gray)
+                    withAnimation {
+                        todoVm.todoList[taskIndex].done.toggle()
                     }
+                } label: {
+                    Image(systemName: todoVm.todoList[taskIndex].done ? "checkmark.circle.fill" : "circle")
+                        .font(todoVm.todoList[taskIndex].done ? .title2 : .title3)
+                        .foregroundColor(todoVm.todoList[taskIndex].done ? Color(.systemYellow) : .gray)
                 }
             }
             .padding(.horizontal)
