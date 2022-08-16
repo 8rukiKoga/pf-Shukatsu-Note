@@ -14,7 +14,7 @@ struct FolderRowView: View {
     var body: some View {
         HStack {
             Image(systemName: "building.2")
-                .foregroundColor(Color(.systemBrown))
+                .foregroundColor(Color("ThemeColor"))
                 .font(.system(size: 18))
             Text(company.name)
                 .font(.system(size: 15))

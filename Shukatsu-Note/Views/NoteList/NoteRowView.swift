@@ -22,7 +22,7 @@ struct NoteRowView: View {
             if let noteIndex = companyVm.companyList[companyIndex!].notes.firstIndex(of: self.note) {
                 HStack {
                     Image(systemName: "note.text")
-                        .foregroundColor(Color(.systemBrown))
+                        .foregroundColor(Color("ThemeColor"))
                         .font(.system(size: 15))
                     Text(companyVm.companyList[companyIndex!].notes[noteIndex].text)
                         .font(.system(size: 15))
@@ -36,7 +36,7 @@ struct NoteRowView: View {
             if let noteIndex = noteVm.noteList.firstIndex(of: note) {
                 HStack {
                     Image(systemName: "note.text")
-                        .foregroundColor(Color(.systemBrown))
+                        .foregroundColor(Color("ThemeColor"))
                         .font(.system(size: 15))
                     Text(noteVm.noteList[noteIndex].text)
                         .font(.system(size: 15))
