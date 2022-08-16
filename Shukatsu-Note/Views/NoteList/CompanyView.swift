@@ -64,13 +64,13 @@ struct CompanyView: View {
                         Text("URL : ")
                             .font(.system(size: 15))
                         Spacer()
-                        // URLが見つからなかったら404をはく
-                        // ＊後々404ページを自作して、そこへ飛ばすようにする
-                        Link(company.url, destination: (URL(string: company.url) ?? URL(string: "https://github.com/404"))!)
-                            .font(.system(size: 10))
-                            .frame(height: 10)
+                        // URLが有効かどうか確認してから表示する
+                        if verifyUrl(urlString: company.url) {
+                            let markdownLink = try! AttributedString(markdown: "[\(company.url)](\(company.url))")
+                            Text(markdownLink)
+                                .padding(1)
+                        }
                     }
-                    .padding(1)
                 }
                 .padding()
             } header: {
@@ -128,17 +128,16 @@ struct CompanyView: View {
                         }
                     }
                     // なぜか使用できない
-//                    .onMove { (indexSet, index) in
-//                        companyVm.moveNote(companyIndex: companyIndex, from: indexSet, to: index)
-//                    }
-//                    .onDelete { indexSet in
-//                        companyVm.deleteNote(companyIndex: companyIndex, indexSet: indexSet)
-//                    }
+                    //                    .onMove { (indexSet, index) in
+                    //                        companyVm.moveNote(companyIndex: companyIndex, from: indexSet, to: index)
+                    //                    }
+                    //                    .onDelete { indexSet in
+                    //                        companyVm.deleteNote(companyIndex: companyIndex, indexSet: indexSet)
+                    //                    }
                 } header: {
                     HStack {
                         Text("Note")
                         Spacer()
-                        EditButton()
                         // 新規メモボタン
                         Button {
                             companyVm.companyList[companyIndex].notes.append(NoteModel(text: "New Note"))
@@ -161,11 +160,20 @@ struct CompanyView: View {
             })
         )
         .navigationTitle(company.name)
-        .toolbar {
-            ToolbarItemGroup(placement: .navigationBarTrailing) {
-                EditButton()
+        //        .toolbar {
+        //            ToolbarItemGroup(placement: .navigationBarTrailing) {
+        //                EditButton()
+        //            }
+        //        }
+    }
+    // URLが有効かどうか判断
+    func verifyUrl (urlString: String?) -> Bool {
+        if let urlString = urlString {
+            if let url = NSURL(string: urlString) {
+                return UIApplication.shared.canOpenURL(url as URL)
             }
         }
+        return false
     }
 }
 
