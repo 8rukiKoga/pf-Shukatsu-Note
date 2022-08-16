@@ -11,6 +11,7 @@ import StoreKit
 struct SettingsView: View {
     @ObservedObject var companyVm: CompanyViewModel
     @ObservedObject var noteVm: NoteViewModel
+    @ObservedObject var todoVm: TodoViewModel
     
     @State private var showSheet: Bool = false
     @State private var showAlert: Bool = false
@@ -30,18 +31,19 @@ struct SettingsView: View {
                             showAlert.toggle()
                             
                         } label: {
-                            Text("ノートを全て削除する")
+                            Text("データを全て削除する")
                                 .foregroundColor(.red)
                         }
                         .alert(isPresented: $showAlert) {
                             Alert(title: Text("警告"),
-                                  message: Text("登録されたノート・企業がすべて削除されますが、よろしいですか？"),
+                                  message: Text("登録されたノート・企業・Todoがすべて削除されますが、よろしいですか？"),
                                   primaryButton: .default(Text("戻る"), action: {
                                 return
                             }),
                                   secondaryButton: .destructive(Text("削除"), action: {
+                                noteVm.noteList.removeAll()
                                 companyVm.companyList.removeAll()
-                                
+                                todoVm.todoList.removeAll()
                             })
                             )}
                     }
@@ -54,20 +56,20 @@ struct SettingsView: View {
                         }
                         Button {
                             // スグフォームまたは自分で実装
-//                            url = ""
-//                            showSheet.toggle()
+                            //                            url = ""
+                            //                            showSheet.toggle()
                         } label: {
                             Text("不具合・リクエストを送信する")
                         }
-//                        .sheet(isPresented: $showSheet) {
-//                            WebView(url: $url)
-//                        }
+                        //                        .sheet(isPresented: $showSheet) {
+                        //                            WebView(url: $url)
+                        //                        }
                     }
                     
                     Section(header: Text("開発者の他のアプリ")) {
                         Button {
                             // AppStoreに遷移
-//                            seeApp(url: "")
+                            //                            seeApp(url: "")
                         } label: {
                             HStack {
                                 Image("25minsLogo")
@@ -107,8 +109,8 @@ struct SettingsView: View {
                         }
                         Button {
                             // リリース直前にPFサイトにアプリを掲載→そのリンクをここに記載する
-//                            url = ""
-//                            showSheet.toggle()
+                            //                            url = ""
+                            //                            showSheet.toggle()
                         } label: {
                             Text("プライバシーポリシー")
                         }
@@ -138,6 +140,6 @@ struct SettingsView: View {
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView(companyVm: CompanyViewModel(), noteVm: NoteViewModel())
+        SettingsView(companyVm: CompanyViewModel(), noteVm: NoteViewModel(), todoVm: TodoViewModel())
     }
 }
