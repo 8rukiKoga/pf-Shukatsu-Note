@@ -36,6 +36,8 @@ struct MainView: View {
                 }
             
         }
+        // アプリのアクセントカラーを変更
+        .accentColor(Color("ThemeColor"))
         .navigationViewStyle(StackNavigationViewStyle())
     }
 }
