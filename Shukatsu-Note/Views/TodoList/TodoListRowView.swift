@@ -14,6 +14,9 @@ struct TodoListRowView: View {
         
         if let taskIndex = todoVm.todoList.firstIndex(of: task) {
             HStack {
+                Text(task.name)
+                Spacer()
+                
                 Button {
                     todoVm.todoList[taskIndex].done.toggle()
                     
@@ -28,9 +31,6 @@ struct TodoListRowView: View {
                             .foregroundColor(.gray)
                     }
                 }
-                
-                Spacer()
-                Text(task.name)
             }
             .padding(.horizontal)
         }
