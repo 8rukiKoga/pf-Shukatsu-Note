@@ -46,7 +46,7 @@ struct AddTodoView: View {
                     .foregroundColor(Color(.systemBackground))
                     .frame(width: screenWidth - 200, height: 15)
                     .padding()
-                    .background(Color(.systemBlue))
+                    .background(Color(.systemBrown))
                     .cornerRadius(5)
             }
             Spacer()

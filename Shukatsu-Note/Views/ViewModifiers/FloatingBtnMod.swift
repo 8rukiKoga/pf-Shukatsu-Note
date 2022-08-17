@@ -14,7 +14,7 @@ struct FloatingBtnMod: ViewModifier {
             .foregroundColor(.white)
             .frame(width: 55, height: 55)
         // うしろの青丸の設定
-            .background(Color.blue)
+            .background(Color(.systemBrown))
             .cornerRadius(30.0)
             .shadow(color: .gray, radius: 3, x: 1, y: 1)
         // Buttonの端からの距離

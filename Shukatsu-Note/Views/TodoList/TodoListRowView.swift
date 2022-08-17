@@ -24,7 +24,7 @@ struct TodoListRowView: View {
                 } label: {
                     Image(systemName: todoVm.todoList[taskIndex].done ? "checkmark.circle.fill" : "circle")
                         .font(todoVm.todoList[taskIndex].done ? .title2 : .title3)
-                        .foregroundColor(todoVm.todoList[taskIndex].done ? Color(.systemYellow) : .gray)
+                        .foregroundColor(todoVm.todoList[taskIndex].done ? Color(.systemGreen) : .gray)
                 }
             }
             .padding(.horizontal)
