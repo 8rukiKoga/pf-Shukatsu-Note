@@ -12,6 +12,9 @@ struct EditCompanyView: View {
     // 今のままだと、編集画面を閉じたときにMainListViewまでもどってしまう。修正するにはどうしたらいい？
     @Binding var showingSheet: Bool
     
+    @State var companyImage = UIImage(named: "default-companyImage1")!
+    @State var showingPhotoPicker: Bool = false
+    
     @ObservedObject var companyVm: CompanyViewModel
     var company: CompanyModel
     
@@ -27,6 +30,26 @@ struct EditCompanyView: View {
     var body: some View {
         ZStack {
             Form {
+                Section("企業アイコン") {
+                    VStack {
+                        HStack {
+                            Spacer()
+                            Image(uiImage: companyImage)
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 120, height: 120)
+                                .clipShape(Circle())
+                                .onTapGesture {
+                                    showingPhotoPicker = true
+                                }
+                            Spacer()
+                        }
+                        Text("画像をタップして変更")
+                            .font(.caption2)
+                    }
+                    .padding(5)
+                }
+                
                 Section("企業名") {
                     TextField("例) さんぷる株式会社", text: $name)
                 }
@@ -73,6 +96,9 @@ struct EditCompanyView: View {
                 }
             }
             
+        }
+        .sheet(isPresented: $showingPhotoPicker) {
+            PhotoPicker(companyImage:$companyImage)
         }
     }
 }

@@ -33,6 +33,7 @@
 		0DE5C23628A920C300865D72 /* TodoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE5C23528A920C300865D72 /* TodoModel.swift */; };
 		0DE5C23828A920D100865D72 /* TodoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE5C23728A920D100865D72 /* TodoViewModel.swift */; };
 		0DE5C23B28AB2CF500865D72 /* FloatingBtnMod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE5C23A28AB2CF500865D72 /* FloatingBtnMod.swift */; };
+		0DE5C23D28ACF5D800865D72 /* PhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE5C23C28ACF5D800865D72 /* PhotoPicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +64,7 @@
 		0DE5C23528A920C300865D72 /* TodoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoModel.swift; sourceTree = "<group>"; };
 		0DE5C23728A920D100865D72 /* TodoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoViewModel.swift; sourceTree = "<group>"; };
 		0DE5C23A28AB2CF500865D72 /* FloatingBtnMod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingBtnMod.swift; sourceTree = "<group>"; };
+		0DE5C23C28ACF5D800865D72 /* PhotoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +158,7 @@
 				0DB2B28E289EA71700A81149 /* NoteView.swift */,
 				0DB2B27A289E967E00A81149 /* CompanyView.swift */,
 				0D7875D128A3D6A60070BE05 /* EditCompanyView.swift */,
+				0DE5C23C28ACF5D800865D72 /* PhotoPicker.swift */,
 			);
 			path = NoteList;
 			sourceTree = "<group>";
@@ -290,6 +293,7 @@
 				0DE5C23828A920D100865D72 /* TodoViewModel.swift in Sources */,
 				0DB2B262289E952800A81149 /* Shukatsu_NoteApp.swift in Sources */,
 				0D7875D228A3D6A70070BE05 /* EditCompanyView.swift in Sources */,
+				0DE5C23D28ACF5D800865D72 /* PhotoPicker.swift in Sources */,
 				0DB2B287289E96C300A81149 /* WebView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

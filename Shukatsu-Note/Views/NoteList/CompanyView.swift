@@ -25,7 +25,7 @@ struct CompanyView: View {
                     // ＊ 後々アイコンまたは画像を適用・変更できるようにする。
                     HStack {
                         Spacer()
-                        Image(uiImage: UIImage(named: "companyImage1")!)
+                        Image(uiImage: UIImage(named: "default-companyImage1")!)
                             .resizable()
                             .scaledToFill()
                             .frame(width: 120, height: 120)
