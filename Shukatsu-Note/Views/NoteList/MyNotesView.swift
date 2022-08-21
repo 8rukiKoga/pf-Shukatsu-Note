@@ -98,7 +98,7 @@ struct MyNotesView: View {
             }
             // popupView
             if showingPopup {
-                AddNewCompanyPopupView(companyVm: companyVm, showingPopup: $showingPopup)
+                AddCompanyPopupView(companyVm: companyVm, showingPopup: $showingPopup)
                     .transition(.asymmetric(insertion: .scale, removal: .opacity))
             }
             

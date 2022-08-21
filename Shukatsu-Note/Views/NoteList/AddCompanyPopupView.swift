@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AddNewCompanyPopupView: View {
+struct AddCompanyPopupView: View {
     
     @ObservedObject var companyVm: CompanyViewModel
     @Binding var showingPopup: Bool
@@ -32,7 +32,7 @@ struct AddNewCompanyPopupView: View {
                         .padding(.vertical)
                         .padding(.horizontal, 5)
                         .frame(width: 230, height: 25)
-                        .background(Color(.white))
+                        .background(Color(.systemBackground))
                         .cornerRadius(7)
                     Spacer()
                     
@@ -64,12 +64,12 @@ struct AddNewCompanyPopupView: View {
     }
 }
 
-struct AddNewCompanyPopupView_Previews: PreviewProvider {
+struct AddCompanyPopupView_Previews: PreviewProvider {
     static var previews: some View {
         
         let testCompany = CompanyViewModel()
         testCompany.companyList = sampleCompanies
         
-        return AddNewCompanyPopupView(companyVm: testCompany, showingPopup: .constant(false))
+        return AddCompanyPopupView(companyVm: testCompany, showingPopup: .constant(false))
     }
 }

@@ -43,7 +43,7 @@ struct AddTodoView: View {
                 TextField("タスク名を入力", text: $taskName)
                     .padding(10)
                     .frame(width: screenWidth - 36)
-                    .background(Color(.systemGray6))
+                    .background(Color(.systemGray5))
                     .cornerRadius(7)
                 
                 DatePicker("日時", selection: $date)
@@ -52,9 +52,9 @@ struct AddTodoView: View {
                 
                 HStack {
                     Text("企業")
-                    Spacer()
+                        .padding(.trailing, 3)
                     ZStack {
-                        Color(.systemGray6)
+                        Color(.systemGray5)
                             .cornerRadius(7)
                         Picker("企業", selection: $company) {
                             ForEach(companyVm.companyList) { company in
