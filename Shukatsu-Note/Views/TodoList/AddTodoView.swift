@@ -16,7 +16,12 @@ struct AddTodoView: View {
     
     @State var taskName: String = ""
     @State var date = Date()
+    // 日付を指定しているか判断
+    @State var dateIsSet: Bool = true
     @State var company: CompanyModel?
+    
+    // 企業未選択のoption
+    let notSet = CompanyModel(name: "未選択")
     
     let screenWidth = UIScreen.main.bounds.width
     
@@ -46,17 +51,31 @@ struct AddTodoView: View {
                     .background(Color(.systemGray5))
                     .cornerRadius(7)
                 
-                DatePicker("日時", selection: $date)
-                    .padding(.horizontal)
-                    .cornerRadius(7)
+                HStack {
+                    Text("日時").font(.footnote)
+                    Toggle("", isOn: $dateIsSet)
+                        .animation(.easeInOut, value: dateIsSet)
+                    if dateIsSet {
+                        DatePicker("", selection: $date, displayedComponents: .date)
+                            .cornerRadius(7)
+                            .transition(.slide)
+                    } else {
+                        Text("日時未指定")
+                            .foregroundColor(.gray)
+                            .transition(.slide)
+                    }
+                }
+                .padding(.horizontal)
                 
                 HStack {
                     Text("企業")
+                        .font(.footnote)
                         .padding(.trailing, 3)
                     ZStack {
                         Color(.systemGray5)
                             .cornerRadius(7)
                         Picker("企業", selection: $company) {
+                            Text(notSet.name)
                             ForEach(companyVm.companyList) { company in
                                 Text(company.name).tag(company.id)
                             }
@@ -74,7 +93,13 @@ struct AddTodoView: View {
                 HStack {
                     Spacer()
                     Button {
-                        todoVm.addTodo(name: taskName)
+                        // todoリストに追加
+                        todoVm.addTodo(name: taskName, date: date, dateIsSet: dateIsSet, company: company)
+                        // companyが選択されているなら紐付け
+                        if let companyIndex = companyVm.companyList.firstIndex(of: (company ?? CompanyModel())) {
+                            companyVm.companyList[companyIndex].todos.append(TodoModel(name: taskName, date: date, company: company, done: false))
+                        }
+                        // モーダルシートを閉じる
                         showSheet = false
                     } label: {
                         ZStack {

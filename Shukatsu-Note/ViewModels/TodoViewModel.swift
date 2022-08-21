@@ -38,8 +38,8 @@ class TodoViewModel: ObservableObject {
         todoList.move(fromOffsets: from, toOffset: to)
     }
     
-    func addTodo(name: String) {
-        let newTask = TodoModel(name: name, done: false)
+    func addTodo(name: String, date: Date, dateIsSet: Bool, company: CompanyModel?) {
+        let newTask = TodoModel(name: name, date: date, dateIsSet: dateIsSet, company: company, done: false)
         todoList.append(newTask)
     }
     

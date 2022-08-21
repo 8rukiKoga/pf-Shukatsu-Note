@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct TodoModel: Identifiable, Codable, Equatable {
+struct TodoModel: Identifiable, Codable, Hashable, Equatable {
     // idで同一か判断するようにする
     static func == (lhs: TodoModel, rhs: TodoModel) -> Bool {
         return lhs.id == rhs.id
@@ -17,7 +17,7 @@ struct TodoModel: Identifiable, Codable, Equatable {
     
     var name: String = ""
     var date: Date?
+    var dateIsSet: Bool = true
     var company: CompanyModel?
-    // var memo: String = ""
     var done: Bool = false
 }
