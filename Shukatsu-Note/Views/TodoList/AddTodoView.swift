@@ -10,54 +10,91 @@ import SwiftUI
 struct AddTodoView: View {
     
     @ObservedObject var todoVm: TodoViewModel
+    @ObservedObject var companyVm: CompanyViewModel
     
     @Binding var showSheet: Bool
+    
     @State var taskName: String = ""
+    @State var date = Date()
+    @State var company: CompanyModel?
     
     let screenWidth = UIScreen.main.bounds.width
     
     var body: some View {
         
-        VStack {
-            HStack {
-                Spacer()
-                Button {
-                    showSheet = false
-                } label: {
-                    Image(systemName: "xmark")
-                        .font(.title)
+        ZStack {
+            VStack(spacing: 28) {
+                HStack {
+                    Text("Add Todo")
+                        .font(.title).bold()
+                        .padding(.bottom, -60)
+                    Spacer()
+                    Button {
+                        showSheet = false
+                    } label: {
+                        Image(systemName: "xmark")
+                            .foregroundColor(.gray)
+                            .font(.largeTitle)
+                    }
+                    .padding(6)
                 }
-                .padding(6)
-            }
-            Spacer()
-            
-            TextField("タスク名を入力", text: $taskName)
                 .padding()
-                .frame(width: screenWidth - 50)
-                .background(Color(.systemGray5))
-                .padding(.bottom)
-            
-            Button {
-                todoVm.addTodo(name: taskName)
-                showSheet = false
-            } label: {
-                Text("追加")
-                    .font(.title3).bold()
-                    .foregroundColor(Color(.systemBackground))
-                    .frame(width: screenWidth - 200, height: 15)
-                    .padding()
-                    .background(Color(.systemBrown))
-                    .cornerRadius(5)
+                
+                TextField("タスク名を入力", text: $taskName)
+                    .padding(10)
+                    .frame(width: screenWidth - 36)
+                    .background(Color(.systemGray6))
+                    .cornerRadius(7)
+                
+                DatePicker("日時", selection: $date)
+                    .padding(.horizontal)
+                    .cornerRadius(7)
+                
+                HStack {
+                    Text("企業")
+                    Spacer()
+                    ZStack {
+                        Color(.systemGray6)
+                            .cornerRadius(7)
+                        Picker("企業", selection: $company) {
+                            ForEach(companyVm.companyList) { company in
+                                Text(company.name).tag(company.id)
+                            }
+                        }
+                        .pickerStyle(.menu)
+                    }
+                    .frame(height: 40)
+                }
+                .padding(.horizontal, 18)
+                Spacer()
             }
-            Spacer()
+            
+            VStack {
+                Spacer()
+                HStack {
+                    Spacer()
+                    Button {
+                        todoVm.addTodo(name: taskName)
+                        showSheet = false
+                    } label: {
+                        ZStack {
+                            Image(systemName: "plus")
+                                .modifier(FloatingBtnMod())
+                                .padding(.bottom, -30)
+                        }
+                    }
+                }
+            }
+            .onAppear() {
+                UIPickerView.appearance().tintColor = UIColor(Color("ThemeColor"))
+            }
         }
-        .padding()
-        
     }
 }
 
+
 struct AddTodoView_Previews: PreviewProvider {
     static var previews: some View {
-        AddTodoView(todoVm: TodoViewModel(), showSheet: .constant(true))
+        AddTodoView(todoVm: TodoViewModel(), companyVm: CompanyViewModel(), showSheet: .constant(true))
     }
 }

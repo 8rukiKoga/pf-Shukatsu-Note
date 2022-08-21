@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct NoteModel: Identifiable, Codable, Equatable {
+struct NoteModel: Identifiable, Codable, Hashable, Equatable {
     // idで同一か判断するようにする
     static func == (lhs: NoteModel, rhs: NoteModel) -> Bool {
         return lhs.id == rhs.id

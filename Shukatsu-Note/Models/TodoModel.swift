@@ -16,7 +16,7 @@ struct TodoModel: Identifiable, Codable, Equatable {
     var id = UUID()
     
     var name: String = ""
-    
+    var date: Date?
     var company: CompanyModel?
     // var memo: String = ""
     var done: Bool = false

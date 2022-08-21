@@ -10,6 +10,7 @@ import SwiftUI
 struct TodoListView: View {
     
     @ObservedObject var todoVm: TodoViewModel
+    @ObservedObject var companyVm: CompanyViewModel
     @State var showSheet: Bool = false
     
     var body: some View {
@@ -64,7 +65,7 @@ struct TodoListView: View {
                 .padding(.bottom, 10)
             }
             .sheet(isPresented: $showSheet) {
-                AddTodoView(todoVm: todoVm, showSheet: $showSheet)
+                AddTodoView(todoVm: todoVm, companyVm: companyVm, showSheet: $showSheet)
             }
             .navigationTitle("Todo")
             .toolbar {
@@ -78,6 +79,6 @@ struct TodoListView: View {
 
 struct TodoListView_Previews: PreviewProvider {
     static var previews: some View {
-        TodoListView(todoVm: TodoViewModel())
+        TodoListView(todoVm: TodoViewModel(), companyVm: CompanyViewModel())
     }
 }

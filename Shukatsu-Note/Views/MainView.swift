@@ -25,7 +25,7 @@ struct MainView: View {
                     Label("Notes", systemImage: "newspaper.circle.fill")
                 }
             
-            TodoListView(todoVm: todoVm)
+            TodoListView(todoVm: todoVm, companyVm: companyVm)
                 .tabItem {
                     Label("Todo", systemImage: "list.bullet.circle.fill")
                 }
