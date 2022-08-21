@@ -11,13 +11,12 @@ struct EditCompanyView: View {
     // シートの表示・非表示
     // 今のままだと、編集画面を閉じたときにMainListViewまでもどってしまう。修正するにはどうしたらいい？
     @Binding var showingSheet: Bool
-    
-    @State var companyImage = UIImage(named: "default-companyImage1")!
     @State var showingPhotoPicker: Bool = false
     
     @ObservedObject var companyVm: CompanyViewModel
     var company: CompanyModel
     
+    @State var companyImage = UIImage(named: "default-companyImage1")!
     @State var name: String
     @State var stars: Int
     @State var category: String
@@ -84,7 +83,9 @@ struct EditCompanyView: View {
                 HStack {
                     Spacer()
                     Button {
-                        companyVm.updateCompany(currentData: self.company, updatingData: CompanyModel(name: self.name, stars: self.stars, category: self.category, location: self.location, url: self.url))
+                        // UIImageをData型に変換
+                        guard let imageData = companyImage.pngData() else { return }
+                        companyVm.updateCompany(currentData: self.company, updatingData: CompanyModel(image: imageData, name: self.name, stars: self.stars, category: self.category, location: self.location, url: self.url)) // 設定した項目をCompanyModel型に変換
                         showingSheet = false
                     } label: {
                         ZStack {

@@ -25,11 +25,21 @@ struct CompanyView: View {
                     // ＊ 後々アイコンまたは画像を適用・変更できるようにする。
                     HStack {
                         Spacer()
-                        Image(uiImage: UIImage(named: "default-companyImage1")!)
-                            .resizable()
-                            .scaledToFill()
-                            .frame(width: 120, height: 120)
-                            .clipShape(Circle())
+                        if let companyIndex = companyVm.companyList.firstIndex(of: company) {
+                            if let imageData = companyVm.companyList[companyIndex].image {
+                            Image(uiImage: UIImage(data: imageData)!)
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: 120, height: 120)
+                                    .clipShape(Circle())
+                            } else {
+                                Image(uiImage: UIImage(named: "default-companyImage2")!)
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: 120, height: 120)
+                                    .clipShape(Circle())
+                            }
+                        }
                         Spacer()
                     }
                     // ＊ もっとコードを綺麗にできそう(?)
@@ -167,7 +177,7 @@ struct CompanyView: View {
         //        }
     }
     // URLが有効かどうか判断
-    func verifyUrl (urlString: String?) -> Bool {
+    private func verifyUrl (urlString: String?) -> Bool {
         if let urlString = urlString {
             if let url = NSURL(string: urlString) {
                 return UIApplication.shared.canOpenURL(url as URL)

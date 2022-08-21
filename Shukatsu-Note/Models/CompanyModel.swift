@@ -15,6 +15,7 @@ struct CompanyModel: Identifiable, Codable, Equatable {
     
     var id = UUID()
     
+    var image: Data?
     var name: String = "未設定"
     var stars: Int = 0
     var category: String = "未設定"
