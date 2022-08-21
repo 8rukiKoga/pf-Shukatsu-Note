@@ -15,38 +15,56 @@ struct TodoListView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                List {
-                    ForEach(todoVm.todoList) { task in
-                        TodoListRowView(todoVm: todoVm, task: task)
-                    }
-                    .onMove { (indexSet, index) in
-                        todoVm.todoList.move(fromOffsets: indexSet, toOffset: index)
-                    }
-                    .onDelete { indexSet in
-                        todoVm.todoList.remove(atOffsets: indexSet)
+                if todoVm.todoList.isEmpty {
+                    VStack {
+                        Spacer()
+                        Text("No Items")
+                            .font(.caption)
+                            .padding(.bottom)
+                        // No Itemsテキストを上に移動させるために下にアイテムを置く
+                        Text("_")
+                            .opacity(0)
+                        Spacer()
                     }
                 }
-                .listStyle(PlainListStyle())
+                else {
+                    List {
+                        ForEach(todoVm.todoList) { task in
+                            TodoListRowView(todoVm: todoVm, task: task)
+                        }
+                        .onMove { (indexSet, index) in
+                            todoVm.todoList.move(fromOffsets: indexSet, toOffset: index)
+                        }
+                        .onDelete { indexSet in
+                            todoVm.todoList.remove(atOffsets: indexSet)
+                        }
+                    }
+                    .listStyle(PlainListStyle())
+                }
                 
                 VStack {
                     Spacer()
-                    HStack {
-                        Spacer()
-                        Button {
-                            showSheet = true
-                        } label: {
-                            ZStack {
-                                Image(systemName: "plus")
-                                    .modifier(FloatingBtnMod())
+                    Button {
+                        showSheet = true
+                    } label: {
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 5)
+                                .foregroundColor(Color(.systemBrown))
+                                .frame(width: UIScreen.main.bounds.width - 20, height: 50)
+                                .shadow(color: .gray, radius: 5, x: 2, y: 2)
+                            VStack {
+                                Text("Todoを追加")
+                                    .foregroundColor(Color(.systemBackground))
+                                    .bold()
                             }
                         }
-                        .sheet(isPresented: $showSheet) {
-                            AddTodoView(todoVm: todoVm, showSheet: $showSheet)
-                        }
-                        
                     }
                 }
-                
+                .padding()
+                .padding(.bottom, 10)
+            }
+            .sheet(isPresented: $showSheet) {
+                AddTodoView(todoVm: todoVm, showSheet: $showSheet)
             }
             .navigationTitle("Todo")
             .toolbar {
