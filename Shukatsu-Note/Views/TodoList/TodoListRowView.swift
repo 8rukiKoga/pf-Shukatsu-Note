@@ -9,17 +9,18 @@ import SwiftUI
 
 struct TodoListRowView: View {
     @ObservedObject var todoVm: TodoViewModel
+    // フォルダからの遷移かどうか検知
+    var isInFolder: Bool = false
     var task: TodoModel
     
     let dateFormatter = DateFormatter()
     
-    var body: some View {
-        
+    var body: some View {        
         if let taskIndex = todoVm.todoList.firstIndex(of: task) {
             HStack {
                 Text(task.name)
                 if task.dateIsSet {
-                    Text(dateToString(date:task.date!))
+                    Text(dateToString(date: task.date!))
                 }
                 Spacer()
                 

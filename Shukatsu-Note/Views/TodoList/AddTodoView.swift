@@ -90,13 +90,11 @@ struct AddTodoView: View {
                 HStack {
                     Spacer()
                     Button {
-                        print(self.company)
                         // todoリストに追加
                         todoVm.addTodo(todo: TodoModel(name: self.taskName, date: self.date, dateIsSet: self.dateIsSet, done: false))
                         // companyが選択されているなら紐付け
                         if let companyIndex = companyVm.companyList.firstIndex(of: (company)) {
                             companyVm.companyList[companyIndex].todos.append(TodoModel(name: taskName, date: date, done: false))
-                            print(companyVm.companyList[companyIndex].todos)
                         }
                         // モーダルシートを閉じる
                         showSheet = false

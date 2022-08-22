@@ -20,7 +20,7 @@ struct MainView: View {
     var body: some View {
         TabView {
             
-            MyNotesView(companyVm: companyVm, noteVm: noteVm)
+            MyNotesView(companyVm: companyVm, noteVm: noteVm, todoVm: todoVm)
                 .tabItem {
                     Label("Notes", systemImage: "newspaper.circle.fill")
                 }

@@ -11,6 +11,7 @@ struct CompanyView: View {
     
     var company: CompanyModel
     @ObservedObject var companyVm: CompanyViewModel
+    @ObservedObject var todoVm: TodoViewModel
     
     // キーボードの開閉制御
     @FocusState private var inputFocus: Bool
@@ -27,7 +28,7 @@ struct CompanyView: View {
                         Spacer()
                         if let companyIndex = companyVm.companyList.firstIndex(of: company) {
                             if let imageData = companyVm.companyList[companyIndex].image {
-                            Image(uiImage: UIImage(data: imageData)!)
+                                Image(uiImage: UIImage(data: imageData)!)
                                     .resizable()
                                     .scaledToFill()
                                     .frame(width: 120, height: 120)
@@ -131,6 +132,16 @@ struct CompanyView: View {
                         }
                     }
                 }
+                // companyからtodoを参照したいが、なぜかできない
+//                Section() {
+//                    ForEach(companyVm.companyList[companyIndex].todos) { task in
+//                        TodoListRowView(todoVm: todoVm, task: task)
+//                    }
+//                } header: {
+//                    Text("Todo")
+//                }
+//                .textCase(nil)
+                
                 Section {
                     ForEach(companyVm.companyList[companyIndex].notes) { note in
                         NavigationLink(destination: NoteView(isInFolder: true, note: note, companyIndex: companyIndex, companyVm: companyVm, noteVm: NoteViewModel())) {
@@ -170,6 +181,7 @@ struct CompanyView: View {
             })
         )
         .navigationTitle(company.name)
+        // company内のonMove, onDeleteが使用できないためコメントアウト
         //        .toolbar {
         //            ToolbarItemGroup(placement: .navigationBarTrailing) {
         //                EditButton()
@@ -198,10 +210,10 @@ struct CompanyView_Previews: PreviewProvider {
         
         return Group {
             NavigationView {
-                CompanyView(company: CompanyModel(name: "name", stars: 1, category: "cat", location: "loc", url: "url", memo: "memo", notes: []), companyVm: testCompany)
+                CompanyView(company: CompanyModel(name: "name", stars: 1, category: "cat", location: "loc", url: "url", memo: "memo", notes: []), companyVm: testCompany, todoVm: TodoViewModel())
             }
             NavigationView {
-                CompanyView(company: CompanyModel(name: "name", stars: 1, category: "cat", location: "loc", url: "url", memo: "memo", notes: []), companyVm: testCompany)
+                CompanyView(company: CompanyModel(name: "name", stars: 1, category: "cat", location: "loc", url: "url", memo: "memo", notes: []), companyVm: testCompany, todoVm: TodoViewModel())
                     .preferredColorScheme(.dark)
             }
         }

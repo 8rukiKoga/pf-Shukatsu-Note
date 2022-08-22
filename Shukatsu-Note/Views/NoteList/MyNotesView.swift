@@ -11,6 +11,7 @@ struct MyNotesView: View {
     
     @ObservedObject var companyVm: CompanyViewModel
     @ObservedObject var noteVm: NoteViewModel
+    @ObservedObject var todoVm: TodoViewModel
     
     @State private var showingPopup: Bool = false
     
@@ -53,7 +54,7 @@ struct MyNotesView: View {
                     // 企業リスト
                     Section {
                         ForEach(companyVm.companyList) { company in
-                            NavigationLink(destination: CompanyView(company: company, companyVm: companyVm)) {
+                            NavigationLink(destination: CompanyView(company: company, companyVm: companyVm, todoVm: todoVm)) {
                                 FolderRowView(company: company)
                             }
                         }
@@ -118,9 +119,9 @@ struct MyListView_Previews: PreviewProvider {
         testNote.noteList = sampleNotes
         
         return Group {
-            MyNotesView(companyVm: testCompany, noteVm: testNote)
+            MyNotesView(companyVm: testCompany, noteVm: testNote, todoVm: TodoViewModel())
             
-            MyNotesView(companyVm: testCompany, noteVm: testNote)
+            MyNotesView(companyVm: testCompany, noteVm: testNote, todoVm: TodoViewModel())
                 .preferredColorScheme(.dark)
         }
     }
