@@ -72,22 +72,40 @@ struct SettingsView: View {
                             //                            seeApp(url: "")
                         } label: {
                             HStack {
+                                Image("SabusukuKanriLogo")
+                                    .resizable()
+                                    .modifier(AppLogoMod())
+                                
+                                VStack(alignment: .leading) {
+                                    Text("さぶすく管理")
+                                        .foregroundColor(Color(.label))
+                                        .font(.body)
+                                    Text("登録しているサブスクを見える化するアプリ")
+                                }
+                                .padding(.leading, 2)
+                            }
+                        }
+                        
+                        Button {
+                            // AppStoreに遷移
+                            //                            seeApp(url: "")
+                        } label: {
+                            HStack {
                                 Image("25minsLogo")
                                     .resizable()
-                                    .frame(width: 50, height: 50)
-                                    .cornerRadius(12)
-                                    .padding(5)
+                                    .modifier(AppLogoMod())
                                 
                                 VStack(alignment: .leading) {
                                     Text("25mins.")
+                                        .font(.body)
                                     Text("作業を記録できるポロモードタイマーアプリ")
-                                        .foregroundColor(.gray)
-                                        .font(.system(size: 10))
                                 }
                                 .padding(.leading, 2)
                             }
                         }
                     }
+                    .foregroundColor(.gray)
+                    .font(.system(size: 10))
                     
                     Section(header: Text("このアプリについて")) {
                         NavigationLink("アプリの使い方", destination: HowToUseView())
