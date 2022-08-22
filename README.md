@@ -4,7 +4,11 @@
 Interface: SwiftUI のみ
 Architecture: MVVM
 
-Uploading Simulator Screen Recording - iPhone 12 - 2022-08-22 at 13.55.23.mp4…
+
+
+https://user-images.githubusercontent.com/93827556/185842328-a70dd76e-665e-42b6-9d23-cca21d96ebe7.mp4
+
+
 
 ## 開発を始めた理由
 自分自身が、「あの企業はこういうサービスを展開していて、その企業は福利厚生が優秀、いついつはこの企業で説明会がある。。。」のような、就活における多種多様な情報をまとめることが難しいと感じた経験があった。
