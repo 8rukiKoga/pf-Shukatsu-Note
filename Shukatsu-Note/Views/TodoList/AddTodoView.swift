@@ -48,6 +48,11 @@ struct AddTodoView: View {
                     Color(.systemGray4)
                         .opacity(0.7)
                     VStack(alignment: .center) {
+                        HStack {
+                            Text("タスク名").font(.footnote)
+                            Spacer()
+                        }
+                        .padding(.horizontal)
                         TextField("タスク名を入力", text: $taskName)
                             .padding(10)
                             .frame(width: screenWidth - 36)
@@ -117,9 +122,6 @@ struct AddTodoView: View {
                         }
                     }
                 }
-            }
-            .onAppear() {
-                UIPickerView.appearance().tintColor = UIColor(Color("ThemeColor"))
             }
         }
     }
