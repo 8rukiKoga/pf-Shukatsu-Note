@@ -108,7 +108,6 @@ struct CompanyView: View {
             
             // 企業インデックス特定
             if let companyIndex = companyVm.companyList.firstIndex(of: company) {
-                
                 Section {
                     // 簡易メモ
                     ZStack {
