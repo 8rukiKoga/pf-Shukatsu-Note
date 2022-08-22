@@ -25,6 +25,8 @@ struct AddTodoView: View {
     var body: some View {
         
         ZStack {
+            Color(.systemBrown)
+                .ignoresSafeArea()
             VStack(spacing: 28) {
                 HStack {
                     Text("Add Todo")
@@ -35,53 +37,62 @@ struct AddTodoView: View {
                         showSheet = false
                     } label: {
                         Image(systemName: "xmark")
-                            .foregroundColor(.gray)
+                            .foregroundColor(Color(.label))
                             .font(.largeTitle)
                     }
                     .padding(6)
                 }
                 .padding()
                 
-                TextField("タスク名を入力", text: $taskName)
-                    .padding(10)
-                    .frame(width: screenWidth - 36)
-                    .background(Color(.systemGray5))
-                    .cornerRadius(7)
-                
-                HStack {
-                    Text("日時").font(.footnote)
-                    Toggle("", isOn: $dateIsSet)
-                        .animation(.easeInOut, value: dateIsSet)
-                    if dateIsSet {
-                        DatePicker("", selection: $date, displayedComponents: .date)
+                ZStack {
+                    Color(.systemGray4)
+                        .opacity(0.7)
+                    VStack(alignment: .center) {
+                        TextField("タスク名を入力", text: $taskName)
+                            .padding(10)
+                            .frame(width: screenWidth - 36)
+                            .background(Color(.systemGray5))
                             .cornerRadius(7)
-                            .transition(.slide)
-                    } else {
-                        Text("日時未指定")
-                            .foregroundColor(.gray)
-                            .transition(.slide)
-                    }
-                }
-                .padding(.horizontal)
-                
-                HStack {
-                    Text("企業")
-                        .font(.footnote)
-                        .padding(.trailing, 3)
-                    ZStack {
-                        Color(.systemGray5)
-                            .cornerRadius(7)
-                        Picker("企業", selection: $company) {
-                            Text("未選択").tag(CompanyModel(name: "未選択"))
-                            ForEach(companyVm.companyList) { company in
-                                Text(company.name).tag(company)
+                        
+                        HStack {
+                            Text("日時").font(.footnote)
+                            Toggle("", isOn: $dateIsSet)
+                                .animation(.easeInOut, value: dateIsSet)
+                            if dateIsSet {
+                                DatePicker("", selection: $date, displayedComponents: .date)
+                                    .cornerRadius(7)
+                                    .transition(.slide)
+                            } else {
+                                Text("日時未指定")
+                                    .foregroundColor(.gray)
+                                    .transition(.slide)
                             }
                         }
-                        .pickerStyle(.menu)
+                        .padding(.horizontal)
+                        
+                        HStack {
+                            Text("企業")
+                                .font(.footnote)
+                                .padding(.trailing, 3)
+                            ZStack {
+                                Color(.systemGray5)
+                                    .cornerRadius(7)
+                                Picker("企業", selection: $company) {
+                                    Text("未選択").tag(CompanyModel(name: "未選択"))
+                                    ForEach(companyVm.companyList) { company in
+                                        Text(company.name).tag(company)
+                                    }
+                                }
+                                .pickerStyle(.menu)
+                            }
+                            .frame(height: 40)
+                        }
+                        .padding(.horizontal, 18)
                     }
-                    .frame(height: 40)
+                    .frame(height: 270)
                 }
-                .padding(.horizontal, 18)
+                .frame(width: screenWidth-10, height: 270)
+                .cornerRadius(7)
                 Spacer()
             }
             
