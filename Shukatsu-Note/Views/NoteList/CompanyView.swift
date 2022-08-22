@@ -96,7 +96,13 @@ struct CompanyView: View {
                             .font(.system(size: 12))
                     }
                     .fullScreenCover(isPresented: $showingSheet, content: {
-                        EditCompanyView(showingSheet: $showingSheet, companyVm: companyVm, company: company, name: company.name, stars: company.stars, category: company.category, location: company.location, url: company.url)
+                        if let companyIndex = companyVm.companyList.firstIndex(of: company) {
+                            if let imageData = companyVm.companyList[companyIndex].image {
+                                EditCompanyView(showingSheet: $showingSheet, companyVm: companyVm, company: company, companyImage: UIImage(data: imageData)!, name: company.name, stars: company.stars, category: company.category, location: company.location, url: company.url)
+                            } else {
+                                EditCompanyView(showingSheet: $showingSheet, companyVm: companyVm, company: company, name: company.name, stars: company.stars, category: company.category, location: company.location, url: company.url)
+                            }
+                        }
                     })
                 }
             }

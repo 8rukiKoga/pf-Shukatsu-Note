@@ -16,7 +16,7 @@ struct EditCompanyView: View {
     @ObservedObject var companyVm: CompanyViewModel
     var company: CompanyModel
     
-    @State var companyImage = UIImage(named: "default-companyImage1")!
+    @State var companyImage = UIImage(named: "default-companyImage2")!
     @State var name: String
     @State var stars: Int
     @State var category: String
