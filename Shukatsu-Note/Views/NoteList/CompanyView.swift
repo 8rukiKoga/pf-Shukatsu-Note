@@ -23,15 +23,16 @@ struct CompanyView: View {
         List {
             Section {
                 VStack(alignment: .leading) {
-                    // ＊ 後々アイコンまたは画像を適用・変更できるようにする。
                     HStack {
                         Spacer()
                         if let companyIndex = companyVm.companyList.firstIndex(of: company) {
                             if let imageData = companyVm.companyList[companyIndex].image {
+                                // ユーザーが画像を設定している場合
                                 Image(uiImage: UIImage(data: imageData)!)
                                     .resizable()
                                     .modifier(CompanyImageMod())
                             } else {
+                                // ユーザーがまだ画像を設定していない場合
                                 Image(uiImage: UIImage(named: "default-companyImage2")!)
                                     .resizable()
                                     .modifier(CompanyImageMod())
@@ -39,45 +40,45 @@ struct CompanyView: View {
                         }
                         Spacer()
                     }
-                    // ＊ もっとコードを綺麗にできそう(?)
-                    HStack {
-                        Text("志望度 : ")
-                            .font(.system(size: 15))
-                        Spacer()
-                        Text("\(ConvertIntToStars(count: company.stars))")
-                            .font(StarsAreSet(stars: company.stars) ? .system(size: 18) : .system(size: 15))
-                            .foregroundColor(StarsAreSet(stars: company.stars) ? Color(.systemYellow) : Color(.gray))
-                            .fontWeight(StarsAreSet(stars: company.stars) ? .bold : .none)
-                    }
-                    .padding(.top, 10)
-                    .padding(1)
-                    HStack {
-                        Text("業界 : ")
-                            .font(.system(size: 15))
-                        Spacer()
-                        Text(company.category)
-                            .font(.system(size: 15))
-                    }
-                    .padding(1)
-                    HStack {
-                        Text("所在地 : ")
-                            .font(.system(size: 15))
-                        Spacer()
-                        Text(company.location)
-                            .font(.system(size: 15))
-                    }
-                    .padding(1)
-                    HStack {
-                        Text("URL : ")
-                            .font(.system(size: 15))
-                        Spacer()
-                        // URLが有効かどうか確認してから表示する
-                        if verifyUrl(urlString: company.url) {
-                            let markdownLink = try! AttributedString(markdown: "[\(company.url)](\(company.url))")
-                            Text(markdownLink)
-                                .padding(1)
+                    
+                    // フォントサイズを一括で設定するためにGroupで囲む
+                    Group {
+                        HStack {
+                            Text("志望度 : ")
+                            Spacer()
+                            Text("\(ConvertIntToStars(count: company.stars))")
+                                .font(StarsAreSet(stars: company.stars) ? .system(size: 18) : .system(size: 15))
+                                .foregroundColor(StarsAreSet(stars: company.stars) ? Color(.systemYellow) : Color(.gray))
+                                .fontWeight(StarsAreSet(stars: company.stars) ? .bold : .none)
+                        }
+                        .padding(.top, 10)
+                        .padding(1)
+                        HStack {
+                            Text("業界 : ")
+                            Spacer()
+                            Text(company.category)
+                        }
+                        .padding(1)
+                        HStack {
+                            Text("所在地 : ")
+                            Spacer()
+                            Text(company.location)
+                        }
+                        .padding(1)
+                        HStack {
+                            Text("URL : ")
+                            Spacer()
+                            // URLが有効かどうか確認してから表示する
+                            if verifyUrl(urlString: company.url) {
+                                let markdownLink = try! AttributedString(markdown: "[\(company.url)](\(company.url))")
+                                Text(markdownLink)
+                                    .font(.caption)
+                            } else {
+                                // ＊404ページに飛ばすかなんかの処理を書く
+                            }
                         }
                     }
+                    .font(.system(size: 15))
                 }
                 .padding()
             } header: {
@@ -136,14 +137,14 @@ struct CompanyView: View {
                     }
                 }
                 // companyからtodoを参照したいが、なぜかできない
-//                Section() {
-//                    ForEach(companyVm.companyList[companyIndex].todos) { task in
-//                        TodoListRowView(todoVm: todoVm, task: task)
-//                    }
-//                } header: {
-//                    Text("Todo")
-//                }
-//                .textCase(nil)
+                //                Section() {
+                //                    ForEach(companyVm.companyList[companyIndex].todos) { task in
+                //                        TodoListRowView(todoVm: todoVm, task: task)
+                //                    }
+                //                } header: {
+                //                    Text("Todo")
+                //                }
+                //                .textCase(nil)
                 
                 Section {
                     ForEach(companyVm.companyList[companyIndex].notes) { note in
