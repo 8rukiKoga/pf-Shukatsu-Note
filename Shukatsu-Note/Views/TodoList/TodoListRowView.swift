@@ -10,11 +10,17 @@ import SwiftUI
 struct TodoListRowView: View {
     @ObservedObject var todoVm: TodoViewModel
     var task: TodoModel
+    
+    let dateFormatter = DateFormatter()
+    
     var body: some View {
         
         if let taskIndex = todoVm.todoList.firstIndex(of: task) {
             HStack {
                 Text(task.name)
+                if task.dateIsSet {
+                    Text(dateToString(date:task.date!))
+                }
                 Spacer()
                 
                 Button {
@@ -29,7 +35,13 @@ struct TodoListRowView: View {
             }
             .padding(.horizontal)
         }
-        
+    }
+    private func dateToString(date: Date) -> String {
+        dateFormatter.locale = Locale(identifier: "ja_JP")
+        dateFormatter.dateStyle = .medium
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let string = dateFormatter.string(from: date)
+        return string
     }
 }
 

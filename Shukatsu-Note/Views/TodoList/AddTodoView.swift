@@ -18,10 +18,7 @@ struct AddTodoView: View {
     @State var date = Date()
     // 日付を指定しているか判断
     @State var dateIsSet: Bool = true
-    @State var company: CompanyModel?
-    
-    // 企業未選択のoption
-    let notSet = CompanyModel(name: "未選択")
+    @State var company: CompanyModel = CompanyModel(name: "未選択")
     
     let screenWidth = UIScreen.main.bounds.width
     
@@ -75,9 +72,9 @@ struct AddTodoView: View {
                         Color(.systemGray5)
                             .cornerRadius(7)
                         Picker("企業", selection: $company) {
-                            Text(notSet.name)
+                            Text("未選択").tag(CompanyModel(name: "未選択"))
                             ForEach(companyVm.companyList) { company in
-                                Text(company.name).tag(company.id)
+                                Text(company.name).tag(company)
                             }
                         }
                         .pickerStyle(.menu)
@@ -93,11 +90,13 @@ struct AddTodoView: View {
                 HStack {
                     Spacer()
                     Button {
+                        print(self.company)
                         // todoリストに追加
-                        todoVm.addTodo(name: taskName, date: date, dateIsSet: dateIsSet, company: company)
+                        todoVm.addTodo(todo: TodoModel(name: self.taskName, date: self.date, dateIsSet: self.dateIsSet, done: false))
                         // companyが選択されているなら紐付け
-                        if let companyIndex = companyVm.companyList.firstIndex(of: (company ?? CompanyModel())) {
-                            companyVm.companyList[companyIndex].todos.append(TodoModel(name: taskName, date: date, company: company, done: false))
+                        if let companyIndex = companyVm.companyList.firstIndex(of: (company)) {
+                            companyVm.companyList[companyIndex].todos.append(TodoModel(name: taskName, date: date, done: false))
+                            print(companyVm.companyList[companyIndex].todos)
                         }
                         // モーダルシートを閉じる
                         showSheet = false

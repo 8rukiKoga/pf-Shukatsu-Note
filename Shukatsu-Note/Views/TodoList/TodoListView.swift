@@ -19,10 +19,10 @@ struct TodoListView: View {
                 if todoVm.todoList.isEmpty {
                     VStack {
                         Spacer()
-                        Text("No Items")
+                        Text("No Tasks")
                             .font(.caption)
                             .padding(.bottom)
-                        // No Itemsテキストを上に移動させるために下にアイテムを置く
+                        // No Tasksテキストを上に移動させるために下にアイテムを置く
                         Text("_")
                             .opacity(0)
                         Spacer()

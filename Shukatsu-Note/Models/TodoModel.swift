@@ -18,6 +18,5 @@ struct TodoModel: Identifiable, Codable, Hashable, Equatable {
     var name: String = ""
     var date: Date?
     var dateIsSet: Bool = true
-    var company: CompanyModel?
     var done: Bool = false
 }
