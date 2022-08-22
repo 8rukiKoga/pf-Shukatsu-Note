@@ -97,6 +97,7 @@ struct SettingsView: View {
                                 
                                 VStack(alignment: .leading) {
                                     Text("25mins.")
+                                        .foregroundColor(Color(.label))
                                         .font(.body)
                                     Text("作業を記録できるポロモードタイマーアプリ")
                                 }
