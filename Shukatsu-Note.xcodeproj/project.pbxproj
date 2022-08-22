@@ -10,6 +10,7 @@
 		0D1162DB28A5C1CA0000FCBA /* SharingFuncs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1162DA28A5C1CA0000FCBA /* SharingFuncs.swift */; };
 		0D1162DD28A8DC960000FCBA /* ColorSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1162DC28A8DC960000FCBA /* ColorSettingView.swift */; };
 		0D1162DF28A8DD460000FCBA /* HowToUseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1162DE28A8DD460000FCBA /* HowToUseView.swift */; };
+		0D61C9E628B31EDD006B3270 /* CompanyImageMod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D61C9E528B31EDC006B3270 /* CompanyImageMod.swift */; };
 		0D7875D228A3D6A70070BE05 /* EditCompanyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7875D128A3D6A60070BE05 /* EditCompanyView.swift */; };
 		0DB2B262289E952800A81149 /* Shukatsu_NoteApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B261289E952800A81149 /* Shukatsu_NoteApp.swift */; };
 		0DB2B264289E952800A81149 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B263289E952800A81149 /* MainView.swift */; };
@@ -40,6 +41,7 @@
 		0D1162DA28A5C1CA0000FCBA /* SharingFuncs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingFuncs.swift; sourceTree = "<group>"; };
 		0D1162DC28A8DC960000FCBA /* ColorSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSettingView.swift; sourceTree = "<group>"; };
 		0D1162DE28A8DD460000FCBA /* HowToUseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToUseView.swift; sourceTree = "<group>"; };
+		0D61C9E528B31EDC006B3270 /* CompanyImageMod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyImageMod.swift; sourceTree = "<group>"; };
 		0D7875D128A3D6A60070BE05 /* EditCompanyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCompanyView.swift; sourceTree = "<group>"; };
 		0DB2B25E289E952800A81149 /* Shukatsu-Note.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Shukatsu-Note.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DB2B261289E952800A81149 /* Shukatsu_NoteApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shukatsu_NoteApp.swift; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 			isa = PBXGroup;
 			children = (
 				0DE5C23A28AB2CF500865D72 /* FloatingBtnMod.swift */,
+				0D61C9E528B31EDC006B3270 /* CompanyImageMod.swift */,
 			);
 			path = ViewModifiers;
 			sourceTree = "<group>";
@@ -276,6 +279,7 @@
 				0DE5C23628A920C300865D72 /* TodoModel.swift in Sources */,
 				0DB2B279289E967100A81149 /* FolderRowView.swift in Sources */,
 				0DB2B270289E95B800A81149 /* MyNotesView.swift in Sources */,
+				0D61C9E628B31EDD006B3270 /* CompanyImageMod.swift in Sources */,
 				0DB2B283289E96AF00A81149 /* AddTodoView.swift in Sources */,
 				0DB2B264289E952800A81149 /* MainView.swift in Sources */,
 				0DB2B2B9289FE43F00A81149 /* AddCompanyPopupView.swift in Sources */,

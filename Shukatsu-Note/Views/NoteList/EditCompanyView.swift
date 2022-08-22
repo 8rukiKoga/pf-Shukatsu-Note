@@ -35,9 +35,7 @@ struct EditCompanyView: View {
                             Spacer()
                             Image(uiImage: companyImage)
                                 .resizable()
-                                .scaledToFill()
-                                .frame(width: 120, height: 120)
-                                .clipShape(Circle())
+                                .modifier(CompanyImageMod())
                                 .onTapGesture {
                                     showingPhotoPicker = true
                                 }

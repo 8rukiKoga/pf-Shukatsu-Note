@@ -30,15 +30,11 @@ struct CompanyView: View {
                             if let imageData = companyVm.companyList[companyIndex].image {
                                 Image(uiImage: UIImage(data: imageData)!)
                                     .resizable()
-                                    .scaledToFill()
-                                    .frame(width: 120, height: 120)
-                                    .clipShape(Circle())
+                                    .modifier(CompanyImageMod())
                             } else {
                                 Image(uiImage: UIImage(named: "default-companyImage2")!)
                                     .resizable()
-                                    .scaledToFill()
-                                    .frame(width: 120, height: 120)
-                                    .clipShape(Circle())
+                                    .modifier(CompanyImageMod())
                             }
                         }
                         Spacer()
@@ -97,6 +93,7 @@ struct CompanyView: View {
                     }
                     .fullScreenCover(isPresented: $showingSheet, content: {
                         if let companyIndex = companyVm.companyList.firstIndex(of: company) {
+                            // ユーザーがimageを設定している場合はそのUIImageを渡す
                             if let imageData = companyVm.companyList[companyIndex].image {
                                 EditCompanyView(showingSheet: $showingSheet, companyVm: companyVm, company: company, companyImage: UIImage(data: imageData)!, name: company.name, stars: company.stars, category: company.category, location: company.location, url: company.url)
                             } else {
