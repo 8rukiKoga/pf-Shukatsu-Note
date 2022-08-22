@@ -18,12 +18,12 @@ class TodoViewModel: ObservableObject {
         getTodo()
     }
     
-    let noteListKey = "noteListKey"
+    let todoListKey = "todoListKey"
     
     // データを読み込む
     func getTodo() {
         guard
-            let data = UserDefaults.standard.data(forKey: noteListKey),
+            let data = UserDefaults.standard.data(forKey: todoListKey),
             let savedNotes = try? JSONDecoder().decode([TodoModel].self, from: data)
         else { return }
         
@@ -44,7 +44,7 @@ class TodoViewModel: ObservableObject {
     
     func saveTodo() {
         if let encodedData = try? JSONEncoder().encode(todoList) {
-            UserDefaults.standard.set(encodedData, forKey: noteListKey)
+            UserDefaults.standard.set(encodedData, forKey: todoListKey)
         }
     }
 }
