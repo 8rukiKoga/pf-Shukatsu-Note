@@ -46,10 +46,10 @@ struct CompanyView: View {
                         HStack {
                             Text("志望度 : ")
                             Spacer()
-                            Text("\(ConvertIntToStars(count: company.stars))")
-                                .font(StarsAreSet(stars: company.stars) ? .system(size: 18) : .system(size: 15))
-                                .foregroundColor(StarsAreSet(stars: company.stars) ? Color(.systemYellow) : Color(.gray))
-                                .fontWeight(StarsAreSet(stars: company.stars) ? .bold : .none)
+                            Text("\(StarConvertor.shared.convertIntToStars(count: company.stars))")
+                                .font(company.stars != 0 ? .system(size: 18) : .system(size: 15))
+                                .foregroundColor(company.stars != 0 ? Color(.systemYellow) : Color(.gray))
+                                .fontWeight(company.stars != 0 ? .bold : .none)
                         }
                         .padding(.top, 10)
                         .padding(1)

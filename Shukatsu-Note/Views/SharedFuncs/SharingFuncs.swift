@@ -7,31 +7,31 @@
 
 import SwiftUI
 
-func ConvertIntToStars(count: Int) -> String {
-    if count == 1 {
-        return "★☆☆☆☆"
-    }
+final class StarConvertor {
+    static let shared = StarConvertor()
+    private init() {}
     
-    if count == 2 {
-        return "★★☆☆☆"
+    func convertIntToStars(count: Int) -> String {
+        if count == 1 {
+            return "★☆☆☆☆"
+        }
+        
+        if count == 2 {
+            return "★★☆☆☆"
+        }
+        
+        if count == 3 {
+            return "★★★☆☆"
+        }
+        
+        if count == 4 {
+            return "★★★★☆"
+        }
+        
+        if count == 5 {
+            return "★★★★★"
+        }
+        
+        return "未設定"
     }
-    
-    if count == 3 {
-        return "★★★☆☆"
-    }
-    
-    if count == 4 {
-        return "★★★★☆"
-    }
-    
-    if count == 5 {
-        return "★★★★★"
-    }
-    
-    return "未設定"
-}
-
-func StarsAreSet(stars: Int) -> Bool {
-    let starString = ConvertIntToStars(count: stars)
-    return starString != "未設定"
 }

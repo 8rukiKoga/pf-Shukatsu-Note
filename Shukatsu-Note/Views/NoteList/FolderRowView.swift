@@ -19,10 +19,10 @@ struct FolderRowView: View {
             Text(company.name)
                 .font(.system(size: 15))
             Spacer()
-            Text("\(ConvertIntToStars(count: company.stars))")
-                .foregroundColor(StarsAreSet(stars: company.stars) ? Color(.systemYellow) : Color(.gray))
-                .font(StarsAreSet(stars: company.stars) ? .system(size: 10) : .system(size: 7))
-                .fontWeight(StarsAreSet(stars: company.stars) ? .bold : .none)
+            Text("\(StarConvertor.shared.convertIntToStars(count: company.stars))")
+                .foregroundColor(company.stars != 0 ? Color(.systemYellow) : Color(.gray))
+                .font(company.stars != 0 ? .system(size: 10) : .system(size: 7))
+                .fontWeight(company.stars != 0 ? .bold : .none)
         }
         .frame(height: 25)
     }
