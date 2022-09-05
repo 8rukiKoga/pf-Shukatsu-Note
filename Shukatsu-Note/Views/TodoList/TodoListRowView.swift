@@ -9,8 +9,7 @@ import SwiftUI
 
 struct TodoListRowView: View {
     @ObservedObject var todoVm: TodoViewModel
-    // フォルダからの遷移かどうか検知
-    var isInFolder: Bool = false
+    var companyName: String?
     var task: TodoModel
     
     let dateFormatter = DateFormatter()
@@ -19,16 +18,24 @@ struct TodoListRowView: View {
         if let taskIndex = todoVm.todoList.firstIndex(of: task) {
             HStack {
                 VStack(alignment: .leading) {
+                    if task.dateIsSet {
+                        HStack {
+                            Text(CustomDateFormatter.shared.convertDateToString(from: task.date!))
+                                .font(.system(size: 12))
+                            if let companyName = companyName {
+                                Spacer()
+                                Text(companyName)
+                                    .font(.system(size: 10))
+                            }
+                        }
+                        .foregroundColor(.gray)
+                        .padding(.trailing, 10)
+                    }
+                    
                     Text(task.name)
                         .padding(.vertical, 1)
-                        // 文字が...で省略されないようにする
+                    // 文字が...で省略されないようにする
                         .fixedSize(horizontal: false, vertical: true)
-                    if task.dateIsSet {
-                        Text(CustomDateFormatter.shared.convertDateToString(from: task.date!))
-                            .font(.system(size: 10))
-                            .foregroundColor(.gray)
-                            .padding(.leading, 2)
-                    }
                 }
                 Spacer()
                 

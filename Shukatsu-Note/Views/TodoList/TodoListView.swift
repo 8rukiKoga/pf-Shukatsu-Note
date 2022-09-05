@@ -31,7 +31,11 @@ struct TodoListView: View {
                 else {
                     List {
                         ForEach(todoVm.todoList) { task in
-                            TodoListRowView(todoVm: todoVm, task: task)
+                            if let companyName = task.companyName {
+                                TodoListRowView(todoVm: todoVm, companyName: companyName, task: task)
+                            } else {
+                                TodoListRowView(todoVm: todoVm, task: task)
+                            }
                         }
                         .onMove { (indexSet, index) in
                             todoVm.todoList.move(fromOffsets: indexSet, toOffset: index)

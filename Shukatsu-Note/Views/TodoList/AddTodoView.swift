@@ -108,10 +108,10 @@ struct AddTodoView: View {
                     Button {
                         // todoリストに追加
                         if let companyID = $company.id {
-                            todoVm.addTodo(todo: TodoModel(companyID: companyID, name: self.taskName, date: self.date, dateIsSet: self.dateIsSet, done: false))
+                            todoVm.addTodo(todo: TodoModel(companyID: companyID, companyName: company.name, name: self.taskName, date: self.date, dateIsSet: self.dateIsSet, done: false))
                             
                         } else {
-                            todoVm.addTodo(todo: TodoModel(companyID: nil, name: self.taskName, date: self.date, dateIsSet: self.dateIsSet, done: false))
+                            todoVm.addTodo(todo: TodoModel(companyID: nil, companyName: nil, name: self.taskName, date: self.date, dateIsSet: self.dateIsSet, done: false))
                         }
                         // モーダルシートを閉じる
                         showSheet = false
