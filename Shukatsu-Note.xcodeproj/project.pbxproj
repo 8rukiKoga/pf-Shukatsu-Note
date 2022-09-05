@@ -38,6 +38,7 @@
 		0DE5C23828A920D100865D72 /* TodoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE5C23728A920D100865D72 /* TodoViewModel.swift */; };
 		0DE5C23B28AB2CF500865D72 /* FloatingBtnMod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE5C23A28AB2CF500865D72 /* FloatingBtnMod.swift */; };
 		0DE5C23D28ACF5D800865D72 /* PhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE5C23C28ACF5D800865D72 /* PhotoPicker.swift */; };
+		0DF64A7828C626F90074A14F /* CustomDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF64A7728C626F90074A14F /* CustomDateFormatter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +75,7 @@
 		0DE5C23728A920D100865D72 /* TodoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoViewModel.swift; sourceTree = "<group>"; };
 		0DE5C23A28AB2CF500865D72 /* FloatingBtnMod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingBtnMod.swift; sourceTree = "<group>"; };
 		0DE5C23C28ACF5D800865D72 /* PhotoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPicker.swift; sourceTree = "<group>"; };
+		0DF64A7728C626F90074A14F /* CustomDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDateFormatter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,7 +136,7 @@
 				0DB2B274289E95F500A81149 /* NoteList */,
 				0DB2B275289E960400A81149 /* TodoList */,
 				0DB2B277289E962500A81149 /* Settings */,
-				0DE5C23228A9107F00865D72 /* ViewFuncs */,
+				0DE5C23228A9107F00865D72 /* SharedFuncs */,
 				0DE5C23928AB2CC900865D72 /* ViewModifiers */,
 			);
 			path = Views;
@@ -196,12 +198,13 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
-		0DE5C23228A9107F00865D72 /* ViewFuncs */ = {
+		0DE5C23228A9107F00865D72 /* SharedFuncs */ = {
 			isa = PBXGroup;
 			children = (
 				0D1162DA28A5C1CA0000FCBA /* SharingFuncs.swift */,
+				0DF64A7728C626F90074A14F /* CustomDateFormatter.swift */,
 			);
-			path = ViewFuncs;
+			path = SharedFuncs;
 			sourceTree = "<group>";
 		};
 		0DE5C23928AB2CC900865D72 /* ViewModifiers */ = {
@@ -307,6 +310,7 @@
 				0D1162DF28A8DD460000FCBA /* HowToUseView.swift in Sources */,
 				0DB2B27B289E967E00A81149 /* CompanyView.swift in Sources */,
 				0DB2B2D528A0C6CD00A81149 /* NoteRowView.swift in Sources */,
+				0DF64A7828C626F90074A14F /* CustomDateFormatter.swift in Sources */,
 				0DE5C23828A920D100865D72 /* TodoViewModel.swift in Sources */,
 				0DB2B262289E952800A81149 /* Shukatsu_NoteApp.swift in Sources */,
 				0D7875D228A3D6A70070BE05 /* EditCompanyView.swift in Sources */,
