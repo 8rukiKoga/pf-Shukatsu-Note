@@ -135,15 +135,17 @@ struct CompanyView: View {
                         }
                     }
                 }
-                // companyからtodoを参照したいが、なぜかできない
-                //                Section() {
-                //                    ForEach(companyVm.companyList[companyIndex].todos) { task in
-                //                        TodoListRowView(todoVm: todoVm, task: task)
-                //                    }
-                //                } header: {
-                //                    Text("Todo")
-                //                }
-                //                .textCase(nil)
+                
+                let todos = todoVm.todoList.filter { $0.companyID == company.id }
+
+                Section {
+                    ForEach(todos) { task in
+                        TodoListRowView(todoVm: todoVm, task: task)
+                    }
+                } header: {
+                    Text("Todo")
+                }
+                .textCase(nil)
                 
                 Section {
                     ForEach(companyVm.companyList[companyIndex].notes) { note in

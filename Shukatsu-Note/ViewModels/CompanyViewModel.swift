@@ -46,7 +46,7 @@ class CompanyViewModel: ObservableObject {
     }
     
     func addCompany(name: String) {
-        let newCompany = CompanyModel(name: name)
+        let newCompany = CompanyModel(id: UUID(), name: name)
         companyList.append(newCompany)
     }
     

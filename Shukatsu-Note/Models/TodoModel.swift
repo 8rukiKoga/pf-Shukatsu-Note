@@ -14,6 +14,8 @@ struct TodoModel: Identifiable, Codable, Hashable, Equatable {
     }
     
     var id = UUID()
+    // 企業と紐づく場合は、その企業のuuidを持っておく
+    var companyID: UUID?
     
     var name: String = ""
     var date: Date?

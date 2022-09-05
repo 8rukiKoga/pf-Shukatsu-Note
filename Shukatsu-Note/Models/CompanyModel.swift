@@ -13,7 +13,7 @@ struct CompanyModel: Identifiable, Codable, Hashable, Equatable {
         return lhs.id == rhs.id
     }
     
-    var id = UUID()
+    var id: UUID?
     
     var image: Data?
     var name: String = "未設定"

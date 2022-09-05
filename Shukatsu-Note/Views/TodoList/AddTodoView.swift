@@ -107,10 +107,11 @@ struct AddTodoView: View {
                     Spacer()
                     Button {
                         // todoリストに追加
-                        todoVm.addTodo(todo: TodoModel(name: self.taskName, date: self.date, dateIsSet: self.dateIsSet, done: false))
-                        // companyが選択されているなら紐付け
-                        if let companyIndex = companyVm.companyList.firstIndex(of: (company)) {
-                            companyVm.companyList[companyIndex].todos.append(TodoModel(name: taskName, date: date, done: false))
+                        if let companyID = $company.id {
+                            todoVm.addTodo(todo: TodoModel(companyID: companyID, name: self.taskName, date: self.date, dateIsSet: self.dateIsSet, done: false))
+                            
+                        } else {
+                            todoVm.addTodo(todo: TodoModel(companyID: nil, name: self.taskName, date: self.date, dateIsSet: self.dateIsSet, done: false))
                         }
                         // モーダルシートを閉じる
                         showSheet = false
