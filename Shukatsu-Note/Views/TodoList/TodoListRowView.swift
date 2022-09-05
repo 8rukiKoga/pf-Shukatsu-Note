@@ -15,12 +15,20 @@ struct TodoListRowView: View {
     
     let dateFormatter = DateFormatter()
     
-    var body: some View {        
+    var body: some View {
         if let taskIndex = todoVm.todoList.firstIndex(of: task) {
             HStack {
-                Text(task.name)
-                if task.dateIsSet {
-                    Text(CustomDateFormatter.shared.convertDateToString(from: task.date!))
+                VStack(alignment: .leading) {
+                    Text(task.name)
+                        .padding(.vertical, 1)
+                        // 文字が...で省略されないようにする
+                        .fixedSize(horizontal: false, vertical: true)
+                    if task.dateIsSet {
+                        Text(CustomDateFormatter.shared.convertDateToString(from: task.date!))
+                            .font(.system(size: 10))
+                            .foregroundColor(.gray)
+                            .padding(.leading, 2)
+                    }
                 }
                 Spacer()
                 
@@ -42,5 +50,6 @@ struct TodoListRowView: View {
 struct TodoListRowView_Previews: PreviewProvider {
     static var previews: some View {
         TodoListRowView(todoVm: TodoViewModel(), task: TodoModel(name: "wawawa", done: false))
+            .previewLayout(.sizeThatFits)
     }
 }
