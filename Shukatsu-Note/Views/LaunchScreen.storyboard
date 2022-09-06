@@ -26,12 +26,12 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By Haruki Koga" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Da5-lh-MqK">
                                 <rect key="frame" x="163.5" y="829" width="87" height="13"/>
                                 <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="10"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="ThemeColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
-                        <color key="backgroundColor" name="ThemeColor"/>
+                        <color key="backgroundColor" red="0.57153050429156038" green="0.45742321919347739" blue="0.3424009714654912" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="96l-AY-XIS" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="76o-6t-lL2"/>
                             <constraint firstItem="96l-AY-XIS" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="Y3W-ze-FWg"/>
