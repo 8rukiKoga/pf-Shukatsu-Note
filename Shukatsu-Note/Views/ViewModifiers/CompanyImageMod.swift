@@ -13,5 +13,6 @@ struct CompanyImageMod: ViewModifier {
             .scaledToFill()
             .frame(width: 120, height: 120)
             .clipShape(Circle())
+            .shadow(color: .gray, radius: 2, x: 0, y: 0)
     }
 }
