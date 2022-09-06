@@ -33,6 +33,7 @@
 		0DB2B2B7289F842C00A81149 /* NoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B2B6289F842C00A81149 /* NoteModel.swift */; };
 		0DB2B2B9289FE43F00A81149 /* AddCompanyPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B2B8289FE43F00A81149 /* AddCompanyPopupView.swift */; };
 		0DB2B2D528A0C6CD00A81149 /* NoteRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B2D428A0C6CD00A81149 /* NoteRowView.swift */; };
+		0DCF522328C6D51500E1845C /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DCF522228C6D51500E1845C /* ColorExtension.swift */; };
 		0DE5C23628A920C300865D72 /* TodoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE5C23528A920C300865D72 /* TodoModel.swift */; };
 		0DE5C23828A920D100865D72 /* TodoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE5C23728A920D100865D72 /* TodoViewModel.swift */; };
 		0DE5C23B28AB2CF500865D72 /* FloatingBtnMod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE5C23A28AB2CF500865D72 /* FloatingBtnMod.swift */; };
@@ -69,6 +70,7 @@
 		0DB2B2B6289F842C00A81149 /* NoteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteModel.swift; sourceTree = "<group>"; };
 		0DB2B2B8289FE43F00A81149 /* AddCompanyPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCompanyPopupView.swift; sourceTree = "<group>"; };
 		0DB2B2D428A0C6CD00A81149 /* NoteRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteRowView.swift; sourceTree = "<group>"; };
+		0DCF522228C6D51500E1845C /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		0DE5C23528A920C300865D72 /* TodoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoModel.swift; sourceTree = "<group>"; };
 		0DE5C23728A920D100865D72 /* TodoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoViewModel.swift; sourceTree = "<group>"; };
 		0DE5C23A28AB2CF500865D72 /* FloatingBtnMod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingBtnMod.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				0DB2B277289E962500A81149 /* Settings */,
 				0DE5C23228A9107F00865D72 /* SharedFuncs */,
 				0DE5C23928AB2CC900865D72 /* ViewModifiers */,
+				0DCF522128C6D4F200E1845C /* Extensions */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -193,6 +196,14 @@
 				0D1162DE28A8DD460000FCBA /* HowToUseView.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		0DCF522128C6D4F200E1845C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0DCF522228C6D51500E1845C /* ColorExtension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		0DE5C23228A9107F00865D72 /* SharedFuncs */ = {
@@ -296,6 +307,7 @@
 				0DB2B264289E952800A81149 /* MainView.swift in Sources */,
 				0DB2B2B9289FE43F00A81149 /* AddCompanyPopupView.swift in Sources */,
 				0DB2B28B289E96F100A81149 /* CompanyModel.swift in Sources */,
+				0DCF522328C6D51500E1845C /* ColorExtension.swift in Sources */,
 				0DE5C23B28AB2CF500865D72 /* FloatingBtnMod.swift in Sources */,
 				0DB2B285289E96BC00A81149 /* SettingsView.swift in Sources */,
 				0DB2B28F289EA71700A81149 /* NoteView.swift in Sources */,
