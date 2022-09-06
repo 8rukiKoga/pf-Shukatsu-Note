@@ -35,6 +35,7 @@ class CompanyViewModel: ObservableObject {
     // 会社自体を消す関数
     func deleteCompany(indexSet: IndexSet) {
         companyList.remove(atOffsets: indexSet)
+        // ＊ 会社に関わるノート・タスクを削除する処理を書く
     }
     
     func addCompany(name: String) {

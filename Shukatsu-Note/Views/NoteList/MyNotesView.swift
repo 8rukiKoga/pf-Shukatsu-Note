@@ -8,6 +8,15 @@
 import SwiftUI
 
 struct MyNotesView: View {
+    @Environment(\.managedObjectContext) private var context
+    
+    @FetchRequest(
+        entity: Company.entity(),
+        sortDescriptors: [NSSortDescriptor(keyPath: \Company.id, ascending: true)],
+        predicate: nil
+    )
+    
+    var companies: FetchedResults<Company>
     
     @ObservedObject var companyVm: CompanyViewModel
     @ObservedObject var noteVm: NoteViewModel
@@ -55,10 +64,10 @@ struct MyNotesView: View {
                     
                     // 企業リスト
                     Section {
-                        ForEach(companyVm.companyList) { company in
-                            NavigationLink(destination: CompanyView(company: company, companyVm: companyVm, noteVm: noteVm, todoVm: todoVm)) {
-                                FolderRowView(company: company)
-                            }
+                        ForEach(companies) { company in
+                                FolderRowView(viewModel: FolderRowViewModel(company: company))
+
+                            
                         }
                         // editbuttonの動作
                         .onDelete { indexSet in

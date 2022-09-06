@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AddCompanyPopupView: View {
+    @Environment(\.managedObjectContext) var context
     
     @ObservedObject var companyVm: CompanyViewModel
     @Binding var showingPopup: Bool
@@ -47,7 +48,8 @@ struct AddCompanyPopupView: View {
                         }
                         
                         Button {
-                            companyVm.addCompany(name: newCompanyName)
+//                            companyVm.addCompany(name: newCompanyName)
+                            Company.create(in: context, name: newCompanyName)
                             showingPopup = false
                         } label: {
                             Text("保存")
