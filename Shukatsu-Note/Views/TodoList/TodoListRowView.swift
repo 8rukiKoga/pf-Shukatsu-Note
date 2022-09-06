@@ -23,13 +23,12 @@ struct TodoListRowView: View {
                             Text(CustomDateFormatter.shared.convertDateToString(from: task.date!))
                                 .font(.system(size: 12))
                             if let companyName = companyName {
-                                Spacer()
-                                Text(companyName)
+                                Text("-\(companyName)-")
                                     .font(.system(size: 10))
+                                    .padding(.leading, 1)
                             }
                         }
                         .foregroundColor(.gray)
-                        .padding(.trailing, 10)
                     }
                     
                     Text(task.name)
