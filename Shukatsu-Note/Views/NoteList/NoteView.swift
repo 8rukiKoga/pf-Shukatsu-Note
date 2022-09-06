@@ -36,45 +36,22 @@ struct NoteView: View {
                 
                 Divider()
                 
-                // TextEditorの上に透明なTextを載せることで、TextEditorの高さの分、View自体の大きさを大きくしてくれる
                 ZStack {
-                    // 企業フォルダ内にあるノートの場合
-                    if isInFolder {
-                        if let noteIndex = companyVm.companyList[companyIndex!].notes.firstIndex(of: note) {
-                            TextEditor(text: $companyVm.companyList[companyIndex!].notes[noteIndex].text)
+                    if let noteIndex = noteVm.noteList.firstIndex(of: note) {
+                        TextEditor(text: $noteVm.noteList[noteIndex].text)
                             // 渡されたnoteのtextを代入
-                                .focused($inputFocus)
-                                .font(.body)
-                                .padding(.horizontal)
-                                .onAppear() {
-                                    if companyVm.companyList[companyIndex!].notes[noteIndex].text == "New Note" {
-                                        companyVm.companyList[companyIndex!].notes[noteIndex].text = ""
-                                    }
+                            .focused($inputFocus)
+                            .font(.body)
+                            .padding(.horizontal)
+                            .onAppear() {
+                                if noteVm.noteList[noteIndex].text == "New Note" {
+                                    noteVm.noteList[noteIndex].text = ""
                                 }
-                            
-                            Text(companyVm.companyList[companyIndex!].notes[noteIndex].text)
-                                .opacity(0)
-                                .padding(8)
-                        }
-                    }
-                    // MainViewにあるノートの場合
-                    else {
-                        if let noteIndex = noteVm.noteList.firstIndex(of: note) {
-                            TextEditor(text: $noteVm.noteList[noteIndex].text)
-                            // 渡されたnoteのtextを代入
-                                .focused($inputFocus)
-                                .font(.body)
-                                .padding(.horizontal)
-                                .onAppear() {
-                                    if noteVm.noteList[noteIndex].text == "New Note" {
-                                        noteVm.noteList[noteIndex].text = ""
-                                    }
-                                }
-                            
-                            Text(noteVm.noteList[noteIndex].text)
-                                .opacity(0)
-                                .padding(8)
-                        }
+                            }
+                        // TextEditorの上に透明なTextを載せることで、TextEditorの高さの分、View自体の大きさを大きくしてくれる
+                        Text(noteVm.noteList[noteIndex].text)
+                            .opacity(0)
+                            .padding(8)
                     }
                 }
                 

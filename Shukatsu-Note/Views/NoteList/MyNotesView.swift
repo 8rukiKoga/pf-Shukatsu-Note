@@ -21,9 +21,11 @@ struct MyNotesView: View {
             NavigationView {
                 
                 List {
-                    // メモリスト
+                    
+                    let notes = noteVm.noteList.filter { $0.companyID == nil }
+                    // メモリストz
                     Section {
-                        ForEach(noteVm.noteList) { note in
+                        ForEach(notes) { note in
                             NavigationLink(destination: NoteView(isInFolder: false, note: note, companyVm: companyVm, noteVm: noteVm)) {
                                 NoteRowView(companyVm: companyVm, noteVm: noteVm, isInFolder: false, note: note)
                             }
@@ -41,7 +43,7 @@ struct MyNotesView: View {
                             Spacer()
                             // ＊ 新しいメモを追加 後々ポップアップでtitle入力->追加ができるようにする
                             Button {
-                                noteVm.noteList.append(NoteModel(text: "New Note"))
+                                noteVm.noteList.append(NoteModel(companyID: nil, text: "New Note"))
                             } label: {
                                 Image(systemName: "square.and.pencil")
                                     .font(.system(size: 15))
@@ -54,7 +56,7 @@ struct MyNotesView: View {
                     // 企業リスト
                     Section {
                         ForEach(companyVm.companyList) { company in
-                            NavigationLink(destination: CompanyView(company: company, companyVm: companyVm, todoVm: todoVm)) {
+                            NavigationLink(destination: CompanyView(company: company, companyVm: companyVm, noteVm: noteVm, todoVm: todoVm)) {
                                 FolderRowView(company: company)
                             }
                         }

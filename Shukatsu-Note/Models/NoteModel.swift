@@ -14,6 +14,7 @@ struct NoteModel: Identifiable, Codable, Hashable, Equatable {
     }
     
     var id = UUID()
+    var companyID: UUID?
     
     var text: String = ""
 }

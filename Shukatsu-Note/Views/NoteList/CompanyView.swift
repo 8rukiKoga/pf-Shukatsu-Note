@@ -11,6 +11,7 @@ struct CompanyView: View {
     
     var company: CompanyModel
     @ObservedObject var companyVm: CompanyViewModel
+    @ObservedObject var noteVm: NoteViewModel
     @ObservedObject var todoVm: TodoViewModel
     
     // キーボードの開閉制御
@@ -147,26 +148,21 @@ struct CompanyView: View {
                 }
                 .textCase(nil)
                 
+                let notes = noteVm.noteList.filter { $0.companyID == company.id }
+                
                 Section {
-                    ForEach(companyVm.companyList[companyIndex].notes) { note in
-                        NavigationLink(destination: NoteView(isInFolder: true, note: note, companyIndex: companyIndex, companyVm: companyVm, noteVm: NoteViewModel())) {
-                            NoteRowView(companyVm: companyVm, noteVm: NoteViewModel(), isInFolder: true, companyIndex: companyIndex, note: note)
+                    ForEach(notes) { note in
+                        NavigationLink(destination: NoteView(isInFolder: false, note: note, companyVm: companyVm, noteVm: noteVm)) {
+                            NoteRowView(companyVm: companyVm, noteVm: noteVm, isInFolder: false, note: note)
                         }
                     }
-                    // なぜか使用できない
-                    //                    .onMove { (indexSet, index) in
-                    //                        companyVm.moveNote(companyIndex: companyIndex, from: indexSet, to: index)
-                    //                    }
-                    //                    .onDelete { indexSet in
-                    //                        companyVm.deleteNote(companyIndex: companyIndex, indexSet: indexSet)
-                    //                    }
                 } header: {
                     HStack {
                         Text("Note")
                         Spacer()
                         // 新規メモボタン
                         Button {
-                            companyVm.companyList[companyIndex].notes.append(NoteModel(text: "New Note"))
+                            noteVm.noteList.append(NoteModel(companyID: company.id, text: "New Note"))
                         } label: {
                             Image(systemName: "square.and.pencil")
                                 .font(.system(size: 15))
@@ -186,12 +182,6 @@ struct CompanyView: View {
             })
         )
         .navigationTitle(company.name)
-        // company内のonMove, onDeleteが使用できないためコメントアウト
-        //        .toolbar {
-        //            ToolbarItemGroup(placement: .navigationBarTrailing) {
-        //                EditButton()
-        //            }
-        //        }
     }
     // URLが有効かどうか判断
     private func verifyUrl (urlString: String?) -> Bool {
@@ -215,10 +205,10 @@ struct CompanyView_Previews: PreviewProvider {
         
         return Group {
             NavigationView {
-                CompanyView(company: CompanyModel(name: "name", stars: 1, category: "cat", location: "loc", url: "url", memo: "memo", notes: []), companyVm: testCompany, todoVm: TodoViewModel())
+                CompanyView(company: CompanyModel(name: "name", stars: 1, category: "cat", location: "loc", url: "url", memo: "memo"), companyVm: testCompany, noteVm: NoteViewModel(), todoVm: TodoViewModel())
             }
             NavigationView {
-                CompanyView(company: CompanyModel(name: "name", stars: 1, category: "cat", location: "loc", url: "url", memo: "memo", notes: []), companyVm: testCompany, todoVm: TodoViewModel())
+                CompanyView(company: CompanyModel(name: "name", stars: 1, category: "cat", location: "loc", url: "url", memo: "memo"), companyVm: testCompany, noteVm: NoteViewModel(), todoVm: TodoViewModel())
                     .preferredColorScheme(.dark)
             }
         }

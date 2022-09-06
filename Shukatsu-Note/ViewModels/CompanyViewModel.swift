@@ -37,14 +37,6 @@ class CompanyViewModel: ObservableObject {
         companyList.remove(atOffsets: indexSet)
     }
     
-    // 会社内のノートを消す関数 なぜ使えない？？
-    func deleteNote(companyIndex: Int, indexSet: IndexSet) {
-        companyList[companyIndex].notes.remove(atOffsets: indexSet)
-    }
-    func moveNote(companyIndex: Int, from: IndexSet, to: Int) {
-        companyList[companyIndex].notes.move(fromOffsets: from, toOffset: to)
-    }
-    
     func addCompany(name: String) {
         let newCompany = CompanyModel(id: UUID(), name: name)
         companyList.append(newCompany)

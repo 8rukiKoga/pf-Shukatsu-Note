@@ -17,33 +17,16 @@ struct NoteRowView: View {
     var note: NoteModel
     
     var body: some View {
-        // フォルダ内にあるノートの場合
-        if isInFolder {
-            if let noteIndex = companyVm.companyList[companyIndex!].notes.firstIndex(of: self.note) {
-                HStack {
-                    Image(systemName: "note.text")
-                        .foregroundColor(Color("ThemeColor"))
-                        .font(.system(size: 15))
-                    Text(companyVm.companyList[companyIndex!].notes[noteIndex].text)
-                        .font(.system(size: 15))
-                    Spacer()
-                }
-                .frame(height: 25)
+        if let noteIndex = noteVm.noteList.firstIndex(of: note) {
+            HStack {
+                Image(systemName: "note.text")
+                    .foregroundColor(Color("ThemeColor"))
+                    .font(.system(size: 15))
+                Text(noteVm.noteList[noteIndex].text)
+                    .font(.system(size: 15))
+                Spacer()
             }
-        }
-        // MyListViewにあるノートの場合
-        else {
-            if let noteIndex = noteVm.noteList.firstIndex(of: note) {
-                HStack {
-                    Image(systemName: "note.text")
-                        .foregroundColor(Color("ThemeColor"))
-                        .font(.system(size: 15))
-                    Text(noteVm.noteList[noteIndex].text)
-                        .font(.system(size: 15))
-                    Spacer()
-                }
-                .frame(height: 25)
-            }
+            .frame(height: 25)
         }
     }
 }

@@ -22,6 +22,4 @@ struct CompanyModel: Identifiable, Codable, Hashable, Equatable {
     var location: String = "未設定"
     var url: String = ""
     var memo: String = ""
-    var notes = [NoteModel]()
-    var todos = [TodoModel]()
 }
