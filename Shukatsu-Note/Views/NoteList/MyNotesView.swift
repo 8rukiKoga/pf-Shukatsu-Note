@@ -14,11 +14,17 @@ struct MyNotesView: View {
     @ObservedObject var todoVm: TodoViewModel
     
     @State private var showingPopup: Bool = false
+    // 新規ノート作成時
+    @State private var showingNote: Bool = false
     
     var body: some View {
-        // ポップアップ表示用Z
-        ZStack {
-            NavigationView {
+        NavigationView {
+            // ポップアップ表示用Z
+            ZStack {
+                // 新規ノートに遷移
+                if let lastNote = noteVm.noteList.last {
+                    NavigationLink("", destination: NoteView(isInFolder: false, note: lastNote, companyVm: companyVm, noteVm: noteVm), isActive: $showingNote)
+                }
                 
                 List {
                     
@@ -43,7 +49,8 @@ struct MyNotesView: View {
                             Spacer()
                             // ＊ 新しいメモを追加 後々ポップアップでtitle入力->追加ができるようにする
                             Button {
-                                noteVm.noteList.append(NoteModel(companyID: nil, text: "New Note"))
+                                noteVm.noteList.append(NoteModel(companyID: nil))
+                                showingNote.toggle()
                             } label: {
                                 Image(systemName: "square.and.pencil")
                                     .font(.system(size: 15))
@@ -92,17 +99,17 @@ struct MyNotesView: View {
                 }
                 .listStyle(InsetGroupedListStyle())
                 
-                .navigationTitle("Notes")
-                .toolbar {
-                    ToolbarItemGroup(placement: .navigationBarTrailing) {
-                        EditButton()
-                    }
+                // popupView
+                if showingPopup {
+                    AddCompanyPopupView(companyVm: companyVm, showingPopup: $showingPopup)
+                        .transition(.asymmetric(insertion: .scale, removal: .opacity))
                 }
             }
-            // popupView
-            if showingPopup {
-                AddCompanyPopupView(companyVm: companyVm, showingPopup: $showingPopup)
-                    .transition(.asymmetric(insertion: .scale, removal: .opacity))
+            .navigationTitle("Notes")
+            .toolbar {
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
+                    EditButton()
+                }
             }
             
         }

@@ -43,11 +43,6 @@ struct NoteView: View {
                             .focused($inputFocus)
                             .font(.body)
                             .padding(.horizontal)
-                            .onAppear() {
-                                if noteVm.noteList[noteIndex].text == "New Note" {
-                                    noteVm.noteList[noteIndex].text = ""
-                                }
-                            }
                         // TextEditorの上に透明なTextを載せることで、TextEditorの高さの分、View自体の大きさを大きくしてくれる
                         Text(noteVm.noteList[noteIndex].text)
                             .opacity(0)
