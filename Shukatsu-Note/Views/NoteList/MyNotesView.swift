@@ -9,6 +9,13 @@ import SwiftUI
 
 struct MyNotesView: View {
     
+    @Environment(\.managedObjectContext) private var context
+    @FetchRequest(
+        entity: Company.entity(),
+        sortDescriptors: [NSSortDescriptor(keyPath: \Company.id, ascending: true)],
+        predicate: nil
+    ) var companies: FetchedResults<Company>
+    
     @ObservedObject var companyVm: CompanyViewModel
     @ObservedObject var noteVm: NoteViewModel
     @ObservedObject var todoVm: TodoViewModel
@@ -62,8 +69,8 @@ struct MyNotesView: View {
                     
                     // 企業リスト
                     Section {
-                        ForEach(companyVm.companyList) { company in
-                            NavigationLink(destination: CompanyView(company: company, companyVm: companyVm, noteVm: noteVm, todoVm: todoVm)) {
+                        ForEach(companies) { company in
+                            NavigationLink(destination: Text(company.name ?? "")) {
                                 FolderRowView(company: company)
                             }
                         }

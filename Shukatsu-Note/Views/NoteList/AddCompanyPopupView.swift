@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AddCompanyPopupView: View {
+    @Environment(\.managedObjectContext) var context
     
     @ObservedObject var companyVm: CompanyViewModel
     // ポップアップを表示するか
@@ -56,7 +57,8 @@ struct AddCompanyPopupView: View {
                     Button {
                         if companyVm.companyList.count <= 15 {
                             // 登録企業が15個以下の場合
-                            companyVm.addCompany(name: newCompanyName)
+                            Company.create(in: context, name: newCompanyName)
+//                            companyVm.addCompany(name: newCompanyName)
                             showingPopup = false
                         } else {
                             // 登録企業が15個(以上)の場合

@@ -38,6 +38,10 @@
 		0DE5C23828A920D100865D72 /* TodoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE5C23728A920D100865D72 /* TodoViewModel.swift */; };
 		0DE5C23B28AB2CF500865D72 /* FloatingBtnMod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE5C23A28AB2CF500865D72 /* FloatingBtnMod.swift */; };
 		0DE5C23D28ACF5D800865D72 /* PhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE5C23C28ACF5D800865D72 /* PhotoPicker.swift */; };
+		0DF5FDB128C9B76000FD8184 /* Shukatsu-Note.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0DF5FDAF28C9B76000FD8184 /* Shukatsu-Note.xcdatamodeld */; };
+		0DF5FDB428C9B80200FD8184 /* Company+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF5FDB228C9B80200FD8184 /* Company+CoreDataClass.swift */; };
+		0DF5FDB528C9B80200FD8184 /* Company+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF5FDB328C9B80200FD8184 /* Company+CoreDataProperties.swift */; };
+		0DF5FDD628C9BB6300FD8184 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF5FDD528C9BB6300FD8184 /* Persistence.swift */; };
 		0DF64A7828C626F90074A14F /* CustomDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF64A7728C626F90074A14F /* CustomDateFormatter.swift */; };
 /* End PBXBuildFile section */
 
@@ -75,6 +79,10 @@
 		0DE5C23728A920D100865D72 /* TodoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoViewModel.swift; sourceTree = "<group>"; };
 		0DE5C23A28AB2CF500865D72 /* FloatingBtnMod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingBtnMod.swift; sourceTree = "<group>"; };
 		0DE5C23C28ACF5D800865D72 /* PhotoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPicker.swift; sourceTree = "<group>"; };
+		0DF5FDB028C9B76000FD8184 /* Shukatsu-Note.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Shukatsu-Note.xcdatamodel"; sourceTree = "<group>"; };
+		0DF5FDB228C9B80200FD8184 /* Company+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Company+CoreDataClass.swift"; sourceTree = "<group>"; };
+		0DF5FDB328C9B80200FD8184 /* Company+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Company+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		0DF5FDD528C9BB6300FD8184 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		0DF64A7728C626F90074A14F /* CustomDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDateFormatter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -113,6 +121,7 @@
 				0DB2B271289E95D800A81149 /* Views */,
 				0DB2B272289E95E400A81149 /* ViewModels */,
 				0DB2B273289E95ED00A81149 /* Models */,
+				0DF5FDAE28C9B73900FD8184 /* DataBase */,
 				0DB2B265289E952B00A81149 /* Assets.xcassets */,
 				0DB2B267289E952B00A81149 /* Preview Content */,
 			);
@@ -225,6 +234,17 @@
 			path = ViewModifiers;
 			sourceTree = "<group>";
 		};
+		0DF5FDAE28C9B73900FD8184 /* DataBase */ = {
+			isa = PBXGroup;
+			children = (
+				0DF5FDAF28C9B76000FD8184 /* Shukatsu-Note.xcdatamodeld */,
+				0DF5FDB228C9B80200FD8184 /* Company+CoreDataClass.swift */,
+				0DF5FDB328C9B80200FD8184 /* Company+CoreDataProperties.swift */,
+				0DF5FDD528C9BB6300FD8184 /* Persistence.swift */,
+			);
+			path = DataBase;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -296,11 +316,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0DF5FDD628C9BB6300FD8184 /* Persistence.swift in Sources */,
 				0DB2B2B5289F841500A81149 /* NoteViewModel.swift in Sources */,
 				0DB2B289289E96E800A81149 /* CompanyViewModel.swift in Sources */,
 				0D1162DB28A5C1CA0000FCBA /* StarConvertor.swift in Sources */,
 				0DE5C23628A920C300865D72 /* TodoModel.swift in Sources */,
 				0DB2B279289E967100A81149 /* FolderRowView.swift in Sources */,
+				0DF5FDB428C9B80200FD8184 /* Company+CoreDataClass.swift in Sources */,
 				0DB2B270289E95B800A81149 /* MyNotesView.swift in Sources */,
 				0D61C9E628B31EDD006B3270 /* CompanyImageMod.swift in Sources */,
 				0DB2B283289E96AF00A81149 /* AddTodoView.swift in Sources */,
@@ -319,7 +341,9 @@
 				0DB2B27B289E967E00A81149 /* CompanyView.swift in Sources */,
 				0DB2B2D528A0C6CD00A81149 /* NoteRowView.swift in Sources */,
 				0DF64A7828C626F90074A14F /* CustomDateFormatter.swift in Sources */,
+				0DF5FDB128C9B76000FD8184 /* Shukatsu-Note.xcdatamodeld in Sources */,
 				0DE5C23828A920D100865D72 /* TodoViewModel.swift in Sources */,
+				0DF5FDB528C9B80200FD8184 /* Company+CoreDataProperties.swift in Sources */,
 				0DB2B262289E952800A81149 /* Shukatsu_NoteApp.swift in Sources */,
 				0D7875D228A3D6A70070BE05 /* EditCompanyView.swift in Sources */,
 				0D61C9ED28B33E25006B3270 /* AppLogoMod.swift in Sources */,
@@ -529,6 +553,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		0DF5FDAF28C9B76000FD8184 /* Shukatsu-Note.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				0DF5FDB028C9B76000FD8184 /* Shukatsu-Note.xcdatamodel */,
+			);
+			currentVersion = 0DF5FDB028C9B76000FD8184 /* Shukatsu-Note.xcdatamodel */;
+			path = "Shukatsu-Note.xcdatamodeld";
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 0DB2B256289E952800A81149 /* Project object */;
 }
