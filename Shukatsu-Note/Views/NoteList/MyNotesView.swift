@@ -49,13 +49,7 @@ struct MyNotesView: View {
                                 NoteRowView(companyVm: companyVm, noteVm: noteVm, isInFolder: false, note: note)
                             }
                         }
-                        // editbuttonの動作
-                        .onMove { (indexSet, index) in
-                            noteVm.noteList.move(fromOffsets: indexSet, toOffset: index)
-                        }
-                        .onDelete { indexSet in
-                            noteVm.noteList.remove(atOffsets: indexSet)
-                        }
+                        .onDelete(perform: deleteNote)
                     } header: {
                         HStack {
                             Text("Note")
@@ -81,10 +75,6 @@ struct MyNotesView: View {
                                 FolderRowView(company: company)
                             }
                         }
-                        // editbuttonの動作
-//                        .onDelete { indexSet in
-//                            companyVm.deleteCompany(indexSet: indexSet)
-//                        }
                         .onDelete(perform: deleteCompany)
                     } header: {
                         HStack {
@@ -129,12 +119,19 @@ struct MyNotesView: View {
             
         }
     }
+    private func deleteNote(offsets: IndexSet) {
+        offsets.forEach { index in
+            context.delete(notes[index])
+        }
+        // 削除内容を保存
+        try? context.save()
+    }
     
     private func deleteCompany(offsets: IndexSet) {
         offsets.forEach { index in
             context.delete(companies[index])
         }
-    // 保存を忘れない
+        // 削除内容を保存
         try? context.save()
     }
 }
