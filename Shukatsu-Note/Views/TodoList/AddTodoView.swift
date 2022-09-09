@@ -116,12 +116,9 @@ struct AddTodoView: View {
                 HStack {
                     Spacer()
                     Button {
-                        // todoリストに追加
                         companyIsSet = company != nil
-                        
-                        print(companyIsSet)
+                        // todoリストに追加
                         if companyIsSet && dateIsSet {
-                            print(company)
                             Task.create(in: context, name: taskName, date: date, companyId: company!.id, companyName: company!.name)
                         }
                         
@@ -136,7 +133,6 @@ struct AddTodoView: View {
                         if !companyIsSet && !dateIsSet {
                             Task.create(in: context, name: taskName, date: nil, companyId: nil, companyName: nil)
                         }
-                        
                         
                         // モーダルシートを閉じる
                         showSheet = false
