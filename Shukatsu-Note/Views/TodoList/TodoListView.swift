@@ -46,12 +46,7 @@ struct TodoListView: View {
                                 TodoListRowView(todoVm: todoVm, task: task)
                             }
                         }
-//                        .onMove { (indexSet, index) in
-//                            todoVm.todoList.move(fromOffsets: indexSet, toOffset: index)
-//                        }
-//                        .onDelete { indexSet in
-//                            todoVm.todoList.remove(atOffsets: indexSet)
-//                        }
+                        .onDelete(perform: deleteTask)
                     }
                     .listStyle(PlainListStyle())
                 }
@@ -87,6 +82,14 @@ struct TodoListView: View {
                 }
             }
         }
+    }
+    
+    private func deleteTask(offsets: IndexSet) {
+        offsets.forEach { index in
+            context.delete(tasks[index])
+        }
+        // 削除内容を保存
+        try? context.save()
     }
 }
 
