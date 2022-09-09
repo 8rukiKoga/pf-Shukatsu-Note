@@ -82,14 +82,6 @@ struct MyNotesView: View {
                             Spacer()
                             
                             Button {
-                                print("sort")
-                            } label: {
-                                Image(systemName: "square.3.stack.3d")
-                                    .font(.system(size: 15))
-                            }
-                            .padding(.trailing, 10)
-                            
-                            Button {
                                 // ポップアップ表示
                                 withAnimation {
                                     showingPopup = true
