@@ -149,7 +149,7 @@ struct CompanyView: View {
 
                     Section {
                         ForEach(todos) { task in
-                            TodoListRowView(todoVm: todoVm, task: task)
+//                            TodoListRowView(todoVm: todoVm, task: task)
                         }
                     } header: {
                         Text("Todo")

@@ -44,6 +44,8 @@
 		0DF5FDD628C9BB6300FD8184 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF5FDD528C9BB6300FD8184 /* Persistence.swift */; };
 		0DF5FDD928CAE69900FD8184 /* Note+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF5FDD728CAE69900FD8184 /* Note+CoreDataClass.swift */; };
 		0DF5FDDA28CAE69900FD8184 /* Note+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF5FDD828CAE69900FD8184 /* Note+CoreDataProperties.swift */; };
+		0DF5FDDD28CAF9D900FD8184 /* Task+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF5FDDB28CAF9D900FD8184 /* Task+CoreDataClass.swift */; };
+		0DF5FDDE28CAF9D900FD8184 /* Task+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF5FDDC28CAF9D900FD8184 /* Task+CoreDataProperties.swift */; };
 		0DF64A7828C626F90074A14F /* CustomDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF64A7728C626F90074A14F /* CustomDateFormatter.swift */; };
 /* End PBXBuildFile section */
 
@@ -87,6 +89,8 @@
 		0DF5FDD528C9BB6300FD8184 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		0DF5FDD728CAE69900FD8184 /* Note+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Note+CoreDataClass.swift"; sourceTree = "<group>"; };
 		0DF5FDD828CAE69900FD8184 /* Note+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Note+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		0DF5FDDB28CAF9D900FD8184 /* Task+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+CoreDataClass.swift"; sourceTree = "<group>"; };
+		0DF5FDDC28CAF9D900FD8184 /* Task+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		0DF64A7728C626F90074A14F /* CustomDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDateFormatter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -246,6 +250,8 @@
 				0DF5FDB328C9B80200FD8184 /* Company+CoreDataProperties.swift */,
 				0DF5FDD728CAE69900FD8184 /* Note+CoreDataClass.swift */,
 				0DF5FDD828CAE69900FD8184 /* Note+CoreDataProperties.swift */,
+				0DF5FDDB28CAF9D900FD8184 /* Task+CoreDataClass.swift */,
+				0DF5FDDC28CAF9D900FD8184 /* Task+CoreDataProperties.swift */,
 				0DF5FDD528C9BB6300FD8184 /* Persistence.swift */,
 			);
 			path = DataBase;
@@ -326,12 +332,14 @@
 				0DB2B2B5289F841500A81149 /* NoteViewModel.swift in Sources */,
 				0DB2B289289E96E800A81149 /* CompanyViewModel.swift in Sources */,
 				0D1162DB28A5C1CA0000FCBA /* StarConvertor.swift in Sources */,
+				0DF5FDDE28CAF9D900FD8184 /* Task+CoreDataProperties.swift in Sources */,
 				0DE5C23628A920C300865D72 /* TodoModel.swift in Sources */,
 				0DB2B279289E967100A81149 /* FolderRowView.swift in Sources */,
 				0DF5FDB428C9B80200FD8184 /* Company+CoreDataClass.swift in Sources */,
 				0DB2B270289E95B800A81149 /* MyNotesView.swift in Sources */,
 				0D61C9E628B31EDD006B3270 /* CompanyImageMod.swift in Sources */,
 				0DB2B283289E96AF00A81149 /* AddTodoView.swift in Sources */,
+				0DF5FDDD28CAF9D900FD8184 /* Task+CoreDataClass.swift in Sources */,
 				0DB2B264289E952800A81149 /* MainView.swift in Sources */,
 				0DB2B2B9289FE43F00A81149 /* AddCompanyPopupView.swift in Sources */,
 				0DB2B28B289E96F100A81149 /* CompanyModel.swift in Sources */,

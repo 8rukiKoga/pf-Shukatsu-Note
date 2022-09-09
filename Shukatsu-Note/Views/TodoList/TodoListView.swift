@@ -6,8 +6,16 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct TodoListView: View {
+    
+    @Environment(\.managedObjectContext) private var context
+    @FetchRequest(
+        entity: Task.entity(),
+        sortDescriptors: [NSSortDescriptor(keyPath: \Task.id, ascending: true)],
+        predicate: nil
+    ) var tasks: FetchedResults<Task>
     
     @ObservedObject var todoVm: TodoViewModel
     @ObservedObject var companyVm: CompanyViewModel
@@ -16,7 +24,8 @@ struct TodoListView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                if todoVm.todoList.isEmpty {
+                
+                if tasks.isEmpty {
                     VStack {
                         Spacer()
                         Text("No Tasks")
@@ -30,19 +39,19 @@ struct TodoListView: View {
                 }
                 else {
                     List {
-                        ForEach(todoVm.todoList) { task in
+                        ForEach(tasks) { task in
                             if let companyName = task.companyName {
                                 TodoListRowView(todoVm: todoVm, companyName: companyName, task: task)
                             } else {
                                 TodoListRowView(todoVm: todoVm, task: task)
                             }
                         }
-                        .onMove { (indexSet, index) in
-                            todoVm.todoList.move(fromOffsets: indexSet, toOffset: index)
-                        }
-                        .onDelete { indexSet in
-                            todoVm.todoList.remove(atOffsets: indexSet)
-                        }
+//                        .onMove { (indexSet, index) in
+//                            todoVm.todoList.move(fromOffsets: indexSet, toOffset: index)
+//                        }
+//                        .onDelete { indexSet in
+//                            todoVm.todoList.remove(atOffsets: indexSet)
+//                        }
                     }
                     .listStyle(PlainListStyle())
                 }

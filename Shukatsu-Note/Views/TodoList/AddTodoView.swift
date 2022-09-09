@@ -8,6 +8,12 @@
 import SwiftUI
 
 struct AddTodoView: View {
+    @Environment(\.managedObjectContext) private var context
+    @FetchRequest(
+        entity: Company.entity(),
+        sortDescriptors: [NSSortDescriptor(keyPath: \Company.id, ascending: true)],
+        predicate: nil
+    ) var companies: FetchedResults<Company>
     
     @ObservedObject var todoVm: TodoViewModel
     @ObservedObject var companyVm: CompanyViewModel
@@ -15,10 +21,11 @@ struct AddTodoView: View {
     @Binding var showSheet: Bool
     
     @State var taskName: String = ""
-    @State var date = Date()
     // 日付を指定しているか判断
     @State var dateIsSet: Bool = true
-    @State var company: CompanyModel = CompanyModel(name: "未選択")
+    @State var date = Date()
+    @State var companyIsSet: Bool = false
+    @State var company: Company?
     
     let screenWidth = UIScreen.main.bounds.width
     
@@ -83,14 +90,17 @@ struct AddTodoView: View {
                                 Color(.systemGray5)
                                     .cornerRadius(7)
                                 Picker("企業", selection: $company) {
-                                    Text("未選択").tag(CompanyModel(name: "未選択"))
-                                    ForEach(companyVm.companyList) { company in
-                                        Text(company.name).tag(company)
+                                    Text("未選択")
+                                    ForEach(companies) { company in
+                                        // もともとopt型で宣言しているので、ピッカーのtagの方でもopt型に変換しないと適用されない(xcode上ではエラーにならないけど)
+                                        Text(company.name ?? "").tag(company as Company?)
                                     }
                                 }
                                 .pickerStyle(.menu)
+                                .transition(.slide)
                             }
                             .frame(height: 40)
+                            
                         }
                         .padding(.horizontal, 18)
                     }
@@ -107,12 +117,27 @@ struct AddTodoView: View {
                     Spacer()
                     Button {
                         // todoリストに追加
-                        if let companyID = $company.id {
-                            todoVm.addTodo(todo: TodoModel(companyID: companyID, companyName: company.name, name: self.taskName, date: self.date, dateIsSet: self.dateIsSet, done: false))
-                            
-                        } else {
-                            todoVm.addTodo(todo: TodoModel(companyID: nil, companyName: nil, name: self.taskName, date: self.date, dateIsSet: self.dateIsSet, done: false))
+                        companyIsSet = company != nil
+                        
+                        print(companyIsSet)
+                        if companyIsSet && dateIsSet {
+                            print(company)
+                            Task.create(in: context, name: taskName, date: date, companyId: company!.id, companyName: company!.name)
                         }
+                        
+                        if companyIsSet && !dateIsSet{
+                            Task.create(in: context, name: taskName, date: nil, companyId: company!.id, companyName: company!.name)
+                        }
+                        
+                        if !companyIsSet && dateIsSet {
+                            Task.create(in: context, name: taskName, date: date, companyId: nil, companyName: nil)
+                        }
+                        
+                        if !companyIsSet && !dateIsSet {
+                            Task.create(in: context, name: taskName, date: nil, companyId: nil, companyName: nil)
+                        }
+                        
+                        
                         // モーダルシートを閉じる
                         showSheet = false
                     } label: {
@@ -129,8 +154,8 @@ struct AddTodoView: View {
 }
 
 
-struct AddTodoView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddTodoView(todoVm: TodoViewModel(), companyVm: CompanyViewModel(), showSheet: .constant(true))
-    }
-}
+//struct AddTodoView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        AddTodoView(todoVm: TodoViewModel(), companyVm: CompanyViewModel(), showSheet: .constant(true))
+//    }
+//}

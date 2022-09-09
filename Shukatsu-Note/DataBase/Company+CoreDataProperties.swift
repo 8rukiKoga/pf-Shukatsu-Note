@@ -42,6 +42,18 @@ extension Company {
         
     }
     
+    static func createDefaultCompany(in context: NSManagedObjectContext) -> Company {
+        let defCompany = Company(context: context)
+        defCompany.id = UUID().uuidString
+        defCompany.name = "未選択"
+        defCompany.id = "misettei_no_id"
+        return defCompany
+    }
+    
+    static func deleteAll(in context: NSManagedObjectContext) {
+        
+    }
+    
 //    static func update(currentCompany: Company,
 //                imageData: Data,
 //                name: String,
