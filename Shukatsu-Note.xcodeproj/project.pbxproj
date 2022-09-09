@@ -42,6 +42,8 @@
 		0DF5FDB428C9B80200FD8184 /* Company+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF5FDB228C9B80200FD8184 /* Company+CoreDataClass.swift */; };
 		0DF5FDB528C9B80200FD8184 /* Company+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF5FDB328C9B80200FD8184 /* Company+CoreDataProperties.swift */; };
 		0DF5FDD628C9BB6300FD8184 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF5FDD528C9BB6300FD8184 /* Persistence.swift */; };
+		0DF5FDD928CAE69900FD8184 /* Note+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF5FDD728CAE69900FD8184 /* Note+CoreDataClass.swift */; };
+		0DF5FDDA28CAE69900FD8184 /* Note+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF5FDD828CAE69900FD8184 /* Note+CoreDataProperties.swift */; };
 		0DF64A7828C626F90074A14F /* CustomDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF64A7728C626F90074A14F /* CustomDateFormatter.swift */; };
 /* End PBXBuildFile section */
 
@@ -83,6 +85,8 @@
 		0DF5FDB228C9B80200FD8184 /* Company+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Company+CoreDataClass.swift"; sourceTree = "<group>"; };
 		0DF5FDB328C9B80200FD8184 /* Company+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Company+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		0DF5FDD528C9BB6300FD8184 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		0DF5FDD728CAE69900FD8184 /* Note+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Note+CoreDataClass.swift"; sourceTree = "<group>"; };
+		0DF5FDD828CAE69900FD8184 /* Note+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Note+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		0DF64A7728C626F90074A14F /* CustomDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDateFormatter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -240,6 +244,8 @@
 				0DF5FDAF28C9B76000FD8184 /* Shukatsu-Note.xcdatamodeld */,
 				0DF5FDB228C9B80200FD8184 /* Company+CoreDataClass.swift */,
 				0DF5FDB328C9B80200FD8184 /* Company+CoreDataProperties.swift */,
+				0DF5FDD728CAE69900FD8184 /* Note+CoreDataClass.swift */,
+				0DF5FDD828CAE69900FD8184 /* Note+CoreDataProperties.swift */,
 				0DF5FDD528C9BB6300FD8184 /* Persistence.swift */,
 			);
 			path = DataBase;
@@ -329,6 +335,7 @@
 				0DB2B264289E952800A81149 /* MainView.swift in Sources */,
 				0DB2B2B9289FE43F00A81149 /* AddCompanyPopupView.swift in Sources */,
 				0DB2B28B289E96F100A81149 /* CompanyModel.swift in Sources */,
+				0DF5FDD928CAE69900FD8184 /* Note+CoreDataClass.swift in Sources */,
 				0DCF522328C6D51500E1845C /* ColorExtension.swift in Sources */,
 				0DE5C23B28AB2CF500865D72 /* FloatingBtnMod.swift in Sources */,
 				0DB2B285289E96BC00A81149 /* SettingsView.swift in Sources */,
@@ -344,6 +351,7 @@
 				0DF5FDB128C9B76000FD8184 /* Shukatsu-Note.xcdatamodeld in Sources */,
 				0DE5C23828A920D100865D72 /* TodoViewModel.swift in Sources */,
 				0DF5FDB528C9B80200FD8184 /* Company+CoreDataProperties.swift in Sources */,
+				0DF5FDDA28CAE69900FD8184 /* Note+CoreDataProperties.swift in Sources */,
 				0DB2B262289E952800A81149 /* Shukatsu_NoteApp.swift in Sources */,
 				0D7875D228A3D6A70070BE05 /* EditCompanyView.swift in Sources */,
 				0D61C9ED28B33E25006B3270 /* AppLogoMod.swift in Sources */,

@@ -16,6 +16,12 @@ struct MyNotesView: View {
         predicate: nil
     ) var companies: FetchedResults<Company>
     
+    @FetchRequest(
+        entity: Note.entity(),
+        sortDescriptors: [NSSortDescriptor(keyPath: \Note.id, ascending: true)],
+        predicate: nil
+    ) var notes: FetchedResults<Note>
+    
     @ObservedObject var companyVm: CompanyViewModel
     @ObservedObject var noteVm: NoteViewModel
     @ObservedObject var todoVm: TodoViewModel
@@ -35,11 +41,11 @@ struct MyNotesView: View {
                 
                 List {
                     
-                    let notes = noteVm.noteList.filter { $0.companyID == nil }
+//                    let notes = noteVm.noteList.filter { $0.companyID == nil }
                     // メモリストz
                     Section {
                         ForEach(notes) { note in
-                            NavigationLink(destination: NoteView(isInFolder: false, note: note, companyVm: companyVm, noteVm: noteVm)) {
+                            NavigationLink(destination: Text(note.text ?? "note")) {
                                 NoteRowView(companyVm: companyVm, noteVm: noteVm, isInFolder: false, note: note)
                             }
                         }
@@ -56,8 +62,9 @@ struct MyNotesView: View {
                             Spacer()
                             // ＊ 新しいメモを追加 後々ポップアップでtitle入力->追加ができるようにする
                             Button {
-                                noteVm.noteList.append(NoteModel(companyID: nil))
-                                showingNote.toggle()
+                                Note.create(in: context)
+//                                noteVm.noteList.append(NoteModel(companyID: nil))
+//                                showingNote.toggle()
                             } label: {
                                 Image(systemName: "square.and.pencil")
                                     .font(.system(size: 15))

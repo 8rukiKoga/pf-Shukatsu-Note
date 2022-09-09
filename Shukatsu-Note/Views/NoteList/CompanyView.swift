@@ -161,7 +161,7 @@ struct CompanyView: View {
                     Section {
                         ForEach(notes) { note in
                             NavigationLink(destination: NoteView(isInFolder: false, note: note, companyVm: companyVm, noteVm: noteVm)) {
-                                NoteRowView(companyVm: companyVm, noteVm: noteVm, isInFolder: false, note: note)
+//                                NoteRowView(companyVm: companyVm, noteVm: noteVm, isInFolder: false, note: note)
                             }
                         }
                     } header: {
