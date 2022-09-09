@@ -75,9 +75,10 @@ struct MyNotesView: View {
                             }
                         }
                         // editbuttonの動作
-                        .onDelete { indexSet in
-                            companyVm.deleteCompany(indexSet: indexSet)
-                        }
+//                        .onDelete { indexSet in
+//                            companyVm.deleteCompany(indexSet: indexSet)
+//                        }
+                        .onDelete(perform: deleteCompany)
                     } header: {
                         HStack {
                             Text("企業リスト")
@@ -120,6 +121,14 @@ struct MyNotesView: View {
             }
             
         }
+    }
+    
+    private func deleteCompany(offsets: IndexSet) {
+        offsets.forEach { index in
+            context.delete(companies[index])
+        }
+    // 保存を忘れない
+        try? context.save()
     }
 }
 
