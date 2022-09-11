@@ -56,17 +56,17 @@ struct CompanyView: View {
                     VStack(alignment: .leading) {
                         HStack {
                             Spacer()
-                            //                            if let imageData = companyVm.companyList[companyIndex].image {
-                            //                                // ユーザーが画像を設定している場合
-                            //                                Image(uiImage: UIImage(data: imageData)!)
-                            //                                    .resizable()
-                            //                                    .modifier(CompanyImageMod())
-                            //                            } else {
-                            // ユーザーがまだ画像を設定していない場合
-                            Image(uiImage: UIImage(named: "default-companyImage2")!)
-                                .resizable()
-                                .modifier(CompanyImageMod())
-                            //                            }
+                            if let imageData = company.image {
+                                // ユーザーが画像を設定している場合
+                                Image(uiImage: UIImage(data: imageData)!)
+                                    .resizable()
+                                    .modifier(CompanyImageMod())
+                            } else {
+                                // ユーザーがまだ画像を設定していない場合
+                                Image(uiImage: UIImage(named: "default-companyImage2")!)
+                                    .resizable()
+                                    .modifier(CompanyImageMod())
+                            }
                             
                             Spacer()
                         }
@@ -123,11 +123,11 @@ struct CompanyView: View {
                                 .font(.system(size: 12))
                         }
                         .fullScreenCover(isPresented: $showingSheet, content: {
-//                            ユーザーがimageを設定している場合はそのUIImageを渡す
+                            //                            ユーザーがimageを設定している場合はそのUIImageを渡す
                             if let imageData = company.image {
-//                                EditCompanyView(showingSheet: $showingSheet, companyVm: companyVm, company: company, companyImage: UIImage(data: imageData)!, name: company.name, stars: company.stars, category: company.category, location: company.location, url: company.url)
+                                //                                EditCompanyView(showingSheet: $showingSheet, companyVm: companyVm, company: company, companyImage: UIImage(data: imageData)!, name: company.name, stars: company.stars, category: company.category, location: company.location, url: company.url)
                             } else {
-//                                EditCompanyView(showingSheet: $showingSheet, companyVm: companyVm, company: company, name: company.name, stars: company.stars, category: company.category, location: company.location, url: company.url)
+                                //                                EditCompanyView(showingSheet: $showingSheet, companyVm: companyVm, company: company, name: company.name, stars: company.stars, category: company.category, location: company.location, url: company.url)
                             }
                             
                         })
