@@ -72,7 +72,7 @@ struct MyNotesView: View {
                     // 企業リスト
                     Section {
                         ForEach(companies) { company in
-                            NavigationLink(destination: Text(company.name ?? "")) {
+                            NavigationLink(destination: CompanyView(company: company)) {
                                 FolderRowView(company: company)
                             }
                         }

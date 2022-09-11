@@ -21,10 +21,15 @@ struct CompanyView: View {
         predicate: nil
     ) var notes: FetchedResults<Note>
     
-    var company: CompanyModel
-    @ObservedObject var companyVm: CompanyViewModel
-    @ObservedObject var noteVm: NoteViewModel
-    @ObservedObject var todoVm: TodoViewModel
+    @FetchRequest(
+        entity: Task.entity(),
+        sortDescriptors: [NSSortDescriptor(keyPath: \Task.createdAt, ascending: false)],
+        predicate: nil
+    ) var tasks: FetchedResults<Task>
+    
+    var company: Company
+    
+    @State var memoText: String = ""
     
     // キーボードの開閉制御
     @FocusState private var inputFocus: Bool
@@ -46,19 +51,18 @@ struct CompanyView: View {
                     VStack(alignment: .leading) {
                         HStack {
                             Spacer()
-                            if let companyIndex = companyVm.companyList.firstIndex(of: company) {
-                                if let imageData = companyVm.companyList[companyIndex].image {
-                                    // ユーザーが画像を設定している場合
-                                    Image(uiImage: UIImage(data: imageData)!)
-                                        .resizable()
-                                        .modifier(CompanyImageMod())
-                                } else {
-                                    // ユーザーがまだ画像を設定していない場合
-                                    Image(uiImage: UIImage(named: "default-companyImage2")!)
-                                        .resizable()
-                                        .modifier(CompanyImageMod())
-                                }
-                            }
+                            //                            if let imageData = companyVm.companyList[companyIndex].image {
+                            //                                // ユーザーが画像を設定している場合
+                            //                                Image(uiImage: UIImage(data: imageData)!)
+                            //                                    .resizable()
+                            //                                    .modifier(CompanyImageMod())
+                            //                            } else {
+                            // ユーザーがまだ画像を設定していない場合
+                            Image(uiImage: UIImage(named: "default-companyImage2")!)
+                                .resizable()
+                                .modifier(CompanyImageMod())
+                            //                            }
+                            
                             Spacer()
                         }
                         
@@ -67,23 +71,23 @@ struct CompanyView: View {
                             HStack {
                                 Text("志望度 : ")
                                 Spacer()
-                                Text("\(StarConvertor.shared.convertIntToStars(count: company.stars))")
-                                    .font(company.stars != 0 ? .system(size: 18) : .system(size: 15))
-                                    .foregroundColor(company.stars != 0 ? Color(.systemYellow) : Color(.gray))
-                                    .fontWeight(company.stars != 0 ? .bold : .none)
+                                Text("\(StarConvertor.shared.convertIntToStars(count: Int(company.star)))")
+                                    .font(company.star != 0 ? .system(size: 18) : .system(size: 15))
+                                    .foregroundColor(company.star != 0 ? Color(.systemYellow) : Color(.gray))
+                                    .fontWeight(company.star != 0 ? .bold : .none)
                             }
                             .padding(.top, 10)
                             .padding(1)
                             HStack {
                                 Text("業界 : ")
                                 Spacer()
-                                Text(company.category)
+                                Text(company.category ?? "未設定")
                             }
                             .padding(1)
                             HStack {
                                 Text("所在地 : ")
                                 Spacer()
-                                Text(company.location)
+                                Text(company.location ?? "未設定")
                             }
                             .padding(1)
                             HStack {
@@ -114,84 +118,82 @@ struct CompanyView: View {
                                 .font(.system(size: 12))
                         }
                         .fullScreenCover(isPresented: $showingSheet, content: {
-                            if let companyIndex = companyVm.companyList.firstIndex(of: company) {
-                                // ユーザーがimageを設定している場合はそのUIImageを渡す
-                                if let imageData = companyVm.companyList[companyIndex].image {
-                                    EditCompanyView(showingSheet: $showingSheet, companyVm: companyVm, company: company, companyImage: UIImage(data: imageData)!, name: company.name, stars: company.stars, category: company.category, location: company.location, url: company.url)
-                                } else {
-                                    EditCompanyView(showingSheet: $showingSheet, companyVm: companyVm, company: company, name: company.name, stars: company.stars, category: company.category, location: company.location, url: company.url)
-                                }
+//                            ユーザーがimageを設定している場合はそのUIImageを渡す
+                            if let imageData = company.image {
+//                                EditCompanyView(showingSheet: $showingSheet, companyVm: companyVm, company: company, companyImage: UIImage(data: imageData)!, name: company.name, stars: company.stars, category: company.category, location: company.location, url: company.url)
+                            } else {
+//                                EditCompanyView(showingSheet: $showingSheet, companyVm: companyVm, company: company, name: company.name, stars: company.stars, category: company.category, location: company.location, url: company.url)
                             }
+                            
                         })
                     }
                 }
                 .textCase(nil)
                 
                 // 企業インデックス特定
-                if let companyIndex = companyVm.companyList.firstIndex(of: company) {
-                    Section {
-                        // 簡易メモ
-                        ZStack {
-                            TextEditor(text: $companyVm.companyList[companyIndex].memo)
-                                .padding(.horizontal, 2)
-                                .frame(height: 100)
-                                .background(Color(.systemGray5))
-                                .cornerRadius(3)
-                                .focused($inputFocus)
-                                .font(.caption)
-                                .padding(8)
-                            
-                            if companyVm.companyList[companyIndex].memo.isEmpty {
-                                VStack {
-                                    HStack {
-                                        Text("すぐに見たい情報をここに書きます。\n選考フローやマイページのID・パスワードなど")
-                                            .opacity(0.25)
-                                            .font(.caption)
-                                        
-                                        Spacer()
-                                    }
+                Section {
+                    // 簡易メモ
+                    ZStack {
+                        TextEditor(text: $memoText)
+                            .padding(.horizontal, 2)
+                            .frame(height: 100)
+                            .background(Color(.systemGray5))
+                            .cornerRadius(3)
+                            .focused($inputFocus)
+                            .font(.caption)
+                            .padding(8)
+                        
+                        if memoText.isEmpty {
+                            VStack {
+                                HStack {
+                                    Text("すぐに見たい情報をここに書きます。\n選考フローやマイページのID・パスワードなど")
+                                        .opacity(0.25)
+                                        .font(.caption)
+                                    
                                     Spacer()
                                 }
-                                .padding()
+                                Spacer()
                             }
+                            .padding()
                         }
                     }
-                    
-                    let todos = todoVm.todoList.filter { $0.companyID == company.id }
-
-                    Section {
-                        ForEach(todos) { task in
-//                            TodoListRowView(todoVm: todoVm, task: task)
-                        }
-                    } header: {
-                        Text("Todo")
-                    }
-                    .textCase(nil)
-                    
-//                    let notes = noteVm.noteList.filter { $0.companyID == company.id }
-                    
-                    Section {
-                        ForEach(notes) { note in
-                            NavigationLink(destination: NoteView(note: note)) {
-//                                NoteRowView(companyVm: companyVm, noteVm: noteVm, isInFolder: false, note: note)
-                            }
-                        }
-                    } header: {
-                        HStack {
-                            Text("Note")
-                            Spacer()
-                            // 新規メモボタン
-                            Button {
-                                noteVm.noteList.append(NoteModel(companyID: company.id))
-                                showingNote.toggle()
-                            } label: {
-                                Image(systemName: "square.and.pencil")
-                                    .font(.system(size: 15))
-                            }
-                        }
-                    }
-                    .textCase(nil)
                 }
+                
+                //                let todos = todoVm.todoList.filter { $0.companyID == company.id }
+                
+                Section {
+                    ForEach(tasks) { task in
+                        //                            TodoListRowView(todoVm: todoVm, task: task)
+                    }
+                } header: {
+                    Text("Todo")
+                }
+                .textCase(nil)
+                
+                //                    let notes = noteVm.noteList.filter { $0.companyID == company.id }
+                
+                Section {
+                    ForEach(notes) { note in
+                        NavigationLink(destination: NoteView(note: note)) {
+                            //                                NoteRowView(companyVm: companyVm, noteVm: noteVm, isInFolder: false, note: note)
+                        }
+                    }
+                } header: {
+                    HStack {
+                        Text("Note")
+                        Spacer()
+                        // 新規メモボタン
+                        Button {
+//                            noteVm.noteList.append(NoteModel(companyID: company.id))
+                            showingNote.toggle()
+                        } label: {
+                            Image(systemName: "square.and.pencil")
+                                .font(.system(size: 15))
+                        }
+                    }
+                }
+                .textCase(nil)
+                
                 
             }
             .listStyle(InsetGroupedListStyle())
@@ -202,7 +204,7 @@ struct CompanyView: View {
                     }
                 })
             )
-        .navigationTitle(company.name)
+            .navigationTitle(company.name ?? "")
         }
     }
     // URLが有効かどうか判断
@@ -216,23 +218,23 @@ struct CompanyView: View {
     }
 }
 
-struct CompanyView_Previews: PreviewProvider {
-    static var previews: some View {
-        
-        let testCompany = CompanyViewModel()
-        testCompany.companyList = sampleCompanies
-        
-        let testNote = NoteViewModel()
-        testNote.noteList = sampleNotes
-        
-        return Group {
-            NavigationView {
-                CompanyView(company: CompanyModel(name: "name", stars: 1, category: "cat", location: "loc", url: "url", memo: "memo"), companyVm: testCompany, noteVm: NoteViewModel(), todoVm: TodoViewModel())
-            }
-            NavigationView {
-                CompanyView(company: CompanyModel(name: "name", stars: 1, category: "cat", location: "loc", url: "url", memo: "memo"), companyVm: testCompany, noteVm: NoteViewModel(), todoVm: TodoViewModel())
-                    .preferredColorScheme(.dark)
-            }
-        }
-    }
-}
+//struct CompanyView_Previews: PreviewProvider {
+//    static var previews: some View {
+//
+//        let testCompany = CompanyViewModel()
+//        testCompany.companyList = sampleCompanies
+//
+//        let testNote = NoteViewModel()
+//        testNote.noteList = sampleNotes
+//
+//        return Group {
+//            NavigationView {
+//                CompanyView(company: CompanyModel(name: "name", stars: 1, category: "cat", location: "loc", url: "url", memo: "memo"), companyVm: testCompany, noteVm: NoteViewModel(), todoVm: TodoViewModel())
+//            }
+//            NavigationView {
+//                CompanyView(company: CompanyModel(name: "name", stars: 1, category: "cat", location: "loc", url: "url", memo: "memo"), companyVm: testCompany, noteVm: NoteViewModel(), todoVm: TodoViewModel())
+//                    .preferredColorScheme(.dark)
+//            }
+//        }
+//    }
+//}
