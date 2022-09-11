@@ -35,6 +35,7 @@ extension Company {
         
         let newCompany = Company(context: context)
         newCompany.createdAt = Date()
+        newCompany.updatedAt = Date()
         newCompany.id = UUID().uuidString
         newCompany.name = name
         

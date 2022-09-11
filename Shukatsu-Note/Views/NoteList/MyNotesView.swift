@@ -12,13 +12,13 @@ struct MyNotesView: View {
     @Environment(\.managedObjectContext) private var context
     @FetchRequest(
         entity: Company.entity(),
-        sortDescriptors: [NSSortDescriptor(keyPath: \Company.id, ascending: true)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \Company.star, ascending: false)],
         predicate: nil
     ) var companies: FetchedResults<Company>
     
     @FetchRequest(
         entity: Note.entity(),
-        sortDescriptors: [NSSortDescriptor(keyPath: \Note.id, ascending: true)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \Note.updatedAt, ascending: false)],
         predicate: nil
     ) var notes: FetchedResults<Note>
     
@@ -42,7 +42,8 @@ struct MyNotesView: View {
                 }
                 
                 List {
-                        let globalNotes = notes.filter { $0.companyId == nil }
+                    // 表示するノートをフィルタリング
+                    let globalNotes = notes.filter { $0.companyId == nil }
                     // メモリスト
                     Section {
                         ForEach(globalNotes) { note in
@@ -112,6 +113,7 @@ struct MyNotesView: View {
         }
     }
     private func deleteNote(offsets: IndexSet) {
+        
         offsets.forEach { index in
             context.delete(notes[index])
         }

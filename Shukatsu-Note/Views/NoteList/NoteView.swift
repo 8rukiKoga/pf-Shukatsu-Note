@@ -73,8 +73,7 @@ struct NoteView: View {
     }
     
     private func saveNote() {
-        note.text = text
-        try? context.save()
+        Note.update(in: context, currentNote: note, text: text)
     }
 }
 

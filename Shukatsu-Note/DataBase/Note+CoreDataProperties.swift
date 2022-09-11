@@ -13,7 +13,11 @@ import CoreData
 extension Note {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Note> {
-        return NSFetchRequest<Note>(entityName: "Note")
+        
+        let fetchRequest = NSFetchRequest<Note>(entityName: "Note")
+        
+        return fetchRequest
+        
     }
 
     @NSManaged public var createdAt: Date?
@@ -30,6 +34,7 @@ extension Note {
         
         let newNote = Note(context: context)
         newNote.createdAt = Date()
+        newNote.updatedAt = Date()
         newNote.id = UUID().uuidString
         newNote.companyId = companyId
         
