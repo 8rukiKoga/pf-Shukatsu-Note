@@ -48,7 +48,7 @@ extension Task {
         
     }
     
-    static func update(in context: NSManagedObjectContext, task: Task, doneAt: Data, name: String) {
+    static func update(in context: NSManagedObjectContext, task: Task) {
         
         task.done.toggle()
         

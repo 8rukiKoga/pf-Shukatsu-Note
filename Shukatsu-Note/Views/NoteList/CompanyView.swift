@@ -29,6 +29,7 @@ struct CompanyView: View {
     
     var company: Company
     @State var memoText: String = ""
+    var url: String = ""
     
     init(company: Company) {
         self.company = company
@@ -173,7 +174,7 @@ struct CompanyView: View {
                 
                 Section {
                     ForEach(companyTasks) { task in
-                        //                            TodoListRowView(todoVm: todoVm, task: task)
+                        TodoListRowView(task: task)
                     }
                 } header: {
                     Text("Todo")

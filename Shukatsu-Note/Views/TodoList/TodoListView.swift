@@ -39,11 +39,7 @@ struct TodoListView: View {
                 else {
                     List {
                         ForEach(tasks) { task in
-                            if let companyName = task.companyName {
-//                                TodoListRowView(todoVm: todoVm, companyName: companyName, task: task)
-                            } else {
-//                                TodoListRowView(todoVm: todoVm, task: task)
-                            }
+                            TodoListRowView(task: task)
                         }
                         .onDelete(perform: deleteTask)
                     }
@@ -72,7 +68,7 @@ struct TodoListView: View {
                 .padding(.bottom, 10)
             }
             .sheet(isPresented: $showSheet) {
-//                AddTodoView(showSheet: $showSheet)
+                AddTodoView(showSheet: $showSheet)
             }
             .navigationTitle("Todo")
             .toolbar {

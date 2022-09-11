@@ -8,10 +8,14 @@
 import SwiftUI
 
 struct TodoListRowView: View {
-    var companyName: String?
-    var task: Task
-    
+    @Environment(\.managedObjectContext) private var context
     let dateFormatter = DateFormatter()
+    
+    var task: Task
+    init(task: Task) {
+        self.task = task
+    }
+    
     
     var body: some View {
 
@@ -21,7 +25,7 @@ struct TodoListRowView: View {
                         HStack {
                             Text(CustomDateFormatter.shared.convertDateToString(from: task.date!))
                                 .font(.system(size: 12))
-                            if let companyName = companyName {
+                            if let companyName = task.companyName {
                                 Text("-\(companyName)-")
                                     .font(.system(size: 10))
                                     .padding(.leading, 1)
@@ -39,7 +43,7 @@ struct TodoListRowView: View {
                 
                 Button {
                     withAnimation {
-//                        task.done.toggle()
+                        Task.update(in: context, task: task)
                     }
                 } label: {
                     Image(systemName: task.done ? "checkmark.circle.fill" : "circle")
