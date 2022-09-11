@@ -48,12 +48,18 @@ extension Task {
         
     }
     
-    static func update(task: Task, doneAt: Data, name: String) {
+    static func update(in context: NSManagedObjectContext, task: Task, doneAt: Data, name: String) {
         
         task.done.toggle()
         
         if task.done {
             task.doneAt = Date()
+        }
+        
+        do {
+            try context.save()
+        } catch {
+            print(error)
         }
         
     }

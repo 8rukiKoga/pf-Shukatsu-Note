@@ -51,14 +51,14 @@ extension Company {
         
     }
     
-    static func update(currentCompany: Company,
+    static func updateInfo(in context: NSManagedObjectContext,
+                currentCompany: Company,
                 image: Data,
                 name: String,
                 star: Int,
                 category: String,
                 location: String,
-                url: String,
-                memo: String) {
+                url: String) {
         
         currentCompany.updatedAt = Date()
         currentCompany.image = image
@@ -67,8 +67,17 @@ extension Company {
         currentCompany.category = category
         currentCompany.location = location
         currentCompany.url = url
-        currentCompany.memo = memo
+        
+        do {
+            try context.save()
+        } catch {
+            print(error)
+        }
 
+    }
+    
+    static func updateMemo(currentCompany: Company, memo: String) {
+        currentCompany.memo = memo
     }
     
 }

@@ -73,7 +73,7 @@ struct MyNotesView: View {
                     Section {
                         ForEach(companies) { company in
                             NavigationLink(destination: CompanyView(company: company)) {
-                                FolderRowView(company: company)
+                                FolderRowView(name: company.name ?? "", star: Int(company.star))
                             }
                         }
                         .onDelete(perform: deleteCompany)

@@ -123,11 +123,11 @@ struct CompanyView: View {
                                 .font(.system(size: 12))
                         }
                         .fullScreenCover(isPresented: $showingSheet, content: {
-                            //                            ユーザーがimageを設定している場合はそのUIImageを渡す
+                            //  ユーザーがimageを設定している場合はそのUIImageを渡す
                             if let imageData = company.image {
-                                //                                EditCompanyView(showingSheet: $showingSheet, companyVm: companyVm, company: company, companyImage: UIImage(data: imageData)!, name: company.name, stars: company.stars, category: company.category, location: company.location, url: company.url)
+                                EditCompanyView(showingSheet: $showingSheet, company: company, companyImage: UIImage(data: imageData)!, name: company.name ?? "", star: Int(company.star), category: company.category ?? "", location: company.location ?? "", url: company.url ?? "")
                             } else {
-                                //                                EditCompanyView(showingSheet: $showingSheet, companyVm: companyVm, company: company, name: company.name, stars: company.stars, category: company.category, location: company.location, url: company.url)
+                                EditCompanyView(showingSheet: $showingSheet, company: company, name: company.name ?? "", star: Int(company.star), category: company.category ?? "", location: company.location ?? "", url: company.url ?? "")
                             }
                             
                         })

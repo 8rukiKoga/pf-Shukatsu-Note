@@ -8,17 +8,17 @@
 import SwiftUI
 
 struct EditCompanyView: View {
+    @Environment(\.managedObjectContext) private var context
+    
     // シートの表示・非表示
-    // 今のままだと、編集画面を閉じたときにMainListViewまでもどってしまう。修正するにはどうしたらいい？
     @Binding var showingSheet: Bool
     @State var showingPhotoPicker: Bool = false
     
-    @ObservedObject var companyVm: CompanyViewModel
-    var company: CompanyModel
+    var company: Company
     
     @State var companyImage = UIImage(named: "default-companyImage2")!
     @State var name: String
-    @State var stars: Int
+    @State var star: Int
     @State var category: String
     @State var location: String
     @State var url: String
@@ -51,7 +51,7 @@ struct EditCompanyView: View {
                     TextField("例) さんぷる株式会社", text: $name)
                 }
                 Section("志望度") {
-                    Picker("", selection: $stars) {
+                    Picker("", selection: $star) {
                         Text("★☆☆☆☆").tag(1)
                         Text("★★☆☆☆").tag(2)
                         Text("★★★☆☆").tag(3)
@@ -83,7 +83,7 @@ struct EditCompanyView: View {
                     Button {
                         // UIImageをData型に変換
                         guard let imageData = companyImage.pngData() else { return }
-                        companyVm.updateCompany(currentData: self.company, updatingData: CompanyModel(image: imageData, name: self.name, stars: self.stars, category: self.category, location: self.location, url: self.url)) // 設定した項目をCompanyModel型に変換
+                        Company.updateInfo(in: context, currentCompany: company, image: imageData, name: name, star: star, category: category, location: location, url: url)
                         showingSheet = false
                     } label: {
                         ZStack {
@@ -102,8 +102,8 @@ struct EditCompanyView: View {
     }
 }
 
-struct EditCompanyView_Previews: PreviewProvider {
-    static var previews: some View {
-        EditCompanyView(showingSheet: .constant(true), companyVm: CompanyViewModel(), company: CompanyModel(name: "A社"), name: "company.name", stars: 3, category: "company.category", location: "company.location", url: "company.location")
-    }
-}
+//struct EditCompanyView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        EditCompanyView(showingSheet: .constant(true), companyVm: CompanyViewModel(), company: CompanyModel(name: "A社"), name: "company.name", stars: 3, category: "company.category", location: "company.location", url: "company.location")
+//    }
+//}
