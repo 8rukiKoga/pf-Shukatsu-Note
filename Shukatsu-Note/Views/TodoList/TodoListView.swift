@@ -13,7 +13,7 @@ struct TodoListView: View {
     @Environment(\.managedObjectContext) private var context
     @FetchRequest(
         entity: Task.entity(),
-        sortDescriptors: [NSSortDescriptor(keyPath: \Task.id, ascending: true)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \Task.createdAt, ascending: false)],
         predicate: nil
     ) var tasks: FetchedResults<Task>
     

@@ -11,7 +11,7 @@ struct AddTodoView: View {
     @Environment(\.managedObjectContext) private var context
     @FetchRequest(
         entity: Company.entity(),
-        sortDescriptors: [NSSortDescriptor(keyPath: \Company.id, ascending: true)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \Company.star, ascending: false)],
         predicate: nil
     ) var companies: FetchedResults<Company>
     

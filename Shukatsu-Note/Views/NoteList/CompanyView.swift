@@ -11,13 +11,13 @@ struct CompanyView: View {
     @Environment(\.managedObjectContext) private var context
     @FetchRequest(
         entity: Company.entity(),
-        sortDescriptors: [NSSortDescriptor(keyPath: \Company.id, ascending: true)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \Company.star, ascending: false)],
         predicate: nil
     ) var companies: FetchedResults<Company>
     
     @FetchRequest(
         entity: Note.entity(),
-        sortDescriptors: [NSSortDescriptor(keyPath: \Note.id, ascending: true)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \Note.updatedAt, ascending: false)],
         predicate: nil
     ) var notes: FetchedResults<Note>
     
