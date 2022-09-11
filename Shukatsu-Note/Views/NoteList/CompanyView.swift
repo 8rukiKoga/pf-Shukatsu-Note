@@ -29,7 +29,6 @@ struct CompanyView: View {
     
     var company: Company
     @State var memoText: String = ""
-    var url: String = ""
     
     init(company: Company) {
         self.company = company
@@ -101,13 +100,16 @@ struct CompanyView: View {
                             HStack {
                                 Text("URL : ")
                                 Spacer()
-                                // URLが有効かどうか確認してから表示する
-                                if verifyUrl(urlString: company.url) {
-                                    let markdownLink = try! AttributedString(markdown: "[\(company.url)](\(company.url))")
-                                    Text(markdownLink)
-                                        .font(.caption)
-                                } else {
-                                    // ＊404ページに飛ばすかなんかの処理を書く
+                                if let companyUrl = company.url {
+                                    if VerifyUrl.shared.verifyUrl(urlString: companyUrl) {
+                                        Link(companyUrl, destination: (URL(string: companyUrl)!))
+                                            .foregroundColor(Color(.link))
+                                            .font(.caption)
+                                    } else {
+                                        Text("無効なURL")
+                                            .foregroundColor(.gray)
+                                            .font(.caption)
+                                    }
                                 }
                             }
                         }
@@ -160,7 +162,6 @@ struct CompanyView: View {
                                     Text("すぐに見たい情報をここに書きます。\n選考フローやマイページのID・パスワードなど")
                                         .opacity(0.25)
                                         .font(.caption)
-                                    
                                     Spacer()
                                 }
                                 Spacer()
@@ -218,16 +219,6 @@ struct CompanyView: View {
             .navigationTitle(company.name ?? "")
         }
     }
-    // URLが有効かどうか判断
-    private func verifyUrl (urlString: String?) -> Bool {
-        if let urlString = urlString {
-            if let url = NSURL(string: urlString) {
-                return UIApplication.shared.canOpenURL(url as URL)
-            }
-        }
-        return false
-    }
-    
     private func saveMemo() {
         Company.updateMemo(in: context, currentCompany: company, memo: memoText)
     }

@@ -33,6 +33,7 @@
 		0DB2B2B7289F842C00A81149 /* NoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B2B6289F842C00A81149 /* NoteModel.swift */; };
 		0DB2B2B9289FE43F00A81149 /* AddCompanyPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B2B8289FE43F00A81149 /* AddCompanyPopupView.swift */; };
 		0DB2B2D528A0C6CD00A81149 /* NoteRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B2D428A0C6CD00A81149 /* NoteRowView.swift */; };
+		0DB5209828CE023F00D7AE6A /* VerifyUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB5209728CE023F00D7AE6A /* VerifyUrl.swift */; };
 		0DCF522328C6D51500E1845C /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DCF522228C6D51500E1845C /* ColorExtension.swift */; };
 		0DE5C23628A920C300865D72 /* TodoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE5C23528A920C300865D72 /* TodoModel.swift */; };
 		0DE5C23828A920D100865D72 /* TodoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE5C23728A920D100865D72 /* TodoViewModel.swift */; };
@@ -78,6 +79,7 @@
 		0DB2B2B6289F842C00A81149 /* NoteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteModel.swift; sourceTree = "<group>"; };
 		0DB2B2B8289FE43F00A81149 /* AddCompanyPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCompanyPopupView.swift; sourceTree = "<group>"; };
 		0DB2B2D428A0C6CD00A81149 /* NoteRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteRowView.swift; sourceTree = "<group>"; };
+		0DB5209728CE023F00D7AE6A /* VerifyUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyUrl.swift; sourceTree = "<group>"; };
 		0DCF522228C6D51500E1845C /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		0DE5C23528A920C300865D72 /* TodoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoModel.swift; sourceTree = "<group>"; };
 		0DE5C23728A920D100865D72 /* TodoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoViewModel.swift; sourceTree = "<group>"; };
@@ -228,6 +230,7 @@
 			children = (
 				0D1162DA28A5C1CA0000FCBA /* StarConvertor.swift */,
 				0DF64A7728C626F90074A14F /* CustomDateFormatter.swift */,
+				0DB5209728CE023F00D7AE6A /* VerifyUrl.swift */,
 			);
 			path = SharedFuncs;
 			sourceTree = "<group>";
@@ -336,6 +339,7 @@
 				0DE5C23628A920C300865D72 /* TodoModel.swift in Sources */,
 				0DB2B279289E967100A81149 /* FolderRowView.swift in Sources */,
 				0DF5FDB428C9B80200FD8184 /* Company+CoreDataClass.swift in Sources */,
+				0DB5209828CE023F00D7AE6A /* VerifyUrl.swift in Sources */,
 				0DB2B270289E95B800A81149 /* MyNotesView.swift in Sources */,
 				0D61C9E628B31EDD006B3270 /* CompanyImageMod.swift in Sources */,
 				0DB2B283289E96AF00A81149 /* AddTodoView.swift in Sources */,

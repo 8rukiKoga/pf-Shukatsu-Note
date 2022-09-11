@@ -74,6 +74,7 @@ struct EditCompanyView: View {
                 }
                 Section("関連URL") {
                     TextField("例) https://sample.co.jp", text: $url)
+                        .foregroundColor(VerifyUrl.shared.verifyUrl(urlString: url) ? .green : .red)
                 }
             }
             
