@@ -22,10 +22,6 @@ struct MyNotesView: View {
         predicate: nil
     ) var notes: FetchedResults<Note>
     
-    @ObservedObject var companyVm: CompanyViewModel
-    @ObservedObject var noteVm: NoteViewModel
-    @ObservedObject var todoVm: TodoViewModel
-    
     @State private var showingPopup: Bool = false
     // 新規ノート作成時
     @State private var showingNote: Bool = false
@@ -99,7 +95,7 @@ struct MyNotesView: View {
                 
                 // popupView
                 if showingPopup {
-                    AddCompanyPopupView(companyVm: companyVm, showingPopup: $showingPopup)
+                    AddCompanyPopupView(showingPopup: $showingPopup)
                         .transition(.asymmetric(insertion: .scale, removal: .opacity))
                 }
             }
@@ -130,22 +126,22 @@ struct MyNotesView: View {
     }
 }
 
-struct MyListView_Previews: PreviewProvider {
-    static var previews: some View {
-        
-        // テストデータをプレビュー表示
-        
-        let testCompany = CompanyViewModel()
-        testCompany.companyList = sampleCompanies
-        
-        let testNote = NoteViewModel()
-        testNote.noteList = sampleNotes
-        
-        return Group {
-            MyNotesView(companyVm: testCompany, noteVm: testNote, todoVm: TodoViewModel())
-            
-            MyNotesView(companyVm: testCompany, noteVm: testNote, todoVm: TodoViewModel())
-                .preferredColorScheme(.dark)
-        }
-    }
-}
+//struct MyListView_Previews: PreviewProvider {
+//    static var previews: some View {
+//
+//        // テストデータをプレビュー表示
+//
+//        let testCompany = CompanyViewModel()
+//        testCompany.companyList = sampleCompanies
+//
+//        let testNote = NoteViewModel()
+//        testNote.noteList = sampleNotes
+//
+//        return Group {
+//            MyNotesView(companyVm: testCompany, noteVm: testNote, todoVm: TodoViewModel())
+//
+//            MyNotesView(companyVm: testCompany, noteVm: testNote, todoVm: TodoViewModel())
+//                .preferredColorScheme(.dark)
+//        }
+//    }
+//}

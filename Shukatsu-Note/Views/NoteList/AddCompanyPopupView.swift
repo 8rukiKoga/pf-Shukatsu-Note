@@ -9,12 +9,8 @@ import SwiftUI
 
 struct AddCompanyPopupView: View {
     @Environment(\.managedObjectContext) var context
-    
-    @ObservedObject var companyVm: CompanyViewModel
     // ポップアップを表示するか
     @Binding var showingPopup: Bool
-    // 登録数限界のアラートを表示するか
-    @State var showingAlert: Bool = false
     // 登録する企業名
     @State var newCompanyName: String = ""
     // スマホのスクリーン幅
@@ -31,10 +27,6 @@ struct AddCompanyPopupView: View {
                     .font(.headline)
                 Text("企業名を入力してください")
                     .font(.subheadline)
-                
-                Text("登録数: \(companyVm.companyList.count)/15")
-                    .font(.caption2)
-                    .foregroundColor(companyVm.companyList.count == 15 ? .red : .gray)
                 Spacer()
                 TextField("例) さんぷる株式会社", text: $newCompanyName)
                     .padding(.vertical)
@@ -55,15 +47,9 @@ struct AddCompanyPopupView: View {
                     }
                     
                     Button {
-                        if companyVm.companyList.count <= 15 {
-                            // 登録企業が15個以下の場合
-                            Company.create(in: context, name: newCompanyName)
-//                            companyVm.addCompany(name: newCompanyName)
-                            showingPopup = false
-                        } else {
-                            // 登録企業が15個(以上)の場合
-                            showingAlert = true
-                        }
+                        // 登録企業が15個以下の場合
+                        Company.create(in: context, name: newCompanyName)
+                        showingPopup = false
                     } label: {
                         Text("保存")
                             .fontWeight(.bold)
@@ -74,20 +60,17 @@ struct AddCompanyPopupView: View {
                 
             }
             .frame(width: screenWidth, height: 160)
-            .alert(isPresented: $showingAlert) {
-                Alert(title: Text("企業の登録は15個までです🙇🏻‍♂️"))
-            }
         }
         .frame(width: screenWidth, height: 180, alignment: .center)
     }
 }
 
-struct AddCompanyPopupView_Previews: PreviewProvider {
-    static var previews: some View {
-        
-        let testCompany = CompanyViewModel()
-        testCompany.companyList = sampleCompanies
-        
-        return AddCompanyPopupView(companyVm: testCompany, showingPopup: .constant(false), showingAlert: true)
-    }
-}
+//struct AddCompanyPopupView_Previews: PreviewProvider {
+//    static var previews: some View {
+//
+//        let testCompany = CompanyViewModel()
+//        testCompany.companyList = sampleCompanies
+//
+//        return AddCompanyPopupView(companyVm: testCompany, showingPopup: .constant(false), showingAlert: true)
+//    }
+//}

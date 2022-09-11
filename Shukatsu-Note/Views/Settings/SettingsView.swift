@@ -9,9 +9,6 @@ import SwiftUI
 import StoreKit
 
 struct SettingsView: View {
-    @ObservedObject var companyVm: CompanyViewModel
-    @ObservedObject var noteVm: NoteViewModel
-    @ObservedObject var todoVm: TodoViewModel
     
     @State private var showSheet: Bool = false
     @State private var showAlert: Bool = false
@@ -41,9 +38,9 @@ struct SettingsView: View {
                                 return
                             }),
                                   secondaryButton: .destructive(Text("削除"), action: {
-                                noteVm.noteList.removeAll()
-                                companyVm.companyList.removeAll()
-                                todoVm.todoList.removeAll()
+//                                noteVm.noteList.removeAll()
+//                                companyVm.companyList.removeAll()
+//                                todoVm.todoList.removeAll()
                             })
                             )}
                     }
@@ -157,8 +154,8 @@ struct SettingsView: View {
     }
 }
 
-struct SettingsView_Previews: PreviewProvider {
-    static var previews: some View {
-        SettingsView(companyVm: CompanyViewModel(), noteVm: NoteViewModel(), todoVm: TodoViewModel())
-    }
-}
+//struct SettingsView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SettingsView(companyVm: CompanyViewModel(), noteVm: NoteViewModel(), todoVm: TodoViewModel())
+//    }
+//}

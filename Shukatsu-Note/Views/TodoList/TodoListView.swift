@@ -11,14 +11,13 @@ import CoreData
 struct TodoListView: View {
     
     @Environment(\.managedObjectContext) private var context
+    
     @FetchRequest(
         entity: Task.entity(),
         sortDescriptors: [NSSortDescriptor(keyPath: \Task.createdAt, ascending: false)],
         predicate: nil
     ) var tasks: FetchedResults<Task>
     
-    @ObservedObject var todoVm: TodoViewModel
-    @ObservedObject var companyVm: CompanyViewModel
     @State var showSheet: Bool = false
     
     var body: some View {
@@ -41,9 +40,9 @@ struct TodoListView: View {
                     List {
                         ForEach(tasks) { task in
                             if let companyName = task.companyName {
-                                TodoListRowView(todoVm: todoVm, companyName: companyName, task: task)
+//                                TodoListRowView(todoVm: todoVm, companyName: companyName, task: task)
                             } else {
-                                TodoListRowView(todoVm: todoVm, task: task)
+//                                TodoListRowView(todoVm: todoVm, task: task)
                             }
                         }
                         .onDelete(perform: deleteTask)
@@ -73,7 +72,7 @@ struct TodoListView: View {
                 .padding(.bottom, 10)
             }
             .sheet(isPresented: $showSheet) {
-                AddTodoView(todoVm: todoVm, companyVm: companyVm, showSheet: $showSheet)
+//                AddTodoView(showSheet: $showSheet)
             }
             .navigationTitle("Todo")
             .toolbar {
@@ -93,8 +92,8 @@ struct TodoListView: View {
     }
 }
 
-struct TodoListView_Previews: PreviewProvider {
-    static var previews: some View {
-        TodoListView(todoVm: TodoViewModel(), companyVm: CompanyViewModel())
-    }
-}
+//struct TodoListView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        TodoListView(todoVm: TodoViewModel(), companyVm: CompanyViewModel())
+//    }
+//}

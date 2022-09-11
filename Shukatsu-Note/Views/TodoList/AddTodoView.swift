@@ -15,9 +15,6 @@ struct AddTodoView: View {
         predicate: nil
     ) var companies: FetchedResults<Company>
     
-    @ObservedObject var todoVm: TodoViewModel
-    @ObservedObject var companyVm: CompanyViewModel
-    
     @Binding var showSheet: Bool
     
     @State var taskName: String = ""

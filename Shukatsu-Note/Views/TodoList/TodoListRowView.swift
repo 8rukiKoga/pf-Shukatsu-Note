@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct TodoListRowView: View {
-    @ObservedObject var todoVm: TodoViewModel
     var companyName: String?
     var task: Task
     
