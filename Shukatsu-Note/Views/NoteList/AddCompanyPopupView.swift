@@ -14,13 +14,13 @@ struct AddCompanyPopupView: View {
     // 登録する企業名
     @State var newCompanyName: String = ""
     // スマホのスクリーン幅
-    private let screenWidth: CGFloat = 290
+    private let popupWidth: CGFloat = UIScreen.main.bounds.width - 60
     
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 7)
                 .fill(Color(.systemGray5))
-                .frame(width: screenWidth, height: 180, alignment: .center)
+                .frame(width: popupWidth, height: 180, alignment: .center)
             VStack {
                 Spacer()
                 Text("Add Company")
@@ -31,7 +31,7 @@ struct AddCompanyPopupView: View {
                 TextField("例) さんぷる株式会社", text: $newCompanyName)
                     .padding(.vertical)
                     .padding(.horizontal, 5)
-                    .frame(width: 230, height: 25)
+                    .frame(width: popupWidth / 1.3, height: 25)
                     .background(Color(.systemBackground))
                     .cornerRadius(7)
                 Spacer()
@@ -43,7 +43,7 @@ struct AddCompanyPopupView: View {
                         showingPopup = false
                     } label: {
                         Text("キャンセル")
-                            .frame(width: screenWidth / 2)
+                            .frame(width: popupWidth / 2)
                     }
                     
                     Button {
@@ -53,15 +53,15 @@ struct AddCompanyPopupView: View {
                     } label: {
                         Text("保存")
                             .fontWeight(.bold)
-                            .frame(width: screenWidth / 2)
+                            .frame(width: popupWidth / 2)
                     }
                 }
                 .padding(3)
                 
             }
-            .frame(width: screenWidth, height: 160)
+            .frame(width: popupWidth, height: 160)
         }
-        .frame(width: screenWidth, height: 180, alignment: .center)
+        .frame(width: popupWidth, height: 180, alignment: .center)
     }
 }
 
