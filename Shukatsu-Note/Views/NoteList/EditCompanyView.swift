@@ -65,6 +65,7 @@ struct EditCompanyView: View {
                 }
                 Section("企業所在地") {
                     Picker("都道府県を選択", selection: $location) {
+                        Text("未選択").tag("")
                         ForEach(prefectures, id: \.self) { item in
                             Text(item).tag(item)
                         }
