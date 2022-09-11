@@ -16,6 +16,8 @@ extension Company {
         return NSFetchRequest<Company>(entityName: "Company")
     }
     
+    @NSManaged public var createdAt: Date?
+    @NSManaged public var updatedAt: Date?
     @NSManaged public var id: String?
     @NSManaged public var image: Data?
     @NSManaged public var name: String?
@@ -30,9 +32,11 @@ extension Company {
 extension Company {
         
     static func create(in context: NSManagedObjectContext, name: String) {
-        let newData = Company(context: context)
-        newData.id = UUID().uuidString
-        newData.name = name
+        
+        let newCompany = Company(context: context)
+        newCompany.createdAt = Date()
+        newCompany.id = UUID().uuidString
+        newCompany.name = name
         
         do {
             try context.save()
@@ -42,36 +46,29 @@ extension Company {
         
     }
     
-    static func createDefaultCompany(in context: NSManagedObjectContext) -> Company {
-        let defCompany = Company(context: context)
-        defCompany.id = UUID().uuidString
-        defCompany.name = "未選択"
-        defCompany.id = "misettei_no_id"
-        return defCompany
-    }
-    
     static func deleteAll(in context: NSManagedObjectContext) {
         
     }
     
-//    static func update(currentCompany: Company,
-//                imageData: Data,
-//                name: String,
-//                star: Star,
-//                industry: String,
-//                location: Location,
-//                url: String,
-//                memo: String) {
-//
-//        currentCompany.imageData = imageData
-//        currentCompany.name = name
-//        currentCompany.star = star.rawValue
-//        currentCompany.industry = industry
-//        currentCompany.location = location.rawValue
-//        currentCompany.url = url
-//        currentCompany.memo = memo
-//
-//    }
+    static func update(currentCompany: Company,
+                image: Data,
+                name: String,
+                star: Int,
+                category: String,
+                location: String,
+                url: String,
+                memo: String) {
+        
+        currentCompany.updatedAt = Date()
+        currentCompany.image = image
+        currentCompany.name = name
+        currentCompany.star = Int16(star)
+        currentCompany.category = category
+        currentCompany.location = location
+        currentCompany.url = url
+        currentCompany.memo = memo
+
+    }
     
 }
 

@@ -16,6 +16,8 @@ extension Task {
         return NSFetchRequest<Task>(entityName: "Task")
     }
 
+    @NSManaged public var createdAt: Date?
+    @NSManaged public var doneAt: Date?
     @NSManaged public var id: String?
     @NSManaged public var companyId: String?
     @NSManaged public var companyName: String?
@@ -28,12 +30,15 @@ extension Task {
 extension Task {
         
     static func create(in context: NSManagedObjectContext, name: String, date: Date?, companyId: String?, companyName: String?) {
-        let newData = Task(context: context)
-        newData.id = UUID().uuidString
-        newData.name = name
-        newData.date = date
-        newData.companyId = companyId
-        newData.companyName = companyName
+        
+        let newTask = Task(context: context)
+        newTask.createdAt = Date()
+        newTask.id = UUID().uuidString
+        newTask.name = name
+        newTask.date = date
+        newTask.companyId = companyId
+        newTask.companyName = companyName
+        newTask.done = false
         
         do {
             try context.save()
@@ -43,24 +48,15 @@ extension Task {
         
     }
     
-//    static func update(currentCompany: Company,
-//                imageData: Data,
-//                name: String,
-//                star: Star,
-//                industry: String,
-//                location: Location,
-//                url: String,
-//                memo: String) {
-//
-//        currentCompany.imageData = imageData
-//        currentCompany.name = name
-//        currentCompany.star = star.rawValue
-//        currentCompany.industry = industry
-//        currentCompany.location = location.rawValue
-//        currentCompany.url = url
-//        currentCompany.memo = memo
-//
-//    }
+    static func update(task: Task, doneAt: Data, name: String) {
+        
+        task.done.toggle()
+        
+        if task.done {
+            task.doneAt = Date()
+        }
+        
+    }
     
 }
 
