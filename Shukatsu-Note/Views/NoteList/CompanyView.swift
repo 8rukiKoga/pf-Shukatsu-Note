@@ -28,11 +28,13 @@ struct CompanyView: View {
     ) var tasks: FetchedResults<Task>
     
     var company: Company
+    @State var memoText: String = ""
+    
     init(company: Company) {
         self.company = company
+        self._memoText = State(initialValue: company.memo ?? "")
     }
     
-    @State var memoText: String = ""
     
     // キーボードの開閉制御
     @FocusState private var inputFocus: Bool
@@ -147,6 +149,9 @@ struct CompanyView: View {
                             .focused($inputFocus)
                             .font(.caption)
                             .padding(8)
+                            .onChange(of: memoText) { newValue in
+                                saveMemo()
+                            }
                         
                         if memoText.isEmpty {
                             VStack {
@@ -220,6 +225,10 @@ struct CompanyView: View {
             }
         }
         return false
+    }
+    
+    private func saveMemo() {
+        Company.updateMemo(in: context, currentCompany: company, memo: memoText)
     }
 }
 

@@ -76,8 +76,16 @@ extension Company {
 
     }
     
-    static func updateMemo(currentCompany: Company, memo: String) {
+    static func updateMemo(in context: NSManagedObjectContext, currentCompany: Company, memo: String) {
+        
         currentCompany.memo = memo
+        
+        do {
+            try context.save()
+        } catch {
+            print(error)
+        }
+        
     }
     
 }
