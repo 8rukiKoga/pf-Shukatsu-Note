@@ -42,13 +42,12 @@ struct MyNotesView: View {
                 }
                 
                 List {
-                    //                    let notes = noteVm.noteList.filter { $0.companyID == nil }
-                    // メモリストz
+                        let globalNotes = notes.filter { $0.companyId == nil }
+                    // メモリスト
                     Section {
-                        ForEach(notes) { note in
+                        ForEach(globalNotes) { note in
                             NavigationLink(destination: NoteView(note: note)) {
-                                //                                NoteRowView(isInFolder: false, note: note)
-                                Text(note.text ?? "")
+                                NoteRowView(text: note.text ?? "New Note")
                             }
                         }
                         .onDelete(perform: deleteNote)
@@ -58,8 +57,7 @@ struct MyNotesView: View {
                             Spacer()
                             // ＊ 新しいメモを追加 後々ポップアップでtitle入力->追加ができるようにする
                             Button {
-                                Note.create(in: context)
-                                //                                noteVm.noteList.append(NoteModel(companyID: nil))
+                                Note.create(in: context, companyId: nil)
                                 showingNote.toggle()
                             } label: {
                                 Image(systemName: "square.and.pencil")

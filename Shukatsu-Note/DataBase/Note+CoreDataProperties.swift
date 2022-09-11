@@ -26,11 +26,12 @@ extension Note {
 
 extension Note {
         
-    static func create(in context: NSManagedObjectContext) {
+    static func create(in context: NSManagedObjectContext, companyId: String?) {
         
         let newNote = Note(context: context)
-        newNote.id = UUID().uuidString
         newNote.createdAt = Date()
+        newNote.id = UUID().uuidString
+        newNote.companyId = companyId
         
         do {
             try context.save()
