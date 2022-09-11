@@ -8,6 +8,18 @@
 import SwiftUI
 
 struct CompanyView: View {
+    @Environment(\.managedObjectContext) private var context
+    @FetchRequest(
+        entity: Company.entity(),
+        sortDescriptors: [NSSortDescriptor(keyPath: \Company.id, ascending: true)],
+        predicate: nil
+    ) var companies: FetchedResults<Company>
+    
+    @FetchRequest(
+        entity: Note.entity(),
+        sortDescriptors: [NSSortDescriptor(keyPath: \Note.id, ascending: true)],
+        predicate: nil
+    ) var notes: FetchedResults<Note>
     
     var company: CompanyModel
     @ObservedObject var companyVm: CompanyViewModel
@@ -25,8 +37,8 @@ struct CompanyView: View {
         
         ZStack {
             // 新規ノートに遷移
-            if let lastNote = noteVm.noteList.last {
-                NavigationLink("", destination: NoteView(isInFolder: false, note: lastNote, companyVm: companyVm, noteVm: noteVm), isActive: $showingNote)
+            if let lastNote = notes.last {
+                NavigationLink("", destination: NoteView(note: lastNote), isActive: $showingNote)
             }
             
             List {
@@ -156,11 +168,11 @@ struct CompanyView: View {
                     }
                     .textCase(nil)
                     
-                    let notes = noteVm.noteList.filter { $0.companyID == company.id }
+//                    let notes = noteVm.noteList.filter { $0.companyID == company.id }
                     
                     Section {
                         ForEach(notes) { note in
-                            NavigationLink(destination: NoteView(isInFolder: false, note: note, companyVm: companyVm, noteVm: noteVm)) {
+                            NavigationLink(destination: NoteView(note: note)) {
 //                                NoteRowView(companyVm: companyVm, noteVm: noteVm, isInFolder: false, note: note)
                             }
                         }

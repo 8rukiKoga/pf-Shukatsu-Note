@@ -9,8 +9,6 @@ import SwiftUI
 
 struct NoteRowView: View {
     
-    @ObservedObject var companyVm: CompanyViewModel
-    @ObservedObject var noteVm: NoteViewModel
     var isInFolder: Bool
     var companyIndex: Int?
     
@@ -22,7 +20,7 @@ struct NoteRowView: View {
                 Image(systemName: "note.text")
                     .foregroundColor(Color("ThemeColor"))
                     .font(.system(size: 15))
-                Text("note text")
+                Text(note.text ?? "")
                     .font(.system(size: 15))
                 Spacer()
             }

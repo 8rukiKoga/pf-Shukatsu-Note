@@ -8,22 +8,20 @@
 import SwiftUI
 
 struct NoteView: View {
-    // フォルダ内にあるノートか、またはMainViewに表示するノートか
-    var isInFolder: Bool
+    @Environment(\.managedObjectContext) private var context
     
     var company: CompanyModel?
-    var note: NoteModel
+    var note: Note
     var companyIndex: Int?
     
-    @ObservedObject var companyVm: CompanyViewModel
-    @ObservedObject var noteVm: NoteViewModel
+    @State var text: String
     
     @FocusState private var inputFocus: Bool
     
-    @State private var offset = CGFloat.zero
-    @State var isPresented = false
-    
-    let screenWidth: CGFloat = UIScreen.main.bounds.width
+    init(note: Note) {
+        self.note = note
+        self._text = State(initialValue: note.text ?? "")
+    }
     
     var body: some View {
         
@@ -37,17 +35,18 @@ struct NoteView: View {
                 Divider()
                 
                 ZStack {
-                    if let noteIndex = noteVm.noteList.firstIndex(of: note) {
-                        TextEditor(text: $noteVm.noteList[noteIndex].text)
-                            // 渡されたnoteのtextを代入
-                            .focused($inputFocus)
-                            .font(.body)
-                            .padding(.horizontal)
-                        // TextEditorの上に透明なTextを載せることで、TextEditorの高さの分、View自体の大きさを大きくしてくれる
-                        Text(noteVm.noteList[noteIndex].text)
-                            .opacity(0)
-                            .padding(8)
-                    }
+                    TextEditor(text: $text)
+                    // 渡されたnoteのtextを代入
+                        .focused($inputFocus)
+                        .font(.body)
+                        .padding(.horizontal)
+                        .onChange(of: text) { newValue in
+                            saveNote()
+                        }
+                    // TextEditorの上に透明なTextを載せることで、TextEditorの高さの分、View自体の大きさを大きくしてくれる
+                    Text(text)
+                        .opacity(0)
+                        .padding(8)
                 }
                 
             }
@@ -71,20 +70,31 @@ struct NoteView: View {
             .navigationTitle("Note")
             .navigationBarTitleDisplayMode(.inline)
         }
+        .onAppear() {
+            print(text)
+        }
+    }
+    
+    private func saveNote() {
+        print("saved")
+        print(note.text)
+        note.text = text
+
+        try? context.save()
     }
 }
 
-struct NoteView_Previews: PreviewProvider {
-    static var previews: some View {
-        
-        let testCompany = CompanyViewModel()
-        testCompany.companyList = sampleCompanies
-        
-        let testNote = NoteViewModel()
-        testNote.noteList = sampleNotes
-        
-        return NavigationView {
-            NoteView(isInFolder: true, note: NoteModel(text: "This is text"), companyVm: testCompany, noteVm: testNote)
-        }
-    }
-}
+//struct NoteView_Previews: PreviewProvider {
+//    static var previews: some View {
+//
+//        let testCompany = CompanyViewModel()
+//        testCompany.companyList = sampleCompanies
+//
+//        let testNote = NoteViewModel()
+//        testNote.noteList = sampleNotes
+//
+//        return NavigationView {
+//            NoteView(isInFolder: true, note: NoteModel(text: "This is text"), companyVm: testCompany, noteVm: testNote)
+//        }
+//    }
+//}

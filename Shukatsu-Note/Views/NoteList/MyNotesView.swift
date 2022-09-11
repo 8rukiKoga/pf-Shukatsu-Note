@@ -35,18 +35,18 @@ struct MyNotesView: View {
             // ポップアップ表示用Z
             ZStack {
                 // 新規ノートに遷移
-                if let lastNote = noteVm.noteList.last {
-                    NavigationLink("", destination: NoteView(isInFolder: false, note: lastNote, companyVm: companyVm, noteVm: noteVm), isActive: $showingNote)
+                if let lastNote = notes.last {
+                    NavigationLink("", destination: NoteView(note: lastNote), isActive: $showingNote)
                 }
                 
                 List {
-                    
 //                    let notes = noteVm.noteList.filter { $0.companyID == nil }
                     // メモリストz
                     Section {
                         ForEach(notes) { note in
-                            NavigationLink(destination: Text(note.text ?? "note")) {
-                                NoteRowView(companyVm: companyVm, noteVm: noteVm, isInFolder: false, note: note)
+                            NavigationLink(destination: NoteView(note: note)) {
+//                                NoteRowView(isInFolder: false, note: note)
+                                Text(note.text ?? "")
                             }
                         }
                         .onDelete(perform: deleteNote)
@@ -58,7 +58,7 @@ struct MyNotesView: View {
                             Button {
                                 Note.create(in: context)
 //                                noteVm.noteList.append(NoteModel(companyID: nil))
-//                                showingNote.toggle()
+                                showingNote.toggle()
                             } label: {
                                 Image(systemName: "square.and.pencil")
                                     .font(.system(size: 15))

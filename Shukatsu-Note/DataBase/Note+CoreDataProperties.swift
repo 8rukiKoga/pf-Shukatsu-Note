@@ -36,24 +36,17 @@ extension Note {
         
     }
     
-//    static func update(currentCompany: Company,
-//                imageData: Data,
-//                name: String,
-//                star: Star,
-//                industry: String,
-//                location: Location,
-//                url: String,
-//                memo: String) {
-//
-//        currentCompany.imageData = imageData
-//        currentCompany.name = name
-//        currentCompany.star = star.rawValue
-//        currentCompany.industry = industry
-//        currentCompany.location = location.rawValue
-//        currentCompany.url = url
-//        currentCompany.memo = memo
-//
-//    }
+    static func update(in context: NSManagedObjectContext,
+                       currentNote: Note,
+                       text: String) {
+        currentNote.text = text
+        
+        do {
+            try context.save()
+        } catch {
+            print(error)
+        }
+    }
     
 }
 
