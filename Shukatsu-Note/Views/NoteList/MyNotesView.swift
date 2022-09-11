@@ -35,17 +35,19 @@ struct MyNotesView: View {
             // ポップアップ表示用Z
             ZStack {
                 // 新規ノートに遷移
-                if let lastNote = notes.last {
-                    NavigationLink("", destination: NoteView(note: lastNote), isActive: $showingNote)
+                if let sortedNote = notes.sorted { $0.createdAt ?? Date() > $1.createdAt ?? Date() } {
+                    if let newNot = sortedNote.first {
+                        NavigationLink("", destination: NoteView(note: newNot), isActive: $showingNote)
+                    }
                 }
                 
                 List {
-//                    let notes = noteVm.noteList.filter { $0.companyID == nil }
+                    //                    let notes = noteVm.noteList.filter { $0.companyID == nil }
                     // メモリストz
                     Section {
                         ForEach(notes) { note in
                             NavigationLink(destination: NoteView(note: note)) {
-//                                NoteRowView(isInFolder: false, note: note)
+                                //                                NoteRowView(isInFolder: false, note: note)
                                 Text(note.text ?? "")
                             }
                         }
@@ -57,7 +59,7 @@ struct MyNotesView: View {
                             // ＊ 新しいメモを追加 後々ポップアップでtitle入力->追加ができるようにする
                             Button {
                                 Note.create(in: context)
-//                                noteVm.noteList.append(NoteModel(companyID: nil))
+                                //                                noteVm.noteList.append(NoteModel(companyID: nil))
                                 showingNote.toggle()
                             } label: {
                                 Image(systemName: "square.and.pencil")

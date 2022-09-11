@@ -70,16 +70,10 @@ struct NoteView: View {
             .navigationTitle("Note")
             .navigationBarTitleDisplayMode(.inline)
         }
-        .onAppear() {
-            print(text)
-        }
     }
     
     private func saveNote() {
-        print("saved")
-        print(note.text)
         note.text = text
-
         try? context.save()
     }
 }
