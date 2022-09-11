@@ -28,6 +28,9 @@ struct CompanyView: View {
     ) var tasks: FetchedResults<Task>
     
     var company: Company
+    init(company: Company) {
+        self.company = company
+    }
     
     @State var memoText: String = ""
     
@@ -42,8 +45,10 @@ struct CompanyView: View {
         
         ZStack {
             // 新規ノートに遷移
-            if let lastNote = notes.last {
-                NavigationLink("", destination: NoteView(note: lastNote), isActive: $showingNote)
+            if let sortedNote = notes.sorted { $0.createdAt ?? Date() > $1.createdAt ?? Date() } {
+                if let newNote = sortedNote.first {
+                    NavigationLink("", destination: NoteView(note: newNote), isActive: $showingNote)
+                }
             }
             
             List {
@@ -175,7 +180,7 @@ struct CompanyView: View {
                 Section {
                     ForEach(notes) { note in
                         NavigationLink(destination: NoteView(note: note)) {
-                            //                                NoteRowView(companyVm: companyVm, noteVm: noteVm, isInFolder: false, note: note)
+                            NoteRowView(text: note.text ?? "New Note")
                         }
                     }
                 } header: {
@@ -184,7 +189,7 @@ struct CompanyView: View {
                         Spacer()
                         // 新規メモボタン
                         Button {
-//                            noteVm.noteList.append(NoteModel(companyID: company.id))
+                            Note.create(in: context, companyId: company.id)
                             showingNote.toggle()
                         } label: {
                             Image(systemName: "square.and.pencil")

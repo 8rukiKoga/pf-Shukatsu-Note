@@ -36,8 +36,8 @@ struct MyNotesView: View {
             ZStack {
                 // 新規ノートに遷移
                 if let sortedNote = notes.sorted { $0.createdAt ?? Date() > $1.createdAt ?? Date() } {
-                    if let newNot = sortedNote.first {
-                        NavigationLink("", destination: NoteView(note: newNot), isActive: $showingNote)
+                    if let newNote = sortedNote.first {
+                        NavigationLink("", destination: NoteView(note: newNote), isActive: $showingNote)
                     }
                 }
                 
