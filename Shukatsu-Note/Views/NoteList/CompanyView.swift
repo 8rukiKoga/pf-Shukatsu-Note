@@ -169,10 +169,10 @@ struct CompanyView: View {
                     }
                 }
                 
-                //                let todos = todoVm.todoList.filter { $0.companyID == company.id }
+                let companyTasks = tasks.filter { $0.companyId == company.id }
                 
                 Section {
-                    ForEach(tasks) { task in
+                    ForEach(companyTasks) { task in
                         //                            TodoListRowView(todoVm: todoVm, task: task)
                     }
                 } header: {
@@ -180,10 +180,10 @@ struct CompanyView: View {
                 }
                 .textCase(nil)
                 
-                //                    let notes = noteVm.noteList.filter { $0.companyID == company.id }
+                let companyNotes = notes.filter { $0.companyId == company.id }
                 
                 Section {
-                    ForEach(notes) { note in
+                    ForEach(companyNotes) { note in
                         NavigationLink(destination: NoteView(note: note)) {
                             NoteRowView(text: note.text ?? "New Note")
                         }
