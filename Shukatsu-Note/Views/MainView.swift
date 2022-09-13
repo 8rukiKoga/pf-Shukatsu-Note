@@ -62,6 +62,9 @@ struct MainView: View {
         .onAppear() {
             if isInitialLaunch {
                 Company.createDefaultData(in: context)
+                Note.createDefaultNote(in: context)
+                Note.createDefaultCompanyNote(in: context)
+                
             }
             isInitialLaunch = false
         }
