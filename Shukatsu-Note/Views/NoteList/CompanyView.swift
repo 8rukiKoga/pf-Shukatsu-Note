@@ -79,7 +79,7 @@ struct CompanyView: View {
                                 Text("志望度 : ")
                                 Spacer()
                                 Text("\(StarConvertor.shared.convertIntToStars(count: Int(company.star)))")
-                                    .font(company.star != 0 ? .system(size: 18) : .system(size: 15))
+                                    .font(company.star != 0 ? .system(size: 18) : .system(size: 13))
                                     .foregroundColor(company.star != 0 ? Color(.systemYellow) : Color(.gray))
                                     .fontWeight(company.star != 0 ? .bold : .none)
                             }
@@ -88,24 +88,20 @@ struct CompanyView: View {
                             HStack {
                                 Text("業界 : ")
                                 Spacer()
-                                Text(company.category ?? "未設定")
+                                Text(company.category ?? "")
                             }
                             .padding(1)
                             HStack {
                                 Text("所在地 : ")
                                 Spacer()
-                                Text(company.location ?? "未設定")
+                                Text(company.location ?? "")
                             }
                             .padding(1)
                             HStack {
                                 Text("URL : ")
                                 Spacer()
                                 if let companyUrl = company.url {
-                                    if companyUrl == "" {
-                                        Text("未設定")
-                                            .foregroundColor(.gray)
-                                            .font(.caption)
-                                    } else if VerifyUrl.shared.verifyUrl(urlString: companyUrl) {
+                                    if VerifyUrl.shared.verifyUrl(urlString: companyUrl) {
                                         Link(companyUrl, destination: (URL(string: companyUrl)!))
                                             .foregroundColor(Color(.link))
                                             .font(.caption)
