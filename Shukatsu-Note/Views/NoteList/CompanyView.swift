@@ -101,12 +101,17 @@ struct CompanyView: View {
                                 Text("URL : ")
                                 Spacer()
                                 if let companyUrl = company.url {
-                                    if VerifyUrl.shared.verifyUrl(urlString: companyUrl) {
+                                    if companyUrl == "" {
+                                        Text("未設定")
+                                            .foregroundColor(.gray)
+                                            .font(.caption)
+                                    } else if VerifyUrl.shared.verifyUrl(urlString: companyUrl) {
                                         Link(companyUrl, destination: (URL(string: companyUrl)!))
                                             .foregroundColor(Color(.link))
                                             .font(.caption)
                                     } else {
-                                        Text("無効なURL")
+                                        Text(companyUrl)
+                                            .strikethrough()
                                             .foregroundColor(.gray)
                                             .font(.caption)
                                     }
