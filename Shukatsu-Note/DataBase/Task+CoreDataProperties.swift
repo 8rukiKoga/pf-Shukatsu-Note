@@ -48,6 +48,40 @@ extension Task {
         
     }
     
+    static func createDefaultTask(in context: NSManagedObjectContext) {
+        let newTask = Task(context: context)
+        newTask.createdAt = Date()
+        newTask.id = UUID().uuidString
+        newTask.companyId = nil
+        newTask.companyName = nil
+        newTask.name = "自己分析をする"
+        newTask.date = nil
+        newTask.done = false
+        
+        do {
+            try context.save()
+        } catch {
+            print(error)
+        }
+    }
+    
+    static func createDefaultCompanyTask(in context: NSManagedObjectContext) {
+        let newTask = Task(context: context)
+        newTask.createdAt = Date()
+        newTask.id = UUID().uuidString
+        newTask.companyId = "default_company"
+        newTask.companyName = "さんぷる株式会社"
+        newTask.name = "説明会"
+        newTask.date = Date()
+        newTask.done = true
+        
+        do {
+            try context.save()
+        } catch {
+            print(error)
+        }
+    }
+    
     static func update(in context: NSManagedObjectContext, task: Task) {
         
         task.done.toggle()

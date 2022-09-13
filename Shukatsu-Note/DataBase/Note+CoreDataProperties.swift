@@ -34,7 +34,6 @@ extension Note {
         
         let newNote = Note(context: context)
         newNote.createdAt = Date()
-        newNote.updatedAt = Date()
         newNote.id = UUID().uuidString
         newNote.companyId = companyId
         
@@ -49,6 +48,7 @@ extension Note {
     static func createDefaultNote(in context: NSManagedObjectContext) {
         let newNote = Note(context: context)
         newNote.createdAt = Date()
+        newNote.id = UUID().uuidString
         newNote.companyId = nil
         newNote.text = "自分の就活の軸"
         

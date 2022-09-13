@@ -64,7 +64,8 @@ struct MainView: View {
                 Company.createDefaultTask(in: context)
                 Note.createDefaultNote(in: context)
                 Note.createDefaultCompanyNote(in: context)
-                
+                Task.createDefaultTask(in: context)
+                Task.createDefaultCompanyTask(in: context)
             }
             isInitialLaunch = false
         }
