@@ -10,9 +10,11 @@ import StoreKit
 
 struct SettingsView: View {
     
+    @EnvironmentObject var customColor: CustomColor
+    
     @State private var showSheet: Bool = false
-    @State private var showAlert: Bool = false
     @State var alertTitle: String = ""
+    @State var isIconImage: Bool = false
     
     @State var url: String = "https://8rukikoga.github.io/Portfolio/"
     
@@ -21,29 +23,15 @@ struct SettingsView: View {
         NavigationView {
             VStack {
                 List {
+                    
                     Section(header: Text("アプリの設定")) {
                         NavigationLink("テーマカラーを変更する", destination: ColorSettingView())
                         
-                        Button {
-                            showAlert.toggle()
-                            
-                        } label: {
-                            Text("データを全て削除する")
-                                .foregroundColor(.red)
+                        Toggle(isOn: $isIconImage) {
+                            Text("企業フォルダのアイコンを画像にする")
                         }
-                        .alert(isPresented: $showAlert) {
-                            Alert(title: Text("警告"),
-                                  message: Text("登録されたノート・企業・Todoがすべて削除されますが、よろしいですか？"),
-                                  primaryButton: .default(Text("戻る"), action: {
-                                return
-                            }),
-                                  secondaryButton: .destructive(Text("削除"), action: {
-//                                noteVm.noteList.removeAll()
-//                                companyVm.companyList.removeAll()
-//                                todoVm.todoList.removeAll()
-                            })
-                            )}
                     }
+                    
                     Section(header: Text("サポート")) {
                         Button {
                             // AppStoreレビュー画面遷移
@@ -82,28 +70,9 @@ struct SettingsView: View {
                                 .padding(.leading, 2)
                             }
                         }
-                        
-                        Button {
-                            // AppStoreに遷移
-                            //                            seeApp(url: "")
-                        } label: {
-                            HStack {
-                                Image("25minsLogo")
-                                    .resizable()
-                                    .modifier(AppLogoMod())
-                                
-                                VStack(alignment: .leading) {
-                                    Text("25mins.")
-                                        .foregroundColor(Color(.label))
-                                        .font(.body)
-                                    Text("作業を記録できるポロモードタイマーアプリ")
-                                }
-                                .padding(.leading, 2)
-                            }
-                        }
+                        .foregroundColor(.gray)
+                        .font(.system(size: 10))
                     }
-                    .foregroundColor(.gray)
-                    .font(.system(size: 10))
                     
                     Section(header: Text("このアプリについて")) {
                         NavigationLink("アプリの使い方", destination: HowToUseView())
