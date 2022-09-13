@@ -26,7 +26,6 @@
 		0DB2B281289E96A300A81149 /* TodoListRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B280289E96A300A81149 /* TodoListRowView.swift */; };
 		0DB2B283289E96AF00A81149 /* AddTodoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B282289E96AF00A81149 /* AddTodoView.swift */; };
 		0DB2B285289E96BC00A81149 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B284289E96BC00A81149 /* SettingsView.swift */; };
-		0DB2B287289E96C300A81149 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B286289E96C300A81149 /* WebView.swift */; };
 		0DB2B289289E96E800A81149 /* CompanyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B288289E96E800A81149 /* CompanyViewModel.swift */; };
 		0DB2B28B289E96F100A81149 /* CompanyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B28A289E96F100A81149 /* CompanyModel.swift */; };
 		0DB2B28F289EA71700A81149 /* NoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B28E289EA71700A81149 /* NoteView.swift */; };
@@ -74,7 +73,6 @@
 		0DB2B280289E96A300A81149 /* TodoListRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListRowView.swift; sourceTree = "<group>"; };
 		0DB2B282289E96AF00A81149 /* AddTodoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTodoView.swift; sourceTree = "<group>"; };
 		0DB2B284289E96BC00A81149 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		0DB2B286289E96C300A81149 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		0DB2B288289E96E800A81149 /* CompanyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyViewModel.swift; sourceTree = "<group>"; };
 		0DB2B28A289E96F100A81149 /* CompanyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyModel.swift; sourceTree = "<group>"; };
 		0DB2B28E289EA71700A81149 /* NoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteView.swift; sourceTree = "<group>"; };
@@ -224,7 +222,6 @@
 			children = (
 				0DB2B284289E96BC00A81149 /* SettingsView.swift */,
 				0D1162DC28A8DC960000FCBA /* ColorSettingView.swift */,
-				0DB2B286289E96C300A81149 /* WebView.swift */,
 				0D1162DE28A8DD460000FCBA /* HowToUseView.swift */,
 			);
 			path = Settings;
@@ -384,7 +381,6 @@
 				0D7875D228A3D6A70070BE05 /* EditCompanyView.swift in Sources */,
 				0D61C9ED28B33E25006B3270 /* AppLogoMod.swift in Sources */,
 				0DE5C23D28ACF5D800865D72 /* PhotoPicker.swift in Sources */,
-				0DB2B287289E96C300A81149 /* WebView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
