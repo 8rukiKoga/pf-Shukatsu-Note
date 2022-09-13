@@ -10,4 +10,5 @@ import SwiftUI
 
 extension Color {
     static let themeColor = Color("ThemeColor")
+    static let customBrown = Color("CustomBrown")
 }
