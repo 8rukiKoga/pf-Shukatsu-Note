@@ -72,14 +72,6 @@ struct SettingsView: View {
                     }
                     
                     Section(header: Text("このアプリについて").foregroundColor(Color(customColor.themeColor))) {
-                        NavigationLink("アプリの使い方", destination: HowToUseView())
-                        
-                        Button {
-//                            url = "https://8rukikoga.github.io/Portfolio/"
-//                            showSheet.toggle()
-                        } label: {
-                            Text("開発者はどんな人？")
-                        }
                         
                         HStack {
                             Text("バージョン")
