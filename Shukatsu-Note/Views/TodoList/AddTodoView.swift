@@ -29,7 +29,7 @@ struct AddTodoView: View {
     var body: some View {
         
         ZStack {
-            Color(.systemBrown)
+            AssetProperties.customBrown
                 .ignoresSafeArea()
             VStack(spacing: 28) {
                 HStack {
