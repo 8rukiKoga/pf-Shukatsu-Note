@@ -47,9 +47,9 @@ extension Note {
     }
     
     static func createDefaultNote(in context: NSManagedObjectContext) {
-        let newNote1 = Note(context: context)
-        newNote1.companyId = nil
-        newNote1.text = "自分の就活の軸"
+        let newNote = Note(context: context)
+        newNote.companyId = nil
+        newNote.text = "自分の就活の軸"
         
         do {
             try context.save()
@@ -59,9 +59,9 @@ extension Note {
     }
     
     static func createDefaultCompanyNote(in context: NSManagedObjectContext) {
-        let newNote1 = Note(context: context)
-        newNote1.companyId = "default_company"
-        newNote1.text = "インターンで学んだこと"
+        let newNote = Note(context: context)
+        newNote.companyId = "default_company"
+        newNote.text = "インターンで学んだこと"
         
         do {
             try context.save()
