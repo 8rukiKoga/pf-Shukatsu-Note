@@ -24,7 +24,7 @@ struct SettingsView: View {
             VStack {
                 List {
                     
-                    Section(header: Text("アプリの設定")) {
+                    Section(header: Text("アプリの設定").foregroundColor(Color(customColor.themeColor))) {
                         NavigationLink("テーマカラーを変更する", destination: ColorSettingView())
                         
                         Toggle(isOn: $isIconImage) {
@@ -32,7 +32,7 @@ struct SettingsView: View {
                         }
                     }
                     
-                    Section(header: Text("サポート")) {
+                    Section(header: Text("サポート").foregroundColor(Color(customColor.themeColor))) {
                         Button {
                             // AppStoreレビュー画面遷移
                             // リリース後にリンクを取得できるので、リリース後に実装
@@ -51,7 +51,7 @@ struct SettingsView: View {
                         //                        }
                     }
                     
-                    Section(header: Text("開発者の他のアプリ")) {
+                    Section(header: Text("開発者の他のアプリ").foregroundColor(Color(customColor.themeColor))) {
                         Button {
                             // AppStoreに遷移
                             //                            seeApp(url: "")
@@ -74,7 +74,7 @@ struct SettingsView: View {
                         .font(.system(size: 10))
                     }
                     
-                    Section(header: Text("このアプリについて")) {
+                    Section(header: Text("このアプリについて").foregroundColor(Color(customColor.themeColor))) {
                         NavigationLink("アプリの使い方", destination: HowToUseView())
                         
                         Button {
