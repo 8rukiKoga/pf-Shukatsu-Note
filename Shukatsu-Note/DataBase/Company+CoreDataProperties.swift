@@ -47,10 +47,6 @@ extension Company {
         
     }
     
-    static func deleteAll(in context: NSManagedObjectContext) {
-        
-    }
-    
     static func updateInfo(in context: NSManagedObjectContext,
                 currentCompany: Company,
                 image: Data,
