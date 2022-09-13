@@ -176,10 +176,14 @@ struct CompanyView: View {
                 
                 Section {
                     if companyTasks.isEmpty {
-                        Text("この企業に関連したタスクはありません。")
+                        HStack {
+                            Spacer()
+                        Text("この企業に関連したタスクはありません✔️")
                             .font(.footnote)
                             .foregroundColor(.gray)
                             .opacity(0.6)
+                            Spacer()
+                        }
                     } else {
                         ForEach(companyTasks) { task in
                             TodoListRowView(task: task)

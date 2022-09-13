@@ -20,7 +20,7 @@ struct NoItemView: View {
         
         HStack {
             Spacer()
-            Text("\(listType.rawValue)がありません😢\n\(listType == .todo ? "下" : "右上")のボタンから\(listType.rawValue)を追加できます。")
+            Text("\(listType.rawValue)がありません✖︎\n\(listType == .todo ? "下" : "右上")のボタンから\(listType.rawValue)を追加できます。")
                 .font(.footnote)
                 .foregroundColor(.gray)
             Spacer()
