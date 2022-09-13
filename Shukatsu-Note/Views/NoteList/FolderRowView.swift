@@ -18,10 +18,18 @@ struct FolderRowView: View {
     var body: some View {
         HStack {
             if companyIcon.isCompanyImage {
-                Image(uiImage: UIImage(data: companyImage!)!)
-                    .resizable()
-                    .frame(width: 28, height: 28)
-                    .clipShape(Circle())
+                if let companyImage = companyImage {
+                    Image(uiImage: UIImage(data: companyImage)!)
+                        .resizable()
+                        .frame(width: 28, height: 28)
+                        .clipShape(Circle())
+                } else {
+                    // ユーザーがまだ画像を設定していない場合
+                    Image(uiImage: UIImage(named: "default-companyImage2")!)
+                        .resizable()
+                        .frame(width: 28, height: 28)
+                        .clipShape(Circle())
+                }
             } else {
                 Image(systemName: "building.2")
                     .foregroundColor(Color(customColor.themeColor))

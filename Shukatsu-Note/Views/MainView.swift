@@ -8,8 +8,28 @@
 import SwiftUI
 
 struct MainView: View {
+    @Environment(\.managedObjectContext) private var context
+    @FetchRequest(
+        entity: Company.entity(),
+        sortDescriptors: [NSSortDescriptor(keyPath: \Company.star, ascending: false)],
+        predicate: nil
+    ) var companies: FetchedResults<Company>
+    
+    @FetchRequest(
+        entity: Note.entity(),
+        sortDescriptors: [NSSortDescriptor(keyPath: \Note.updatedAt, ascending: false)],
+        predicate: nil
+    ) var notes: FetchedResults<Note>
+    
+    @FetchRequest(
+        entity: Task.entity(),
+        sortDescriptors: [NSSortDescriptor(keyPath: \Task.createdAt, ascending: false)],
+        predicate: nil
+    ) var tasks: FetchedResults<Task>
+    @AppStorage("is_initial_launch") var isInitialLaunch: Bool = true
     
     @EnvironmentObject var customColor: CustomColor
+    
     
     // noteViewにてtabviewの背景上にテキストが浮かび上がらないようにするために背景色を塗る
     init() {
@@ -38,6 +58,13 @@ struct MainView: View {
         // アプリのアクセントカラーを変更
         .accentColor(Color(customColor.themeColor))
         .navigationViewStyle(StackNavigationViewStyle())
+        // デフォルトデータを設置
+        .onAppear() {
+            if isInitialLaunch {
+                Company.createDefaultData(in: context)
+            }
+            isInitialLaunch = false
+        }
     }
 }
 
