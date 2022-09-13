@@ -43,7 +43,7 @@ struct TodoListView: View {
                     } label: {
                         ZStack {
                             RoundedRectangle(cornerRadius: 5)
-                                .foregroundColor(Color.customBrown)
+                                .foregroundColor(Color(CustomColor.customBrown))
                                 .frame(width: UIScreen.main.bounds.width - 20, height: 50)
                                 .shadow(color: .gray, radius: 5, x: 2, y: 2)
                             VStack {

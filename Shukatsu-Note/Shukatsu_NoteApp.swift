@@ -10,11 +10,13 @@ import SwiftUI
 @main
 struct Shukatsu_NoteApp: App {
     let persistenceController = PersistenceController.shared
+    @StateObject var customColor = CustomColor()
     
     var body: some Scene {
         WindowGroup {
             MainView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .environmentObject(customColor)
         }
     }
 }
