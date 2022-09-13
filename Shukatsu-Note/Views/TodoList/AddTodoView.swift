@@ -133,6 +133,8 @@ struct AddTodoView: View {
                         
                         // モーダルシートを閉じる
                         showSheet = false
+                        
+                        VibrationGenerator.vibGenerator.notificationOccurred(.success)
                     } label: {
                         ZStack {
                             Image(systemName: "plus")

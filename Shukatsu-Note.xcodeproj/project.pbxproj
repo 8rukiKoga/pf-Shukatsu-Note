@@ -14,6 +14,7 @@
 		0D61C9E828B32364006B3270 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D61C9E728B32364006B3270 /* LaunchScreen.storyboard */; };
 		0D61C9ED28B33E25006B3270 /* AppLogoMod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D61C9EC28B33E24006B3270 /* AppLogoMod.swift */; };
 		0D7875D228A3D6A70070BE05 /* EditCompanyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7875D128A3D6A60070BE05 /* EditCompanyView.swift */; };
+		0D956A7728D06AB300DFBD6E /* VibrationGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D956A7628D06AB300DFBD6E /* VibrationGenerator.swift */; };
 		0DB2B262289E952800A81149 /* Shukatsu_NoteApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B261289E952800A81149 /* Shukatsu_NoteApp.swift */; };
 		0DB2B264289E952800A81149 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B263289E952800A81149 /* MainView.swift */; };
 		0DB2B266289E952B00A81149 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0DB2B265289E952B00A81149 /* Assets.xcassets */; };
@@ -60,6 +61,7 @@
 		0D61C9E928B325A1006B3270 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		0D61C9EC28B33E24006B3270 /* AppLogoMod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLogoMod.swift; sourceTree = "<group>"; };
 		0D7875D128A3D6A60070BE05 /* EditCompanyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCompanyView.swift; sourceTree = "<group>"; };
+		0D956A7628D06AB300DFBD6E /* VibrationGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibrationGenerator.swift; sourceTree = "<group>"; };
 		0DB2B25E289E952800A81149 /* Shukatsu-Note.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Shukatsu-Note.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DB2B261289E952800A81149 /* Shukatsu_NoteApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shukatsu_NoteApp.swift; sourceTree = "<group>"; };
 		0DB2B263289E952800A81149 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -109,6 +111,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0D956A7528D06A9E00DFBD6E /* Properties */ = {
+			isa = PBXGroup;
+			children = (
+				0D956A7628D06AB300DFBD6E /* VibrationGenerator.swift */,
+			);
+			path = Properties;
+			sourceTree = "<group>";
+		};
 		0DB2B255289E952800A81149 = {
 			isa = PBXGroup;
 			children = (
@@ -241,6 +251,7 @@
 			isa = PBXGroup;
 			children = (
 				0DD08C1128D02D69001769B0 /* Funcs */,
+				0D956A7528D06A9E00DFBD6E /* Properties */,
 				0DD08C1228D02D74001769B0 /* Assets */,
 			);
 			path = Shared;
@@ -358,6 +369,7 @@
 				0DB2B264289E952800A81149 /* MainView.swift in Sources */,
 				0DB2B2B9289FE43F00A81149 /* AddCompanyPopupView.swift in Sources */,
 				0DB2B28B289E96F100A81149 /* CompanyModel.swift in Sources */,
+				0D956A7728D06AB300DFBD6E /* VibrationGenerator.swift in Sources */,
 				0DF5FDD928CAE69900FD8184 /* Note+CoreDataClass.swift in Sources */,
 				0DCF522328C6D51500E1845C /* ColorExtension.swift in Sources */,
 				0DE5C23B28AB2CF500865D72 /* FloatingBtnMod.swift in Sources */,

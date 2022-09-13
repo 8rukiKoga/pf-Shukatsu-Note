@@ -50,6 +50,7 @@ struct AddCompanyPopupView: View {
                         // 登録企業が15個以下の場合
                         Company.create(in: context, name: newCompanyName)
                         showingPopup = false
+                        VibrationGenerator.vibGenerator.notificationOccurred(.success)
                     } label: {
                         Text("保存")
                             .fontWeight(.bold)

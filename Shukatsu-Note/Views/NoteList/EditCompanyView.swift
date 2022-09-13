@@ -86,7 +86,9 @@ struct EditCompanyView: View {
                         // UIImageをData型に変換
                         guard let imageData = companyImage.pngData() else { return }
                         Company.updateInfo(in: context, currentCompany: company, image: imageData, name: name, star: star, category: category, location: location, url: url)
+                        
                         showingSheet = false
+                        VibrationGenerator.vibGenerator.notificationOccurred(.success)
                     } label: {
                         ZStack {
                             Image(systemName: "checkmark.circle.fill")

@@ -54,6 +54,7 @@ struct TodoListRowView: View {
                 withAnimation {
                     Task.update(in: context, task: task)
                 }
+                VibrationGenerator.vibGenerator.notificationOccurred(.success)
             } label: {
                 Image(systemName: task.done ? "checkmark.circle.fill" : "circle")
                     .font(task.done ? .title2 : .title3)
