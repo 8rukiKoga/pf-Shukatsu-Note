@@ -9,6 +9,8 @@ import SwiftUI
 
 struct MainView: View {
     
+    @EnvironmentObject var customColor: CustomColor
+    
     // noteViewにてtabviewの背景上にテキストが浮かび上がらないようにするために背景色を塗る
     init() {
         UITabBar.appearance().backgroundColor = UIColor.systemGray6
@@ -34,7 +36,7 @@ struct MainView: View {
             
         }
         // アプリのアクセントカラーを変更
-        .accentColor(Color("ThemeColor"))
+        .accentColor(Color(customColor.themeColor))
         .navigationViewStyle(StackNavigationViewStyle())
     }
 }

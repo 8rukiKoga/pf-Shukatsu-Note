@@ -9,6 +9,6 @@ import Foundation
 import SwiftUI
 
 class CustomColor: ObservableObject {
-    @AppStorage("theme_color") var themeColor = "ThemeColor"
+    @AppStorage("theme_color") var themeColor = "ThemeColor1"
     static let customBrown = "CustomBrown"
 }

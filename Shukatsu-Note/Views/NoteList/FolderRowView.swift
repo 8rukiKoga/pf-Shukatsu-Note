@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct FolderRowView: View {
+    @EnvironmentObject var customColor: CustomColor
     
     var name: String
     var star: Int
@@ -15,7 +16,7 @@ struct FolderRowView: View {
     var body: some View {
         HStack {
             Image(systemName: "building.2")
-                .foregroundColor(Color("ThemeColor"))
+                .foregroundColor(Color(customColor.themeColor))
                 .font(.system(size: 18))
             Text(name)
                 .font(.system(size: 15))

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct NoteRowView: View {
+    @EnvironmentObject var customColor: CustomColor
     
     var text: String
     
@@ -15,7 +16,7 @@ struct NoteRowView: View {
         
             HStack {
                 Image(systemName: "note.text")
-                    .foregroundColor(Color("ThemeColor"))
+                    .foregroundColor(Color(customColor.themeColor))
                     .font(.system(size: 15))
                 Text(text)
                     .font(.system(size: 15))
