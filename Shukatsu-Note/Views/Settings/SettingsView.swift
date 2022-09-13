@@ -83,9 +83,6 @@ struct SettingsView: View {
                         } label: {
                             Text("開発者はどんな人？")
                         }
-                        .sheet(isPresented: $showSheet) {
-                            WebView(url: $url)
-                        }
                         
                         HStack {
                             Text("バージョン")
@@ -99,9 +96,6 @@ struct SettingsView: View {
                         } label: {
                             Text("プライバシーポリシー")
                         }
-                        .sheet(isPresented: $showSheet) {
-                            WebView(url: $url)
-                        }
                     }
                 }
                 .listStyle(.plain)
@@ -110,12 +104,12 @@ struct SettingsView: View {
         }
     }
     
-    // レビューアラート表示
-    func reviewApp(){
-        if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
-            SKStoreReviewController.requestReview(in: scene)
-        }
-    }
+//    // レビューアラート表示
+//    func reviewApp(){
+//        if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+//            SKStoreReviewController.requestReview(in: scene)
+//        }
+//    }
     // appstoreを開く
     func seeApp(url: String){
         let productURL:URL = URL(string: url)!
