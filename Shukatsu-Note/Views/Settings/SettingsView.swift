@@ -13,7 +13,7 @@ struct SettingsView: View {
     @EnvironmentObject var customColor: CustomColor
     @EnvironmentObject var companyIcon: CompanyIcon
     
-    @State var url: String = "https://8rukikoga.github.io/Portfolio/"
+    @State var url: String = ""
     
     var body: some View {
         
@@ -37,21 +37,16 @@ struct SettingsView: View {
                             Text("就活ノート を評価する")
                         }
                         Button {
-                            // スグフォームまたは自分で実装
-                            //                            url = ""
-                            //                            showSheet.toggle()
+                            openUrl(url: "https://docs.google.com/forms/d/e/1FAIpQLSdWUjv9hDJB4TMZ-e2Mxx37jgR2qenCR2LS8AJQ1jbuqryS4Q/viewform?usp=sf_link")
                         } label: {
                             Text("不具合・リクエストを送信する")
                         }
-                        //                        .sheet(isPresented: $showSheet) {
-                        //                            WebView(url: $url)
-                        //                        }
+                        
                     }
                     
                     Section(header: Text("開発者の他のアプリ").foregroundColor(Color(customColor.themeColor))) {
                         Button {
-                            // AppStoreに遷移
-                            //                            seeApp(url: "")
+                            openUrl(url: "https://apps.apple.com/us/app/%E3%81%95%E3%81%B6%E3%81%99%E3%81%8F%E7%AE%A1%E7%90%86/id1617774926?itsct=apps_box_link&itscg=30200")
                         } label: {
                             HStack {
                                 Image("SabusukuKanriLogo")
@@ -79,9 +74,8 @@ struct SettingsView: View {
                             Text("1.0")
                         }
                         Button {
-                            // リリース直前にPFサイトにアプリを掲載→そのリンクをここに記載する
-                            //                            url = ""
-                            //                            showSheet.toggle()
+                            // ＊ リリース直前にPFサイトにアプリを掲載→そのリンクをここに記載する
+                            openUrl(url: "https://8rukikoga.github.io/Portfolio/")
                         } label: {
                             Text("プライバシーポリシー")
                         }
@@ -93,17 +87,12 @@ struct SettingsView: View {
         }
     }
     
-//    // レビューアラート表示
-//    func reviewApp(){
-//        if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
-//            SKStoreReviewController.requestReview(in: scene)
-//        }
-//    }
     // appstoreを開く
-    func seeApp(url: String){
+    private func openUrl(url: String){
         let productURL:URL = URL(string: url)!
         UIApplication.shared.open(productURL)
     }
+    
 }
 
 //struct SettingsView_Previews: PreviewProvider {
