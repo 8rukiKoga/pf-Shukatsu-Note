@@ -61,7 +61,7 @@ struct MainView: View {
         // デフォルトデータを設置
         .onAppear() {
             if isInitialLaunch {
-                Company.createDefaultData(in: context)
+                Company.createDefaultTask(in: context)
                 Note.createDefaultNote(in: context)
                 Note.createDefaultCompanyNote(in: context)
                 

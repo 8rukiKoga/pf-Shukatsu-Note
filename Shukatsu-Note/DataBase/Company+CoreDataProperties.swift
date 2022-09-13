@@ -47,7 +47,7 @@ extension Company {
         
     }
     
-    static func createDefaultData(in context: NSManagedObjectContext) {
+    static func createDefaultTask(in context: NSManagedObjectContext) {
         let newCompany = Company(context: context)
         newCompany.createdAt = Date()
         newCompany.updatedAt = Date()
