@@ -179,8 +179,15 @@ struct CompanyView: View {
                 let companyTasks = tasks.filter { $0.companyId == company.id }
                 
                 Section {
-                    ForEach(companyTasks) { task in
-                        TodoListRowView(task: task)
+                    if companyTasks.isEmpty {
+                        Text("この企業に関連したタスクはありません。")
+                            .font(.footnote)
+                            .foregroundColor(.gray)
+                            .opacity(0.6)
+                    } else {
+                        ForEach(companyTasks) { task in
+                            TodoListRowView(task: task)
+                        }
                     }
                 } header: {
                     Text("Todo")
@@ -190,12 +197,16 @@ struct CompanyView: View {
                 let companyNotes = notes.filter { $0.companyId == company.id }
                 
                 Section {
-                    ForEach(companyNotes) { note in
-                        NavigationLink(destination: NoteView(note: note)) {
-                            NoteRowView(text: note.text ?? "New Note")
+                    if companyNotes.isEmpty {
+                        NoItemView(listType: .note)
+                    } else {
+                        ForEach(companyNotes) { note in
+                            NavigationLink(destination: NoteView(note: note)) {
+                                NoteRowView(text: note.text ?? "New Note")
+                            }
                         }
+                        .onDelete(perform: deleteNote)
                     }
-                    .onDelete(perform: deleteNote)
                 } header: {
                     HStack {
                         Text("Note")

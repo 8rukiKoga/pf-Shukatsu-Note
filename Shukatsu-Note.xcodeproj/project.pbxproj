@@ -35,6 +35,7 @@
 		0DB2B2D528A0C6CD00A81149 /* NoteRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B2D428A0C6CD00A81149 /* NoteRowView.swift */; };
 		0DB5209828CE023F00D7AE6A /* VerifyUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB5209728CE023F00D7AE6A /* VerifyUrl.swift */; };
 		0DCF522328C6D51500E1845C /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DCF522228C6D51500E1845C /* ColorExtension.swift */; };
+		0DD08C1628D03B49001769B0 /* NoItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD08C1528D03B49001769B0 /* NoItemView.swift */; };
 		0DE5C23628A920C300865D72 /* TodoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE5C23528A920C300865D72 /* TodoModel.swift */; };
 		0DE5C23828A920D100865D72 /* TodoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE5C23728A920D100865D72 /* TodoViewModel.swift */; };
 		0DE5C23B28AB2CF500865D72 /* FloatingBtnMod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE5C23A28AB2CF500865D72 /* FloatingBtnMod.swift */; };
@@ -81,6 +82,7 @@
 		0DB2B2D428A0C6CD00A81149 /* NoteRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteRowView.swift; sourceTree = "<group>"; };
 		0DB5209728CE023F00D7AE6A /* VerifyUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyUrl.swift; sourceTree = "<group>"; };
 		0DCF522228C6D51500E1845C /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
+		0DD08C1528D03B49001769B0 /* NoItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoItemView.swift; sourceTree = "<group>"; };
 		0DE5C23528A920C300865D72 /* TodoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoModel.swift; sourceTree = "<group>"; };
 		0DE5C23728A920D100865D72 /* TodoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoViewModel.swift; sourceTree = "<group>"; };
 		0DE5C23A28AB2CF500865D72 /* FloatingBtnMod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingBtnMod.swift; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				0DB2B263289E952800A81149 /* MainView.swift */,
+				0DD08C1528D03B49001769B0 /* NoItemView.swift */,
 				0D61C9E728B32364006B3270 /* LaunchScreen.storyboard */,
 				0DB2B274289E95F500A81149 /* NoteList */,
 				0DB2B275289E960400A81149 /* TodoList */,
@@ -373,6 +376,7 @@
 				0DF5FDB528C9B80200FD8184 /* Company+CoreDataProperties.swift in Sources */,
 				0DF5FDDA28CAE69900FD8184 /* Note+CoreDataProperties.swift in Sources */,
 				0DB2B262289E952800A81149 /* Shukatsu_NoteApp.swift in Sources */,
+				0DD08C1628D03B49001769B0 /* NoItemView.swift in Sources */,
 				0D7875D228A3D6A70070BE05 /* EditCompanyView.swift in Sources */,
 				0D61C9ED28B33E25006B3270 /* AppLogoMod.swift in Sources */,
 				0DE5C23D28ACF5D800865D72 /* PhotoPicker.swift in Sources */,

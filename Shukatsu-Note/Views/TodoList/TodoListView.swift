@@ -23,29 +23,18 @@ struct TodoListView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                
-                if tasks.isEmpty {
-                    VStack {
-                        Spacer()
-                        Text("No Tasks")
-                            .font(.caption)
-                            .padding(.bottom)
-                        // No Tasksテキストを上に移動させるために下にアイテムを置く
-                        Text("_")
-                            .opacity(0)
-                        Spacer()
-                    }
-                }
-                else {
-                    List {
+                List {
+                    if tasks.isEmpty {
+                        NoItemView(listType: .todo)
+                    } else {
                         ForEach(tasks) { task in
                             TodoListRowView(task: task)
                         }
                         .onDelete(perform: deleteTask)
                     }
-                    .listStyle(PlainListStyle())
-                    .padding(.bottom, 80)
                 }
+                .listStyle(PlainListStyle())
+                .padding(.bottom, 80)
                 
                 VStack {
                     Spacer()

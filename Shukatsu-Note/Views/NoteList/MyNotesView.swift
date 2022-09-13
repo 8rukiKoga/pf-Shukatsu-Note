@@ -42,12 +42,16 @@ struct MyNotesView: View {
                     let globalNotes = notes.filter { $0.companyId == nil }
                     // メモリスト
                     Section {
-                        ForEach(globalNotes) { note in
-                            NavigationLink(destination: NoteView(note: note)) {
-                                NoteRowView(text: note.text ?? "New Note")
+                        if globalNotes.isEmpty {
+                            NoItemView(listType: .note)
+                        } else {
+                            ForEach(globalNotes) { note in
+                                NavigationLink(destination: NoteView(note: note)) {
+                                    NoteRowView(text: note.text ?? "New Note")
+                                }
                             }
+                            .onDelete(perform: deleteNote)
                         }
-                        .onDelete(perform: deleteNote)
                     } header: {
                         HStack {
                             Text("Note")
@@ -67,12 +71,16 @@ struct MyNotesView: View {
                     
                     // 企業リスト
                     Section {
-                        ForEach(companies) { company in
-                            NavigationLink(destination: CompanyView(company: company)) {
-                                FolderRowView(name: company.name ?? "", star: Int(company.star))
+                        if companies.isEmpty {
+                            NoItemView(listType: .company)
+                        } else {
+                            ForEach(companies) { company in
+                                NavigationLink(destination: CompanyView(company: company)) {
+                                    FolderRowView(name: company.name ?? "", star: Int(company.star))
+                                }
                             }
+                            .onDelete(perform: deleteCompany)
                         }
-                        .onDelete(perform: deleteCompany)
                     } header: {
                         HStack {
                             Text("企業リスト")
