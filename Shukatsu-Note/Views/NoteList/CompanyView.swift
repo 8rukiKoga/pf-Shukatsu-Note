@@ -195,6 +195,7 @@ struct CompanyView: View {
                             NoteRowView(text: note.text ?? "New Note")
                         }
                     }
+                    .onDelete(perform: deleteNote)
                 } header: {
                     HStack {
                         Text("Note")
@@ -222,10 +223,24 @@ struct CompanyView: View {
                 })
             )
             .navigationTitle(company.name ?? "")
+            .toolbar {
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
+                    EditButton()
+                }
+            }
         }
     }
     private func saveMemo() {
         Company.updateMemo(in: context, currentCompany: company, memo: memoText)
+    }
+    
+    private func deleteNote(offsets: IndexSet) {
+        
+        offsets.forEach { index in
+            context.delete(notes[index])
+        }
+        // 削除内容を保存
+        try? context.save()
     }
 }
 
