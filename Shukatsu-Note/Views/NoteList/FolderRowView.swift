@@ -9,15 +9,24 @@ import SwiftUI
 
 struct FolderRowView: View {
     @EnvironmentObject var customColor: CustomColor
+    @EnvironmentObject var companyIcon: CompanyIcon
     
+    var companyImage: Data?
     var name: String
     var star: Int
     
     var body: some View {
         HStack {
-            Image(systemName: "building.2")
-                .foregroundColor(Color(customColor.themeColor))
-                .font(.system(size: 18))
+            if companyIcon.isCompanyImage {
+                Image(uiImage: UIImage(data: companyImage!)!)
+                    .resizable()
+                    .frame(width: 28, height: 28)
+                    .clipShape(Circle())
+            } else {
+                Image(systemName: "building.2")
+                    .foregroundColor(Color(customColor.themeColor))
+                    .font(.system(size: 18))
+            }
             Text(name)
                 .font(.system(size: 15))
             Spacer()

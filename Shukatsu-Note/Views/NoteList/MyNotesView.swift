@@ -76,7 +76,7 @@ struct MyNotesView: View {
                         } else {
                             ForEach(companies) { company in
                                 NavigationLink(destination: CompanyView(company: company)) {
-                                    FolderRowView(name: company.name ?? "", star: Int(company.star))
+                                    FolderRowView(companyImage: company.image, name: company.name ?? "", star: Int(company.star))
                                 }
                             }
                             .onDelete(perform: deleteCompany)

@@ -11,10 +11,7 @@ import StoreKit
 struct SettingsView: View {
     
     @EnvironmentObject var customColor: CustomColor
-    
-    @State private var showSheet: Bool = false
-    @State var alertTitle: String = ""
-    @State var isIconImage: Bool = false
+    @EnvironmentObject var companyIcon: CompanyIcon
     
     @State var url: String = "https://8rukikoga.github.io/Portfolio/"
     
@@ -27,7 +24,7 @@ struct SettingsView: View {
                     Section(header: Text("アプリの設定").foregroundColor(Color(customColor.themeColor))) {
                         NavigationLink("テーマカラーを変更する", destination: ColorSettingView())
                         
-                        Toggle(isOn: $isIconImage) {
+                        Toggle(isOn: companyIcon.$isCompanyImage) {
                             Text("企業フォルダのアイコンを画像にする")
                         }
                     }
@@ -78,8 +75,8 @@ struct SettingsView: View {
                         NavigationLink("アプリの使い方", destination: HowToUseView())
                         
                         Button {
-                            url = "https://8rukikoga.github.io/Portfolio/"
-                            showSheet.toggle()
+//                            url = "https://8rukikoga.github.io/Portfolio/"
+//                            showSheet.toggle()
                         } label: {
                             Text("開発者はどんな人？")
                         }
