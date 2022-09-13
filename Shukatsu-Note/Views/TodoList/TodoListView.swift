@@ -44,6 +44,7 @@ struct TodoListView: View {
                         .onDelete(perform: deleteTask)
                     }
                     .listStyle(PlainListStyle())
+                    .padding(.bottom, 80)
                 }
                 
                 VStack {
