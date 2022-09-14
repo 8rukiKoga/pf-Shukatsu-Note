@@ -40,7 +40,8 @@ struct SettingsView: View {
                         Button {
                             openUrl(url: "https://docs.google.com/forms/d/e/1FAIpQLSdWUjv9hDJB4TMZ-e2Mxx37jgR2qenCR2LS8AJQ1jbuqryS4Q/viewform?usp=sf_link")
                         } label: {
-                            Text("不具合・リクエストを送信する")
+                            Text("お問い合わせをする\n(不具合・機能のリクエストなど)")
+                                .font(.system(size: 15))
                         }
                     }
                     
