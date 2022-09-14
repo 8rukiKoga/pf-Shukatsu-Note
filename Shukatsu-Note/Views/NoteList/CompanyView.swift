@@ -74,6 +74,17 @@ struct CompanyView: View {
                             
                             Spacer()
                         }
+                        .padding(.bottom)
+                        
+                        HStack {
+                            Spacer()
+                            
+                            Text(company.name ?? "Company")
+                                .bold()
+                                .multilineTextAlignment(.center)
+                            
+                            Spacer()
+                        }
                         
                         // フォントサイズを一括で設定するためにGroupで囲む
                         Group {
@@ -196,10 +207,10 @@ struct CompanyView: View {
                         HStack {
                             Spacer()
                             
-                        Text("この企業に関連したタスクはありません✔️")
-                            .font(.footnote)
-                            .foregroundColor(.gray)
-                            .opacity(0.6)
+                            Text("この企業に関連したタスクはありません✔️")
+                                .font(.footnote)
+                                .foregroundColor(.gray)
+                                .opacity(0.6)
                             Spacer()
                         }
                     } else {
@@ -240,7 +251,8 @@ struct CompanyView: View {
                     }
                 })
             )
-            .navigationTitle(company.name ?? "New Note")
+            .navigationTitle(company.name ?? "Company")
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
                     EditButton()
