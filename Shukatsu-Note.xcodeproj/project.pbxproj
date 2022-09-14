@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0D1162DB28A5C1CA0000FCBA /* StarConvertor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1162DA28A5C1CA0000FCBA /* StarConvertor.swift */; };
 		0D1162DD28A8DC960000FCBA /* ColorSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1162DC28A8DC960000FCBA /* ColorSettingView.swift */; };
+		0D1F147428D1966000CFE1DE /* ListHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1F147328D1966000CFE1DE /* ListHeader.swift */; };
+		0D1F147628D1974D00CFE1DE /* ListType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1F147528D1974D00CFE1DE /* ListType.swift */; };
 		0D61C9E628B31EDD006B3270 /* CompanyImageMod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D61C9E528B31EDC006B3270 /* CompanyImageMod.swift */; };
 		0D61C9E828B32364006B3270 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D61C9E728B32364006B3270 /* LaunchScreen.storyboard */; };
 		0D61C9ED28B33E25006B3270 /* AppLogoMod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D61C9EC28B33E24006B3270 /* AppLogoMod.swift */; };
@@ -48,6 +50,8 @@
 /* Begin PBXFileReference section */
 		0D1162DA28A5C1CA0000FCBA /* StarConvertor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarConvertor.swift; sourceTree = "<group>"; };
 		0D1162DC28A8DC960000FCBA /* ColorSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSettingView.swift; sourceTree = "<group>"; };
+		0D1F147328D1966000CFE1DE /* ListHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListHeader.swift; sourceTree = "<group>"; };
+		0D1F147528D1974D00CFE1DE /* ListType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListType.swift; sourceTree = "<group>"; };
 		0D61C9E528B31EDC006B3270 /* CompanyImageMod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyImageMod.swift; sourceTree = "<group>"; };
 		0D61C9E728B32364006B3270 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0D61C9E928B325A1006B3270 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -97,12 +101,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0D1F147228D1963B00CFE1DE /* ViewParts */ = {
+			isa = PBXGroup;
+			children = (
+				0D1F147328D1966000CFE1DE /* ListHeader.swift */,
+				0DD08C1528D03B49001769B0 /* NoItemView.swift */,
+				0DB2B278289E967100A81149 /* FolderRowView.swift */,
+				0DB2B2D428A0C6CD00A81149 /* NoteRowView.swift */,
+				0DB2B280289E96A300A81149 /* TodoListRowView.swift */,
+				0DE5C23C28ACF5D800865D72 /* PhotoPicker.swift */,
+			);
+			path = ViewParts;
+			sourceTree = "<group>";
+		};
 		0D956A7528D06A9E00DFBD6E /* Properties */ = {
 			isa = PBXGroup;
 			children = (
 				0D956A7628D06AB300DFBD6E /* VibrationGenerator.swift */,
 				0DCF522228C6D51500E1845C /* CustomColor.swift */,
 				0D956A7A28D08EDC00DFBD6E /* UserPreferences.swift */,
+				0D1F147528D1974D00CFE1DE /* ListType.swift */,
 			);
 			path = Properties;
 			sourceTree = "<group>";
@@ -148,7 +166,6 @@
 			isa = PBXGroup;
 			children = (
 				0DB2B263289E952800A81149 /* MainView.swift */,
-				0DD08C1528D03B49001769B0 /* NoItemView.swift */,
 				0D61C9E728B32364006B3270 /* LaunchScreen.storyboard */,
 				0DB2B274289E95F500A81149 /* NoteList */,
 				0DB2B275289E960400A81149 /* TodoList */,
@@ -163,13 +180,10 @@
 			isa = PBXGroup;
 			children = (
 				0DB2B26F289E95B700A81149 /* MyNotesView.swift */,
-				0DB2B278289E967100A81149 /* FolderRowView.swift */,
-				0DB2B2D428A0C6CD00A81149 /* NoteRowView.swift */,
 				0DB2B2B8289FE43F00A81149 /* AddCompanyPopupView.swift */,
 				0DB2B28E289EA71700A81149 /* NoteView.swift */,
 				0DB2B27A289E967E00A81149 /* CompanyView.swift */,
 				0D7875D128A3D6A60070BE05 /* EditCompanyView.swift */,
-				0DE5C23C28ACF5D800865D72 /* PhotoPicker.swift */,
 			);
 			path = NoteList;
 			sourceTree = "<group>";
@@ -178,7 +192,6 @@
 			isa = PBXGroup;
 			children = (
 				0DB2B27E289E969800A81149 /* TodoListView.swift */,
-				0DB2B280289E96A300A81149 /* TodoListRowView.swift */,
 				0DB2B282289E96AF00A81149 /* AddTodoView.swift */,
 			);
 			path = TodoList;
@@ -206,6 +219,7 @@
 		0DE5C23228A9107F00865D72 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				0D1F147228D1963B00CFE1DE /* ViewParts */,
 				0DD08C1128D02D69001769B0 /* Functions */,
 				0D956A7528D06A9E00DFBD6E /* Properties */,
 			);
@@ -310,9 +324,11 @@
 			files = (
 				0DF5FDD628C9BB6300FD8184 /* Persistence.swift in Sources */,
 				0D1162DB28A5C1CA0000FCBA /* StarConvertor.swift in Sources */,
+				0D1F147428D1966000CFE1DE /* ListHeader.swift in Sources */,
 				0DF5FDDE28CAF9D900FD8184 /* Task+CoreDataProperties.swift in Sources */,
 				0DB2B279289E967100A81149 /* FolderRowView.swift in Sources */,
 				0DF5FDB428C9B80200FD8184 /* Company+CoreDataClass.swift in Sources */,
+				0D1F147628D1974D00CFE1DE /* ListType.swift in Sources */,
 				0DB5209828CE023F00D7AE6A /* VerifyUrl.swift in Sources */,
 				0DB2B270289E95B800A81149 /* MyNotesView.swift in Sources */,
 				0D61C9E628B31EDD006B3270 /* CompanyImageMod.swift in Sources */,

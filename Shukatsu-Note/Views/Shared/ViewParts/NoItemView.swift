@@ -7,12 +7,6 @@
 
 import SwiftUI
 
-enum ListType: String {
-    case note = "ノート"
-    case company = "企業"
-    case todo = "タスク"
-}
-
 struct NoItemView: View {
     
     var listType: ListType
@@ -22,7 +16,7 @@ struct NoItemView: View {
         HStack {
             Spacer()
             
-            Text("\(listType.rawValue)がありません✖︎\n\(listType == .todo ? "下" : "右上")のボタンから\(listType.rawValue)を追加できます。")
+            Text("\(listType.rawValue)がありません✖︎\n\(listType == .task ? "下" : "右上")のボタンから\(listType.rawValue)を追加できます。")
                 .font(.footnote)
                 .foregroundColor(.gray)
             

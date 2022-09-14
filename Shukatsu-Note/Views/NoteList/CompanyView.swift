@@ -226,19 +226,7 @@ struct CompanyView: View {
                         .onDelete(perform: deleteNote)
                     }
                 } header: {
-                    HStack {
-                        Text("Note")
-                        
-                        Spacer()
-                        // 新規メモボタン
-                        Button {
-                            Note.create(in: context, companyId: company.id)
-                            showingNote.toggle()
-                        } label: {
-                            Image(systemName: "square.and.pencil")
-                                .font(.system(size: 15))
-                        }
-                    }
+                    ListHeader(showingSomething: $showingNote, listType: .companyNote, companyId: company.id ?? "")
                 }
                 .textCase(nil)
                 

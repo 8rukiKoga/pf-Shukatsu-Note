@@ -25,7 +25,7 @@ struct TodoListView: View {
             ZStack {
                 List {
                     if tasks.isEmpty {
-                        NoItemView(listType: .todo)
+                        NoItemView(listType: .task)
                     } else {
                         ForEach(tasks) { task in
                             TodoListRowView(task: task)

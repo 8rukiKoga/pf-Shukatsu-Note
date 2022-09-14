@@ -55,21 +55,7 @@ struct MyNotesView: View {
                             .onDelete(perform: deleteNote)
                         }
                     } header: {
-                        HStack {
-                            Text("Note")
-                            
-                            Spacer()
-                            // 新規ノート作成ボタン
-                            Button {
-                                Note.create(in: context, companyId: nil)
-                                // 新規ノートに遷移する
-                                showingNote.toggle()
-                            } label: {
-                                Image(systemName: "square.and.pencil")
-                                    .font(.system(size: 15))
-                            }
-                            .padding(.trailing, 5)
-                        }
+                        ListHeader(showingSomething: $showingNote, listType: .note)
                     }
                     .textCase(nil)
                     
@@ -86,23 +72,10 @@ struct MyNotesView: View {
                             .onDelete(perform: deleteCompany)
                         }
                     } header: {
-                        HStack {
-                            Text("企業リスト")
-                            
-                            Spacer()
-                            // 新規ノート作成ボタン
-                            Button {
-                                // ポップアップ表示
-                                withAnimation {
-                                    showingPopup = true
-                                }
-                            } label: {
-                                Image(systemName: "folder.badge.plus")
-                                    .font(.system(size: 15))
-                            }
-                            .padding(.trailing, 5)
-                        }
+                        ListHeader(showingSomething: $showingPopup, listType: .company)
                     }
+                    .textCase(nil)
+                    
                 }
                 .listStyle(InsetGroupedListStyle())
                 
