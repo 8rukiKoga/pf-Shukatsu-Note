@@ -73,8 +73,6 @@ struct ListHeader: View {
             Text("Hello, world.")
         }
         
-
-        
     }
 }
 
