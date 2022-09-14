@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		0D1162DB28A5C1CA0000FCBA /* StarConvertor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1162DA28A5C1CA0000FCBA /* StarConvertor.swift */; };
 		0D1162DD28A8DC960000FCBA /* ColorSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1162DC28A8DC960000FCBA /* ColorSettingView.swift */; };
-		0D1162DF28A8DD460000FCBA /* HowToUseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1162DE28A8DD460000FCBA /* HowToUseView.swift */; };
 		0D61C9E628B31EDD006B3270 /* CompanyImageMod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D61C9E528B31EDC006B3270 /* CompanyImageMod.swift */; };
 		0D61C9E828B32364006B3270 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D61C9E728B32364006B3270 /* LaunchScreen.storyboard */; };
 		0D61C9ED28B33E25006B3270 /* AppLogoMod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D61C9EC28B33E24006B3270 /* AppLogoMod.swift */; };
@@ -49,7 +48,6 @@
 /* Begin PBXFileReference section */
 		0D1162DA28A5C1CA0000FCBA /* StarConvertor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarConvertor.swift; sourceTree = "<group>"; };
 		0D1162DC28A8DC960000FCBA /* ColorSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSettingView.swift; sourceTree = "<group>"; };
-		0D1162DE28A8DD460000FCBA /* HowToUseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToUseView.swift; sourceTree = "<group>"; };
 		0D61C9E528B31EDC006B3270 /* CompanyImageMod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyImageMod.swift; sourceTree = "<group>"; };
 		0D61C9E728B32364006B3270 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0D61C9E928B325A1006B3270 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -191,7 +189,6 @@
 			children = (
 				0DB2B284289E96BC00A81149 /* SettingsView.swift */,
 				0D1162DC28A8DC960000FCBA /* ColorSettingView.swift */,
-				0D1162DE28A8DD460000FCBA /* HowToUseView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -333,7 +330,6 @@
 				0D1162DD28A8DC960000FCBA /* ColorSettingView.swift in Sources */,
 				0D956A7B28D08EDC00DFBD6E /* UserPreferences.swift in Sources */,
 				0DB2B281289E96A300A81149 /* TodoListRowView.swift in Sources */,
-				0D1162DF28A8DD460000FCBA /* HowToUseView.swift in Sources */,
 				0DB2B27B289E967E00A81149 /* CompanyView.swift in Sources */,
 				0DB2B2D528A0C6CD00A81149 /* NoteRowView.swift in Sources */,
 				0DF64A7828C626F90074A14F /* CustomDateFormatter.swift in Sources */,
