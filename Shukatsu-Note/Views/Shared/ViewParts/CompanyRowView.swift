@@ -26,7 +26,7 @@ struct FolderRowView: View {
                         .clipShape(Circle())
                 } else {
                     // ユーザーがまだ画像を設定していない場合
-                    Image(uiImage: UIImage(named: "default-companyImage2")!)
+                    Image(uiImage: UIImage(named: "default-companyImage")!)
                         .resizable()
                         .frame(width: 28, height: 28)
                         .clipShape(Circle())

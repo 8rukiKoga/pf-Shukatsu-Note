@@ -3,7 +3,6 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,27 +15,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="96l-AY-XIS">
-                                <rect key="frame" x="157" y="398" width="100" height="100"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="Fsk-tC-GcO"/>
-                                    <constraint firstAttribute="width" constant="100" id="g28-Hq-iGQ"/>
-                                </constraints>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By Haruki Koga" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Da5-lh-MqK">
                                 <rect key="frame" x="163.5" y="829" width="87" height="13"/>
                                 <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="10"/>
-                                <color key="textColor" name="ThemeColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="appLogo" translatesAutoresizingMaskIntoConstraints="NO" id="pgk-Iq-S3O">
+                                <rect key="frame" x="157" y="398" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="Kno-wS-037"/>
+                                    <constraint firstAttribute="height" constant="100" id="XV4-o0-Ejy"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
-                        <color key="backgroundColor" red="0.57153050429156038" green="0.45742321919347739" blue="0.3424009714654912" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.063347478097938628" green="0.42588528393152708" blue="0.6654434974747474" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="96l-AY-XIS" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="76o-6t-lL2"/>
-                            <constraint firstItem="96l-AY-XIS" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="Y3W-ze-FWg"/>
+                            <constraint firstItem="pgk-Iq-S3O" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="Uw5-Mb-hRW"/>
                             <constraint firstItem="Da5-lh-MqK" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="cIf-66-TdD"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="Da5-lh-MqK" secondAttribute="bottom" constant="20" id="cZY-H1-fCO"/>
+                            <constraint firstItem="pgk-Iq-S3O" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="sIE-pK-nZS"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -46,9 +45,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Logo" width="500" height="500"/>
-        <namedColor name="ThemeColor">
-            <color red="0.9020000696182251" green="0.6940000057220459" blue="0.37599998712539673" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
+        <image name="appLogo" width="1024" height="1024"/>
     </resources>
 </document>

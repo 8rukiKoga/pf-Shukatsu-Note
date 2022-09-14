@@ -67,7 +67,7 @@ struct CompanyView: View {
                                     .modifier(CompanyImageMod())
                             } else {
                                 // ユーザーがまだ画像を設定していない場合
-                                Image(uiImage: UIImage(named: "default-companyImage2")!)
+                                Image(uiImage: UIImage(named: "default-companyImage")!)
                                     .resizable()
                                     .modifier(CompanyImageMod())
                             }

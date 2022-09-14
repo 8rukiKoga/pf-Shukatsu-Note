@@ -18,7 +18,7 @@ struct EditCompanyView: View {
     
     var company: Company
     
-    @State var companyImage = UIImage(named: "default-companyImage2")!
+    @State var companyImage = UIImage(named: "default-companyImage")!
     @State var name: String
     @State var star: Int
     @State var category: String
