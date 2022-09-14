@@ -23,11 +23,11 @@ struct ColorSettingView: View {
                 
                 VStack {
                     LazyVGrid(columns: Array(repeating: .init(.flexible(), spacing: 0), count: 3), spacing: 0, content: {
-                        ForEach(0..<colorSet.count) { item in
+                        ForEach(colorSet, id: \.self) { color in
                             Button {
-                                customColor.themeColor = colorSet[item]
+                                customColor.themeColor = color
                             } label: {
-                                Color(colorSet[item])
+                                Color(color)
                                     .frame(width: 60, height: 60)
                                     .clipShape(Circle())
                                     .padding()
