@@ -75,6 +75,7 @@ struct AddTodoView: View {
                         Text("\(taskName.count) / 25")
                             .font(.caption2)
                             .foregroundColor(TextCountValidation.shared.isTextCountValid(text: taskName, max: 25) ? .gray : .red)
+                            .padding(.bottom)
                         
                         HStack {
                             Text("日時").font(.footnote)
