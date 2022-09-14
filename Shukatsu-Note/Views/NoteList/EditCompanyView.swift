@@ -82,7 +82,7 @@ struct EditCompanyView: View {
                     .pickerStyle(SegmentedPickerStyle())
                     
                     Picker("エリアを選択", selection: $location) {
-                        Text("未選択").tag("")
+                        Text("未選択").tag("未選択")
                         if area == 1 {
                             ForEach(domesticRegions, id: \.self) { item in
                                 Text(item).tag(item)
