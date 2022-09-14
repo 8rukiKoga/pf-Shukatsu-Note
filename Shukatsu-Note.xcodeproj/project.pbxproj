@@ -22,10 +22,10 @@
 		0DB2B266289E952B00A81149 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0DB2B265289E952B00A81149 /* Assets.xcassets */; };
 		0DB2B269289E952B00A81149 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0DB2B268289E952B00A81149 /* Preview Assets.xcassets */; };
 		0DB2B270289E95B800A81149 /* MyNotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B26F289E95B700A81149 /* MyNotesView.swift */; };
-		0DB2B279289E967100A81149 /* FolderRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B278289E967100A81149 /* FolderRowView.swift */; };
+		0DB2B279289E967100A81149 /* CompanyRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B278289E967100A81149 /* CompanyRowView.swift */; };
 		0DB2B27B289E967E00A81149 /* CompanyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B27A289E967E00A81149 /* CompanyView.swift */; };
 		0DB2B27F289E969800A81149 /* TodoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B27E289E969800A81149 /* TodoListView.swift */; };
-		0DB2B281289E96A300A81149 /* TodoListRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B280289E96A300A81149 /* TodoListRowView.swift */; };
+		0DB2B281289E96A300A81149 /* TaskRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B280289E96A300A81149 /* TaskRowView.swift */; };
 		0DB2B283289E96AF00A81149 /* AddTodoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B282289E96AF00A81149 /* AddTodoView.swift */; };
 		0DB2B285289E96BC00A81149 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B284289E96BC00A81149 /* SettingsView.swift */; };
 		0DB2B28F289EA71700A81149 /* NoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B28E289EA71700A81149 /* NoteView.swift */; };
@@ -65,10 +65,10 @@
 		0DB2B265289E952B00A81149 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0DB2B268289E952B00A81149 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0DB2B26F289E95B700A81149 /* MyNotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNotesView.swift; sourceTree = "<group>"; };
-		0DB2B278289E967100A81149 /* FolderRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderRowView.swift; sourceTree = "<group>"; };
+		0DB2B278289E967100A81149 /* CompanyRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyRowView.swift; sourceTree = "<group>"; };
 		0DB2B27A289E967E00A81149 /* CompanyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyView.swift; sourceTree = "<group>"; };
 		0DB2B27E289E969800A81149 /* TodoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListView.swift; sourceTree = "<group>"; };
-		0DB2B280289E96A300A81149 /* TodoListRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListRowView.swift; sourceTree = "<group>"; };
+		0DB2B280289E96A300A81149 /* TaskRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRowView.swift; sourceTree = "<group>"; };
 		0DB2B282289E96AF00A81149 /* AddTodoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTodoView.swift; sourceTree = "<group>"; };
 		0DB2B284289E96BC00A81149 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		0DB2B28E289EA71700A81149 /* NoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteView.swift; sourceTree = "<group>"; };
@@ -106,9 +106,9 @@
 			children = (
 				0D1F147328D1966000CFE1DE /* ListHeader.swift */,
 				0DD08C1528D03B49001769B0 /* NoItemView.swift */,
-				0DB2B278289E967100A81149 /* FolderRowView.swift */,
+				0DB2B278289E967100A81149 /* CompanyRowView.swift */,
 				0DB2B2D428A0C6CD00A81149 /* NoteRowView.swift */,
-				0DB2B280289E96A300A81149 /* TodoListRowView.swift */,
+				0DB2B280289E96A300A81149 /* TaskRowView.swift */,
 				0DE5C23C28ACF5D800865D72 /* PhotoPicker.swift */,
 			);
 			path = ViewParts;
@@ -326,7 +326,7 @@
 				0D1162DB28A5C1CA0000FCBA /* StarConvertor.swift in Sources */,
 				0D1F147428D1966000CFE1DE /* ListHeader.swift in Sources */,
 				0DF5FDDE28CAF9D900FD8184 /* Task+CoreDataProperties.swift in Sources */,
-				0DB2B279289E967100A81149 /* FolderRowView.swift in Sources */,
+				0DB2B279289E967100A81149 /* CompanyRowView.swift in Sources */,
 				0DF5FDB428C9B80200FD8184 /* Company+CoreDataClass.swift in Sources */,
 				0D1F147628D1974D00CFE1DE /* ListType.swift in Sources */,
 				0DB5209828CE023F00D7AE6A /* VerifyUrl.swift in Sources */,
@@ -345,7 +345,7 @@
 				0DB2B27F289E969800A81149 /* TodoListView.swift in Sources */,
 				0D1162DD28A8DC960000FCBA /* ColorSettingView.swift in Sources */,
 				0D956A7B28D08EDC00DFBD6E /* UserPreferences.swift in Sources */,
-				0DB2B281289E96A300A81149 /* TodoListRowView.swift in Sources */,
+				0DB2B281289E96A300A81149 /* TaskRowView.swift in Sources */,
 				0DB2B27B289E967E00A81149 /* CompanyView.swift in Sources */,
 				0DB2B2D528A0C6CD00A81149 /* NoteRowView.swift in Sources */,
 				0DF64A7828C626F90074A14F /* CustomDateFormatter.swift in Sources */,
