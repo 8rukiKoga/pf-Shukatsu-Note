@@ -18,6 +18,8 @@ struct AddTodoView: View {
     // 新規タスク追加シートの表示・非表示
     @Binding var showingSheet: Bool
     
+    @State private var showingAlert: Bool = false
+    
     @State private var taskName: String = ""
     // 日付を指定しているか判断
     @State private var dateIsSet: Bool = true
@@ -69,6 +71,10 @@ struct AddTodoView: View {
                             .frame(width: screenWidth - 36)
                             .background(Color(.systemGray5))
                             .cornerRadius(7)
+                        
+                        Text("\(taskName.count) / 25")
+                            .font(.caption2)
+                            .foregroundColor(TextCountValidation.shared.isTextCountValid(text: taskName, max: 25) ? .gray : .red)
                         
                         HStack {
                             Text("日時").font(.footnote)
@@ -124,29 +130,33 @@ struct AddTodoView: View {
                 HStack {
                     Spacer()
                     Button {
-                        // 企業を選択しているか判断
-                        companyIsSet = company != nil
-                        // todoリストに追加
-                        if companyIsSet && dateIsSet {
-                            Task.create(in: context, name: taskName, date: date, companyId: company!.id, companyName: company!.name)
+                        if TextCountValidation.shared.isTextCountValid(text: taskName, max: 25) {
+                            // 企業を選択しているか判断
+                            companyIsSet = company != nil
+                            // todoリストに追加
+                            if companyIsSet && dateIsSet {
+                                Task.create(in: context, name: taskName, date: date, companyId: company!.id, companyName: company!.name)
+                            }
+                            
+                            if companyIsSet && !dateIsSet{
+                                Task.create(in: context, name: taskName, date: nil, companyId: company!.id, companyName: company!.name)
+                            }
+                            
+                            if !companyIsSet && dateIsSet {
+                                Task.create(in: context, name: taskName, date: date, companyId: nil, companyName: nil)
+                            }
+                            
+                            if !companyIsSet && !dateIsSet {
+                                Task.create(in: context, name: taskName, date: nil, companyId: nil, companyName: nil)
+                            }
+                            
+                            // モーダルシートを閉じる
+                            showingSheet = false
+                            // バイブレーション
+                            VibrationGenerator.vibGenerator.notificationOccurred(.success)
+                        } else {
+                            showingAlert = true
                         }
-                        
-                        if companyIsSet && !dateIsSet{
-                            Task.create(in: context, name: taskName, date: nil, companyId: company!.id, companyName: company!.name)
-                        }
-                        
-                        if !companyIsSet && dateIsSet {
-                            Task.create(in: context, name: taskName, date: date, companyId: nil, companyName: nil)
-                        }
-                        
-                        if !companyIsSet && !dateIsSet {
-                            Task.create(in: context, name: taskName, date: nil, companyId: nil, companyName: nil)
-                        }
-                        
-                        // モーダルシートを閉じる
-                        showingSheet = false
-                        // バイブレーション
-                        VibrationGenerator.vibGenerator.notificationOccurred(.success)
                     } label: {
                         ZStack {
                             Image(systemName: "plus")
@@ -154,8 +164,12 @@ struct AddTodoView: View {
                                 .padding(.bottom, -30)
                         }
                     }
+                    .alert(isPresented: $showingAlert) {
+                        Alert(title: Text("タスク名は1文字以上25文字以内で入力してください。"))
+                    }
                 }
             }
         }
+        
     }
 }

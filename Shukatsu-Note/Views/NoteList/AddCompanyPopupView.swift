@@ -13,7 +13,7 @@ struct AddCompanyPopupView: View {
     // ポップアップを表示するか
     @Binding var showingPopup: Bool
     
-    @State var showingAlert: Bool = false
+    @State private var showingAlert: Bool = false
     // 登録する企業名
     @State private var newCompanyName: String = ""
     // スマホのスクリーン幅
@@ -76,8 +76,8 @@ struct AddCompanyPopupView: View {
                             .frame(width: popupWidth / 2)
                     }
                     .alert(isPresented: $showingAlert) {
-                                Alert(title: Text("企業名は0文字以上20文字以内で入力してください。"))
-                            }
+                        Alert(title: Text("企業名は1文字以上20文字以内で入力してください。"))
+                    }
                 }
                 .padding(3)
             }
