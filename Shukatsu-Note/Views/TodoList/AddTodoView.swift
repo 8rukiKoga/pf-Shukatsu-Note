@@ -17,12 +17,12 @@ struct AddTodoView: View {
     
     @Binding var showSheet: Bool
     
-    @State var taskName: String = ""
+    @State private var taskName: String = ""
     // 日付を指定しているか判断
-    @State var dateIsSet: Bool = true
-    @State var date = Date()
-    @State var companyIsSet: Bool = false
-    @State var company: Company?
+    @State private var dateIsSet: Bool = true
+    @State private var date = Date()
+    @State private var companyIsSet: Bool = false
+    @State private var company: Company?
     
     let screenWidth = UIScreen.main.bounds.width
     

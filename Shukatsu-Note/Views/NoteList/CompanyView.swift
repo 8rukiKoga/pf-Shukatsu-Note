@@ -28,7 +28,7 @@ struct CompanyView: View {
     ) var tasks: FetchedResults<Task>
     
     var company: Company
-    @State var memoText: String = ""
+    @State var memoText: String
     
     init(company: Company) {
         self.company = company

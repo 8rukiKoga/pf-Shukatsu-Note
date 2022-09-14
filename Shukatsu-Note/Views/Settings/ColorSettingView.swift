@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ColorSettingView: View {
     @EnvironmentObject var customColor: CustomColor
-    var colorSet: [String] = [
+    private let colorSet: [String] = [
         "ThemeColor1", "ThemeColor2", "ThemeColor3", "ThemeColor4", "ThemeColor5", "ThemeColor6"
     ]
     

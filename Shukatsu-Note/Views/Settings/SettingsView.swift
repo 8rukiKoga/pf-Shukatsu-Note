@@ -13,7 +13,7 @@ struct SettingsView: View {
     @EnvironmentObject var customColor: CustomColor
     @EnvironmentObject var companyIcon: CompanyIcon
     
-    @State var url: String = ""
+    @State private var url: String = ""
     
     var body: some View {
         

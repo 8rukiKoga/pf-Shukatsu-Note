@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TodoListRowView: View {
     @Environment(\.managedObjectContext) private var context
-    let dateFormatter = DateFormatter()
+    private let dateFormatter = DateFormatter()
     
     var task: Task
     init(task: Task) {

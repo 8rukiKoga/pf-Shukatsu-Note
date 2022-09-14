@@ -11,7 +11,6 @@ struct NoteView: View {
     @Environment(\.managedObjectContext) private var context
     
     var note: Note
-    var companyIndex: Int?
     
     @State var text: String
     

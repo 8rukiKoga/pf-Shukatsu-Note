@@ -12,7 +12,7 @@ struct AddCompanyPopupView: View {
     // ポップアップを表示するか
     @Binding var showingPopup: Bool
     // 登録する企業名
-    @State var newCompanyName: String = ""
+    @State private var newCompanyName: String = ""
     // スマホのスクリーン幅
     private let popupWidth: CGFloat = UIScreen.main.bounds.width - 60
     
