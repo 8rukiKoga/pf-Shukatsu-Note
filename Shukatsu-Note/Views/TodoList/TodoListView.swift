@@ -11,16 +11,16 @@ import CoreData
 struct TodoListView: View {
     
     @Environment(\.managedObjectContext) private var context
-    
     @FetchRequest(
         entity: Task.entity(),
         sortDescriptors: [NSSortDescriptor(keyPath: \Task.createdAt, ascending: false)],
         predicate: nil
-    ) var tasks: FetchedResults<Task>
-    
+    ) private var tasks: FetchedResults<Task>
+    // 新規タスク追加シートの表示・非表示
     @State var showSheet: Bool = false
     
     var body: some View {
+        
         NavigationView {
             ZStack {
                 List {
@@ -38,6 +38,7 @@ struct TodoListView: View {
                 
                 VStack {
                     Spacer()
+                    
                     Button {
                         showSheet = true
                     } label: {
@@ -57,6 +58,7 @@ struct TodoListView: View {
                 .padding()
                 .padding(.bottom, 10)
             }
+            // 新規タスク追加シート
             .sheet(isPresented: $showSheet) {
                 AddTodoView(showSheet: $showSheet)
             }
@@ -77,9 +79,3 @@ struct TodoListView: View {
         try? context.save()
     }
 }
-
-//struct TodoListView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        TodoListView(todoVm: TodoViewModel(), companyVm: CompanyViewModel())
-//    }
-//}

@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct NoteRowView: View {
-    @EnvironmentObject var customColor: CustomColor
+    
+    @EnvironmentObject private var customColor: CustomColor
     
     var text: String
     
@@ -18,18 +19,13 @@ struct NoteRowView: View {
                 Image(systemName: "note.text")
                     .foregroundColor(Color(customColor.themeColor))
                     .font(.system(size: 15))
+                
                 Text(text)
                     .font(.system(size: 15))
+                
                 Spacer()
             }
             .frame(height: 25)
         
     }
 }
-
-//struct NoteRowView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        NoteRowView(companyVm: CompanyViewModel(), noteVm: NoteViewModel(), isInFolder: true, note: .init(text: "メモメモ"))
-//            .previewLayout(.sizeThatFits)
-//    }
-//}

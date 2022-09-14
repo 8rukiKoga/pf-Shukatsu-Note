@@ -8,12 +8,13 @@
 import SwiftUI
 
 struct NoteView: View {
+    
     @Environment(\.managedObjectContext) private var context
     
     var note: Note
     
     @State var text: String
-    
+    // キーボードを表示するかどうか
     @FocusState private var inputFocus: Bool
     
     init(note: Note) {
@@ -29,7 +30,6 @@ struct NoteView: View {
                 .ignoresSafeArea()
             
             VStack {
-                
                 Divider()
                 
                 ZStack {
@@ -41,26 +41,21 @@ struct NoteView: View {
                         .onChange(of: text) { newValue in
                             saveNote()
                         }
-                    // TextEditorの上に透明なTextを載せることで、TextEditorの高さの分、View自体の大きさを大きくしてくれる
+                    // TextEditorの上に透明なTextを載せることで、TextEditorの高さの分、View自体の高さを高くしてくれる
                     Text(text)
                         .opacity(0)
                         .padding(8)
                 }
-                
-            }
-            // テキストエディタの色を消す・つける
-            .onAppear() {
-                UITextView.appearance().backgroundColor = .clear
-            }.onDisappear() {
-                UITextView.appearance().backgroundColor = nil
             }
             .gesture(
+                // 下にドラッグした時に、キーボードを閉じる
                 DragGesture().onChanged({ value in
                     if value.translation.height > 0 {
                         inputFocus = false
                     }
                 })
             )
+            // ノートのどこかを押した時に、キーボードを開く
             .onTapGesture(perform: {
                 inputFocus = true
             })
@@ -68,24 +63,11 @@ struct NoteView: View {
             .navigationTitle("Note")
             .navigationBarTitleDisplayMode(.inline)
         }
+        
     }
     
     private func saveNote() {
         Note.update(in: context, currentNote: note, text: text)
     }
+    
 }
-
-//struct NoteView_Previews: PreviewProvider {
-//    static var previews: some View {
-//
-//        let testCompany = CompanyViewModel()
-//        testCompany.companyList = sampleCompanies
-//
-//        let testNote = NoteViewModel()
-//        testNote.noteList = sampleNotes
-//
-//        return NavigationView {
-//            NoteView(isInFolder: true, note: NoteModel(text: "This is text"), companyVm: testCompany, noteVm: testNote)
-//        }
-//    }
-//}

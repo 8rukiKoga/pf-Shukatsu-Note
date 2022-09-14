@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct FolderRowView: View {
-    @EnvironmentObject var customColor: CustomColor
-    @EnvironmentObject var companyIcon: CompanyIcon
+    
+    @EnvironmentObject private var customColor: CustomColor
+    @EnvironmentObject private var companyIcon: CompanyIcon
     
     var companyImage: Data?
     var name: String
@@ -35,9 +36,12 @@ struct FolderRowView: View {
                     .foregroundColor(Color(customColor.themeColor))
                     .font(.system(size: 18))
             }
+            
             Text(name)
                 .font(.system(size: 15))
+            
             Spacer()
+            
             Text(StarConvertor.shared.convertIntToStars(count: star))
                 .foregroundColor(star != 0 ? Color(.systemYellow) : Color(.gray))
                 .font(star != 0 ? .system(size: 10) : .system(size: 7))
@@ -46,10 +50,3 @@ struct FolderRowView: View {
         .frame(height: 25)
     }
 }
-
-//struct FolderRowView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        FolderRowView()
-//            .previewLayout(.sizeThatFits)
-//    }
-//}

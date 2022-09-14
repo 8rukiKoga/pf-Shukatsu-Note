@@ -8,12 +8,15 @@
 import SwiftUI
 
 struct ColorSettingView: View {
-    @EnvironmentObject var customColor: CustomColor
+    
+    @EnvironmentObject private var customColor: CustomColor
+    
     private let colorSet: [String] = [
         "ThemeColor1", "ThemeColor2", "ThemeColor3", "ThemeColor4", "ThemeColor5", "ThemeColor6"
     ]
     
     var body: some View {
+        
         VStack  {
             VStack(spacing: 100) {
                 
@@ -39,11 +42,6 @@ struct ColorSettingView: View {
                 .navigationTitle("Color Setting")
             }
         }
-    }
-}
-
-struct ColorSettingView_Previews: PreviewProvider {
-    static var previews: some View {
-        ColorSettingView()
+        
     }
 }

@@ -193,20 +193,20 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
-		0DD08C1128D02D69001769B0 /* Funcs */ = {
+		0DD08C1128D02D69001769B0 /* Functions */ = {
 			isa = PBXGroup;
 			children = (
 				0D1162DA28A5C1CA0000FCBA /* StarConvertor.swift */,
 				0DF64A7728C626F90074A14F /* CustomDateFormatter.swift */,
 				0DB5209728CE023F00D7AE6A /* VerifyUrl.swift */,
 			);
-			path = Funcs;
+			path = Functions;
 			sourceTree = "<group>";
 		};
 		0DE5C23228A9107F00865D72 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				0DD08C1128D02D69001769B0 /* Funcs */,
+				0DD08C1128D02D69001769B0 /* Functions */,
 				0D956A7528D06A9E00DFBD6E /* Properties */,
 			);
 			path = Shared;

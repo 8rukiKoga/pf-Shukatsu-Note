@@ -8,14 +8,16 @@
 import SwiftUI
 
 struct TodoListRowView: View {
+    
     @Environment(\.managedObjectContext) private var context
+    
     private let dateFormatter = DateFormatter()
     
     var task: Task
+    
     init(task: Task) {
         self.task = task
     }
-    
     
     var body: some View {
         
@@ -54,6 +56,7 @@ struct TodoListRowView: View {
                 withAnimation {
                     Task.update(in: context, task: task)
                 }
+                // バイブレーション
                 VibrationGenerator.vibGenerator.notificationOccurred(.success)
             } label: {
                 Image(systemName: task.done ? "checkmark.circle.fill" : "circle")
@@ -65,10 +68,3 @@ struct TodoListRowView: View {
         
     }
 }
-
-//struct TodoListRowView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        TodoListRowView(todoVm: TodoViewModel(), task: TodoModel(name: "wawawa", done: false))
-//            .previewLayout(.sizeThatFits)
-//    }
-//}

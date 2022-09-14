@@ -10,8 +10,8 @@ import StoreKit
 
 struct SettingsView: View {
     
-    @EnvironmentObject var customColor: CustomColor
-    @EnvironmentObject var companyIcon: CompanyIcon
+    @EnvironmentObject private var customColor: CustomColor
+    @EnvironmentObject private var companyIcon: CompanyIcon
     
     @State private var url: String = ""
     
@@ -36,12 +36,12 @@ struct SettingsView: View {
                         } label: {
                             Text("就活ノート を評価する")
                         }
+                        
                         Button {
                             openUrl(url: "https://docs.google.com/forms/d/e/1FAIpQLSdWUjv9hDJB4TMZ-e2Mxx37jgR2qenCR2LS8AJQ1jbuqryS4Q/viewform?usp=sf_link")
                         } label: {
                             Text("不具合・リクエストを送信する")
                         }
-                        
                     }
                     
                     Section(header: Text("開発者の他のアプリ").foregroundColor(Color(customColor.themeColor))) {
@@ -57,6 +57,7 @@ struct SettingsView: View {
                                     Text("さぶすく管理")
                                         .foregroundColor(Color(.label))
                                         .font(.body)
+                                    
                                     Text("登録しているサブスクを見える化するアプリ")
                                 }
                                 .padding(.leading, 2)
@@ -70,7 +71,9 @@ struct SettingsView: View {
                         
                         HStack {
                             Text("バージョン")
+                            
                             Spacer()
+                            
                             Text("1.0")
                         }
                         Button {
@@ -87,16 +90,10 @@ struct SettingsView: View {
         }
     }
     
-    // appstoreを開く
+    // urlを開く
     private func openUrl(url: String){
         let productURL:URL = URL(string: url)!
         UIApplication.shared.open(productURL)
     }
     
 }
-
-//struct SettingsView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SettingsView(companyVm: CompanyViewModel(), noteVm: NoteViewModel(), todoVm: TodoViewModel())
-//    }
-//}

@@ -8,40 +8,40 @@
 import SwiftUI
 
 struct CompanyView: View {
+    
     @Environment(\.managedObjectContext) private var context
     @FetchRequest(
         entity: Company.entity(),
         sortDescriptors: [NSSortDescriptor(keyPath: \Company.star, ascending: false)],
         predicate: nil
-    ) var companies: FetchedResults<Company>
+    ) private var companies: FetchedResults<Company>
     
     @FetchRequest(
         entity: Note.entity(),
         sortDescriptors: [NSSortDescriptor(keyPath: \Note.updatedAt, ascending: false)],
         predicate: nil
-    ) var notes: FetchedResults<Note>
+    ) private var notes: FetchedResults<Note>
     
     @FetchRequest(
         entity: Task.entity(),
         sortDescriptors: [NSSortDescriptor(keyPath: \Task.createdAt, ascending: false)],
         predicate: nil
-    ) var tasks: FetchedResults<Task>
+    ) private var tasks: FetchedResults<Task>
+    
+    // キーボードの開閉制御
+    @FocusState private var inputFocus: Bool
+    // 編集シートの表示・非表示
+    @State private var showingSheet: Bool = false
+    // 新規ノート遷移
+    @State var showingNote: Bool = false
     
     var company: Company
-    @State var memoText: String
+    @State private var memoText: String
     
     init(company: Company) {
         self.company = company
         self._memoText = State(initialValue: company.memo ?? "")
     }
-    
-    
-    // キーボードの開閉制御
-    @FocusState private var inputFocus: Bool
-    // 編集シート開閉制御
-    @State private var showingSheet: Bool = false
-    // 新規ノート遷移
-    @State var showingNote: Bool = false
     
     var body: some View {
         
@@ -54,10 +54,12 @@ struct CompanyView: View {
             }
             
             List {
+                
                 Section {
                     VStack(alignment: .leading) {
                         HStack {
                             Spacer()
+                            
                             if let imageData = company.image {
                                 // ユーザーが画像を設定している場合
                                 Image(uiImage: UIImage(data: imageData)!)
@@ -77,7 +79,9 @@ struct CompanyView: View {
                         Group {
                             HStack {
                                 Text("志望度 : ")
+                                
                                 Spacer()
+                                
                                 Text("\(StarConvertor.shared.convertIntToStars(count: Int(company.star)))")
                                     .font(company.star != 0 ? .system(size: 18) : .system(size: 13))
                                     .foregroundColor(company.star != 0 ? Color(.systemYellow) : Color(.gray))
@@ -85,21 +89,30 @@ struct CompanyView: View {
                             }
                             .padding(.top, 10)
                             .padding(1)
+                            
                             HStack {
                                 Text("業界 : ")
+                                
                                 Spacer()
+                                
                                 Text(company.category ?? "")
                             }
                             .padding(1)
+                            
                             HStack {
                                 Text("所在地 : ")
+                                
                                 Spacer()
+                                
                                 Text(company.location ?? "")
                             }
                             .padding(1)
+                            
                             HStack {
                                 Text("URL : ")
+                                
                                 Spacer()
+                                
                                 if let companyUrl = company.url {
                                     if VerifyUrl.shared.verifyUrl(urlString: companyUrl) {
                                         Link(companyUrl, destination: (URL(string: companyUrl)!))
@@ -120,9 +133,11 @@ struct CompanyView: View {
                 } header: {
                     HStack {
                         Text("企業情報")
+                        
                         Spacer()
+                        
                         Button {
-                            // 編集画面を開く
+                            // 企業編集画面を開く
                             showingSheet = true
                         } label: {
                             Text("編集")
@@ -135,7 +150,6 @@ struct CompanyView: View {
                             } else {
                                 EditCompanyView(showingSheet: $showingSheet, company: company, name: company.name ?? "", star: Int(company.star), category: company.category ?? "", location: company.location ?? "", url: company.url ?? "")
                             }
-                            
                         })
                     }
                 }
@@ -163,8 +177,10 @@ struct CompanyView: View {
                                     Text("すぐに見たい情報をここに書きます。\n選考フローやマイページのID・パスワードなど")
                                         .opacity(0.25)
                                         .font(.caption)
+                                    
                                     Spacer()
                                 }
+                                
                                 Spacer()
                             }
                             .padding()
@@ -172,12 +188,14 @@ struct CompanyView: View {
                     }
                 }
                 
-                let companyTasks = tasks.filter { $0.companyId == company.id }
                 
                 Section {
+                    // 表示するタスクをフィルタリング
+                    let companyTasks = tasks.filter { $0.companyId == company.id }
                     if companyTasks.isEmpty {
                         HStack {
                             Spacer()
+                            
                         Text("この企業に関連したタスクはありません✔️")
                             .font(.footnote)
                             .foregroundColor(.gray)
@@ -194,9 +212,9 @@ struct CompanyView: View {
                 }
                 .textCase(nil)
                 
-                let companyNotes = notes.filter { $0.companyId == company.id }
-                
                 Section {
+                    // 表示するノートをフィルタリング
+                    let companyNotes = notes.filter { $0.companyId == company.id }
                     if companyNotes.isEmpty {
                         NoItemView(listType: .note)
                     } else {
@@ -210,6 +228,7 @@ struct CompanyView: View {
                 } header: {
                     HStack {
                         Text("Note")
+                        
                         Spacer()
                         // 新規メモボタン
                         Button {
@@ -223,24 +242,26 @@ struct CompanyView: View {
                 }
                 .textCase(nil)
                 
-                
             }
             .listStyle(InsetGroupedListStyle())
             .gesture(
+                // 下にドラッグした時に、キーボードを閉じる
                 DragGesture().onChanged({ value in
                     if value.translation.height > 0 {
                         inputFocus = false
                     }
                 })
             )
-            .navigationTitle(company.name ?? "")
+            .navigationTitle(company.name ?? "New Note")
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
                     EditButton()
                 }
             }
         }
+        
     }
+    
     private func saveMemo() {
         Company.updateMemo(in: context, currentCompany: company, memo: memoText)
     }
@@ -253,25 +274,5 @@ struct CompanyView: View {
         // 削除内容を保存
         try? context.save()
     }
+    
 }
-
-//struct CompanyView_Previews: PreviewProvider {
-//    static var previews: some View {
-//
-//        let testCompany = CompanyViewModel()
-//        testCompany.companyList = sampleCompanies
-//
-//        let testNote = NoteViewModel()
-//        testNote.noteList = sampleNotes
-//
-//        return Group {
-//            NavigationView {
-//                CompanyView(company: CompanyModel(name: "name", stars: 1, category: "cat", location: "loc", url: "url", memo: "memo"), companyVm: testCompany, noteVm: NoteViewModel(), todoVm: TodoViewModel())
-//            }
-//            NavigationView {
-//                CompanyView(company: CompanyModel(name: "name", stars: 1, category: "cat", location: "loc", url: "url", memo: "memo"), companyVm: testCompany, noteVm: NoteViewModel(), todoVm: TodoViewModel())
-//                    .preferredColorScheme(.dark)
-//            }
-//        }
-//    }
-//}

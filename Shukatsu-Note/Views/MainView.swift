@@ -8,36 +8,34 @@
 import SwiftUI
 
 struct MainView: View {
-    // CoreDataの読み込み
+    
     @Environment(\.managedObjectContext) private var context
     @FetchRequest(
         entity: Company.entity(),
         sortDescriptors: [NSSortDescriptor(keyPath: \Company.star, ascending: false)],
         predicate: nil
-    ) var companies: FetchedResults<Company>
-    
+    ) private var companies: FetchedResults<Company>
     @FetchRequest(
         entity: Note.entity(),
         sortDescriptors: [NSSortDescriptor(keyPath: \Note.updatedAt, ascending: false)],
         predicate: nil
-    ) var notes: FetchedResults<Note>
-    
+    ) private var notes: FetchedResults<Note>
     @FetchRequest(
         entity: Task.entity(),
         sortDescriptors: [NSSortDescriptor(keyPath: \Task.createdAt, ascending: false)],
         predicate: nil
-    ) var tasks: FetchedResults<Task>
+    ) private var tasks: FetchedResults<Task>
     // 初回起動かどうかを判断し、それを保存する変数
     @AppStorage("is_initial_launch") private var isInitialLaunch: Bool = true
     // カスタムカラーの呼び出し
     @EnvironmentObject private var customColor: CustomColor
-    
-    // noteViewにてtabviewの背景上にテキストが浮かび上がらないようにするために背景色を塗る
+    // tabviewの背景色の設定
     init() {
         UITabBar.appearance().backgroundColor = UIColor.systemGray6
     }
     
     var body: some View {
+        
         TabView {
             
             MyNotesView()
@@ -58,8 +56,9 @@ struct MainView: View {
         }
         // アプリのアクセントカラーを変更
         .accentColor(Color(customColor.themeColor))
+        // iPadのときにもプッシュ遷移する
         .navigationViewStyle(StackNavigationViewStyle())
-        // デフォルトデータを設置
+        // 初回起動時のデフォルトデータを設置
         .onAppear() {
             if isInitialLaunch {
                 Company.createDefaultTask(in: context)
@@ -70,11 +69,6 @@ struct MainView: View {
             }
             isInitialLaunch = false
         }
-    }
-}
-
-struct MainView_Previews: PreviewProvider {
-    static var previews: some View {
-        MainView()
+        
     }
 }

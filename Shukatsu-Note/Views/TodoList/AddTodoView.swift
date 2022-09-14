@@ -8,22 +8,24 @@
 import SwiftUI
 
 struct AddTodoView: View {
+    
     @Environment(\.managedObjectContext) private var context
     @FetchRequest(
         entity: Company.entity(),
         sortDescriptors: [NSSortDescriptor(keyPath: \Company.star, ascending: false)],
         predicate: nil
-    ) var companies: FetchedResults<Company>
-    
+    ) private var companies: FetchedResults<Company>
+    // 新規タスク追加シートの表示・非表示
     @Binding var showSheet: Bool
     
     @State private var taskName: String = ""
     // 日付を指定しているか判断
     @State private var dateIsSet: Bool = true
     @State private var date = Date()
+    // 企業を指定しているか判断
     @State private var companyIsSet: Bool = false
     @State private var company: Company?
-    
+    // スクリーン幅を取得
     let screenWidth = UIScreen.main.bounds.width
     
     var body: some View {
@@ -31,12 +33,15 @@ struct AddTodoView: View {
         ZStack {
             Color(CustomColor.customBrown)
                 .ignoresSafeArea()
+            
             VStack(spacing: 28) {
                 HStack {
                     Text("Add Todo")
                         .font(.title).bold()
                         .padding(.bottom, -60)
+                    
                     Spacer()
+                    
                     Button {
                         showSheet = false
                     } label: {
@@ -51,12 +56,14 @@ struct AddTodoView: View {
                 ZStack {
                     Color(.systemGray4)
                         .opacity(0.7)
+                    
                     VStack(alignment: .center) {
                         HStack {
                             Text("タスク名").font(.footnote)
                             Spacer()
                         }
                         .padding(.horizontal)
+                        
                         TextField("タスク名を入力", text: $taskName)
                             .padding(10)
                             .frame(width: screenWidth - 36)
@@ -65,8 +72,10 @@ struct AddTodoView: View {
                         
                         HStack {
                             Text("日時").font(.footnote)
+                            
                             Toggle("", isOn: $dateIsSet)
                                 .animation(.easeInOut, value: dateIsSet)
+                            
                             if dateIsSet {
                                 DatePicker("", selection: $date, displayedComponents: .date)
                                     .cornerRadius(7)
@@ -83,9 +92,11 @@ struct AddTodoView: View {
                             Text("企業")
                                 .font(.footnote)
                                 .padding(.trailing, 3)
+                            
                             ZStack {
                                 Color(.systemGray5)
                                     .cornerRadius(7)
+                                
                                 Picker("企業", selection: $company) {
                                     Text("未選択")
                                     ForEach(companies) { company in
@@ -113,6 +124,7 @@ struct AddTodoView: View {
                 HStack {
                     Spacer()
                     Button {
+                        // 企業を選択しているか判断
                         companyIsSet = company != nil
                         // todoリストに追加
                         if companyIsSet && dateIsSet {
@@ -133,7 +145,7 @@ struct AddTodoView: View {
                         
                         // モーダルシートを閉じる
                         showSheet = false
-                        
+                        // バイブレーション
                         VibrationGenerator.vibGenerator.notificationOccurred(.success)
                     } label: {
                         ZStack {
@@ -147,10 +159,3 @@ struct AddTodoView: View {
         }
     }
 }
-
-
-//struct AddTodoView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        AddTodoView(todoVm: TodoViewModel(), companyVm: CompanyViewModel(), showSheet: .constant(true))
-//    }
-//}

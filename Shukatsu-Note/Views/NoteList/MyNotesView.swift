@@ -14,23 +14,25 @@ struct MyNotesView: View {
         entity: Company.entity(),
         sortDescriptors: [NSSortDescriptor(keyPath: \Company.star, ascending: false)],
         predicate: nil
-    ) var companies: FetchedResults<Company>
+    ) private var companies: FetchedResults<Company>
     
     @FetchRequest(
         entity: Note.entity(),
         sortDescriptors: [NSSortDescriptor(keyPath: \Note.updatedAt, ascending: false)],
         predicate: nil
-    ) var notes: FetchedResults<Note>
-    
+    ) private var notes: FetchedResults<Note>
+    // 新規企業企業のポップアップの表示・非表示
     @State private var showingPopup: Bool = false
-    // 新規ノート作成時
+    // 新規ノートに遷移するかどうか
     @State private var showingNote: Bool = false
     
     var body: some View {
+        
         NavigationView {
-            // ポップアップ表示用Z
+            // 新規企業追加ポップアップの表示用のZStack
             ZStack {
                 // 新規ノートに遷移
+                // notesを作成日時順に並び替えて、一番新しいものに遷移する
                 if let sortedNote = notes.sorted { $0.createdAt ?? Date() > $1.createdAt ?? Date() } {
                     if let newNote = sortedNote.first {
                         NavigationLink("", destination: NoteView(note: newNote), isActive: $showingNote)
@@ -38,10 +40,10 @@ struct MyNotesView: View {
                 }
                 
                 List {
-                    // 表示するノートをフィルタリング
-                    let globalNotes = notes.filter { $0.companyId == nil }
-                    // メモリスト
+                    // ノートリスト
                     Section {
+                        // 表示するノートをフィルタリング
+                        let globalNotes = notes.filter { $0.companyId == nil }
                         if globalNotes.isEmpty {
                             NoItemView(listType: .note)
                         } else {
@@ -55,10 +57,12 @@ struct MyNotesView: View {
                     } header: {
                         HStack {
                             Text("Note")
+                            
                             Spacer()
-                            // ＊ 新しいメモを追加 後々ポップアップでtitle入力->追加ができるようにする
+                            // 新規ノート作成ボタン
                             Button {
                                 Note.create(in: context, companyId: nil)
+                                // 新規ノートに遷移する
                                 showingNote.toggle()
                             } label: {
                                 Image(systemName: "square.and.pencil")
@@ -84,8 +88,9 @@ struct MyNotesView: View {
                     } header: {
                         HStack {
                             Text("企業リスト")
-                            Spacer()
                             
+                            Spacer()
+                            // 新規ノート作成ボタン
                             Button {
                                 // ポップアップ表示
                                 withAnimation {
@@ -101,7 +106,7 @@ struct MyNotesView: View {
                 }
                 .listStyle(InsetGroupedListStyle())
                 
-                // popupView
+                // 新規企業追加ポップアップ
                 if showingPopup {
                     AddCompanyPopupView(showingPopup: $showingPopup)
                         .transition(.asymmetric(insertion: .scale, removal: .opacity))
@@ -113,8 +118,8 @@ struct MyNotesView: View {
                     EditButton()
                 }
             }
-            
         }
+        
     }
     private func deleteNote(offsets: IndexSet) {
         
@@ -133,23 +138,3 @@ struct MyNotesView: View {
         try? context.save()
     }
 }
-
-//struct MyListView_Previews: PreviewProvider {
-//    static var previews: some View {
-//
-//        // テストデータをプレビュー表示
-//
-//        let testCompany = CompanyViewModel()
-//        testCompany.companyList = sampleCompanies
-//
-//        let testNote = NoteViewModel()
-//        testNote.noteList = sampleNotes
-//
-//        return Group {
-//            MyNotesView(companyVm: testCompany, noteVm: testNote, todoVm: TodoViewModel())
-//
-//            MyNotesView(companyVm: testCompany, noteVm: testNote, todoVm: TodoViewModel())
-//                .preferredColorScheme(.dark)
-//        }
-//    }
-//}

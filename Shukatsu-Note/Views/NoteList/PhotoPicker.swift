@@ -37,8 +37,6 @@ struct PhotoPicker: UIViewControllerRepresentable {
             if let image = info[.editedImage] as? UIImage {
                 guard let data = image.jpegData(compressionQuality: 0.2), let compressedImage = UIImage(data: data) else { return }
                 photoPicker.companyImage = compressedImage
-            } else {
-                // show alert
             }
             picker.dismiss(animated: true)
         }
