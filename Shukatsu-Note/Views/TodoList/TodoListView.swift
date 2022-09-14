@@ -17,7 +17,7 @@ struct TodoListView: View {
         predicate: nil
     ) private var tasks: FetchedResults<Task>
     // 新規タスク追加シートの表示・非表示
-    @State var showSheet: Bool = false
+    @State var showingSheet: Bool = false
     
     var body: some View {
         
@@ -40,7 +40,7 @@ struct TodoListView: View {
                     Spacer()
                     
                     Button {
-                        showSheet = true
+                        showingSheet = true
                     } label: {
                         ZStack {
                             RoundedRectangle(cornerRadius: 5)
@@ -59,8 +59,8 @@ struct TodoListView: View {
                 .padding(.bottom, 10)
             }
             // 新規タスク追加シート
-            .sheet(isPresented: $showSheet) {
-                AddTodoView(showSheet: $showSheet)
+            .sheet(isPresented: $showingSheet) {
+                AddTodoView(showingSheet: $showingSheet)
             }
             .navigationTitle("Todo")
             .toolbar {

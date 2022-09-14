@@ -16,7 +16,7 @@ struct AddTodoView: View {
         predicate: nil
     ) private var companies: FetchedResults<Company>
     // 新規タスク追加シートの表示・非表示
-    @Binding var showSheet: Bool
+    @Binding var showingSheet: Bool
     
     @State private var taskName: String = ""
     // 日付を指定しているか判断
@@ -43,7 +43,7 @@ struct AddTodoView: View {
                     Spacer()
                     
                     Button {
-                        showSheet = false
+                        showingSheet = false
                     } label: {
                         Image(systemName: "xmark")
                             .foregroundColor(Color(.label))
@@ -144,7 +144,7 @@ struct AddTodoView: View {
                         }
                         
                         // モーダルシートを閉じる
-                        showSheet = false
+                        showingSheet = false
                         // バイブレーション
                         VibrationGenerator.vibGenerator.notificationOccurred(.success)
                     } label: {
