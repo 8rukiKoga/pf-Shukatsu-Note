@@ -10,7 +10,6 @@ import SwiftUI
 struct NoteView: View {
     @Environment(\.managedObjectContext) private var context
     
-    var company: CompanyModel?
     var note: Note
     var companyIndex: Int?
     
