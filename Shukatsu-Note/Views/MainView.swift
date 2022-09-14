@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MainView: View {
+    // CoreDataの読み込み
     @Environment(\.managedObjectContext) private var context
     @FetchRequest(
         entity: Company.entity(),
@@ -26,10 +27,10 @@ struct MainView: View {
         sortDescriptors: [NSSortDescriptor(keyPath: \Task.createdAt, ascending: false)],
         predicate: nil
     ) var tasks: FetchedResults<Task>
-    @AppStorage("is_initial_launch") var isInitialLaunch: Bool = true
-    
-    @EnvironmentObject var customColor: CustomColor
-    
+    // 初回起動かどうかを判断し、それを保存する変数
+    @AppStorage("is_initial_launch") private var isInitialLaunch: Bool = true
+    // カスタムカラーの呼び出し
+    @EnvironmentObject private var customColor: CustomColor
     
     // noteViewにてtabviewの背景上にテキストが浮かび上がらないようにするために背景色を塗る
     init() {
