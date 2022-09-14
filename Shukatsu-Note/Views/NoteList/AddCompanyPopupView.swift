@@ -12,6 +12,8 @@ struct AddCompanyPopupView: View {
     @Environment(\.managedObjectContext) private var context
     // ポップアップを表示するか
     @Binding var showingPopup: Bool
+    
+    @State var showingAlert: Bool = false
     // 登録する企業名
     @State private var newCompanyName: String = ""
     // スマホのスクリーン幅
@@ -42,6 +44,10 @@ struct AddCompanyPopupView: View {
                     .background(Color(.systemBackground))
                     .cornerRadius(7)
                 
+                Text("\(newCompanyName.count) / 20")
+                    .font(.caption2)
+                    .foregroundColor(TextCountValidation.shared.isTextCountValid(text: newCompanyName, max: 20) ? .gray : .red)
+                
                 Spacer()
                 
                 Divider()
@@ -55,16 +61,23 @@ struct AddCompanyPopupView: View {
                     }
                     
                     Button {
-                        Company.create(in: context, name: newCompanyName)
-                        // ポップアップを閉じる
-                        showingPopup = false
-                        // バイブレーション
-                        VibrationGenerator.vibGenerator.notificationOccurred(.success)
+                        if TextCountValidation.shared.isTextCountValid(text: newCompanyName, max: 20) {
+                            Company.create(in: context, name: newCompanyName)
+                            // ポップアップを閉じる
+                            showingPopup = false
+                            // バイブレーション
+                            VibrationGenerator.vibGenerator.notificationOccurred(.success)
+                        } else {
+                            showingAlert = true
+                        }
                     } label: {
                         Text("保存")
                             .fontWeight(.bold)
                             .frame(width: popupWidth / 2)
                     }
+                    .alert(isPresented: $showingAlert) {
+                                Alert(title: Text("企業名は0文字以上20文字以内で入力してください。"))
+                            }
                 }
                 .padding(3)
             }
