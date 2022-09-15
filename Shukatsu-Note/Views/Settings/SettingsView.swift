@@ -78,8 +78,7 @@ struct SettingsView: View {
                             Text("1.0")
                         }
                         Button {
-                            // ＊ リリース直前にPFサイトにアプリを掲載→そのリンクをここに記載する
-                            openUrl(url: "https://8rukikoga.github.io/pf-Portfolio/")
+                            openUrl(url: "https://8rukikoga.github.io/pf-Portfolio/ShukatsuNote.html")
                         } label: {
                             Text("プライバシーポリシー")
                         }
