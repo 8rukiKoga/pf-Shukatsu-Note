@@ -19,6 +19,17 @@ struct AddTodoView: View {
     @Binding var showingSheet: Bool
     
     @State private var showingAlert: Bool = false
+    // スクリーン幅を取得
+    let screenWidth = UIScreen.main.bounds.width
+    var isIphone: Bool {
+        if UIDevice.current.userInterfaceIdiom == .phone {
+           // 使用デバイスがiPhoneの場合
+            return true
+        } else {
+           // 使用デバイスがiPadの場合
+            return false
+        }
+    }
     
     @State private var taskName: String = ""
     // 日付を指定しているか判断
@@ -27,8 +38,6 @@ struct AddTodoView: View {
     // 企業を指定しているか判断
     @State private var companyIsSet: Bool = false
     @State private var company: Company?
-    // スクリーン幅を取得
-    let screenWidth = UIScreen.main.bounds.width
     
     var body: some View {
         
@@ -68,7 +77,7 @@ struct AddTodoView: View {
                         
                         TextField("タスク名を入力", text: $taskName)
                             .padding(10)
-                            .frame(width: screenWidth - 36)
+                            .frame(width: isIphone ? screenWidth / 1.2 : screenWidth / 1.4)
                             .background(Color(.systemGray5))
                             .cornerRadius(7)
                         
@@ -121,7 +130,7 @@ struct AddTodoView: View {
                     }
                     .frame(height: 270)
                 }
-                .frame(width: screenWidth-10, height: 270)
+                .frame(width: isIphone ? screenWidth / 1.1 : screenWidth / 1.3, height: 270)
                 .cornerRadius(7)
                 Spacer()
             }
