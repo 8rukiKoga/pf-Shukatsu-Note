@@ -95,9 +95,12 @@ struct MyNotesView: View {
         
     }
     private func deleteNote(offsets: IndexSet) {
+        // グローバルノートに絞り込む
+        let globalNotes = notes.filter { $0.companyId == nil }
         
         offsets.forEach { index in
-            context.delete(notes[index])
+            // グローバルノートでのインデックス要素を消す
+            context.delete(globalNotes[index])
         }
         // 削除内容を保存
         try? context.save()

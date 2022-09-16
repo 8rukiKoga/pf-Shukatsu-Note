@@ -267,9 +267,12 @@ struct CompanyView: View {
     }
     
     private func deleteNote(offsets: IndexSet) {
+        // 企業ノートに絞り込む
+        let companyNotes = notes.filter { $0.companyId == company.id }
         
         offsets.forEach { index in
-            context.delete(notes[index])
+            // 企業ノートでのインデックス要素を消す
+            context.delete(companyNotes[index])
         }
         // 削除内容を保存
         try? context.save()
