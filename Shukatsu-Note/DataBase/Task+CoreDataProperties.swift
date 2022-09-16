@@ -49,6 +49,7 @@ extension Task {
     }
     
     static func createDefaultTask(in context: NSManagedObjectContext) {
+        
         let newTask = Task(context: context)
         newTask.createdAt = Date()
         newTask.id = UUID().uuidString
@@ -66,14 +67,24 @@ extension Task {
     }
     
     static func createDefaultCompanyTask(in context: NSManagedObjectContext) {
-        let newTask = Task(context: context)
-        newTask.createdAt = Date()
-        newTask.id = UUID().uuidString
-        newTask.companyId = "default_company"
-        newTask.companyName = "さんぷる株式会社"
-        newTask.name = "説明会"
-        newTask.date = Date()
-        newTask.done = true
+        
+        let newTask1 = Task(context: context)
+        newTask1.createdAt = Date()
+        newTask1.id = UUID().uuidString
+        newTask1.companyId = "default_company"
+        newTask1.companyName = "さんぷる株式会社"
+        newTask1.name = "タスクが完了したら、タップしましょう。"
+        newTask1.date = Date()
+        newTask1.done = false
+        
+        let newTask2 = Task(context: context)
+        newTask2.createdAt = Date()
+        newTask2.id = UUID().uuidString
+        newTask2.companyId = "default_company"
+        newTask2.companyName = "さんぷる株式会社"
+        newTask2.name = "1dayインターンシップ"
+        newTask2.date = Date()
+        newTask2.done = true
         
         do {
             try context.save()

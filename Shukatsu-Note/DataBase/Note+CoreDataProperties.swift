@@ -46,11 +46,18 @@ extension Note {
     }
     
     static func createDefaultNote(in context: NSManagedObjectContext) {
-        let newNote = Note(context: context)
-        newNote.createdAt = Date()
-        newNote.id = UUID().uuidString
-        newNote.companyId = nil
-        newNote.text = "自分の就活の軸"
+        
+        let newNote1 = Note(context: context)
+        newNote1.createdAt = Date()
+        newNote1.id = UUID().uuidString
+        newNote1.companyId = nil
+        newNote1.text = "自分の就活の軸"
+        
+        let newNote2 = Note(context: context)
+        newNote2.createdAt = Date()
+        newNote2.id = UUID().uuidString
+        newNote2.companyId = nil
+        newNote2.text = "ここには就活全体のノートを保存できます"
         
         do {
             try context.save()
@@ -60,10 +67,18 @@ extension Note {
     }
     
     static func createDefaultCompanyNote(in context: NSManagedObjectContext) {
-        let newNote = Note(context: context)
-        newNote.createdAt = Date()
-        newNote.companyId = "default_company"
-        newNote.text = "インターンで学んだこと"
+        
+        let newNote1 = Note(context: context)
+        newNote1.createdAt = Date()
+        newNote1.id = UUID().uuidString
+        newNote1.companyId = "default_company"
+        newNote1.text = "インターンで学んだこと"
+        
+        let newNote2 = Note(context: context)
+        newNote2.createdAt = Date()
+        newNote2.id = UUID().uuidString
+        newNote2.companyId = "default_company"
+        newNote2.text = "ここには企業に関するノートを保存できます。"
         
         do {
             try context.save()
