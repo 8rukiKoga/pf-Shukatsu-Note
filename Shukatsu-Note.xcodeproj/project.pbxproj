@@ -12,7 +12,7 @@
 		0D1F147428D1966000CFE1DE /* ListHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1F147328D1966000CFE1DE /* ListHeader.swift */; };
 		0D1F147628D1974D00CFE1DE /* ListType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1F147528D1974D00CFE1DE /* ListType.swift */; };
 		0D1F147B28D1DE8600CFE1DE /* TextCountValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1F147A28D1DE8600CFE1DE /* TextCountValidation.swift */; };
-		0D5C0B0B28D3449500162A8D /* Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D5C0B0A28D3449400162A8D /* Logo.png */; };
+		0D5C0B1128D443BE00162A8D /* ShukatsuNoteAppIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D5C0B1028D443BE00162A8D /* ShukatsuNoteAppIcon.png */; };
 		0D61C9E628B31EDD006B3270 /* CompanyImageMod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D61C9E528B31EDC006B3270 /* CompanyImageMod.swift */; };
 		0D61C9E828B32364006B3270 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D61C9E728B32364006B3270 /* LaunchScreen.storyboard */; };
 		0D61C9ED28B33E25006B3270 /* AppLogoMod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D61C9EC28B33E24006B3270 /* AppLogoMod.swift */; };
@@ -55,7 +55,7 @@
 		0D1F147328D1966000CFE1DE /* ListHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListHeader.swift; sourceTree = "<group>"; };
 		0D1F147528D1974D00CFE1DE /* ListType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListType.swift; sourceTree = "<group>"; };
 		0D1F147A28D1DE8600CFE1DE /* TextCountValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextCountValidation.swift; sourceTree = "<group>"; };
-		0D5C0B0A28D3449400162A8D /* Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Logo.png; sourceTree = "<group>"; };
+		0D5C0B1028D443BE00162A8D /* ShukatsuNoteAppIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ShukatsuNoteAppIcon.png; sourceTree = "<group>"; };
 		0D61C9E528B31EDC006B3270 /* CompanyImageMod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyImageMod.swift; sourceTree = "<group>"; };
 		0D61C9E728B32364006B3270 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0D61C9E928B325A1006B3270 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -153,7 +153,7 @@
 				0DB2B271289E95D800A81149 /* Views */,
 				0DF5FDAE28C9B73900FD8184 /* DataBase */,
 				0DB2B265289E952B00A81149 /* Assets.xcassets */,
-				0D5C0B0A28D3449400162A8D /* Logo.png */,
+				0D5C0B1028D443BE00162A8D /* ShukatsuNoteAppIcon.png */,
 				0DB2B267289E952B00A81149 /* Preview Content */,
 			);
 			path = "Shukatsu-Note";
@@ -317,7 +317,7 @@
 			files = (
 				0D61C9E828B32364006B3270 /* LaunchScreen.storyboard in Resources */,
 				0DB2B269289E952B00A81149 /* Preview Assets.xcassets in Resources */,
-				0D5C0B0B28D3449500162A8D /* Logo.png in Resources */,
+				0D5C0B1128D443BE00162A8D /* ShukatsuNoteAppIcon.png in Resources */,
 				0DB2B266289E952B00A81149 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
