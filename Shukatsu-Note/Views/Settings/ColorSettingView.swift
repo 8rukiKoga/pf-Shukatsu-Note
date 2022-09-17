@@ -12,7 +12,7 @@ struct ColorSettingView: View {
     @EnvironmentObject private var customColor: CustomColor
     
     private let colorSet: [String] = [
-        "ThemeColor1", "ThemeColor2", "ThemeColor3", "ThemeColor4", "ThemeColor5", "ThemeColor6"
+        CustomColor.themeColor1, CustomColor.themeColor2, CustomColor.themeColor3, CustomColor.themeColor4, CustomColor.themeColor5, CustomColor.themeColor6
     ]
     
     var body: some View {
