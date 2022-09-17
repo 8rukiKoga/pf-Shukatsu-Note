@@ -31,8 +31,7 @@ struct SettingsView: View {
                     
                     Section(header: Text("サポート").foregroundColor(Color(customColor.themeColor))) {
                         Button {
-                            // AppStoreレビュー画面遷移
-                            // リリース後にリンクを取得できるので、リリース後に実装
+                            openUrl(url: "https://apps.apple.com/app/id1645528668")
                         } label: {
                             Text("就活ノート を評価する")
                         }
