@@ -26,7 +26,7 @@ struct MainView: View {
         predicate: nil
     ) private var tasks: FetchedResults<Task>
     // 初回起動かどうかを判断し、それを保存する変数
-    @AppStorage("is_initial_launch") private var isInitialLaunch: Bool = true
+    @AppStorage("is_initial_launch") var isInitialLaunch: Bool = true
     // カスタムカラーの呼び出し
     @EnvironmentObject private var customColor: CustomColor
     // tabviewの背景色の設定

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import StoreKit
 
 struct CompanyView: View {
     
@@ -256,6 +257,18 @@ struct CompanyView: View {
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
                     EditButton()
+                }
+            }
+        }
+        .onAppear() {
+            let a = MainView()
+            if a.isInitialLaunch == false {
+                // 1/30の確率で、レビュー依頼ポップアップを表示
+                let randomInt = Int.random(in: 1..<30)
+                if randomInt == 1 {
+                    if let scene = UIApplication.shared.connectedScenes.first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene {
+                        SKStoreReviewController.requestReview(in: scene)
+                    }
                 }
             }
         }
