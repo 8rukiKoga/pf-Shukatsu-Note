@@ -110,8 +110,9 @@ struct EditCompanyView: View {
                     
                     Button {
                         // UIImageをData型に変換
-                        guard let imageData = companyImage.pngData() else { return }
-                        Company.updateInfo(in: context, currentCompany: company, image: imageData, name: name, star: star, category: category, location: location, url: url)
+                        guard let data = companyImage.jpegData(compressionQuality: 0.1) else { return }
+                        print(data)
+                        Company.updateInfo(in: context, currentCompany: company, image: data, name: name, star: star, category: category, location: location, url: url)
                         // 編集シートを閉じる
                         showingSheet = false
                         // バイブレーション
