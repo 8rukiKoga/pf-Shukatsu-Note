@@ -126,7 +126,9 @@ struct CompanyView: View {
                                 Spacer()
                                 
                                 if let companyUrl = company.url {
-                                    if VerifyUrl.shared.verifyUrl(urlString: companyUrl) {
+                                    if companyUrl.isEmpty {
+                                        Text("")
+                                    } else if VerifyUrl.shared.verifyUrl(urlString: companyUrl) {
                                         Link(companyUrl, destination: (URL(string: companyUrl)!))
                                             .foregroundColor(Color(.link))
                                             .font(.caption)
