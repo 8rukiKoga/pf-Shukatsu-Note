@@ -180,7 +180,8 @@ struct CompanyView: View {
                             .font(.caption)
                             .padding(8)
                             .onChange(of: memoText) { newValue in
-                                saveMemo()
+                                // ＊原因不明：たまに特定のメモで、入力動作が遅いものがある
+                                saveMemo(text: newValue)
                             }
                         
                         if memoText.isEmpty {
@@ -275,7 +276,7 @@ struct CompanyView: View {
         
     }
     
-    private func saveMemo() {
+    private func saveMemo(text: String) {
         Company.updateMemo(in: context, currentCompany: company, memo: memoText)
     }
     

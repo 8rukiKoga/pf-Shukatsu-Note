@@ -39,7 +39,8 @@ struct NoteView: View {
                         .font(.body)
                         .padding(.horizontal)
                         .onChange(of: text) { newValue in
-                            saveNote()
+                            // ＊原因不明：一部のノートにある文をコピペしたやつがめっちゃ遅い
+                            saveNote(text: newValue)
                         }
                     // TextEditorの上に透明なTextを載せることで、TextEditorの高さの分、View自体の高さを高くしてくれる
                     Text(text)
@@ -66,7 +67,7 @@ struct NoteView: View {
         
     }
     
-    private func saveNote() {
+    private func saveNote(text: String) {
         Note.update(in: context, currentNote: note, text: text)
     }
     
