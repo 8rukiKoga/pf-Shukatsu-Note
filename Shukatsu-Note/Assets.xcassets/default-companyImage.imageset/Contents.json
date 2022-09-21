@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "companyImage.jpg",
+      "filename" : "default-companyImage.jpg",
       "idiom" : "universal",
       "scale" : "1x"
     },
