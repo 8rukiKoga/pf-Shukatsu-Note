@@ -72,7 +72,7 @@ struct MyNotesView: View {
                             .onDelete(perform: deleteCompany)
                         }
                     } header: {
-                        ListHeader(showingSomething: $showingPopup, listType: .company)
+                        ListHeader(showingSomething: $showingPopup, listType: .company, companyCount: companies.count)
                     }
                     .textCase(nil)
                     

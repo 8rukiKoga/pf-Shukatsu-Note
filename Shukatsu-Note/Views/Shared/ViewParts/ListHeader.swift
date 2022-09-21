@@ -14,7 +14,10 @@ struct ListHeader: View {
     @Binding var showingSomething: Bool
     
     var listType: ListType
+    
     var companyId: String?
+    
+    var companyCount: Int = 0
     
     var body: some View {
         
@@ -39,6 +42,10 @@ struct ListHeader: View {
         case .company:
             HStack {
                 Text("Company")
+                
+                Text("\(companyCount) / 20")
+                    .font(.system(size: 8))
+                    .padding(.leading, 1)
                 
                 Spacer()
                 // 新規ノート作成ボタン
@@ -78,6 +85,6 @@ struct ListHeader: View {
 
 struct ListHeader_Previews: PreviewProvider {
     static var previews: some View {
-        ListHeader(showingSomething: .constant(false), listType: .note)
+        ListHeader(showingSomething: .constant(false), listType: .company)
     }
 }
