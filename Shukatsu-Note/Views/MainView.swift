@@ -68,8 +68,6 @@ struct MainView: View {
                 Task.createDefaultCompanyTask(in: context)
                 isInitialLaunch = false
             }
-            // スプラッシュ画面表示時間
-            sleep(1)
         }
         
     }
