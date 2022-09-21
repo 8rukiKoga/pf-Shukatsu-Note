@@ -10,10 +10,18 @@ import SwiftUI
 struct AddCompanyPopupView: View {
     
     @Environment(\.managedObjectContext) private var context
+    @FetchRequest(
+        entity: Company.entity(),
+        sortDescriptors: [NSSortDescriptor(keyPath: \Company.star, ascending: false)],
+        predicate: nil
+    ) private var companies: FetchedResults<Company>
+    
     // ポップアップを表示するか
     @Binding var showingPopup: Bool
-    
-    @State private var showingAlert: Bool = false
+    // 登録企業数バリデーションアラートを表示するか
+    @State private var showingCompanyCountAlert: Bool = false
+    // 文字数バリデーションアラートを表示するか
+    @State private var showingTextLengthAlert: Bool = false
     // 登録する企業名
     @State private var newCompanyName: String = ""
     // スマホのスクリーン幅
@@ -62,21 +70,30 @@ struct AddCompanyPopupView: View {
                     
                     Button {
                         if TextCountValidation.shared.isTextCountValid(text: newCompanyName, max: 20) {
-                            Company.create(in: context, name: newCompanyName)
-                            // ポップアップを閉じる
-                            showingPopup = false
-                            // バイブレーション
-                            VibrationGenerator.vibGenerator.notificationOccurred(.success)
+                            
+                            if companies.count < 20 {
+                                Company.create(in: context, name: newCompanyName)
+                                // ポップアップを閉じる
+                                showingPopup = false
+                                // バイブレーション
+                                VibrationGenerator.vibGenerator.notificationOccurred(.success)
+                            } else {
+                                showingCompanyCountAlert = true
+                            }
+                            
                         } else {
-                            showingAlert = true
+                            showingTextLengthAlert = true
                         }
                     } label: {
                         Text("保存")
                             .fontWeight(.bold)
                             .frame(width: popupWidth / 2)
                     }
-                    .alert(isPresented: $showingAlert) {
+                    .alert(isPresented: $showingTextLengthAlert) {
                         Alert(title: Text("企業名は1文字以上20文字以内で入力してください。"))
+                    }
+                    .alert(isPresented: $showingCompanyCountAlert) {
+                        Alert(title: Text("登録可能企業数(20)に達しています。"))
                     }
                 }
                 .padding(3)
