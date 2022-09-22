@@ -264,8 +264,8 @@ struct CompanyView: View {
             }
         }
         .onAppear() {
-            let a = MainView()
-            if a.isInitialLaunch == false {
+            let mainView = MainView()
+            if mainView.isInitialLaunch == false {
                 // 1/30の確率で、レビュー依頼ポップアップを表示
                 let randomInt = Int.random(in: 1..<50)
                 if randomInt == 1 {
