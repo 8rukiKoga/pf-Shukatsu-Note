@@ -32,8 +32,8 @@ struct ListHeader: View {
             HStack {
                 Text("Note")
                 
-                if noteCount > 130 {
-                    Text("\(noteCount) / 150")
+                if noteCount > 70 {
+                    Text("\(noteCount) / 100")
                         .font(.system(size: 8))
                         .padding(.leading, 1)
                 }
@@ -41,7 +41,7 @@ struct ListHeader: View {
                 Spacer()
                 // 新規ノート作成ボタン
                 Button {
-                    if noteCount < 150 {
+                    if noteCount < 100 {
                         Note.create(in: context, companyId: nil)
                         // 新規ノートに遷移する
                         showingSomething.toggle()
@@ -91,8 +91,8 @@ struct ListHeader: View {
             HStack {
                 Text("Note")
                 
-                if noteCount > 130 {
-                    Text("\(noteCount) / 150")
+                if noteCount > 70 {
+                    Text("\(noteCount) / 100")
                         .font(.system(size: 8))
                         .padding(.leading, 1)
                 }
@@ -100,7 +100,7 @@ struct ListHeader: View {
                 Spacer()
                 // 新規メモボタン
                 Button {
-                    if noteCount < 150 {
+                    if noteCount < 100 {
                         Note.create(in: context, companyId: companyId)
                         showingSomething.toggle()
                     } else {
