@@ -140,7 +140,7 @@ struct AddTodoView: View {
                 HStack {
                     Spacer()
                     Button {
-                        if TextCountValidation.shared.isTextCountValid(text: taskName, max: 25) {
+                        if TextCountValidation.shared.isTextCountValid(text: taskName, max: 30) {
                             // 企業を選択しているか判断
                             companyIsSet = company != nil
                             // todoリストに追加
@@ -175,7 +175,7 @@ struct AddTodoView: View {
                         }
                     }
                     .alert(isPresented: $showingAlert) {
-                        Alert(title: Text("タスク名は1文字以上25文字以内で入力してください。"))
+                        Alert(title: Text("タスク名は1文字以上30文字以内で入力してください。"))
                     }
                 }
             }
