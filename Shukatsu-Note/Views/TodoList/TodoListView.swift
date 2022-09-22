@@ -16,6 +16,8 @@ struct TodoListView: View {
         sortDescriptors: [NSSortDescriptor(keyPath: \Task.createdAt, ascending: false)],
         predicate: nil
     ) private var tasks: FetchedResults<Task>
+    // 登録タスク数バリデーションの表示・非表示
+    @State private var showingTaskCountAlert: Bool = false
     // 新規タスク追加シートの表示・非表示
     @State var showingSheet: Bool = false
     
@@ -24,14 +26,19 @@ struct TodoListView: View {
         NavigationView {
             ZStack {
                 List {
-                    if tasks.isEmpty {
-                        NoItemView(listType: .task)
-                    } else {
-                        ForEach(tasks) { task in
-                            TodoListRowView(task: task)
+                    Section {
+                        if tasks.isEmpty {
+                            NoItemView(listType: .task)
+                        } else {
+                            ForEach(tasks) { task in
+                                TodoListRowView(task: task)
+                            }
+                            .onDelete(perform: deleteTask)
                         }
-                        .onDelete(perform: deleteTask)
+                    } header: {
+                        ListHeader(showingSomething: .constant(false), listType: .task, taskCount: tasks.count)
                     }
+                    .textCase(nil)
                 }
                 .listStyle(PlainListStyle())
                 .padding(.bottom, 80)
@@ -40,7 +47,11 @@ struct TodoListView: View {
                     Spacer()
                     
                     Button {
-                        showingSheet = true
+                        if tasks.count < 200 {
+                            showingSheet = true
+                        } else {
+                            showingTaskCountAlert = true
+                        }
                     } label: {
                         ZStack {
                             RoundedRectangle(cornerRadius: 5)
@@ -53,6 +64,9 @@ struct TodoListView: View {
                                     .bold()
                             }
                         }
+                    }
+                    .alert(isPresented: $showingTaskCountAlert) {
+                        Alert(title: Text("登録可能タスク数の上限(200)に達しています。"))
                     }
                 }
                 .padding()

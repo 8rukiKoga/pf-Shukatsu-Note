@@ -23,6 +23,8 @@ struct ListHeader: View {
     
     var noteCount: Int = 0
     
+    var taskCount: Int = 0
+    
     var body: some View {
         
         switch listType {
@@ -99,8 +101,8 @@ struct ListHeader: View {
                 // 新規メモボタン
                 Button {
                     if noteCount < 150 {
-                    Note.create(in: context, companyId: companyId)
-                    showingSomething.toggle()
+                        Note.create(in: context, companyId: companyId)
+                        showingSomething.toggle()
                     } else {
                         showingAlert = true
                     }
@@ -114,7 +116,14 @@ struct ListHeader: View {
             }
             
         case .task:
-            Text("Hello, world.")
+            HStack {
+                Spacer()
+                if taskCount > 2 {
+                    Text("\(taskCount) / 200")
+                        .font(.system(size: 8))
+                        .padding(.leading, 1)
+                }
+            }
         }
         
     }
