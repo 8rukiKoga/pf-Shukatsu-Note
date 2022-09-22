@@ -241,7 +241,7 @@ struct CompanyView: View {
                         .onDelete(perform: deleteNote)
                     }
                 } header: {
-                    ListHeader(showingSomething: $showingNote, listType: .companyNote, companyId: company.id ?? "")
+                    ListHeader(showingSomething: $showingNote, listType: .companyNote, companyId: company.id ?? "", noteCount: notes.count)
                 }
                 .textCase(nil)
                 

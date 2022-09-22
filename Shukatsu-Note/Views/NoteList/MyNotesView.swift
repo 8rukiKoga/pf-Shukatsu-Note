@@ -23,6 +23,8 @@ struct MyNotesView: View {
     ) private var notes: FetchedResults<Note>
     // 新規企業企業のポップアップの表示・非表示
     @State private var showingPopup: Bool = false
+    // 新規企業企業のポップアップの表示・非表示
+    @State private var showingCompanyCountAlert: Bool = false
     // 新規ノートに遷移するかどうか
     @State private var showingNote: Bool = false
     
@@ -55,7 +57,7 @@ struct MyNotesView: View {
                             .onDelete(perform: deleteNote)
                         }
                     } header: {
-                        ListHeader(showingSomething: $showingNote, listType: .note)
+                        ListHeader(showingSomething: $showingNote, listType: .note, noteCount: notes.count)
                     }
                     .textCase(nil)
                     

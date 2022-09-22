@@ -11,6 +11,8 @@ struct ListHeader: View {
     
     @Environment(\.managedObjectContext) private var context
     
+    @State private var showingAlert: Bool = false
+    
     @Binding var showingSomething: Bool
     
     var listType: ListType
@@ -19,6 +21,8 @@ struct ListHeader: View {
     
     var companyCount: Int = 0
     
+    var noteCount: Int = 0
+    
     var body: some View {
         
         switch listType {
@@ -26,17 +30,30 @@ struct ListHeader: View {
             HStack {
                 Text("Note")
                 
+                if noteCount > 3 {
+                    Text("\(noteCount) / 150")
+                        .font(.system(size: 8))
+                        .padding(.leading, 1)
+                }
+                
                 Spacer()
                 // 新規ノート作成ボタン
                 Button {
-                    Note.create(in: context, companyId: nil)
-                    // 新規ノートに遷移する
-                    showingSomething.toggle()
+                    if noteCount < 150 {
+                        Note.create(in: context, companyId: nil)
+                        // 新規ノートに遷移する
+                        showingSomething.toggle()
+                    } else {
+                        showingAlert = true
+                    }
                 } label: {
                     Image(systemName: "square.and.pencil")
                         .font(.system(size: 15))
                 }
                 .padding(.trailing, 5)
+                .alert(isPresented: $showingAlert) {
+                    Alert(title: Text("登録可能ノート数の上限(150)に達しています。"))
+                }
             }
             
         case .company:
@@ -64,6 +81,12 @@ struct ListHeader: View {
         case .companyNote:
             HStack {
                 Text("Note")
+                
+                if noteCount > 3 {
+                    Text("\(noteCount) / 150")
+                        .font(.system(size: 8))
+                        .padding(.leading, 1)
+                }
                 
                 Spacer()
                 // 新規メモボタン
