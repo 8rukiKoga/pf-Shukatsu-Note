@@ -39,8 +39,12 @@ struct NoteView: View {
                         .font(.body)
                         .padding(.horizontal)
                         .onChange(of: text) { newValue in
-                            // ＊原因不明：一部のノートにある文をコピペしたやつがめっちゃ遅い
-                            saveNote(text: newValue)
+                            if newValue.count > 3000 {
+                                text.removeLast()
+                            } else {
+                                // ＊原因不明：一部のノートにある文をコピペしたやつがめっちゃ遅い
+                                saveNote(text: newValue)
+                            }
                         }
                     // TextEditorの上に透明なTextを載せることで、TextEditorの高さの分、View自体の高さを高くしてくれる
                     Text(text)
@@ -63,6 +67,13 @@ struct NoteView: View {
             
             .navigationTitle("Note")
             .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
+                    Text("\(text.count) / 3000")
+                        .font(.system(size: 8))
+                        .foregroundColor(.gray)
+                }
+            }
         }
         
     }
