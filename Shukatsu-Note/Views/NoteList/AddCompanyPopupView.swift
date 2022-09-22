@@ -93,7 +93,7 @@ struct AddCompanyPopupView: View {
                         Alert(title: Text("企業名は1文字以上20文字以内で入力してください。"))
                     }
                     .alert(isPresented: $showingCompanyCountAlert) {
-                        Alert(title: Text("登録可能企業数(20)に達しています。"))
+                        Alert(title: Text("登録可能企業数の上限(20)に達しています。"))
                     }
                 }
                 .padding(3)
