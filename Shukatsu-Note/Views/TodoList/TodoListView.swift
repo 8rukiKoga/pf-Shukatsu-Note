@@ -26,19 +26,14 @@ struct TodoListView: View {
         NavigationView {
             ZStack {
                 List {
-                    Section {
-                        if tasks.isEmpty {
-                            NoItemView(listType: .task)
-                        } else {
-                            ForEach(tasks) { task in
-                                TodoListRowView(task: task)
-                            }
-                            .onDelete(perform: deleteTask)
+                    if tasks.isEmpty {
+                        NoItemView(listType: .task)
+                    } else {
+                        ForEach(tasks) { task in
+                            TodoListRowView(task: task)
                         }
-                    } header: {
-                        ListHeader(showingSomething: .constant(false), listType: .task, taskCount: tasks.count)
+                        .onDelete(perform: deleteTask)
                     }
-                    .textCase(nil)
                 }
                 .listStyle(PlainListStyle())
                 .padding(.bottom, 80)
