@@ -30,7 +30,7 @@ struct ListHeader: View {
             HStack {
                 Text("Note")
                 
-                if noteCount > 3 {
+                if noteCount > 130 {
                     Text("\(noteCount) / 150")
                         .font(.system(size: 8))
                         .padding(.leading, 1)
@@ -89,7 +89,7 @@ struct ListHeader: View {
             HStack {
                 Text("Note")
                 
-                if noteCount > 3 {
+                if noteCount > 130 {
                     Text("\(noteCount) / 150")
                         .font(.system(size: 8))
                         .padding(.leading, 1)
