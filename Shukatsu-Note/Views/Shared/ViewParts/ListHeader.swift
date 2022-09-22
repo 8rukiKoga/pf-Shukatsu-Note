@@ -60,22 +60,29 @@ struct ListHeader: View {
             HStack {
                 Text("Company")
                 
-                Text("\(companyCount) / 20")
+                Text("\(companyCount) / 30")
                     .font(.system(size: 8))
                     .padding(.leading, 1)
                 
                 Spacer()
                 // 新規ノート作成ボタン
                 Button {
-                    // ポップアップ表示
-                    withAnimation {
-                        showingSomething = true
+                    if companyCount < 30 {
+                        // ポップアップ表示
+                        withAnimation {
+                            showingSomething = true
+                        }
+                    } else {
+                        showingAlert = true
                     }
                 } label: {
                     Image(systemName: "folder.badge.plus")
                         .font(.system(size: 15))
                 }
                 .padding(.trailing, 5)
+                .alert(isPresented: $showingAlert) {
+                    Alert(title: Text("登録可能企業数の上限(20)に達しています。"))
+                }
             }
             
         case .companyNote:
@@ -91,11 +98,18 @@ struct ListHeader: View {
                 Spacer()
                 // 新規メモボタン
                 Button {
+                    if noteCount < 150 {
                     Note.create(in: context, companyId: companyId)
                     showingSomething.toggle()
+                    } else {
+                        showingAlert = true
+                    }
                 } label: {
                     Image(systemName: "square.and.pencil")
                         .font(.system(size: 15))
+                }
+                .alert(isPresented: $showingAlert) {
+                    Alert(title: Text("登録可能ノート数の上限(150)に達しています。"))
                 }
             }
             

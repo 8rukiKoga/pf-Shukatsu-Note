@@ -18,10 +18,8 @@ struct AddCompanyPopupView: View {
     
     // ポップアップを表示するか
     @Binding var showingPopup: Bool
-    // 登録企業数バリデーションアラートを表示するか
-    @State private var showingCompanyCountAlert: Bool = false
-    // 文字数バリデーションアラートを表示するか
-    @State private var showingTextLengthAlert: Bool = false
+    // テキスト数アラートを表示するか
+    @State private var showingAlert: Bool = false
     // 登録する企業名
     @State private var newCompanyName: String = ""
     // スマホのスクリーン幅
@@ -70,30 +68,22 @@ struct AddCompanyPopupView: View {
                     
                     Button {
                         if TextCountValidation.shared.isTextCountValid(text: newCompanyName, max: 20) {
-                            
-                            if companies.count < 20 {
                                 Company.create(in: context, name: newCompanyName)
                                 // ポップアップを閉じる
                                 showingPopup = false
                                 // バイブレーション
                                 VibrationGenerator.vibGenerator.notificationOccurred(.success)
-                            } else {
-                                showingCompanyCountAlert = true
-                            }
                             
                         } else {
-                            showingTextLengthAlert = true
+                            showingAlert = true
                         }
                     } label: {
                         Text("保存")
                             .fontWeight(.bold)
                             .frame(width: popupWidth / 2)
                     }
-                    .alert(isPresented: $showingTextLengthAlert) {
+                    .alert(isPresented: $showingAlert) {
                         Alert(title: Text("企業名は1文字以上20文字以内で入力してください。"))
-                    }
-                    .alert(isPresented: $showingCompanyCountAlert) {
-                        Alert(title: Text("登録可能企業数の上限(20)に達しています。"))
                     }
                 }
                 .padding(3)
