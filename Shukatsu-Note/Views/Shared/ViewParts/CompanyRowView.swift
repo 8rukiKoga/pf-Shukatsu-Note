@@ -22,6 +22,7 @@ struct FolderRowView: View {
                 if let companyImage = companyImage {
                     Image(uiImage: UIImage(data: companyImage)!)
                         .resizable()
+                        .scaledToFill()
                         .frame(width: 28, height: 28)
                         .clipShape(Circle())
                 } else {
