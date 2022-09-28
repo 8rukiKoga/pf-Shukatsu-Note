@@ -23,18 +23,19 @@ struct TodoListRowView: View {
         
         HStack {
             VStack(alignment: .leading) {
-                if task.date != nil {
-                    HStack {
-                        Text(CustomDateFormatter.shared.convertDateToString(from: task.date!))
+                HStack {
+                    if let taskDate = task.date {
+                        Text(CustomDateFormatter.shared.convertDateToString(from: taskDate))
                             .font(.system(size: 12))
-                        if let companyName = task.companyName {
-                            Text("-\(companyName)-")
-                                .font(.system(size: 10))
-                                .padding(.leading, 1)
-                        }
+                            .padding(.trailing, 1)
                     }
-                    .foregroundColor(.gray)
+                    
+                    if let companyName = task.companyName {
+                        Text("-\(companyName)-")
+                            .font(.system(size: 10))
+                    }
                 }
+                .foregroundColor(.gray)
                 
                 if task.done {
                     Text(task.name ?? "")
