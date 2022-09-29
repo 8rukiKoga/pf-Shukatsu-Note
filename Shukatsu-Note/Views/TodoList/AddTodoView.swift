@@ -113,7 +113,7 @@ struct AddTodoView: View {
                                 Color(.systemGray5)
                                     .cornerRadius(7)
                                 
-                                Picker("企業", selection: $company) {
+                                Picker("", selection: $company) {
                                     Text("未選択")
                                     ForEach(companies) { company in
                                         // もともとopt型で宣言しているので、ピッカーのtagの方でもopt型に変換しないと適用されない(xcode上ではエラーにならないけど)
