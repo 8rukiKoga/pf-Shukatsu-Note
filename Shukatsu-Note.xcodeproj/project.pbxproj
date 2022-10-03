@@ -12,12 +12,12 @@
 		0D1F147428D1966000CFE1DE /* ListHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1F147328D1966000CFE1DE /* ListHeader.swift */; };
 		0D1F147628D1974D00CFE1DE /* ListType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1F147528D1974D00CFE1DE /* ListType.swift */; };
 		0D1F147B28D1DE8600CFE1DE /* TextCountValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1F147A28D1DE8600CFE1DE /* TextCountValidation.swift */; };
-		0D28AE9A28EABA7B009EE8A9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0D28AE9928EABA7B009EE8A9 /* Localizable.strings */; };
 		0D5BBD5328D5E60400A0FBE3 /* Shukatsu-Note-Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D5BBD5228D5E60400A0FBE3 /* Shukatsu-Note-Icon.png */; };
 		0D61C9E628B31EDD006B3270 /* CompanyImageMod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D61C9E528B31EDC006B3270 /* CompanyImageMod.swift */; };
 		0D61C9E828B32364006B3270 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D61C9E728B32364006B3270 /* LaunchScreen.storyboard */; };
 		0D61C9ED28B33E25006B3270 /* AppLogoMod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D61C9EC28B33E24006B3270 /* AppLogoMod.swift */; };
 		0D7875D228A3D6A70070BE05 /* EditCompanyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7875D128A3D6A60070BE05 /* EditCompanyView.swift */; };
+		0D93AF6528EB1C1C00FA5E25 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0D93AF6728EB1C1C00FA5E25 /* Localizable.strings */; };
 		0D956A7728D06AB300DFBD6E /* VibrationGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D956A7628D06AB300DFBD6E /* VibrationGenerator.swift */; };
 		0D956A7B28D08EDC00DFBD6E /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D956A7A28D08EDC00DFBD6E /* UserPreferences.swift */; };
 		0DB2B262289E952800A81149 /* Shukatsu_NoteApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B261289E952800A81149 /* Shukatsu_NoteApp.swift */; };
@@ -56,13 +56,13 @@
 		0D1F147328D1966000CFE1DE /* ListHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListHeader.swift; sourceTree = "<group>"; };
 		0D1F147528D1974D00CFE1DE /* ListType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListType.swift; sourceTree = "<group>"; };
 		0D1F147A28D1DE8600CFE1DE /* TextCountValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextCountValidation.swift; sourceTree = "<group>"; };
-		0D28AE9928EABA7B009EE8A9 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		0D5BBD5228D5E60400A0FBE3 /* Shukatsu-Note-Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Shukatsu-Note-Icon.png"; sourceTree = "<group>"; };
 		0D61C9E528B31EDC006B3270 /* CompanyImageMod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyImageMod.swift; sourceTree = "<group>"; };
 		0D61C9E728B32364006B3270 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0D61C9E928B325A1006B3270 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		0D61C9EC28B33E24006B3270 /* AppLogoMod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLogoMod.swift; sourceTree = "<group>"; };
 		0D7875D128A3D6A60070BE05 /* EditCompanyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCompanyView.swift; sourceTree = "<group>"; };
+		0D93AF6628EB1C1C00FA5E25 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0D956A7628D06AB300DFBD6E /* VibrationGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibrationGenerator.swift; sourceTree = "<group>"; };
 		0D956A7A28D08EDC00DFBD6E /* UserPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferences.swift; sourceTree = "<group>"; };
 		0DB2B25E289E952800A81149 /* Shukatsu-Note.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Shukatsu-Note.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -123,7 +123,7 @@
 		0D28AE9828EABA54009EE8A9 /* Localization */ = {
 			isa = PBXGroup;
 			children = (
-				0D28AE9928EABA7B009EE8A9 /* Localizable.strings */,
+				0D93AF6728EB1C1C00FA5E25 /* Localizable.strings */,
 			);
 			path = Localization;
 			sourceTree = "<group>";
@@ -326,7 +326,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0D28AE9A28EABA7B009EE8A9 /* Localizable.strings in Resources */,
+				0D93AF6528EB1C1C00FA5E25 /* Localizable.strings in Resources */,
 				0D61C9E828B32364006B3270 /* LaunchScreen.storyboard in Resources */,
 				0DB2B269289E952B00A81149 /* Preview Assets.xcassets in Resources */,
 				0D5BBD5328D5E60400A0FBE3 /* Shukatsu-Note-Icon.png in Resources */,
@@ -381,6 +381,17 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		0D93AF6728EB1C1C00FA5E25 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0D93AF6628EB1C1C00FA5E25 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		0DB2B26A289E952B00A81149 /* Debug */ = {
