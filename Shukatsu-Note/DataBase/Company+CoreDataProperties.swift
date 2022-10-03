@@ -52,12 +52,12 @@ extension Company {
         newCompany.createdAt = Date()
         newCompany.updatedAt = Date()
         newCompany.id = "default_company"
-        newCompany.name = "さんぷる株式会社"
+        newCompany.name = NSLocalizedString("さんぷる株式会社", comment: "")
         newCompany.star = 3
-        newCompany.category = "製造, BtoB"
-        newCompany.location = "東京都"
+        newCompany.category = NSLocalizedString("製造, BtoB", comment: "")
+        newCompany.location = NSLocalizedString("東京都", comment: "")
         newCompany.url = "https://example.com"
-        newCompany.memo = "BtoBの、食品サンプルを作っている企業。\n企業理念は「Be Real.」\n\n社員の雰囲気もよく、福利厚生も悪くない。\nマイページid: hogehoge pass: hogehoge1234"
+        newCompany.memo = NSLocalizedString("BtoBの、食品サンプルを作っている企業。\n企業理念は「Be Real.」\n\n社員の雰囲気もよく、福利厚生も悪くない。\nマイページid: hogehoge pass: hogehoge1234", comment: "")
         
         do {
             try context.save()

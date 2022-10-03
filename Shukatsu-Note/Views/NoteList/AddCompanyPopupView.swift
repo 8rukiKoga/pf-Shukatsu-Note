@@ -38,12 +38,12 @@ struct AddCompanyPopupView: View {
                 Text("Add Company")
                     .font(.headline)
                 
-                Text("企業名を入力してください")
+                Text(NSLocalizedString("企業名を入力してください", comment: ""))
                     .font(.subheadline)
                 
                 Spacer()
                 
-                TextField("例) さんぷる株式会社", text: $newCompanyName)
+                TextField(NSLocalizedString("例) さんぷる株式会社", comment: ""), text: $newCompanyName)
                     .padding(.vertical)
                     .padding(.horizontal, 5)
                     .frame(width: popupWidth / 1.3, height: 25)
@@ -62,7 +62,7 @@ struct AddCompanyPopupView: View {
                     Button {
                         showingPopup = false
                     } label: {
-                        Text("キャンセル")
+                        Text(NSLocalizedString("キャンセル", comment: ""))
                             .frame(width: popupWidth / 2)
                     }
                     
@@ -83,7 +83,7 @@ struct AddCompanyPopupView: View {
                             .frame(width: popupWidth / 2)
                     }
                     .alert(isPresented: $showingAlert) {
-                        Alert(title: Text("企業名は1文字以上20文字以内で入力してください。"))
+                        Alert(title: Text(NSLocalizedString("企業名は1文字以上20文字以内で入力してください。", comment: "")))
                     }
                 }
                 .padding(3)

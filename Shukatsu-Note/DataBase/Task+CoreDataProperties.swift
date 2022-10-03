@@ -55,7 +55,7 @@ extension Task {
         newTask.id = UUID().uuidString
         newTask.companyId = nil
         newTask.companyName = nil
-        newTask.name = "自己分析をする"
+        newTask.name = NSLocalizedString("自己分析をする", comment: "")
         newTask.date = nil
         newTask.done = false
         
@@ -72,8 +72,8 @@ extension Task {
         newTask1.createdAt = Date()
         newTask1.id = UUID().uuidString
         newTask1.companyId = "default_company"
-        newTask1.companyName = "さんぷる株式会社"
-        newTask1.name = "タスクが完了したら、タップしましょう。"
+        newTask1.companyName = NSLocalizedString("さんぷる株式会社", comment: "")
+        newTask1.name = NSLocalizedString("タスクが完了したら、タップしましょう。", comment: "")
         newTask1.date = Date()
         newTask1.done = false
         
@@ -81,8 +81,8 @@ extension Task {
         newTask2.createdAt = Date()
         newTask2.id = UUID().uuidString
         newTask2.companyId = "default_company"
-        newTask2.companyName = "さんぷる株式会社"
-        newTask2.name = "1dayインターンシップ"
+        newTask2.companyName = NSLocalizedString("さんぷる株式会社", comment: "")
+        newTask2.name = NSLocalizedString("1dayインターンシップ", comment: "")
         newTask2.date = Date()
         newTask2.done = true
         

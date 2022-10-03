@@ -37,7 +37,7 @@ struct EditCompanyView: View {
         ZStack {
             Form {
                 
-                Section("企業アイコン") {
+                Section(NSLocalizedString("企業アイコン", comment: "")) {
                     VStack {
                         HStack {
                             Spacer()
@@ -52,16 +52,16 @@ struct EditCompanyView: View {
                             Spacer()
                         }
                         
-                        Text("画像をタップして変更")
+                        Text(NSLocalizedString("画像をタップして変更", comment: ""))
                             .font(.caption2)
                     }
                     .padding(5)
                 }
                 
-                Section("企業名") {
-                    TextField("例) さんぷる株式会社", text: $name)
+                Section(NSLocalizedString("企業名", comment: "")) {
+                    TextField(NSLocalizedString("例) さんぷる株式会社", comment: ""), text: $name)
                 }
-                Section("志望度") {
+                Section(NSLocalizedString("志望度", comment: "")) {
                     Picker("", selection: $star) {
                         Text("★☆☆☆☆").tag(1)
                         Text("★★☆☆☆").tag(2)
@@ -71,18 +71,18 @@ struct EditCompanyView: View {
                     }
                     .pickerStyle(MenuPickerStyle())
                 }
-                Section("業界") {
-                    TextField("例) サービス", text: $category)
+                Section(NSLocalizedString("業界", comment: "")) {
+                    TextField(NSLocalizedString("例) サービス", comment: ""), text: $category)
                 }
-                Section("企業所在地") {
+                Section("") {
                     Picker("", selection: $area) {
                         Text("国内").tag(1)
                         Text("国外").tag(2)
                     }
                     .pickerStyle(SegmentedPickerStyle())
                     
-                    Picker("エリアを選択", selection: $location) {
-                        Text("未選択").tag("未選択")
+                    Picker("", selection: $location) {
+                        Text(NSLocalizedString("未選択", comment: "")).tag("未選択")
                         if area == 1 {
                             ForEach(domesticRegions, id: \.self) { item in
                                 Text(item).tag(item)
@@ -95,8 +95,8 @@ struct EditCompanyView: View {
                     }
                     .pickerStyle(MenuPickerStyle())
                 }
-                Section("関連URL") {
-                    TextField("例) https://sample.co.jp", text: $url)
+                Section(NSLocalizedString("関連URL", comment: "")) {
+                    TextField("https://sample.co.jp", text: $url)
                         .foregroundColor(VerifyUrl.shared.verifyUrl(urlString: url) ? .green : .red)
                 }
             }

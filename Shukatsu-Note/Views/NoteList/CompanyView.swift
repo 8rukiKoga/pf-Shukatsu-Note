@@ -90,7 +90,7 @@ struct CompanyView: View {
                         // フォントサイズを一括で設定するためにGroupで囲む
                         Group {
                             HStack {
-                                Text("志望度 : ")
+                                Text(NSLocalizedString("志望度 : ", comment: ""))
                                 
                                 Spacer()
                                 
@@ -103,7 +103,7 @@ struct CompanyView: View {
                             .padding(1)
                             
                             HStack {
-                                Text("業界 : ")
+                                Text(NSLocalizedString("業界 : ", comment: ""))
                                 
                                 Spacer()
                                 
@@ -112,7 +112,7 @@ struct CompanyView: View {
                             .padding(1)
                             
                             HStack {
-                                Text("所在地 : ")
+                                Text(NSLocalizedString("所在地 : ", comment: ""))
                                 
                                 Spacer()
                                 
@@ -121,7 +121,7 @@ struct CompanyView: View {
                             .padding(1)
                             
                             HStack {
-                                Text("URL : ")
+                                Text(NSLocalizedString("URL : ", comment: ""))
                                 
                                 Spacer()
                                 
@@ -146,7 +146,7 @@ struct CompanyView: View {
                     .padding()
                 } header: {
                     HStack {
-                        Text("企業情報")
+                        Text(NSLocalizedString("企業情報", comment: ""))
                         
                         Spacer()
                         
@@ -154,7 +154,7 @@ struct CompanyView: View {
                             // 企業編集画面を開く
                             showingSheet = true
                         } label: {
-                            Text("編集")
+                            Text(NSLocalizedString("編集", comment: ""))
                                 .font(.system(size: 12))
                         }
                         .fullScreenCover(isPresented: $showingSheet, content: {
@@ -189,7 +189,7 @@ struct CompanyView: View {
                         if memoText.isEmpty {
                             VStack {
                                 HStack {
-                                    Text("すぐに見たい情報をここに書きます。\n選考フローやマイページのID・パスワードなど")
+                                    Text(NSLocalizedString("すぐに見たい情報をここに書きます。\n選考フローやマイページのID・パスワードなど", comment: ""))
                                         .opacity(0.25)
                                         .font(.caption)
                                     
@@ -211,7 +211,7 @@ struct CompanyView: View {
                         HStack {
                             Spacer()
                             
-                            Text("この企業に関連したタスクはありません✔️")
+                            Text(NSLocalizedString("この企業に関連したタスクはありません✔️", comment: ""))
                                 .font(.footnote)
                                 .foregroundColor(.gray)
                                 .opacity(0.6)

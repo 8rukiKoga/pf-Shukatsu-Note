@@ -32,8 +32,8 @@ struct ListHeader: View {
             HStack {
                 Text("Note")
                 
-                if noteCount > 70 {
-                    Text("\(noteCount) / 100")
+                if noteCount > 100 {
+                    Text("\(noteCount) / 150")
                         .font(.system(size: 8))
                         .padding(.leading, 1)
                 }
@@ -41,7 +41,7 @@ struct ListHeader: View {
                 Spacer()
                 // 新規ノート作成ボタン
                 Button {
-                    if noteCount < 100 {
+                    if noteCount < 150 {
                         Note.create(in: context, companyId: nil)
                         // 新規ノートに遷移する
                         showingSomething.toggle()
@@ -54,7 +54,7 @@ struct ListHeader: View {
                 }
                 .padding(.trailing, 5)
                 .alert(isPresented: $showingAlert) {
-                    Alert(title: Text("登録可能ノート数の上限(150)に達しています。"))
+                    Alert(title: Text(NSLocalizedString("登録可能ノート数の上限(150)に達しています。", comment: "")))
                 }
             }
             
@@ -83,7 +83,7 @@ struct ListHeader: View {
                 }
                 .padding(.trailing, 5)
                 .alert(isPresented: $showingAlert) {
-                    Alert(title: Text("登録可能企業数の上限(20)に達しています。"))
+                    Alert(title: Text(NSLocalizedString("登録可能企業数の上限(30)に達しています。", comment: "")))
                 }
             }
             
@@ -100,7 +100,7 @@ struct ListHeader: View {
                 Spacer()
                 // 新規メモボタン
                 Button {
-                    if noteCount < 100 {
+                    if noteCount < 150 {
                         Note.create(in: context, companyId: companyId)
                         showingSomething.toggle()
                     } else {
@@ -111,15 +111,15 @@ struct ListHeader: View {
                         .font(.system(size: 15))
                 }
                 .alert(isPresented: $showingAlert) {
-                    Alert(title: Text("登録可能ノート数の上限(150)に達しています。"))
+                    Alert(title: Text(NSLocalizedString("登録可能ノート数の上限(150)に達しています。", comment: "")))
                 }
             }
             
         case .task:
             HStack {
                 Spacer()
-                if taskCount > 2 {
-                    Text("\(taskCount) / 200")
+                if taskCount > 70 {
+                    Text("\(taskCount) / 100")
                         .font(.system(size: 8))
                         .padding(.leading, 1)
                 }

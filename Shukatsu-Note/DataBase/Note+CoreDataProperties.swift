@@ -51,13 +51,13 @@ extension Note {
         newNote1.createdAt = Date()
         newNote1.id = UUID().uuidString
         newNote1.companyId = nil
-        newNote1.text = "自分の就活の軸"
+        newNote1.text = NSLocalizedString("自分の就活の軸", comment: "")
         
         let newNote2 = Note(context: context)
         newNote2.createdAt = Date()
         newNote2.id = UUID().uuidString
         newNote2.companyId = nil
-        newNote2.text = "ここには就活全体のノートを保存できます"
+        newNote2.text = NSLocalizedString("ここには就活全体のノートを保存できます", comment: "")
         
         do {
             try context.save()
@@ -72,13 +72,13 @@ extension Note {
         newNote1.createdAt = Date()
         newNote1.id = UUID().uuidString
         newNote1.companyId = "default_company"
-        newNote1.text = "インターンで学んだこと"
+        newNote1.text = NSLocalizedString("インターンで学んだこと", comment: "")
         
         let newNote2 = Note(context: context)
         newNote2.createdAt = Date()
         newNote2.id = UUID().uuidString
         newNote2.companyId = "default_company"
-        newNote2.text = "ここには企業に関するノートを保存できます。"
+        newNote2.text = NSLocalizedString("ここには企業に関するノートを保存できます。", comment: "")
         
         do {
             try context.save()

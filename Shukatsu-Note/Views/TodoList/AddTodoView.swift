@@ -70,12 +70,12 @@ struct AddTodoView: View {
                     
                     VStack(alignment: .center) {
                         HStack {
-                            Text("タスク名").font(.footnote)
+                            Text(NSLocalizedString("タスク名", comment: "")).font(.footnote)
                             Spacer()
                         }
                         .padding(.horizontal)
                         
-                        TextField("タスク名を入力", text: $taskName)
+                        TextField(NSLocalizedString("タスク名を入力", comment: ""), text: $taskName)
                             .padding(10)
                             .frame(width: isIphone ? screenWidth / 1.2 : screenWidth / 1.4)
                             .background(Color(.systemGray5))
@@ -87,7 +87,7 @@ struct AddTodoView: View {
                             .padding(.bottom)
                         
                         HStack {
-                            Text("日時").font(.footnote)
+                            Text(NSLocalizedString("日時", comment: "")).font(.footnote)
                             
                             Toggle("", isOn: $dateIsSet)
                                 .animation(.easeInOut, value: dateIsSet)
@@ -97,7 +97,7 @@ struct AddTodoView: View {
                                     .cornerRadius(7)
                                     .transition(.slide)
                             } else {
-                                Text("日時未指定")
+                                Text(NSLocalizedString("日時未指定", comment: ""))
                                     .foregroundColor(.gray)
                                     .transition(.slide)
                             }
@@ -105,7 +105,7 @@ struct AddTodoView: View {
                         .padding(.horizontal)
                         
                         HStack {
-                            Text("企業")
+                            Text(NSLocalizedString("企業", comment: ""))
                                 .font(.footnote)
                                 .padding(.trailing, 3)
                             
@@ -114,7 +114,7 @@ struct AddTodoView: View {
                                     .cornerRadius(7)
                                 
                                 Picker("", selection: $company) {
-                                    Text("未選択")
+                                    Text(NSLocalizedString("未選択", comment: ""))
                                     ForEach(companies) { company in
                                         // もともとopt型で宣言しているので、ピッカーのtagの方でもopt型に変換しないと適用されない(xcode上ではエラーにならないけど)
                                         Text(company.name ?? "").tag(company as Company?)
@@ -175,7 +175,7 @@ struct AddTodoView: View {
                         }
                     }
                     .alert(isPresented: $showingAlert) {
-                        Alert(title: Text("タスク名は1文字以上30文字以内で入力してください。"))
+                        Alert(title: Text(NSLocalizedString("タスク名は1文字以上30文字以内で入力してください。", comment: "")))
                     }
                 }
             }
