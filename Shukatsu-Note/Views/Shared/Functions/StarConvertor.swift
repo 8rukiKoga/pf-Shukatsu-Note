@@ -32,6 +32,6 @@ final class StarConvertor {
             return "★★★★★"
         }
         
-        return "未設定"
+        return NSLocalizedString("未設定", comment: "")
     }
 }

@@ -1,0 +1,85 @@
+/* 
+  Localizable.strings
+  Shukatsu-Note
+
+  Created by 古賀遥貴 on 2022/10/03.
+  
+*/
+
+// StarConvertor
+"未設定" = "Not set";
+
+// Company
+"志望度 : " = "Rank : ";
+"業界 : " = "Industry : ";
+"所在地 : " = "Location : ";
+"企業情報" = "Info";
+"編集" = "Edit";
+
+"すぐに見たい情報をここに書きます。\n選考フローやマイページのID・パスワードなど" = "Type infomation you want to check quickly.\ne.g. mypage id, password, process of selection...";
+"この企業に関連したタスクはありません✔️" = "No tasks related to this company.✔️";
+
+
+// EditCompany
+"企業アイコン" = "Company icon";
+"画像をタップして変更" = "Tap to change";
+"企業名" = "Company name";
+"例) 旅行" = "e.g. Travel";
+"志望度" = "Rank";
+"業界" = "Industry";
+"所在地" = "Location";
+"未選択" = "Not set"; // global
+"関連URL" = "URL";
+
+// Add Company PopUp
+"企業名を入力してください" = "Input company name";
+"例) さんぷる株式会社" = "e.g. Sample corp."; // global
+"キャンセル" = "Cancel";
+"保存" = "Save";
+"企業名は1文字以上20文字以内で入力してください。" = "Company name must be within 1 ~ 20 letters";
+
+
+// Setting
+"アプリの設定" = "App settings";
+"テーマカラーを変更する" = "Chane theme color";
+"企業フォルダのアイコンを画像にする" = "Show image on company folder";
+"サポート" = "Support";
+"就活ノート を評価する" = "Rate Co-Note";
+"お問い合わせをする\n(不具合・機能のリクエストなど)" = "Contact";
+"開発者の他のアプリ" = "Apps by developer";
+"さぶすく管理" = "Subscription Manager";
+"登録しているサブスクを見える化するアプリ" = "Manage what subscriptions you have";
+"このアプリについて" = "About this app";
+"バージョン" = "Version";
+"プライバシーポリシー" = "Privacy policy";
+
+
+// AddTODO
+"タスク名" = "Task name";
+"タスク名を入力" = "Input task name";
+"日付" = "Date";
+"日付未指定" = "Not set";
+"企業" = "Company";
+"タスク名は1文字以上30文字以内で入力してください。" = "Task name must be within 1 ~ 30 letters";
+
+
+// ListHeader
+"登録可能ノート数の上限(150)に達しています。" = "You can't set note more than 150.";
+"登録可能企業数の上限(30)に達しています。" = "You can't set company more than 30";
+
+
+//CompanyCoreData
+"さんぷる株式会社" = "Sample corp."; // global
+"製造, BtoB" = "Manufacture, BtoB";
+"東京都" = "Japan";
+"BtoBの、食品サンプルを作っている企業。\n企業理念は「Be Real.」\n\n社員の雰囲気もよく、福利厚生も悪くない。\nマイページid: hogehoge pass: hogehoge1234" = "Creates food sample.\nCorporate identity is [Be Real.]\n\nThe atmosphere of the office is good and the benefits are not bad.\nMypage id: hogehoge pass: hogehoge1234";
+
+
+// NoteCoreData
+"自分の就活の軸" = "My strength and Weakness.";
+"ここには就活全体のノートを保存できます" = "Here you can save global note.";
+"インターンで学んだこと" = "Learnings at Internship";
+"ここには企業に関するノートを保存できます。" = "Here you can save company note.";
+"自己分析をする" = "Do a self analysis";
+"タスクが完了したら、タップしましょう。" = "Tap cell when you finished the task";
+"1dayインターンシップ" = "1day internship";

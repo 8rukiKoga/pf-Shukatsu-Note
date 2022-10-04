@@ -87,7 +87,7 @@ struct AddTodoView: View {
                             .padding(.bottom)
                         
                         HStack {
-                            Text(NSLocalizedString("日時", comment: "")).font(.footnote)
+                            Text(NSLocalizedString("日付", comment: "")).font(.footnote)
                             
                             Toggle("", isOn: $dateIsSet)
                                 .animation(.easeInOut, value: dateIsSet)
@@ -97,7 +97,7 @@ struct AddTodoView: View {
                                     .cornerRadius(7)
                                     .transition(.slide)
                             } else {
-                                Text(NSLocalizedString("日時未指定", comment: ""))
+                                Text(NSLocalizedString("日付未指定", comment: ""))
                                     .foregroundColor(.gray)
                                     .transition(.slide)
                             }

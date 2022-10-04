@@ -121,7 +121,7 @@ struct CompanyView: View {
                             .padding(1)
                             
                             HStack {
-                                Text(NSLocalizedString("URL : ", comment: ""))
+                                Text("URL")
                                 
                                 Spacer()
                                 

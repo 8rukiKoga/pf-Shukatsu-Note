@@ -72,9 +72,9 @@ struct EditCompanyView: View {
                     .pickerStyle(MenuPickerStyle())
                 }
                 Section(NSLocalizedString("業界", comment: "")) {
-                    TextField(NSLocalizedString("例) サービス", comment: ""), text: $category)
+                    TextField(NSLocalizedString("例) 旅行", comment: ""), text: $category)
                 }
-                Section("") {
+                Section(NSLocalizedString("所在地", comment: "")) {
                     Picker("", selection: $area) {
                         Text("国内").tag(1)
                         Text("国外").tag(2)
