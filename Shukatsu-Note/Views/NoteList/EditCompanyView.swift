@@ -11,6 +11,9 @@ struct EditCompanyView: View {
     
     @Environment(\.managedObjectContext) private var context
     
+    // デバイスの言語取得
+    private let language = NSLocale.current.languageCode
+    
     // 編集シートの表示・非表示
     @Binding var showingSheet: Bool
     // 写真ピッカーの表示・非表示
@@ -23,7 +26,7 @@ struct EditCompanyView: View {
     @State var star: Int
     @State var category: String
     // ピッカーで選択するのは国内か海外か判断
-    @State var area: Int = 1
+    @State var areaInputMethod: Int = 1
     @State var location: String
     @State var url: String
     
@@ -75,25 +78,66 @@ struct EditCompanyView: View {
                     TextField(NSLocalizedString("例) 旅行", comment: ""), text: $category)
                 }
                 Section(NSLocalizedString("所在地", comment: "")) {
-                    Picker("", selection: $area) {
-                        Text("国内").tag(1)
-                        Text("国外").tag(2)
-                    }
-                    .pickerStyle(SegmentedPickerStyle())
-                    
-                    Picker("", selection: $location) {
-                        Text(NSLocalizedString("未選択", comment: "")).tag("未選択")
-                        if area == 1 {
-                            ForEach(domesticRegions, id: \.self) { item in
-                                Text(item).tag(item)
+                    if language == "ja" { // 日本語
+                        Picker("", selection: $areaInputMethod) {
+                            Text("国内").tag(1)
+                            Text("国外").tag(2)
+                            Text("入力").tag(3)
+                        }
+                        .pickerStyle(SegmentedPickerStyle())
+                        
+                        if areaInputMethod == 3 {
+                            ZStack {
+                                TextField("企業所在地を入力してください", text: $location)
+                                    .padding()
+                                    .background(Color(.white).opacity(0.2).cornerRadius(12))
+                                    .padding(.vertical, 3)
                             }
                         } else {
-                            ForEach(foreignRegions, id: \.self) { item in
-                                Text(item).tag(item)
+                            Picker("", selection: $location) {
+                                
+                                Text(NSLocalizedString("未選択", comment: "")).tag("未選択")
+                                if areaInputMethod == 1 {
+                                    ForEach(domesticRegions, id: \.self) { item in
+                                        Text(item).tag(item)
+                                    }
+                                } else if areaInputMethod == 2 {
+                                    ForEach(foreignRegions, id: \.self) { item in
+                                        Text(item).tag(item)
+                                    }
+                                }
                             }
+                            .pickerStyle(MenuPickerStyle())
+                            .padding(.vertical, 3)
+                        }
+                    } else {
+                        Picker("", selection: $areaInputMethod) {
+                            Text("Select").tag(1)
+                            Text("Input").tag(2)
+                        }
+                        .pickerStyle(SegmentedPickerStyle())
+                        
+                        if areaInputMethod == 2 {
+                            ZStack {
+                                TextField("Input location", text: $location)
+                                    .padding()
+                                    .background(Color(.white).opacity(0.2).cornerRadius(12))
+                                    .padding(.vertical, 3)
+                            }
+                        } else {
+                            Picker("", selection: $location) {
+                                Text(NSLocalizedString("Not set", comment: "")).tag("Not set")
+                                
+                                if areaInputMethod == 1 {
+                                    ForEach(foreignRegions, id: \.self) { item in
+                                        Text(item).tag(item)
+                                    }
+                                }
+                            }
+                            .pickerStyle(MenuPickerStyle())
+                            .padding(.vertical, 3)
                         }
                     }
-                    .pickerStyle(MenuPickerStyle())
                 }
                 Section(NSLocalizedString("関連URL", comment: "")) {
                     TextField("https://sample.co.jp", text: $url)
