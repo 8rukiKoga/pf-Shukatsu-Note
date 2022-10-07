@@ -121,7 +121,7 @@ struct EditCompanyView: View {
                             ZStack {
                                 TextField("Input location", text: $location)
                                     .padding()
-                                    .background(Color(.white).opacity(0.2).cornerRadius(12))
+                                    .background(Color(.label).opacity(0.1).cornerRadius(12))
                                     .padding(.vertical, 3)
                             }
                         } else {
