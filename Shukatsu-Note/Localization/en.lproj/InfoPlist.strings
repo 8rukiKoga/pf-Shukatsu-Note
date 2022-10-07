@@ -1,0 +1,10 @@
+/* 
+  InfoPlist.strings
+  Shukatsu-Note
+
+  Created by 古賀遥貴 on 2022/10/07.
+  
+*/
+
+// App Name
+CFBundleDisplayName = "JobNote";
