@@ -53,6 +53,10 @@
 "バージョン" = "Version";
 "プライバシーポリシー" = "Privacy policy";
 
+// Todo
+"Todoを追加" = "Add Todo";
+"登録可能タスク数の上限(100)に達しています。" = "You can't set task more than 100";
+
 
 // AddTODO
 "タスク名" = "Task name";

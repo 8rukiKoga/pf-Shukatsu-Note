@@ -54,14 +54,14 @@ struct TodoListView: View {
                                 .frame(width: UIScreen.main.bounds.width - 20, height: 50)
                                 .shadow(color: .gray, radius: 5, x: 2, y: 2)
                             VStack {
-                                Text("Todoを追加")
+                                Text(NSLocalizedString("Todoを追加", comment: ""))
                                     .foregroundColor(Color(.systemBackground))
                                     .bold()
                             }
                         }
                     }
                     .alert(isPresented: $showingTaskCountAlert) {
-                        Alert(title: Text("登録可能タスク数の上限(100)に達しています。"))
+                        Alert(title: Text(NSLocalizedString("登録可能タスク数の上限(100)に達しています。", comment: "")))
                     }
                 }
                 .padding()
