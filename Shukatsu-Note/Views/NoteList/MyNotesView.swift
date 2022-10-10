@@ -21,6 +21,8 @@ struct MyNotesView: View {
         sortDescriptors: [NSSortDescriptor(keyPath: \Note.updatedAt, ascending: false)],
         predicate: nil
     ) private var notes: FetchedResults<Note>
+    // テーマカラー呼び出し
+    @EnvironmentObject private var customColor: CustomColor
     // 新規企業企業のポップアップの表示・非表示
     @State private var showingPopup: Bool = false
     // 新規企業企業のポップアップの表示・非表示
@@ -70,6 +72,7 @@ struct MyNotesView: View {
                                 NavigationLink(destination: CompanyView(company: company)) {
                                     FolderRowView(companyImage: company.image, name: company.name ?? "", star: Int(company.star))
                                 }
+                                .listRowSeparatorTint(Color(customColor.themeColor).opacity(0.5))
                             }
                             .onDelete(perform: deleteCompany)
                         }
@@ -79,7 +82,7 @@ struct MyNotesView: View {
                     .textCase(nil)
                     
                 }
-                .listStyle(InsetGroupedListStyle())
+                .listStyle(PlainListStyle())
                 
                 // 新規企業追加ポップアップ
                 if showingPopup {
@@ -87,7 +90,7 @@ struct MyNotesView: View {
                         .transition(.asymmetric(insertion: .scale, removal: .opacity))
                 }
             }
-            .navigationTitle("Notes")
+            .navigationTitle("Home")
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
                     EditButton()
