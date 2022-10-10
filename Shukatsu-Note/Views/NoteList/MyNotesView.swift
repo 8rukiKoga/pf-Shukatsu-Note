@@ -72,7 +72,6 @@ struct MyNotesView: View {
                                 NavigationLink(destination: CompanyView(company: company)) {
                                     FolderRowView(companyImage: company.image, name: company.name ?? "", star: Int(company.star))
                                 }
-                                .listRowSeparatorTint(Color(customColor.themeColor).opacity(0.5))
                             }
                             .onDelete(perform: deleteCompany)
                         }
