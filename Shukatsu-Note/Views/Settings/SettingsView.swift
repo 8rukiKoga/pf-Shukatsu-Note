@@ -73,7 +73,7 @@ struct SettingsView: View {
                             
                             Spacer()
                             
-                            Text("1.3")
+                            Text("1.4")
                         }
                         Button {
                             openUrl(url: "https://8rukikoga.github.io/pf-Portfolio/ShukatsuNote.html")
