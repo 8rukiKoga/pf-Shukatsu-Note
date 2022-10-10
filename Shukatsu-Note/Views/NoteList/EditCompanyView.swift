@@ -165,7 +165,6 @@ struct EditCompanyView: View {
                         if name.count > 0 && TextCountValidation.shared.isTextCountValid(text: name, max: validTextCount) && TextCountValidation.shared.isTextCountValid(text: category, max: validTextCount) && TextCountValidation.shared.isTextCountValid(text: location, max: validTextCount) && TextCountValidation.shared.isTextCountValid(text: url, max: validTextCount) {
                             // UIImageをData型に変換
                             guard let data = companyImage.jpegData(compressionQuality: 0.1) else { return }
-                            print(data)
                             Company.updateInfo(in: context, currentCompany: company, image: data, name: name, star: star, category: category, location: location, url: url)
                             // 編集シートを閉じる
                             showingSheet = false
