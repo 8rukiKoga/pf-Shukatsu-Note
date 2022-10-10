@@ -12,7 +12,7 @@ final class TextCountValidation {
     init() { }
     
     func isTextCountValid(text: String, max: Int) -> Bool {
-        if text.count > 0 && text.count <= max {
+        if text.count <= max {
             return true
         }
         return false

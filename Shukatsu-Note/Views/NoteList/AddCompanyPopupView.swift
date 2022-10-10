@@ -67,7 +67,7 @@ struct AddCompanyPopupView: View {
                     }
                     
                     Button {
-                        if TextCountValidation.shared.isTextCountValid(text: newCompanyName, max: 20) {
+                        if newCompanyName.count > 0 && TextCountValidation.shared.isTextCountValid(text: newCompanyName, max: 20) {
                                 Company.create(in: context, name: newCompanyName)
                                 // ポップアップを閉じる
                                 showingPopup = false

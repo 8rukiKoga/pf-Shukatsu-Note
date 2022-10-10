@@ -140,7 +140,7 @@ struct AddTodoView: View {
                 HStack {
                     Spacer()
                     Button {
-                        if TextCountValidation.shared.isTextCountValid(text: taskName, max: 30) {
+                        if taskName.count > 0 && TextCountValidation.shared.isTextCountValid(text: taskName, max: 30) {
                             // 企業を選択しているか判断
                             companyIsSet = company != nil
                             // todoリストに追加
