@@ -81,9 +81,9 @@ struct AddTodoView: View {
                             .background(Color(.systemGray5))
                             .cornerRadius(7)
                         
-                        Text("\(taskName.count) / 25")
+                        Text("\(taskName.count) / 50")
                             .font(.caption2)
-                            .foregroundColor(TextCountValidation.shared.isTextCountValid(text: taskName, max: 25) ? .gray : .red)
+                            .foregroundColor(TextCountValidation.shared.isTextCountValid(text: taskName, max: 50) ? .gray : .red)
                             .padding(.bottom)
                         
                         HStack {
@@ -140,7 +140,7 @@ struct AddTodoView: View {
                 HStack {
                     Spacer()
                     Button {
-                        if taskName.count > 0 && TextCountValidation.shared.isTextCountValid(text: taskName, max: 30) {
+                        if taskName.count > 0 && TextCountValidation.shared.isTextCountValid(text: taskName, max: 50) {
                             // 企業を選択しているか判断
                             companyIsSet = company != nil
                             // todoリストに追加
@@ -175,7 +175,7 @@ struct AddTodoView: View {
                         }
                     }
                     .alert(isPresented: $showingAlert) {
-                        Alert(title: Text(NSLocalizedString("タスク名は1文字以上30文字以内で入力してください。", comment: "")))
+                        Alert(title: Text(NSLocalizedString("タスク名は1文字以上50文字以内で入力してください。", comment: "")))
                     }
                 }
             }

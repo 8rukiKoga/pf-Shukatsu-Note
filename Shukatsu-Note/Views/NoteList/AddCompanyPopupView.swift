@@ -50,9 +50,9 @@ struct AddCompanyPopupView: View {
                     .background(Color(.systemBackground))
                     .cornerRadius(7)
                 
-                Text("\(newCompanyName.count) / 20")
+                Text("\(newCompanyName.count) / 50")
                     .font(.caption2)
-                    .foregroundColor(TextCountValidation.shared.isTextCountValid(text: newCompanyName, max: 20) ? .gray : .red)
+                    .foregroundColor(TextCountValidation.shared.isTextCountValid(text: newCompanyName, max: 50) ? .gray : .red)
                 
                 Spacer()
                 
@@ -67,7 +67,7 @@ struct AddCompanyPopupView: View {
                     }
                     
                     Button {
-                        if newCompanyName.count > 0 && TextCountValidation.shared.isTextCountValid(text: newCompanyName, max: 20) {
+                        if newCompanyName.count > 0 && TextCountValidation.shared.isTextCountValid(text: newCompanyName, max: 50) {
                                 Company.create(in: context, name: newCompanyName)
                                 // ポップアップを閉じる
                                 showingPopup = false
@@ -83,7 +83,7 @@ struct AddCompanyPopupView: View {
                             .frame(width: popupWidth / 2)
                     }
                     .alert(isPresented: $showingAlert) {
-                        Alert(title: Text(NSLocalizedString("企業名は1文字以上20文字以内で入力してください。", comment: "")))
+                        Alert(title: Text(NSLocalizedString("企業名は1文字以上50文字以内で入力してください。", comment: "")))
                     }
                 }
                 .padding(3)

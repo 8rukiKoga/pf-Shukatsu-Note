@@ -30,14 +30,14 @@
 "所在地" = "Location";
 "未選択" = "Not set"; // global
 "関連URL" = "URL";
-"テキストは100文字以下である必要があります。" = "Inputs must be within 100 letters.";
+"テキストは50文字以下である必要があります。" = "Inputs must be within 50 letters.";
 
 // Add Company PopUp
 "企業名を入力してください" = "Input company name";
 "例) さんぷる株式会社" = "e.g. Sample corp."; // global
 "キャンセル" = "Cancel";
 "保存" = "Save";
-"企業名は1文字以上20文字以内で入力してください。" = "Company name must be within 1 ~ 20 letters";
+"企業名は1文字以上50文字以内で入力してください。" = "Company name must be within 1 - 50 letters";
 
 
 // Setting
@@ -65,7 +65,7 @@
 "日付" = "Date";
 "日付未指定" = "Not set";
 "企業" = "Company";
-"タスク名は1文字以上30文字以内で入力してください。" = "Task name must be within 1 ~ 30 letters";
+"タスク名は1文字以上50文字以内で入力してください。" = "Task name must be within 1 - 50 letters";
 
 
 // ListHeader
