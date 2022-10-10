@@ -22,23 +22,12 @@ struct FolderRowView: View {
                 if let companyImage = companyImage {
                     Image(uiImage: UIImage(data: companyImage)!)
                         .resizable()
-                        .scaledToFill()
-                        .frame(width: 36, height: 36)
-                        .clipShape(Circle())
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 18)
-                                .stroke(Color.gray, lineWidth: 1)
-                        )
+                        .modifier(CompanyRowImageMod())
                 } else {
                     // ユーザーがまだ画像を設定していない場合
                     Image(uiImage: UIImage(named: "default-companyImage")!)
                         .resizable()
-                        .frame(width: 36, height: 36)
-                        .clipShape(Circle())
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 18)
-                                .stroke(Color.gray, lineWidth: 1)
-                        )
+                        .modifier(CompanyRowImageMod())
                 }
             } else {
                 Image(systemName: "building.2")
