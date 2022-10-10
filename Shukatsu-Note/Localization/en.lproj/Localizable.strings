@@ -30,6 +30,7 @@
 "所在地" = "Location";
 "未選択" = "Not set"; // global
 "関連URL" = "URL";
+"テキストは100文字以下である必要があります。" = "Inputs must be within 100 letters.";
 
 // Add Company PopUp
 "企業名を入力してください" = "Input company name";
