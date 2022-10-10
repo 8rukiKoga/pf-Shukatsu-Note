@@ -72,6 +72,12 @@ struct NoteView: View {
                     Text("\(text.count) / 3000")
                         .font(.system(size: 8))
                         .foregroundColor(.gray)
+                    
+                    Button {
+                        sharePost(shareText: text)
+                    } label: {
+                        Image(systemName: "square.and.arrow.up.circle")
+                    }
                 }
             }
         }
@@ -80,6 +86,15 @@ struct NoteView: View {
     
     private func saveNote(text: String) {
         Note.update(in: context, currentNote: note, text: text)
+    }
+    
+    func sharePost(shareText: String) {
+        let activityItems = [shareText] as [Any]
+        let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+        let scenes = UIApplication.shared.connectedScenes
+        let windowScenes = scenes.first as? UIWindowScene
+        let rootVC = windowScenes?.keyWindow?.rootViewController
+        rootVC?.present(activityVC, animated: true)
     }
     
 }
