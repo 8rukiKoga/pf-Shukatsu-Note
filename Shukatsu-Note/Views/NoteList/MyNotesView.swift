@@ -21,6 +21,12 @@ struct MyNotesView: View {
         sortDescriptors: [NSSortDescriptor(keyPath: \Note.updatedAt, ascending: false)],
         predicate: nil
     ) private var notes: FetchedResults<Note>
+    
+    @FetchRequest(
+        entity: Task.entity(),
+        sortDescriptors: [NSSortDescriptor(keyPath: \Task.createdAt, ascending: false)],
+        predicate: nil
+    ) private var tasks: FetchedResults<Task>
     // テーマカラー呼び出し
     @EnvironmentObject private var customColor: CustomColor
     // 新規企業企業のポップアップの表示・非表示
@@ -112,6 +118,18 @@ struct MyNotesView: View {
     
     private func deleteCompany(offsets: IndexSet) {
         offsets.forEach { index in
+            // 企業に関連づけられたノート・タスクを削除
+            let companyNotes = notes.filter { $0.companyId == companies[index].id }
+            let companyTasks = tasks.filter { $0.companyId == companies[index].id }
+            for note in companyNotes {
+                print(note)
+                context.delete(note)
+            }
+            for task in companyTasks {
+                print(task)
+                context.delete(task)
+            }
+            // 企業自体を削除
             context.delete(companies[index])
         }
         // 削除内容を保存
