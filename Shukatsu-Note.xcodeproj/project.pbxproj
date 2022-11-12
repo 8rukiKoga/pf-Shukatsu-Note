@@ -37,6 +37,7 @@
 		0DB2B2D528A0C6CD00A81149 /* NoteRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B2D428A0C6CD00A81149 /* NoteRowView.swift */; };
 		0DB5209828CE023F00D7AE6A /* VerifyUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB5209728CE023F00D7AE6A /* VerifyUrl.swift */; };
 		0DB7A9E8291F82E400AC97C5 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB7A9E7291F82E400AC97C5 /* NotificationManager.swift */; };
+		0DB7A9EB291FA23B00AC97C5 /* TaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB7A9EA291FA23B00AC97C5 /* TaskView.swift */; };
 		0DCF522328C6D51500E1845C /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DCF522228C6D51500E1845C /* CustomColor.swift */; };
 		0DD08C1628D03B49001769B0 /* NoItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD08C1528D03B49001769B0 /* NoItemView.swift */; };
 		0DE5C23B28AB2CF500865D72 /* FloatingBtnMod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE5C23A28AB2CF500865D72 /* FloatingBtnMod.swift */; };
@@ -87,6 +88,7 @@
 		0DB2B2D428A0C6CD00A81149 /* NoteRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteRowView.swift; sourceTree = "<group>"; };
 		0DB5209728CE023F00D7AE6A /* VerifyUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyUrl.swift; sourceTree = "<group>"; };
 		0DB7A9E7291F82E400AC97C5 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		0DB7A9EA291FA23B00AC97C5 /* TaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskView.swift; sourceTree = "<group>"; };
 		0DCF522228C6D51500E1845C /* CustomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColor.swift; sourceTree = "<group>"; };
 		0DD08C1528D03B49001769B0 /* NoItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoItemView.swift; sourceTree = "<group>"; };
 		0DE5C23A28AB2CF500865D72 /* FloatingBtnMod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingBtnMod.swift; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				0DB2B27E289E969800A81149 /* TodoListView.swift */,
+				0DB7A9EA291FA23B00AC97C5 /* TaskView.swift */,
 				0DB2B282289E96AF00A81149 /* AddTodoView.swift */,
 			);
 			path = TodoList;
@@ -394,6 +397,7 @@
 				0DF5FDB528C9B80200FD8184 /* Company+CoreDataProperties.swift in Sources */,
 				0DF5FDDA28CAE69900FD8184 /* Note+CoreDataProperties.swift in Sources */,
 				0DB2B262289E952800A81149 /* Shukatsu_NoteApp.swift in Sources */,
+				0DB7A9EB291FA23B00AC97C5 /* TaskView.swift in Sources */,
 				0DD08C1628D03B49001769B0 /* NoItemView.swift in Sources */,
 				0DB7A9E8291F82E400AC97C5 /* NotificationManager.swift in Sources */,
 				0D7875D228A3D6A70070BE05 /* EditCompanyView.swift in Sources */,

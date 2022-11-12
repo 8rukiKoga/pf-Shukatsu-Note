@@ -30,7 +30,9 @@ struct TodoListView: View {
                         NoItemView(listType: .task)
                     } else {
                         ForEach(tasks) { task in
-                            TodoListRowView(task: task)
+                            NavigationLink(destination: TaskView()) {
+                                TodoListRowView(task: task)
+                            }
                         }
                         .onDelete(perform: deleteTask)
                     }
