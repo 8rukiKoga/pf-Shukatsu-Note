@@ -23,6 +23,7 @@ extension Task {
     @NSManaged public var companyName: String?
     @NSManaged public var name: String?
     @NSManaged public var date: Date?
+    @NSManaged public var remindAt: Date?
     @NSManaged public var done: Bool
 
 }
