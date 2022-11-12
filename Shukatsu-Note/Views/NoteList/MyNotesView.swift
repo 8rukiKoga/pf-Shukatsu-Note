@@ -52,10 +52,6 @@ struct MyNotesView: View {
                 List {
                     // ノートリスト
                     Section {
-                        Button("notify") {
-                            NotificationManager.instance.scheduleNotification() 
-                        }
-                        
                         // 表示するノートをフィルタリング
                         let globalNotes = notes.filter { $0.companyId == nil }
                         if globalNotes.isEmpty {
