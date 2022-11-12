@@ -68,6 +68,11 @@ struct MainView: View {
                 Task.createDefaultCompanyTask(in: context)
                 isInitialLaunch = false
             }
+            // 通知リクエスト (初回起動時のみ)
+            NotificationManager.instance.requestAuth()
+            
+            // バッジカウントを減らす
+            UIApplication.shared.applicationIconBadgeNumber = 0
         }
         
     }
