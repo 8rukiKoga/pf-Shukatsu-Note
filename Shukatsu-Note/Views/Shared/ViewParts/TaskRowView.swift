@@ -22,6 +22,19 @@ struct TodoListRowView: View {
     var body: some View {
         
         HStack {
+            
+            Image(systemName: task.done ? "checkmark.circle.fill" : "circle")
+                .font(task.done ? .title2 : .title)
+                .foregroundColor(task.done ? Color(.systemGreen) : .gray)
+                .onTapGesture {
+                    withAnimation {
+                        Task.update(in: context, task: task)
+                    }
+                    // バイブレーション
+                    VibrationGenerator.vibGenerator.notificationOccurred(.success)
+                }
+                .padding(.trailing, 3)
+            
             VStack(alignment: .leading) {
                 HStack {
                     if let taskDate = task.date {
@@ -50,19 +63,6 @@ struct TodoListRowView: View {
                     // 文字が...で省略されないようにする
                         .fixedSize(horizontal: false, vertical: true)
                 }
-            }
-            Spacer()
-            
-            Button {
-                withAnimation {
-                    Task.update(in: context, task: task)
-                }
-                // バイブレーション
-                VibrationGenerator.vibGenerator.notificationOccurred(.success)
-            } label: {
-                Image(systemName: task.done ? "checkmark.circle.fill" : "circle")
-                    .font(task.done ? .title2 : .title3)
-                    .foregroundColor(task.done ? Color(.systemGreen) : .gray)
             }
         }
         .padding(.horizontal)
