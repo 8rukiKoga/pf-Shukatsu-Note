@@ -73,6 +73,8 @@ struct MainView: View {
             
             // バッジカウントを減らす
             UIApplication.shared.applicationIconBadgeNumber = 0
+            // ロック画面にある通知を消す
+            UNUserNotificationCenter.current().removeAllDeliveredNotifications()
         }
         
     }
