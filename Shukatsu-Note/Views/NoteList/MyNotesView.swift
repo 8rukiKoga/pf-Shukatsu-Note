@@ -122,11 +122,9 @@ struct MyNotesView: View {
             let companyNotes = notes.filter { $0.companyId == companies[index].id }
             let companyTasks = tasks.filter { $0.companyId == companies[index].id }
             for note in companyNotes {
-                print(note)
                 context.delete(note)
             }
             for task in companyTasks {
-                print(task)
                 context.delete(task)
             }
             // 企業自体を削除
