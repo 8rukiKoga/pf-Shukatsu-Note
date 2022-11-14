@@ -22,7 +22,7 @@ class NotificationManager {
     }
     
     // 通知作成
-    func scheduleNotification(id: String, date: Date, taskName: String) {
+    func scheduleNotification(id: String, date: Date, time: Date, taskName: String) {
         // 通知の内容
         let content = UNMutableNotificationContent()
         content.title = NSLocalizedString("本日のタスク", comment: "")
@@ -32,10 +32,10 @@ class NotificationManager {
         
         // 通知の発生条件
         var dateComponents = Calendar.current.dateComponents([.year, .month, .day], from: date)
-        dateComponents.timeZone = TimeZone.current
-        dateComponents.hour = 0
+        dateComponents.hour = Calendar(identifier: .gregorian).component(.hour, from: time)
+        dateComponents.minute = Calendar(identifier: .gregorian).component(.minute, from: time)
         
-        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
         
         // 通知を登録
         let request = UNNotificationRequest(identifier: id,

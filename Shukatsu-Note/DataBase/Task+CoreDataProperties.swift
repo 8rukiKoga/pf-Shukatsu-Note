@@ -94,13 +94,37 @@ extension Task {
         }
     }
     
-    static func update(in context: NSManagedObjectContext, task: Task) {
+    static func updateStatus(in context: NSManagedObjectContext, task: Task) {
         
         task.done.toggle()
         
         if task.done {
             task.doneAt = Date()
         }
+        
+        do {
+            try context.save()
+        } catch {
+            print(error)
+        }
+        
+    }
+    
+    static func updateTask(in context: NSManagedObjectContext,
+                           task: Task,
+                           companyId: String?,
+                           companyName: String?,
+                           name: String?,
+                           date: Date?,
+                           remindAt: Date?) {
+        
+        task.name = name
+        task.date = date
+        task.remindAt = remindAt
+        task.companyId = companyId
+        task.companyName = companyName
+        
+        
         
         do {
             try context.save()

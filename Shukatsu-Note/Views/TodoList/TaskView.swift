@@ -9,39 +9,38 @@ import SwiftUI
 
 struct TaskView: View {
     
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @Environment(\.managedObjectContext) private var context
     @FetchRequest(
         entity: Company.entity(),
         sortDescriptors: [NSSortDescriptor(keyPath: \Company.star, ascending: false)],
         predicate: nil
     ) private var companies: FetchedResults<Company>
     
-    @State private var taskName: String = "説明会"
-    @State private var date: Date = Date()
-    @State private var dateIsSet: Bool = true
-    @State private var company: String = "さんぷるカンパニー"
+    let task: Task!
     
-    @State private var notificationBtnText: String = NSLocalizedString("当日に通知する", comment: "")
+    @State var status: Bool
+    @State var taskName: String
+    @State var date: Date = Date()
+    @State var dateIsSet: Bool = true
+    @State var reminderBtnText: String = NSLocalizedString("当日に通知する", comment: "")
+    @State var remindDate: Date = Date()
+    @State var reminderIsSet: Bool = false
+    @State var company: Company?
     
-    @State private var reminderIsSet: Bool = false
-    @State private var showingReminderAlert: Bool = false
-    
-    //    var task: Task
-    //
-    //    init(task: Task) {
-    //        self.task = task
-    //    }
+    @State private var isBtnEnabled: Bool = true
     
     var body: some View {
         List {
             Section(NSLocalizedString("ステータス", comment: "")) {
                 HStack {
                     Spacer()
-                    Text(dateIsSet ? "DONE" : "NOT DONE")
-                        .foregroundColor(dateIsSet ? .green : .red)
+                    Text(status ? "DONE" : "NOT DONE")
+                        .foregroundColor(status ? .green.opacity(0.7) : .red.opacity(0.7))
                     Spacer()
                 }
-                .listRowBackground(dateIsSet ? Color.green.opacity(0.2) : Color.red.opacity(0.2))
-                .padding()
+                .listRowBackground(status ? Color.green.opacity(0.2) : Color.red.opacity(0.2))
+                .padding(.vertical, 3)
             }
             
             Section(NSLocalizedString("タスク名", comment: "")) {
@@ -52,9 +51,8 @@ struct TaskView: View {
                         .cornerRadius(7)
                     
                     Text("\(taskName.count) / 50")
-                        .font(.caption2)
+                        .font(.caption)
                         .foregroundColor(TextCountValidation.shared.isTextCountValid(text: taskName, max: 50) ? .gray : .red)
-                        .padding(.bottom)
                 }
             }
             
@@ -67,7 +65,6 @@ struct TaskView: View {
                         .animation(.easeInOut, value: dateIsSet)
                     if dateIsSet {
                         DatePicker("", selection: $date, displayedComponents: .date)
-                            .cornerRadius(7)
                             .transition(.slide)
                     } else {
                         Text(NSLocalizedString("日付未指定", comment: ""))
@@ -75,48 +72,86 @@ struct TaskView: View {
                             .transition(.slide)
                     }
                 }
-                .padding(.horizontal)
-                
+            }
+            
+            Section(NSLocalizedString("リマインダー", comment: "")) {
                 HStack {
-                    Spacer()
-                    Button {
-                        withAnimation {
-                            notificationBtnText = NSLocalizedString("当日の0時にお知らせします", comment: "")
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                                notificationBtnText = "リマインダーを解除"
-                            }
-                        }
-                    } label: {
-                        Text(notificationBtnText)
+                    Text(NSLocalizedString("時刻", comment: ""))
+                    
+                    Toggle("", isOn: $reminderIsSet)
+                        .animation(.easeInOut, value: reminderIsSet)
+                    if reminderIsSet {
+                        DatePicker("", selection: $remindDate, displayedComponents: .hourAndMinute)
+                            .transition(.slide)
+                    } else {
+                        Text(NSLocalizedString("未設定", comment: ""))
+                            .foregroundColor(.gray)
+                            .transition(.slide)
                     }
-                    .alert(isPresented: $showingReminderAlert) {
-                        Alert(title: Text(NSLocalizedString("リマインダーを解除", comment: "")),
-                              message: Text(NSLocalizedString("このタスクのリマインダーを解除しますか？", comment: "")),
-                              primaryButton: .default(Text("OK"), action: {
-                            // 通知キャンセル
-                        }),
-                              secondaryButton: .cancel(Text("Cancel"))
-                        )
-                    }
+                }
+                
+                if reminderIsSet {
+                    Text(NSLocalizedString("当日の設定した時刻に通知が届きます。\niPhoneの設定から「就活ノート」の通知をオンにしておいてください。", comment: ""))
+                        .font(.caption)
                 }
             }
             
             Section(NSLocalizedString("企業", comment: "")) {
                 HStack {
-                    Text(NSLocalizedString("企業", comment: ""))
-                        .font(.footnote)
-                        .padding(.trailing, 3)
-                        .frame(height: 40)
+                    Picker("", selection: $company) {
+                        Text(NSLocalizedString("未選択", comment: ""))
+                        ForEach(companies) { company in
+                            // もともとopt型で宣言しているので、ピッカーのtagの方でもopt型に変換しないと適用されない(xcode上ではエラーにならないけど)
+                            Text(company.name ?? "").tag(company as Company?)
+                        }
+                    }
+                    .pickerStyle(.menu)
+                    .transition(.slide)
                 }
             }
+            
+            Section {
+                HStack {
+                    Spacer()
+                    Button {
+                        isBtnEnabled = false
+                        // db保存
+                        Task.updateTask(in: context, task: task, companyId: company?.id, companyName: company?.name, name: taskName, date: date, remindAt: remindDate)
+                        // 既にある通知予定の通知を削除
+                        UNUserNotificationCenter.current().getPendingNotificationRequests { requests in
+                            requests.forEach {
+                                if $0.identifier == task.id {
+                                    NotificationManager.instance.cancelNotification(id: task.id!)
+                                }
+                            }
+                        }
+                        // 削除した後に登録したいため、遅延させる
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            // 通知リクエスト作成
+                            if dateIsSet {
+                                if reminderIsSet {
+                                    NotificationManager.instance.scheduleNotification(id: task.id!, date: date, time: remindDate, taskName: task.name!)
+                                }
+                            }
+                            // バイブレーション
+                            VibrationGenerator.vibGenerator.notificationOccurred(.success)
+                            // 前の画面に戻る
+                            presentationMode.wrappedValue.dismiss()
+                        }
+                    } label: {
+                        Text("保存")
+                            .font(.title3).bold()
+                            .foregroundColor(.white)
+                            .padding(.vertical, 7)
+                    }
+                    .disabled(!isBtnEnabled)
+                    
+                    Spacer()
+                }
+            }
+            .listRowBackground(Color.blue)
         }
-        .navigationBarTitleDisplayMode(.inline)
-        .navigationTitle("Task")
-    }
-}
-
-struct TaskView_Previews: PreviewProvider {
-    static var previews: some View {
-        TaskView()
+        .navigationBarTitle("")
+        .navigationBarHidden(true)
     }
 }

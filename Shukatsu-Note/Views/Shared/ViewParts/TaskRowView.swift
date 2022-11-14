@@ -28,7 +28,7 @@ struct TodoListRowView: View {
                 .foregroundColor(task.done ? Color(.systemGreen) : .gray)
                 .onTapGesture {
                     withAnimation {
-                        Task.update(in: context, task: task)
+                        Task.updateStatus(in: context, task: task)
                     }
                     // バイブレーション
                     VibrationGenerator.vibGenerator.notificationOccurred(.success)

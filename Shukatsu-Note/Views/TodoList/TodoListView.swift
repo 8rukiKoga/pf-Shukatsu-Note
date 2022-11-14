@@ -16,10 +16,17 @@ struct TodoListView: View {
         sortDescriptors: [NSSortDescriptor(keyPath: \Task.createdAt, ascending: false)],
         predicate: nil
     ) private var tasks: FetchedResults<Task>
+    @FetchRequest(
+        entity: Company.entity(),
+        sortDescriptors: [NSSortDescriptor(keyPath: \Company.star, ascending: false)],
+        predicate: nil
+    ) private var companies: FetchedResults<Company>
     // 登録タスク数バリデーションの表示・非表示
     @State private var showingTaskCountAlert: Bool = false
     // 新規タスク追加シートの表示・非表示
     @State var showingSheet: Bool = false
+    
+    private var company: Company?
     
     var body: some View {
         
@@ -30,7 +37,7 @@ struct TodoListView: View {
                         NoItemView(listType: .task)
                     } else {
                         ForEach(tasks) { task in
-                            NavigationLink(destination: TaskView()) {
+                            NavigationLink(destination: TaskView(task: task, status: task.done, taskName: task.name ?? "", date: task.date ?? Date(), dateIsSet: task.date != nil ? true : false, remindDate: task.remindAt ?? Date(), reminderIsSet: task.remindAt != nil ? true : false, company: companies.first(where: { $0.id == task.companyId }) as Company?)) {
                                 TodoListRowView(task: task)
                             }
                         }
