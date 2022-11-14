@@ -173,6 +173,7 @@
 				0DB2B271289E95D800A81149 /* Views */,
 				0DF5FDAE28C9B73900FD8184 /* DataBase */,
 				0DB2B265289E952B00A81149 /* Assets.xcassets */,
+				0D5BBD5228D5E60400A0FBE3 /* Shukatsu-Note-Icon.png */,
 				0DB2B267289E952B00A81149 /* Preview Content */,
 			);
 			path = "Shukatsu-Note";
@@ -284,7 +285,6 @@
 				0DF5FDDB28CAF9D900FD8184 /* Task+CoreDataClass.swift */,
 				0DF5FDDC28CAF9D900FD8184 /* Task+CoreDataProperties.swift */,
 				0DF5FDD528C9BB6300FD8184 /* Persistence.swift */,
-				0D5BBD5228D5E60400A0FBE3 /* Shukatsu-Note-Icon.png */,
 			);
 			path = DataBase;
 			sourceTree = "<group>";
