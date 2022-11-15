@@ -8,6 +8,6 @@
 import Foundation
 import SwiftUI
 
-class CompanyIcon: ObservableObject {
-    @AppStorage("company_icon") var isCompanyImage: Bool = false
-}
+//class CompanyIcon: ObservableObject {
+//    @AppStorage("company_icon") var isCompanyImage: Bool = false
+//}

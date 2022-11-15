@@ -10,7 +10,6 @@ import SwiftUI
 struct FolderRowView: View {
     
     @EnvironmentObject private var customColor: CustomColor
-    @EnvironmentObject private var companyIcon: CompanyIcon
     
     var companyImage: Data?
     var name: String
@@ -25,21 +24,15 @@ struct FolderRowView: View {
             
             VStack {
                 HStack {
-                    if companyIcon.isCompanyImage {
-                        if let companyImage = companyImage {
-                            Image(uiImage: UIImage(data: companyImage)!)
-                                .resizable()
-                                .modifier(CompanyRowImageMod())
-                        } else {
-                            // ユーザーがまだ画像を設定していない場合
-                            Image(uiImage: UIImage(named: "default-companyImage")!)
-                                .resizable()
-                                .modifier(CompanyRowImageMod())
-                        }
+                    if let companyImage = companyImage {
+                        Image(uiImage: UIImage(data: companyImage)!)
+                            .resizable()
+                            .modifier(CompanyRowImageMod())
                     } else {
-                        Image(systemName: "building.2")
-                            .foregroundColor(Color(customColor.themeColor))
-                            .font(.system(size: 18))
+                        // ユーザーがまだ画像を設定していない場合
+                        Image(uiImage: UIImage(named: "default-companyImage")!)
+                            .resizable()
+                            .modifier(CompanyRowImageMod())
                     }
                     
                     VStack(alignment: .center) {

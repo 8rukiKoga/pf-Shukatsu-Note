@@ -10,7 +10,6 @@ import SwiftUI
 struct SettingsView: View {
     
     @EnvironmentObject private var customColor: CustomColor
-    @EnvironmentObject private var companyIcon: CompanyIcon
     
     @State private var url: String = ""
     
@@ -22,10 +21,6 @@ struct SettingsView: View {
                     
                     Section(header: Text(NSLocalizedString("アプリの設定", comment: "")).foregroundColor(Color(customColor.themeColor))) {
                         NavigationLink(NSLocalizedString("テーマカラーを変更する", comment: ""), destination: ColorSettingView())
-                        
-                        Toggle(isOn: companyIcon.$isCompanyImage) {
-                            Text(NSLocalizedString("企業フォルダのアイコンを画像にする", comment: ""))
-                        }
                     }
                     
                     Section(header: Text(NSLocalizedString("サポート", comment: "")).foregroundColor(Color(customColor.themeColor))) {
