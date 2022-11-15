@@ -39,7 +39,7 @@ struct NoteView: View {
                         .font(.body)
                         .padding(.horizontal)
                         .onChange(of: text) { newValue in
-                            if newValue.count > 3000 {
+                            if newValue.count > ValidationCounts.noteText.rawValue {
                                 text.removeLast()
                             } else {
                                 // ＊原因不明：一部のノートにある文をコピペしたやつがめっちゃ遅い

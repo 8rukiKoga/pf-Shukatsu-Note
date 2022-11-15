@@ -83,7 +83,7 @@ struct AddTodoView: View {
                         
                         Text("\(taskName.count) / 50")
                             .font(.caption2)
-                            .foregroundColor(TextCountValidation.shared.isTextCountValid(text: taskName, max: 50) ? .gray : .red)
+                            .foregroundColor(TextCountValidation.shared.isTextCountValid(text: taskName, type: .comAndTaskText) ? .gray : .red)
                             .padding(.bottom)
                         
                         HStack {
@@ -140,7 +140,7 @@ struct AddTodoView: View {
                 HStack {
                     Spacer()
                     Button {
-                        if taskName.count > 0 && TextCountValidation.shared.isTextCountValid(text: taskName, max: 50) {
+                        if taskName.count > 0 && TextCountValidation.shared.isTextCountValid(text: taskName, type: .comAndTaskText) {
                             // 企業を選択しているか判断
                             companyIsSet = company != nil
                             // todoリストに追加

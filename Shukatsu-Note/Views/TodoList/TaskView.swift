@@ -56,7 +56,7 @@ struct TaskView: View {
                     
                     Text("\(taskName.count) / 50")
                         .font(.caption)
-                        .foregroundColor(TextCountValidation.shared.isTextCountValid(text: taskName, max: 50) ? .gray : .red)
+                        .foregroundColor(TextCountValidation.shared.isTextCountValid(text: taskName, type: .comAndTaskText) ? .gray : .red)
                 }
             }
             
@@ -120,8 +120,8 @@ struct TaskView: View {
                     Button {
                         // 通知を1つのみ登録するため、一度押したらボタンを非活性にする
                         isBtnEnabled = false
-                        // もしタスク文字数がmaxを超えていたら
-                        if !TextCountValidation.shared.isTextCountValid(text: taskName, max: 50) {
+                        // もしタスク文字数が許容量を超えていたら
+                        if !TextCountValidation.shared.isTextCountValid(text: taskName, type: .comAndTaskText) {
                             // アラート表示
                             showingValidationAlert = true
                             // ボタンを活性化

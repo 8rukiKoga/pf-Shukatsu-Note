@@ -50,9 +50,9 @@ struct AddCompanyPopupView: View {
                     .background(Color(.systemBackground))
                     .cornerRadius(7)
                 
-                Text("\(newCompanyName.count) / 50")
+                Text("\(newCompanyName.count) / \(ValidationCounts.comAndTaskText.rawValue)")
                     .font(.caption2)
-                    .foregroundColor(TextCountValidation.shared.isTextCountValid(text: newCompanyName, max: 50) ? .gray : .red)
+                    .foregroundColor(TextCountValidation.shared.isTextCountValid(text: newCompanyName, type: .comAndTaskText) ? .gray : .red)
                 
                 Spacer()
                 
@@ -67,7 +67,7 @@ struct AddCompanyPopupView: View {
                     }
                     
                     Button {
-                        if newCompanyName.count > 0 && TextCountValidation.shared.isTextCountValid(text: newCompanyName, max: 50) {
+                        if newCompanyName.count > 0 && TextCountValidation.shared.isTextCountValid(text: newCompanyName, type: .comAndTaskText) {
                                 Company.create(in: context, name: newCompanyName)
                                 // ポップアップを閉じる
                                 showingPopup = false

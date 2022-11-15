@@ -32,7 +32,6 @@ struct EditCompanyView: View {
     
     // 文字数バリデーションのアラートの表示・非表示
     @State private var showingAlert: Bool = false
-    private let validTextCount: Int = 50
     
     // https://1-notes.com/datas-prefectures/
     private let domesticRegions = ["北海道", "青森県", "岩手県", "宮城県", "秋田県", "山形県", "福島県", "茨城県", "栃木県", "群馬県", "埼玉県", "千葉県", "東京都", "神奈川県", "新潟県", "富山県", "石川県", "福井県", "山梨県", "長野県", "岐阜県", "静岡県", "愛知県", "三重県", "滋賀県", "京都府", "大阪府", "兵庫県", "奈良県", "和歌山県", "鳥取県", "島根県", "岡山県", "広島県", "山口県", "徳島県", "香川県", "愛媛県", "高知県", "福岡県", "佐賀県", "長崎県", "熊本県", "大分県", "宮崎県", "鹿児島県", "沖縄県", "海外"]
@@ -67,7 +66,7 @@ struct EditCompanyView: View {
                 
                 Section(NSLocalizedString("企業名", comment: "")) {
                     TextField(NSLocalizedString("例) さんぷる株式会社", comment: ""), text: $name)
-                        .foregroundColor(TextCountValidation.shared.isTextCountValid(text: name, max: validTextCount) ? Color(.label) : .red)
+                        .foregroundColor(TextCountValidation.shared.isTextCountValid(text: name, type: .comAndTaskText) ? Color(.label) : .red)
                         .listRowBackground(name.count > 0 ? Color("DefaultCellColor") : Color.red.opacity(0.2))
                 }
                 Section(NSLocalizedString("志望度", comment: "")) {
@@ -82,7 +81,7 @@ struct EditCompanyView: View {
                 }
                 Section(NSLocalizedString("業界", comment: "")) {
                     TextField(NSLocalizedString("例) 旅行", comment: ""), text: $category)
-                        .foregroundColor(TextCountValidation.shared.isTextCountValid(text: category, max: validTextCount) ? Color(.label) : .red)
+                        .foregroundColor(TextCountValidation.shared.isTextCountValid(text: category, type: .comAndTaskText) ? Color(.label) : .red)
                 }
                 Section(NSLocalizedString("所在地", comment: "")) {
                     if language == "ja" { // 日本語
@@ -96,7 +95,7 @@ struct EditCompanyView: View {
                         if areaInputMethod == 3 {
                             ZStack {
                                 TextField("企業所在地を入力してください", text: $location)
-                                    .foregroundColor(TextCountValidation.shared.isTextCountValid(text: location, max: validTextCount) ? Color(.label) : .red)
+                                    .foregroundColor(TextCountValidation.shared.isTextCountValid(text: location, type: .comAndTaskText) ? Color(.label) : .red)
                                     .padding()
                                     .background(Color(.white).opacity(0.2).cornerRadius(12))
                                     .padding(.vertical, 3)
@@ -128,7 +127,7 @@ struct EditCompanyView: View {
                         if areaInputMethod == 2 {
                             ZStack {
                                 TextField("Input location", text: $location)
-                                    .foregroundColor(TextCountValidation.shared.isTextCountValid(text: location, max: validTextCount) ? Color(.label) : .red)
+                                    .foregroundColor(TextCountValidation.shared.isTextCountValid(text: location, type: .comAndTaskText) ? Color(.label) : .red)
                                     .padding()
                                     .background(Color(.label).opacity(0.1).cornerRadius(12))
                                     .padding(.vertical, 3)
@@ -162,7 +161,7 @@ struct EditCompanyView: View {
                     Spacer()
                     
                     Button {
-                        if name.count > 0 && TextCountValidation.shared.isTextCountValid(text: name, max: validTextCount) && TextCountValidation.shared.isTextCountValid(text: category, max: validTextCount) && TextCountValidation.shared.isTextCountValid(text: location, max: validTextCount) && TextCountValidation.shared.isTextCountValid(text: url, max: validTextCount) {
+                        if name.count > 0 && TextCountValidation.shared.isTextCountValid(text: name, type: .comAndTaskText) && TextCountValidation.shared.isTextCountValid(text: category, type: .comAndTaskText) && TextCountValidation.shared.isTextCountValid(text: location, type: .comAndTaskText) && TextCountValidation.shared.isTextCountValid(text: url, type: .comAndTaskText) {
                             // UIImageをData型に変換
                             guard let data = companyImage.jpegData(compressionQuality: 0.1) else { return }
                             Company.updateInfo(in: context, currentCompany: company, image: data, name: name, star: star, category: category, location: location, url: url)

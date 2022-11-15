@@ -11,8 +11,8 @@ final class TextCountValidation {
     static let shared = TextCountValidation()
     init() { }
     
-    func isTextCountValid(text: String, max: Int) -> Bool {
-        if text.count <= max {
+    func isTextCountValid(text: String, type: ValidationCounts) -> Bool {
+        if text.count <= type.rawValue {
             return true
         }
         return false

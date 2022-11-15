@@ -56,7 +56,7 @@
 
 // Todo
 "Todoを追加" = "Add Todo";
-"登録可能タスク数の上限(100)に達しています。" = "You can't set task more than 100";
+"登録可能タスク数の上限(150)に達しています。" = "You can't set task more than 150";
 
 
 // AddTODO
@@ -69,7 +69,7 @@
 
 
 // ListHeader
-"登録可能ノート数の上限(150)に達しています。" = "You can't set note more than 150.";
+"登録可能ノート数の上限(100)に達しています。" = "You can't set note more than 100.";
 "登録可能企業数の上限(30)に達しています。" = "You can't set company more than 30";
 
 

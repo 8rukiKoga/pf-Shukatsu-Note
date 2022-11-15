@@ -51,7 +51,7 @@ struct TodoListView: View {
                     Spacer()
                     
                     Button {
-                        if tasks.count < 100 {
+                        if tasks.count < ValidationCounts.taskData.rawValue {
                             showingSheet = true
                         } else {
                             showingTaskCountAlert = true
@@ -70,7 +70,7 @@ struct TodoListView: View {
                         }
                     }
                     .alert(isPresented: $showingTaskCountAlert) {
-                        Alert(title: Text(NSLocalizedString("登録可能タスク数の上限(100)に達しています。", comment: "")))
+                        Alert(title: Text(NSLocalizedString("登録可能タスク数の上限(150)に達しています。", comment: "")))
                     }
                 }
                 .padding()

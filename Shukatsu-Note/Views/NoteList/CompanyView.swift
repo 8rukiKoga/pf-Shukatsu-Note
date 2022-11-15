@@ -266,7 +266,7 @@ struct CompanyView: View {
         .onAppear() {
             let mainView = MainView()
             if mainView.isInitialLaunch == false {
-                // 1/30の確率で、レビュー依頼ポップアップを表示
+                // 1/50の確率で、レビュー依頼ポップアップを表示
                 let randomInt = Int.random(in: 1..<50)
                 if randomInt == 1 {
                     if let scene = UIApplication.shared.connectedScenes.first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene {

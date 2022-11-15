@@ -32,8 +32,8 @@ struct ListHeader: View {
             HStack {
                 Text("Note")
                 
-                if noteCount > 100 {
-                    Text("\(noteCount) / 150")
+                if noteCount > 70 {
+                    Text("\(noteCount) / \(ValidationCounts.noteData.rawValue)")
                         .font(.system(size: 8))
                         .padding(.leading, 1)
                 }
@@ -41,7 +41,7 @@ struct ListHeader: View {
                 Spacer()
                 // 新規ノート作成ボタン
                 Button {
-                    if noteCount < 150 {
+                    if noteCount < ValidationCounts.noteData.rawValue {
                         Note.create(in: context, companyId: nil)
                         // 新規ノートに遷移する
                         showingSomething.toggle()
@@ -54,7 +54,7 @@ struct ListHeader: View {
                 }
                 .padding(.trailing, 5)
                 .alert(isPresented: $showingAlert) {
-                    Alert(title: Text(NSLocalizedString("登録可能ノート数の上限(150)に達しています。", comment: "")))
+                    Alert(title: Text(NSLocalizedString("登録可能ノート数の上限(100)に達しています。", comment: "")))
                 }
             }
             
@@ -62,14 +62,14 @@ struct ListHeader: View {
             HStack {
                 Text("Company")
                 
-                Text("\(companyCount) / 30")
+                Text("\(companyCount) / \(ValidationCounts.companyData.rawValue)")
                     .font(.system(size: 8))
                     .padding(.leading, 1)
                 
                 Spacer()
-                // 新規ノート作成ボタン
+                // 新規企業作成ボタン
                 Button {
-                    if companyCount < 30 {
+                    if companyCount < ValidationCounts.companyData.rawValue {
                         // ポップアップ表示
                         withAnimation {
                             showingSomething = true
@@ -92,7 +92,7 @@ struct ListHeader: View {
                 Text("Note")
                 
                 if noteCount > 70 {
-                    Text("\(noteCount) / 100")
+                    Text("\(noteCount) / \(ValidationCounts.noteData.rawValue)")
                         .font(.system(size: 8))
                         .padding(.leading, 1)
                 }
@@ -100,7 +100,7 @@ struct ListHeader: View {
                 Spacer()
                 // 新規メモボタン
                 Button {
-                    if noteCount < 150 {
+                    if noteCount < ValidationCounts.noteData.rawValue {
                         Note.create(in: context, companyId: companyId)
                         showingSomething.toggle()
                     } else {
@@ -111,7 +111,7 @@ struct ListHeader: View {
                         .font(.system(size: 15))
                 }
                 .alert(isPresented: $showingAlert) {
-                    Alert(title: Text(NSLocalizedString("登録可能ノート数の上限(150)に達しています。", comment: "")))
+                    Alert(title: Text(NSLocalizedString("登録可能ノート数の上限(100)に達しています。", comment: "")))
                 }
             }
             
@@ -119,7 +119,7 @@ struct ListHeader: View {
             HStack {
                 Spacer()
                 if taskCount > 70 {
-                    Text("\(taskCount) / 100")
+                    Text("\(taskCount) / \(ValidationCounts.taskData.rawValue)")
                         .font(.system(size: 8))
                         .padding(.leading, 1)
                 }
