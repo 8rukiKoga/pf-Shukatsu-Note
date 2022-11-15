@@ -14,24 +14,19 @@ struct NoteRowView: View {
     var text: String
     
     var body: some View {
-        ZStack {
-            Color(.systemGray6)
-                .ignoresSafeArea()
+        
+        HStack {
+            Image(systemName: "note.text")
+                .foregroundColor(Color(customColor.themeColor))
+                .font(.system(size: 15))
             
-            HStack {
-                Image(systemName: "note.text")
-                    .foregroundColor(Color(customColor.themeColor))
-                    .font(.system(size: 15))
-                
-                Text(text)
-                    .font(.system(size: 11))
-                
-                Spacer()
-            }
-            .frame(height: 25)
-            .padding()
+            Text(text)
+                .font(.system(size: 11))
+            
+            Spacer()
         }
-        .cornerRadius(10)
-        .padding(.vertical, 1)
+        .frame(height: 25)
+        .padding()
+        
     }
 }

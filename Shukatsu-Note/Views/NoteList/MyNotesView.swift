@@ -61,7 +61,13 @@ struct MyNotesView: View {
                                 ZStack {
                                     NavigationLink(destination: NoteView(note: note)) { EmptyView() }
                                         .opacity(0)
-                                    NoteRowView(text: note.text ?? "New Note")
+                                    ZStack {
+                                        Color(.systemGray6)
+                                            .ignoresSafeArea()
+                                        NoteRowView(text: note.text ?? "New Note")
+                                    }
+                                    .cornerRadius(10)
+                                    .padding(.vertical, 1)
                                 }
                             }
                             .onDelete(perform: deleteNote)
