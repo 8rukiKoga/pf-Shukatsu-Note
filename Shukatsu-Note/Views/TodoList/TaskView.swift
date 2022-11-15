@@ -17,6 +17,8 @@ struct TaskView: View {
         predicate: nil
     ) private var companies: FetchedResults<Company>
     
+    @EnvironmentObject private var customColor: CustomColor
+    
     let task: Task!
     
     @State var status: Bool
@@ -36,10 +38,10 @@ struct TaskView: View {
                 HStack {
                     Spacer()
                     Text(status ? "DONE" : "NOT DONE")
-                        .foregroundColor(status ? .green.opacity(0.7) : .red.opacity(0.7))
+                        .foregroundColor(status ? .green.opacity(0.7) : .black.opacity(0.7))
                     Spacer()
                 }
-                .listRowBackground(status ? Color.green.opacity(0.2) : Color.red.opacity(0.2))
+                .listRowBackground(status ? Color.green.opacity(0.2) : Color.gray.opacity(0.2))
                 .padding(.vertical, 3)
             }
             
@@ -149,7 +151,23 @@ struct TaskView: View {
                     Spacer()
                 }
             }
-            .listRowBackground(Color.blue)
+            .listRowBackground(Color(customColor.themeColor))
+            
+            Section {
+                HStack {
+                    Spacer()
+                    Button {
+                        presentationMode.wrappedValue.dismiss()
+                    } label: {
+                        Text("キャンセル")
+                            .font(.title3).bold()
+                            .foregroundColor(.white)
+                            .padding(.vertical, 3)
+                    }
+                    Spacer()
+                }
+            }
+            .listRowBackground(Color.gray)
         }
         .navigationBarTitle("")
         .navigationBarHidden(true)
