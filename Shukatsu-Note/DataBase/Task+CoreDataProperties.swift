@@ -29,15 +29,23 @@ extension Task {
 
 extension Task {
         
-    static func create(in context: NSManagedObjectContext, name: String, date: Date?, companyId: String?) {
+    static func create(in context: NSManagedObjectContext, name: String, date: Date?, remindDate: Date?, companyId: String?) {
         
         let newTask = Task(context: context)
         newTask.createdAt = Date()
         newTask.id = UUID().uuidString
         newTask.name = name
         newTask.date = date
+        newTask.remindAt = remindDate
         newTask.companyId = companyId
         newTask.done = false
+        
+        if newTask.date != nil {
+            if newTask.remindAt != nil {
+                // 通知予定
+                NotificationManager.instance.scheduleNotification(id: newTask.id!, date: date!, time: remindDate!, taskName: newTask.name!)
+            }
+        }
         
         do {
             try context.save()

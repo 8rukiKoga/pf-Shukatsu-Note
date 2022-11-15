@@ -29,7 +29,6 @@ struct TaskView: View {
     @State var taskName: String
     @State var date: Date = Date()
     @State var dateIsSet: Bool = true
-    @State var reminderBtnText: String = NSLocalizedString("当日に通知する", comment: "")
     @State var remindDate: Date = Date()
     @State var reminderIsSet: Bool = false
     @State var company: Company?
@@ -40,7 +39,7 @@ struct TaskView: View {
                 HStack {
                     Spacer()
                     Text(status ? "DONE" : "NOT DONE")
-                        .foregroundColor(status ? .green.opacity(0.7) : .black.opacity(0.7))
+                        .foregroundColor(status ? .green.opacity(0.7) : Color(.systemGray).opacity(0.7))
                     Spacer()
                 }
                 .listRowBackground(status ? Color.green.opacity(0.2) : Color.gray.opacity(0.2))
@@ -78,25 +77,27 @@ struct TaskView: View {
                 }
             }
             
-            Section(NSLocalizedString("リマインダー", comment: "")) {
-                HStack {
-                    Text(NSLocalizedString("時刻", comment: ""))
-                    
-                    Toggle("", isOn: $reminderIsSet)
-                        .animation(.easeInOut, value: reminderIsSet)
-                    if reminderIsSet {
-                        DatePicker("", selection: $remindDate, displayedComponents: .hourAndMinute)
-                            .transition(.slide)
-                    } else {
-                        Text(NSLocalizedString("未設定", comment: ""))
-                            .foregroundColor(.gray)
-                            .transition(.slide)
+            if dateIsSet {
+                Section(NSLocalizedString("リマインダー", comment: "")) {
+                    HStack {
+                        Text(NSLocalizedString("時刻", comment: ""))
+                        
+                        Toggle("", isOn: $reminderIsSet)
+                            .animation(.easeInOut, value: reminderIsSet)
+                        if reminderIsSet {
+                            DatePicker("", selection: $remindDate, displayedComponents: .hourAndMinute)
+                                .transition(.slide)
+                        } else {
+                            Text(NSLocalizedString("未設定", comment: ""))
+                                .foregroundColor(.gray)
+                                .transition(.slide)
+                        }
                     }
-                }
-                
-                if reminderIsSet {
-                    Text(NSLocalizedString("当日の設定した時刻に通知が届きます。\niPhoneの設定から「就活ノート」の通知をオンにしておいてください。", comment: ""))
-                        .font(.caption)
+                    
+                    if reminderIsSet {
+                        Text(NSLocalizedString("タスク当日の設定した時刻に通知が届きます。\niPhoneの設定から「就活ノート」の通知をオンにしておいてください。", comment: ""))
+                            .font(.caption)
+                    }
                 }
             }
             

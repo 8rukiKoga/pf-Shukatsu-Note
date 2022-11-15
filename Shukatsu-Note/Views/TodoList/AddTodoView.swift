@@ -35,6 +35,9 @@ struct AddTodoView: View {
     // 日付を指定しているか判断
     @State private var dateIsSet: Bool = true
     @State private var date = Date()
+    // リマインダーを指定しているか判断
+    @State private var reminderIsSet: Bool = false
+    @State private var remindDate: Date = Date()
     // 企業を指定しているか判断
     @State private var companyIsSet: Bool = false
     @State private var company: Company?
@@ -94,15 +97,42 @@ struct AddTodoView: View {
                             
                             if dateIsSet {
                                 DatePicker("", selection: $date, displayedComponents: .date)
-                                    .cornerRadius(7)
                                     .transition(.slide)
                             } else {
                                 Text(NSLocalizedString("日付未指定", comment: ""))
                                     .foregroundColor(.gray)
-                                    .transition(.slide)
                             }
                         }
                         .padding(.horizontal)
+                        
+                        if dateIsSet {
+                            VStack {
+                                HStack {
+                                    Text(NSLocalizedString("リマインダー", comment: "")).font(.footnote)
+                                    
+                                    Toggle("", isOn: $reminderIsSet)
+                                        .animation(.easeInOut, value: reminderIsSet)
+                                    if reminderIsSet {
+                                        DatePicker("", selection: $remindDate, displayedComponents: .hourAndMinute)
+                                            .transition(.slide)
+                                    } else {
+                                        Text(NSLocalizedString("未設定", comment: ""))
+                                            .foregroundColor(.gray)
+                                    }
+                                }
+                                if reminderIsSet {
+                                    HStack {
+                                        Spacer()
+                                        Text(NSLocalizedString("タスク当日の設定した時刻に通知が届きます。", comment: ""))
+                                            .font(.caption)
+                                            .foregroundColor(Color(.systemGray6))
+                                            .transition(.opacity)
+                                    }
+                                    .padding(.bottom, 5)
+                                }
+                            }
+                            .padding(.horizontal)
+                        }
                         
                         HStack {
                             Text(NSLocalizedString("企業", comment: ""))
@@ -130,7 +160,7 @@ struct AddTodoView: View {
                     }
                     .frame(height: 270)
                 }
-                .frame(width: isIphone ? screenWidth / 1.1 : screenWidth / 1.3, height: 270)
+                .frame(width: isIphone ? screenWidth / 1.1 : screenWidth / 1.3, height: 300)
                 .cornerRadius(7)
                 Spacer()
             }
@@ -141,25 +171,8 @@ struct AddTodoView: View {
                     Spacer()
                     Button {
                         if taskName.count > 0 && TextCountValidation.shared.isTextCountValid(text: taskName, type: .comAndTaskText) {
-                            // 企業を選択しているか判断
-                            companyIsSet = company != nil
                             // todoリストに追加
-                            if companyIsSet && dateIsSet {
-                                Task.create(in: context, name: taskName, date: date, companyId: company!.id)
-                            }
-                            
-                            if companyIsSet && !dateIsSet{
-                                Task.create(in: context, name: taskName, date: nil, companyId: company!.id)
-                            }
-                            
-                            if !companyIsSet && dateIsSet {
-                                Task.create(in: context, name: taskName, date: date, companyId: nil)
-                            }
-                            
-                            if !companyIsSet && !dateIsSet {
-                                Task.create(in: context, name: taskName, date: nil, companyId: nil)
-                            }
-                            
+                            Task.create(in: context, name: taskName, date: dateIsSet ? date : nil, remindDate: reminderIsSet ? remindDate : nil, companyId: company?.id)
                             // モーダルシートを閉じる
                             showingSheet = false
                             // バイブレーション
