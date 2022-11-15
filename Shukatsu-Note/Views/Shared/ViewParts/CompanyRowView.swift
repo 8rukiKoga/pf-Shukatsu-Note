@@ -45,9 +45,8 @@ struct FolderRowView: View {
                     VStack(alignment: .center) {
                         Text(name)
                             .font(.headline).bold()
-                            .padding(.top, 3)
                     }
-                    .padding()
+                    .padding(8)
                     // 文字が...で省略されないようにする
                     .fixedSize(horizontal: false, vertical: true)
                     Spacer()
@@ -69,7 +68,6 @@ struct FolderRowView: View {
                         Image(systemName: "book.circle")
                         Text("\(note)")
                     }
-                    .padding(.trailing, 1)
                     Divider()
                     HStack {
                         Image(systemName: "checkmark.circle")
@@ -82,7 +80,6 @@ struct FolderRowView: View {
             .padding()
         }
         .cornerRadius(10)
-        .padding(.vertical, 3)
         .shadow(color: .gray.opacity(0.7), radius: 4, x: 3, y: 2)
     }
 }
