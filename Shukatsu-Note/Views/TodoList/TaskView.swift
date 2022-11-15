@@ -141,33 +141,44 @@ struct TaskView: View {
                             presentationMode.wrappedValue.dismiss()
                         }
                     } label: {
-                        Text("保存")
-                            .font(.title3).bold()
-                            .foregroundColor(.white)
-                            .padding(.vertical, 7)
+                        ZStack {
+                            Color(customColor.themeColor)
+                                .cornerRadius(10)
+                            
+                            Text("保存")
+                                .font(.title3).bold()
+                                .foregroundColor(.white)
+                                .padding(.vertical, 10)
+                        }
                     }
                     .disabled(!isBtnEnabled)
                     
                     Spacer()
                 }
-            }
-            .listRowBackground(Color(customColor.themeColor))
-            
-            Section {
+                .padding(.bottom, 10)
+                
                 HStack {
                     Spacer()
                     Button {
+                        // 前画面に戻る
                         presentationMode.wrappedValue.dismiss()
                     } label: {
-                        Text("キャンセル")
-                            .font(.title3).bold()
-                            .foregroundColor(.white)
-                            .padding(.vertical, 3)
+                        ZStack {
+                            Color.gray
+                                .cornerRadius(10)
+                            
+                            Text("キャンセル")
+                                .font(.title3).bold()
+                                .foregroundColor(.white)
+                                .background(Color.gray)
+                                .padding(.vertical, 6)
+                        }
                     }
                     Spacer()
                 }
             }
-            .listRowBackground(Color.gray)
+            .listRowBackground(Color.clear)
+            .listRowSeparatorTint(Color.clear)
         }
         .navigationBarTitle("")
         .navigationBarHidden(true)
