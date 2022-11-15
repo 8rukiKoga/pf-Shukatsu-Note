@@ -8,8 +8,8 @@
 import Foundation
 
 enum ListType: String {
-    case note = "ノート"
-    case company = "企業"
-    case task = "タスク"
+    case note = "Note"
+    case company = "Company"
+    case task = "Task"
     case companyNote
 }

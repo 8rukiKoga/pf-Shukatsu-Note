@@ -13,21 +13,15 @@ struct NoItemView: View {
     
     let prefLang = Locale.preferredLanguages.first
     
+    
     var body: some View {
         
         HStack {
             Spacer()
             
-            if ((prefLang?.hasPrefix("en")) != nil){
-               //英語の時の処理
-            } else if ((prefLang?.hasPrefix("ja")) != nil){
-               //日本語の時の処理
-                Text("\(listType.rawValue)がありません✖︎\n\(listType == .task ? "下" : "右上")のボタンから\(listType.rawValue)を追加できます。")
+            Text(String(format: NSLocalizedString("%@がありません✖︎\n%@のボタンから%@を追加できます。", comment: ""), listType.rawValue, listType == .task ? NSLocalizedString("下", comment: "") : NSLocalizedString("右上", comment: ""), listType.rawValue))
                     .font(.footnote)
                     .foregroundColor(.gray)
-            } else{
-               //その他言語の時の処理
-            }
             
             Spacer()
         }

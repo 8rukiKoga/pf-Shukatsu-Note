@@ -6,8 +6,6 @@
   
 */
 
-"これはサンプルの数字です：%d 個だお" = "This is sample number: %d counts";
-
 // StarConvertor
 "未設定" = "Not set";
 
@@ -90,3 +88,8 @@
 "自己分析をする" = "Do a self analysis";
 "タスクが完了したら、タップしましょう。" = "Tap cell when you finished the task";
 "1dayインターンシップ" = "1day internship";
+
+// NoItemView
+"%@がありません✖︎\n%@のボタンから%@を追加できます。" = "There's no %@.\nFrom the %@ button, you can add new %@.";
+"下" = "below";
+"右上" = "top";
