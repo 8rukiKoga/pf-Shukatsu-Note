@@ -179,7 +179,7 @@ struct EditCompanyView: View {
                         }
                     }
                     .alert(isPresented: $showingAlert) {
-                        Alert(title: Text(NSLocalizedString("テキストは50文字以下である必要があります。", comment: "")))
+                        Alert(title: Text(String(format: NSLocalizedString("テキストは%d文字以下である必要があります。", comment: ""), ValidationCounts.comAndTaskText.rawValue)))
                     }
                 }
             }

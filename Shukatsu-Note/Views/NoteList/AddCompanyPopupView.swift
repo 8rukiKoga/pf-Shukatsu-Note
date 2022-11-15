@@ -83,7 +83,7 @@ struct AddCompanyPopupView: View {
                             .frame(width: popupWidth / 2)
                     }
                     .alert(isPresented: $showingAlert) {
-                        Alert(title: Text(NSLocalizedString("企業名は1文字以上50文字以内で入力してください。", comment: "")))
+                        Alert(title: Text(String(format: NSLocalizedString("企業名は1文字以上%d文字以内で入力してください。", comment: ""), ValidationCounts.comAndTaskText.rawValue)))
                     }
                 }
                 .padding(3)

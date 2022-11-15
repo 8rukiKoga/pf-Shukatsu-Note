@@ -54,7 +54,7 @@ struct ListHeader: View {
                 }
                 .padding(.trailing, 5)
                 .alert(isPresented: $showingAlert) {
-                    Alert(title: Text(NSLocalizedString("登録可能ノート数の上限(100)に達しています。", comment: "")))
+                    Alert(title: Text(String(format: NSLocalizedString("登録可能ノート数の上限(%d)に達しています。", comment: ""), ValidationCounts.noteData.rawValue)))
                 }
             }
             
@@ -83,7 +83,7 @@ struct ListHeader: View {
                 }
                 .padding(.trailing, 5)
                 .alert(isPresented: $showingAlert) {
-                    Alert(title: Text(NSLocalizedString("登録可能企業数の上限(30)に達しています。", comment: "")))
+                    Alert(title: Text(String(format: NSLocalizedString("登録可能企業数の上限(%d)に達しています。", comment: ""), ValidationCounts.companyData.rawValue)))
                 }
             }
             
@@ -111,7 +111,7 @@ struct ListHeader: View {
                         .font(.system(size: 15))
                 }
                 .alert(isPresented: $showingAlert) {
-                    Alert(title: Text(NSLocalizedString("登録可能ノート数の上限(100)に達しています。", comment: "")))
+                    Alert(title: Text(String(format: NSLocalizedString("登録可能ノート数の上限(%d)に達しています。", comment: ""), ValidationCounts.noteData.rawValue)))
                 }
             }
             

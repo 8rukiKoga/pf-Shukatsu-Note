@@ -54,7 +54,7 @@ struct TaskView: View {
                         .background(Color(.systemGray5))
                         .cornerRadius(7)
                     
-                    Text("\(taskName.count) / 50")
+                    Text("\(taskName.count) / \(ValidationCounts.comAndTaskText.rawValue)")
                         .font(.caption)
                         .foregroundColor(TextCountValidation.shared.isTextCountValid(text: taskName, type: .comAndTaskText) ? .gray : .red)
                 }
@@ -164,7 +164,7 @@ struct TaskView: View {
                     }
                     .disabled(!isBtnEnabled)
                     .alert(isPresented: $showingValidationAlert) {
-                        Alert(title: Text(NSLocalizedString("タスク名は1文字以上50文字以内で入力してください。", comment: "")))
+                        Alert(title: Text(String(format: NSLocalizedString("タスク名は1文字以上%d文字以内で入力してください。", comment: ""), ValidationCounts.comAndTaskText.rawValue)))
                     }
                     
                     Spacer()

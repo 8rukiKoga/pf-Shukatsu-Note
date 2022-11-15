@@ -70,7 +70,7 @@ struct TodoListView: View {
                         }
                     }
                     .alert(isPresented: $showingTaskCountAlert) {
-                        Alert(title: Text(NSLocalizedString("登録可能タスク数の上限(150)に達しています。", comment: "")))
+                        Alert(title: Text(String(format: NSLocalizedString("登録可能タスク数の上限(%d)に達しています。", comment: ""), ValidationCounts.taskData.rawValue)))
                     }
                 }
                 .padding()

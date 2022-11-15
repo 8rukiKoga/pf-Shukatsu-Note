@@ -69,7 +69,7 @@ struct NoteView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
-                    Text("\(text.count) / 3000")
+                    Text("\(text.count) / \(ValidationCounts.noteText.rawValue)")
                         .font(.system(size: 8))
                         .foregroundColor(.gray)
                     

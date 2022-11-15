@@ -6,6 +6,8 @@
   
 */
 
+"これはサンプルの数字です：%d 個だお" = "This is sample number: %d counts";
+
 // StarConvertor
 "未設定" = "Not set";
 
@@ -30,14 +32,14 @@
 "所在地" = "Location";
 "未選択" = "Not set"; // global
 "関連URL" = "URL";
-"テキストは50文字以下である必要があります。" = "Inputs must be within 50 letters.";
+"テキストは%d文字以下である必要があります。" = "Inputs must be within %d letters.";
 
 // Add Company PopUp
 "企業名を入力してください" = "Input company name";
 "例) さんぷる株式会社" = "e.g. Sample corp."; // global
 "キャンセル" = "Cancel";
 "保存" = "Save";
-"企業名は1文字以上50文字以内で入力してください。" = "Company name must be within 1 - 50 letters";
+"企業名は1文字以上%d文字以内で入力してください。" = "Company name must be within 1 - %d letters";
 
 
 // Setting
@@ -56,7 +58,7 @@
 
 // Todo
 "Todoを追加" = "Add Todo";
-"登録可能タスク数の上限(150)に達しています。" = "You can't set task more than 150";
+"登録可能タスク数の上限(%d)に達しています。" = "You can't set task more than %d";
 
 
 // AddTODO
@@ -65,12 +67,12 @@
 "日付" = "Date";
 "日付未指定" = "Not set";
 "企業" = "Company";
-"タスク名は1文字以上50文字以内で入力してください。" = "Task name must be within 1 - 50 letters";
+"タスク名は1文字以上%d文字以内で入力してください。" = "Task name must be within 1 - %d letters";
 
 
 // ListHeader
-"登録可能ノート数の上限(100)に達しています。" = "You can't set note more than 100.";
-"登録可能企業数の上限(30)に達しています。" = "You can't set company more than 30";
+"登録可能ノート数の上限(%d)に達しています。" = "You can't set note more than %d.";
+"登録可能企業数の上限(%d)に達しています。" = "You can't set company more than %d";
 
 
 //CompanyCoreData
