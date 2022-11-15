@@ -73,6 +73,6 @@ struct FolderRowView: View {
             .padding()
         }
         .cornerRadius(10)
-        .shadow(color: .gray.opacity(0.7), radius: 4, x: 3, y: 2)
+        .shadow(color: Color(.darkGray).opacity(0.6), radius: 4, x: 1, y: 1)
     }
 }
