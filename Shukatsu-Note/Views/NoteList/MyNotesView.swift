@@ -58,7 +58,9 @@ struct MyNotesView: View {
                             NoItemView(listType: .note)
                         } else {
                             ForEach(globalNotes) { note in
-                                NavigationLink(destination: NoteView(note: note)) {
+                                ZStack {
+                                    NavigationLink(destination: NoteView(note: note)) { EmptyView() }
+                                        .opacity(0)
                                     NoteRowView(text: note.text ?? "New Note")
                                 }
                             }
@@ -67,6 +69,8 @@ struct MyNotesView: View {
                     } header: {
                         ListHeader(showingSomething: $showingNote, listType: .note, noteCount: notes.count)
                     }
+                    .listRowBackground(Color.clear)
+                    .listRowSeparatorTint(Color.clear)
                     .textCase(nil)
                     
                     // 企業リスト
@@ -75,8 +79,11 @@ struct MyNotesView: View {
                             NoItemView(listType: .company)
                         } else {
                             ForEach(companies) { company in
-                                NavigationLink(destination: CompanyView(company: company)) {
-                                    FolderRowView(companyImage: company.image, name: company.name ?? "", star: Int(company.star))
+                                ZStack {
+                                    NavigationLink(destination: CompanyView(company: company)) { EmptyView() }
+                                    // navilinkの矢印を消す
+                                        .opacity(0)
+                                    FolderRowView(name: company.name ?? "", star: Int(company.star), note: notes.filter{ $0.companyId == company.id }.count, task: tasks.filter{ $0.companyId == company.id }.count)
                                 }
                             }
                             .onDelete(perform: deleteCompany)
@@ -84,6 +91,8 @@ struct MyNotesView: View {
                     } header: {
                         ListHeader(showingSomething: $showingPopup, listType: .company, companyCount: companies.count)
                     }
+                    .listRowBackground(Color.clear)
+                    .listRowSeparatorTint(Color.clear)
                     .textCase(nil)
                     
                 }

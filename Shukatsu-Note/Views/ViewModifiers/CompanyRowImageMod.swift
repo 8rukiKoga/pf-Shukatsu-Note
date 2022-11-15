@@ -11,12 +11,13 @@ struct CompanyRowImageMod: ViewModifier {
     func body(content: Content) -> some View {
         content
             .scaledToFill()
-            .frame(width: 36, height: 36)
-            .clipShape(Circle())
+            .frame(width: 60, height: 60)
+            .cornerRadius(10)
             .overlay(
-                RoundedRectangle(cornerRadius: 18)
+                RoundedRectangle(cornerRadius: 10)
                     .stroke(Color.gray, lineWidth: 1)
             )
+            .padding(3)
     }
 }
 
