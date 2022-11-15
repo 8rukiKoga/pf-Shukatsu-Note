@@ -154,8 +154,8 @@ struct CompanyView: View {
                             // 企業編集画面を開く
                             showingSheet = true
                         } label: {
-                            Text(NSLocalizedString("編集", comment: ""))
-                                .font(.system(size: 12))
+                            Image(systemName: "gearshape.circle.fill")
+                                .font(.system(size: 22))
                         }
                         .fullScreenCover(isPresented: $showingSheet, content: {
                             //  ユーザーがimageを設定している場合はそのUIImageを渡す

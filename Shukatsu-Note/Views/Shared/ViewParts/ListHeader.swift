@@ -49,8 +49,8 @@ struct ListHeader: View {
                         showingAlert = true
                     }
                 } label: {
-                    Image(systemName: "square.and.pencil")
-                        .font(.system(size: 15))
+                    Image(systemName: "plus.circle.fill")
+                        .font(.system(size: 22))
                 }
                 .padding(.trailing, 5)
                 .alert(isPresented: $showingAlert) {
@@ -78,8 +78,8 @@ struct ListHeader: View {
                         showingAlert = true
                     }
                 } label: {
-                    Image(systemName: "folder.badge.plus")
-                        .font(.system(size: 15))
+                    Image(systemName: "plus.circle.fill")
+                        .font(.system(size: 22))
                 }
                 .padding(.trailing, 5)
                 .alert(isPresented: $showingAlert) {
@@ -107,8 +107,8 @@ struct ListHeader: View {
                         showingAlert = true
                     }
                 } label: {
-                    Image(systemName: "square.and.pencil")
-                        .font(.system(size: 15))
+                    Image(systemName: "plus.circle.fill")
+                        .font(.system(size: 22))
                 }
                 .alert(isPresented: $showingAlert) {
                     Alert(title: Text(String(format: NSLocalizedString("登録可能ノート数の上限(%d)に達しています。", comment: ""), ValidationCounts.noteData.rawValue)))
