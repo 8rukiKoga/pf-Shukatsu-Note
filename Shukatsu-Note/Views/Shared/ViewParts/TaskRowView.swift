@@ -29,7 +29,7 @@ struct TodoListRowView: View {
         HStack {
             
             Image(systemName: task.done ? "checkmark.circle.fill" : "circle")
-                .font(task.done ? .title: .largeTitle)
+                .font(task.done ? .system(size: 25): .system(size: 30))
                 .foregroundColor(task.done ? Color(.systemGreen) : .gray)
                 .onTapGesture {
                     withAnimation {
@@ -83,7 +83,6 @@ struct TodoListRowView: View {
                 }
             }
         }
-        .padding(.horizontal)
         
     }
 }
