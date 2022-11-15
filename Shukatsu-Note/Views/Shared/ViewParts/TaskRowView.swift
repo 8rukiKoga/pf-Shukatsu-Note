@@ -29,7 +29,7 @@ struct TodoListRowView: View {
         HStack {
             
             Image(systemName: task.done ? "checkmark.circle.fill" : "circle")
-                .font(task.done ? .title2 : .title)
+                .font(task.done ? .title: .largeTitle)
                 .foregroundColor(task.done ? Color(.systemGreen) : .gray)
                 .onTapGesture {
                     withAnimation {
@@ -41,16 +41,29 @@ struct TodoListRowView: View {
                 .padding(.trailing, 3)
             
             VStack(alignment: .leading) {
-                HStack {
+                if let companyName = companies.first(where: { $0.id == task.companyId })?.name {
+                    Text("-\(companyName)-")
+                        .font(.system(size: 8))
+                        .padding(.bottom, 1)
+                }
+                
+                HStack() {
                     if let taskDate = task.date {
+                        Image(systemName: "calendar.circle")
+                            .font(.system(size: 9))
                         Text(CustomDateFormatter.shared.convertDateToString(from: taskDate))
-                            .font(.system(size: 12))
+                            .font(.system(size: 10))
                             .padding(.trailing, 1)
                     }
                     
-                    if let companyName = companies.first(where: { $0.id == task.companyId })?.name {
-                        Text("-\(companyName)-")
+                    if let reminderTime = task.remindAt {
+                        Divider()
+                        
+                        Image(systemName: "bell.circle")
+                            .font(.system(size: 9))
+                        Text(CustomDateFormatter.shared.convertTimeToString(from: reminderTime))
                             .font(.system(size: 10))
+                            .padding(.trailing, 1)
                     }
                 }
                 .foregroundColor(.gray)

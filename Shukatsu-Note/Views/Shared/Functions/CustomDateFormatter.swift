@@ -16,11 +16,16 @@ final class CustomDateFormatter {
         self.formatter = formatter
         formatter.locale = Locale(identifier: "ja_JP")
         formatter.dateStyle = .medium
-        formatter.dateFormat = "yyyy.MM.dd"
     }
     
     func convertDateToString(from date: Date) -> String {
+        formatter.dateFormat = "yyyy.MM.dd"
         return formatter.string(from: date)
+    }
+    
+    func convertTimeToString(from time: Date) -> String {
+        formatter.dateFormat = "hh:mm"
+        return formatter.string(from: time)
     }
     
 }
