@@ -67,7 +67,6 @@ struct MyNotesView: View {
                                         NoteRowView(text: note.text ?? "New Note")
                                     }
                                     .cornerRadius(10)
-                                    .padding(.vertical, 1)
                                 }
                             }
                             .onDelete(perform: deleteNote)
