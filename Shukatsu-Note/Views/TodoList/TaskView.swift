@@ -11,13 +11,17 @@ struct TaskView: View {
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @Environment(\.managedObjectContext) private var context
+    @EnvironmentObject private var customColor: CustomColor
     @FetchRequest(
         entity: Company.entity(),
         sortDescriptors: [NSSortDescriptor(keyPath: \Company.star, ascending: false)],
         predicate: nil
     ) private var companies: FetchedResults<Company>
     
-    @EnvironmentObject private var customColor: CustomColor
+    // ボタンの活性・非活性
+    @State private var isBtnEnabled: Bool = true
+    // 文字数アラート表示・非表示
+    @State private var showingValidationAlert: Bool = false
     
     let task: Task!
     
@@ -29,8 +33,6 @@ struct TaskView: View {
     @State var remindDate: Date = Date()
     @State var reminderIsSet: Bool = false
     @State var company: Company?
-    
-    @State private var isBtnEnabled: Bool = true
     
     var body: some View {
         List {
@@ -116,29 +118,38 @@ struct TaskView: View {
                 HStack {
                     Spacer()
                     Button {
+                        // 通知を1つのみ登録するため、一度押したらボタンを非活性にする
                         isBtnEnabled = false
-                        // db保存
-                        Task.updateTask(in: context, task: task, companyId: company?.id, name: taskName, date: date, remindAt: remindDate)
-                        // 既にある通知予定の通知を削除
-                        UNUserNotificationCenter.current().getPendingNotificationRequests { requests in
-                            requests.forEach {
-                                if $0.identifier == task.id {
-                                    NotificationManager.instance.cancelNotification(id: task.id!)
+                        // もしタスク文字数がmaxを超えていたら
+                        if !TextCountValidation.shared.isTextCountValid(text: taskName, max: 50) {
+                            // アラート表示
+                            showingValidationAlert = true
+                            // ボタンを活性化
+                            isBtnEnabled = true
+                        } else {
+                            // db保存
+                            Task.updateTask(in: context, task: task, companyId: company?.id, name: taskName, date: date, remindAt: remindDate)
+                            // 既にある通知予定の通知を削除
+                            UNUserNotificationCenter.current().getPendingNotificationRequests { requests in
+                                requests.forEach {
+                                    if $0.identifier == task.id {
+                                        NotificationManager.instance.cancelNotification(id: task.id!)
+                                    }
                                 }
                             }
-                        }
-                        // 削除した後に登録したいため、遅延させる
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                            // 通知リクエスト作成
-                            if dateIsSet {
-                                if reminderIsSet {
-                                    NotificationManager.instance.scheduleNotification(id: task.id!, date: date, time: remindDate, taskName: task.name!)
+                            // 削除した後に登録したいため、遅延させる
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                // 通知リクエスト作成
+                                if dateIsSet {
+                                    if reminderIsSet {
+                                        NotificationManager.instance.scheduleNotification(id: task.id!, date: date, time: remindDate, taskName: task.name!)
+                                    }
                                 }
+                                // バイブレーション
+                                VibrationGenerator.vibGenerator.notificationOccurred(.success)
+                                // 前の画面に戻る
+                                presentationMode.wrappedValue.dismiss()
                             }
-                            // バイブレーション
-                            VibrationGenerator.vibGenerator.notificationOccurred(.success)
-                            // 前の画面に戻る
-                            presentationMode.wrappedValue.dismiss()
                         }
                     } label: {
                         ZStack {
@@ -152,6 +163,9 @@ struct TaskView: View {
                         }
                     }
                     .disabled(!isBtnEnabled)
+                    .alert(isPresented: $showingValidationAlert) {
+                        Alert(title: Text(NSLocalizedString("タスク名は1文字以上50文字以内で入力してください。", comment: "")))
+                    }
                     
                     Spacer()
                 }
