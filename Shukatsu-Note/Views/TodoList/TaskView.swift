@@ -160,7 +160,7 @@ struct TaskView: View {
                             Text("保存")
                                 .font(.title3).bold()
                                 .foregroundColor(.white)
-                                .padding(.vertical, 10)
+                                .padding(.vertical, 12)
                         }
                     }
                     .disabled(!isBtnEnabled)
@@ -183,10 +183,10 @@ struct TaskView: View {
                                 .cornerRadius(10)
                             
                             Text("キャンセル")
-                                .font(.title3).bold()
+                                .font(.headline)
                                 .foregroundColor(.white)
                                 .background(Color.gray)
-                                .padding(.vertical, 6)
+                                .padding(.vertical, 7)
                         }
                     }
                     Spacer()
