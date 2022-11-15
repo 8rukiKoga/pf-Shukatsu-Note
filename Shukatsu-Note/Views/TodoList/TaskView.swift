@@ -118,7 +118,7 @@ struct TaskView: View {
                     Button {
                         isBtnEnabled = false
                         // db保存
-                        Task.updateTask(in: context, task: task, companyId: company?.id, companyName: company?.name, name: taskName, date: date, remindAt: remindDate)
+                        Task.updateTask(in: context, task: task, companyId: company?.id, name: taskName, date: date, remindAt: remindDate)
                         // 既にある通知予定の通知を削除
                         UNUserNotificationCenter.current().getPendingNotificationRequests { requests in
                             requests.forEach {

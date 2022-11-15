@@ -145,19 +145,19 @@ struct AddTodoView: View {
                             companyIsSet = company != nil
                             // todoリストに追加
                             if companyIsSet && dateIsSet {
-                                Task.create(in: context, name: taskName, date: date, companyId: company!.id, companyName: company!.name)
+                                Task.create(in: context, name: taskName, date: date, companyId: company!.id)
                             }
                             
                             if companyIsSet && !dateIsSet{
-                                Task.create(in: context, name: taskName, date: nil, companyId: company!.id, companyName: company!.name)
+                                Task.create(in: context, name: taskName, date: nil, companyId: company!.id)
                             }
                             
                             if !companyIsSet && dateIsSet {
-                                Task.create(in: context, name: taskName, date: date, companyId: nil, companyName: nil)
+                                Task.create(in: context, name: taskName, date: date, companyId: nil)
                             }
                             
                             if !companyIsSet && !dateIsSet {
-                                Task.create(in: context, name: taskName, date: nil, companyId: nil, companyName: nil)
+                                Task.create(in: context, name: taskName, date: nil, companyId: nil)
                             }
                             
                             // モーダルシートを閉じる

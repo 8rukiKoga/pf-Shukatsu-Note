@@ -20,7 +20,6 @@ extension Task {
     @NSManaged public var doneAt: Date?
     @NSManaged public var id: String?
     @NSManaged public var companyId: String?
-    @NSManaged public var companyName: String?
     @NSManaged public var name: String?
     @NSManaged public var date: Date?
     @NSManaged public var remindAt: Date?
@@ -30,7 +29,7 @@ extension Task {
 
 extension Task {
         
-    static func create(in context: NSManagedObjectContext, name: String, date: Date?, companyId: String?, companyName: String?) {
+    static func create(in context: NSManagedObjectContext, name: String, date: Date?, companyId: String?) {
         
         let newTask = Task(context: context)
         newTask.createdAt = Date()
@@ -38,7 +37,6 @@ extension Task {
         newTask.name = name
         newTask.date = date
         newTask.companyId = companyId
-        newTask.companyName = companyName
         newTask.done = false
         
         do {
@@ -55,7 +53,6 @@ extension Task {
         newTask.createdAt = Date()
         newTask.id = UUID().uuidString
         newTask.companyId = nil
-        newTask.companyName = nil
         newTask.name = NSLocalizedString("自己分析をする", comment: "")
         newTask.date = nil
         newTask.done = false
@@ -73,7 +70,6 @@ extension Task {
         newTask1.createdAt = Date()
         newTask1.id = UUID().uuidString
         newTask1.companyId = "default_company"
-        newTask1.companyName = NSLocalizedString("さんぷる株式会社", comment: "")
         newTask1.name = NSLocalizedString("タスクが完了したら、タップしましょう。", comment: "")
         newTask1.date = Date()
         newTask1.done = false
@@ -82,7 +78,6 @@ extension Task {
         newTask2.createdAt = Date()
         newTask2.id = UUID().uuidString
         newTask2.companyId = "default_company"
-        newTask2.companyName = NSLocalizedString("さんぷる株式会社", comment: "")
         newTask2.name = NSLocalizedString("1dayインターンシップ", comment: "")
         newTask2.date = Date()
         newTask2.done = true
@@ -113,7 +108,6 @@ extension Task {
     static func updateTask(in context: NSManagedObjectContext,
                            task: Task,
                            companyId: String?,
-                           companyName: String?,
                            name: String?,
                            date: Date?,
                            remindAt: Date?) {
@@ -122,7 +116,6 @@ extension Task {
         task.date = date
         task.remindAt = remindAt
         task.companyId = companyId
-        task.companyName = companyName
         
         
         

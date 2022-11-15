@@ -10,6 +10,11 @@ import SwiftUI
 struct TodoListRowView: View {
     
     @Environment(\.managedObjectContext) private var context
+    @FetchRequest(
+        entity: Company.entity(),
+        sortDescriptors: [NSSortDescriptor(keyPath: \Company.star, ascending: false)],
+        predicate: nil
+    ) private var companies: FetchedResults<Company>
     
     private let dateFormatter = DateFormatter()
     
@@ -43,7 +48,7 @@ struct TodoListRowView: View {
                             .padding(.trailing, 1)
                     }
                     
-                    if let companyName = task.companyName {
+                    if let companyName = companies.first(where: { $0.id == task.companyId })?.name {
                         Text("-\(companyName)-")
                             .font(.system(size: 10))
                     }
