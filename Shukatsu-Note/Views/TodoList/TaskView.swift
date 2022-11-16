@@ -156,49 +156,21 @@ struct TaskView: View {
                             }
                         }
                     } label: {
-                        ZStack {
-                            Color(customColor.themeColor)
-                                .cornerRadius(10)
-                            
-                            Text("保存")
-                                .font(.title3).bold()
-                                .foregroundColor(.white)
-                                .padding(.vertical, 12)
-                        }
+                        Text("保存")
+                            .font(.title3).bold()
+                            .foregroundColor(.white)
+                            .padding(.vertical, 12)
+                        
                     }
                     .disabled(!isBtnEnabled)
                     .alert(isPresented: $showingValidationAlert) {
                         Alert(title: Text(String(format: NSLocalizedString("タスク名は1文字以上%d文字以内で入力してください。", comment: ""), ValidationCounts.comAndTaskText.rawValue)))
                     }
-                    
-                    Spacer()
-                }
-                .padding(.bottom, 10)
-                
-                HStack {
-                    Spacer()
-                    Button {
-                        // 前画面に戻る
-                        presentationMode.wrappedValue.dismiss()
-                    } label: {
-                        ZStack {
-                            Color.gray
-                                .cornerRadius(10)
-                            
-                            Text("キャンセル")
-                                .font(.headline)
-                                .foregroundColor(.white)
-                                .background(Color.gray)
-                                .padding(.vertical, 7)
-                        }
-                    }
                     Spacer()
                 }
             }
-            .listRowBackground(Color.clear)
-            .listRowSeparatorTint(Color.clear)
+            .listRowBackground(Color(customColor.themeColor))
         }
-        .navigationBarTitle("")
-        .navigationBarHidden(true)
+        .navigationBarTitle("Task")
     }
 }
