@@ -67,7 +67,7 @@ struct TaskView: View {
                     Toggle("", isOn: $dateIsSet)
                         .animation(.easeInOut, value: dateIsSet)
                     if dateIsSet {
-                        DatePicker("", selection: $date, displayedComponents: .date)
+                        DatePicker("", selection: $date)
                             .transition(.slide)
                     } else {
                         Text(NSLocalizedString("日付未指定", comment: ""))
