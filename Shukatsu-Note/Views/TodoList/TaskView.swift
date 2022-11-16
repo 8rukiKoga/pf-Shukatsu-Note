@@ -9,7 +9,8 @@ import SwiftUI
 
 struct TaskView: View {
     
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @Binding var showingEditSheet: Bool
+    
     @Environment(\.managedObjectContext) private var context
     @EnvironmentObject private var customColor: CustomColor
     @FetchRequest(
@@ -28,7 +29,6 @@ struct TaskView: View {
     
     let task: Task!
     
-    @State var status: Bool
     @State var taskName: String
     @State var date: Date = Date()
     @State var dateIsSet: Bool = true
@@ -37,90 +37,84 @@ struct TaskView: View {
     @State var company: Company?
     
     var body: some View {
-        List {
-            Section(NSLocalizedString("ステータス", comment: "")) {
-                HStack {
-                    Spacer()
-                    Text(status ? "DONE" : "NOT DONE")
-                        .foregroundColor(status ? .green.opacity(0.7) : Color(.systemGray).opacity(0.7))
-                    Spacer()
-                }
-                .listRowBackground(status ? Color.green.opacity(0.2) : Color.gray.opacity(0.2))
-                .padding(.vertical, 3)
-            }
-            
-            Section(NSLocalizedString("タスク名", comment: "")) {
-                VStack {
-                    TextField(NSLocalizedString("タスク名を入力", comment: ""), text: $taskName)
-                        .padding(10)
-                        .background(Color(.systemGray5))
-                        .cornerRadius(7)
-                    
-                    Text("\(taskName.count) / \(ValidationCounts.comAndTaskText.rawValue)")
-                        .font(.caption)
-                        .foregroundColor(TextCountValidation.shared.isTextCountValid(text: taskName, type: .comAndTaskText) ? .gray : .red)
-                }
-            }
-            
-            
-            Section(NSLocalizedString("日付", comment: "")) {
-                HStack {
-                    Text(NSLocalizedString("日付", comment: ""))
-                    
-                    Toggle("", isOn: $dateIsSet)
-                        .animation(.easeInOut, value: dateIsSet)
-                    if dateIsSet {
-                        DatePicker("", selection: $date)
-                            .transition(.slide)
-                    } else {
-                        Text(NSLocalizedString("日付未指定", comment: ""))
-                            .foregroundColor(.gray)
-                            .transition(.slide)
+        ZStack {
+            List {
+                Section(NSLocalizedString("タスク名", comment: "")) {
+                    VStack {
+                        TextField(NSLocalizedString("タスク名を入力", comment: ""), text: $taskName)
+                            .padding(10)
+                            .background(Color(.systemGray5))
+                            .cornerRadius(7)
+                        
+                        Text("\(taskName.count) / \(ValidationCounts.comAndTaskText.rawValue)")
+                            .font(.caption)
+                            .foregroundColor(TextCountValidation.shared.isTextCountValid(text: taskName, type: .comAndTaskText) ? .gray : .red)
                     }
                 }
-            }
-            
-            if dateIsSet {
-                Section(NSLocalizedString("リマインダー", comment: "")) {
+                
+                
+                Section(NSLocalizedString("日付", comment: "")) {
                     HStack {
-                        Text(NSLocalizedString("時刻", comment: ""))
+                        Text(NSLocalizedString("日付", comment: ""))
                         
-                        Toggle("", isOn: $reminderIsSet)
-                            .animation(.easeInOut, value: reminderIsSet)
-                        if reminderIsSet {
-                            DatePicker("", selection: $remindDate, displayedComponents: .hourAndMinute)
+                        Toggle("", isOn: $dateIsSet)
+                            .animation(.easeInOut, value: dateIsSet)
+                        if dateIsSet {
+                            DatePicker("", selection: $date)
                                 .transition(.slide)
                         } else {
-                            Text(NSLocalizedString("未設定", comment: ""))
+                            Text(NSLocalizedString("日付未指定", comment: ""))
                                 .foregroundColor(.gray)
                                 .transition(.slide)
                         }
                     }
-                    
-                    if reminderIsSet {
-                        Text(NSLocalizedString("タスク当日の設定した時刻に通知が届きます。\niPhoneの設定から「就活ノート」の通知をオンにしておいてください。", comment: ""))
-                            .font(.caption)
-                    }
                 }
-            }
-            
-            Section(NSLocalizedString("企業", comment: "")) {
-                HStack {
-                    Picker("", selection: $company) {
-                        Text(NSLocalizedString("未選択", comment: ""))
-                        ForEach(companies) { company in
-                            // もともとopt型で宣言しているので、ピッカーのtagの方でもopt型に変換しないと適用されない(xcode上ではエラーにならないけど)
-                            Text(company.name ?? "").tag(company as Company?)
+                
+                if dateIsSet {
+                    Section(NSLocalizedString("リマインダー", comment: "")) {
+                        HStack {
+                            Text(NSLocalizedString("時刻", comment: ""))
+                            
+                            Toggle("", isOn: $reminderIsSet)
+                                .animation(.easeInOut, value: reminderIsSet)
+                            if reminderIsSet {
+                                DatePicker("", selection: $remindDate, displayedComponents: .hourAndMinute)
+                                    .transition(.slide)
+                            } else {
+                                Text(NSLocalizedString("未設定", comment: ""))
+                                    .foregroundColor(.gray)
+                                    .transition(.slide)
+                            }
+                        }
+                        
+                        if reminderIsSet {
+                            Text(NSLocalizedString("タスク当日の設定した時刻に通知が届きます。\niPhoneの設定から「就活ノート」の通知をオンにしておいてください。", comment: ""))
+                                .font(.caption)
                         }
                     }
-                    .pickerStyle(.menu)
-                    .transition(.slide)
+                }
+                
+                Section(NSLocalizedString("企業", comment: "")) {
+                    HStack {
+                        Picker("", selection: $company) {
+                            Text(NSLocalizedString("未選択", comment: ""))
+                            ForEach(companies) { company in
+                                // もともとopt型で宣言しているので、ピッカーのtagの方でもopt型に変換しないと適用されない(xcode上ではエラーにならないけど)
+                                Text(company.name ?? "").tag(company as Company?)
+                            }
+                        }
+                        .pickerStyle(.menu)
+                        .transition(.slide)
+                    }
                 }
             }
             
-            Section {
+            VStack {
+                Spacer()
+                
                 HStack {
                     Spacer()
+                    
                     Button {
                         // 通知を1つのみ登録するため、一度押したらボタンを非活性にする
                         isBtnEnabled = false
@@ -152,25 +146,22 @@ struct TaskView: View {
                                 // バイブレーション
                                 VibrationGenerator.vibGenerator.notificationOccurred(.success)
                                 // 前の画面に戻る
-                                presentationMode.wrappedValue.dismiss()
+                                showingEditSheet = false
                             }
                         }
                     } label: {
-                        Text("保存")
-                            .font(.title3).bold()
-                            .foregroundColor(.white)
-                            .padding(.vertical, 12)
-                        
+                        ZStack {
+                            Image(systemName: "checkmark.circle.fill")
+                                .modifier(FloatingBtnMod())
+                        }
                     }
                     .disabled(!isBtnEnabled)
                     .alert(isPresented: $showingValidationAlert) {
                         Alert(title: Text(String(format: NSLocalizedString("タスク名は1文字以上%d文字以内で入力してください。", comment: ""), ValidationCounts.comAndTaskText.rawValue)))
                     }
-                    Spacer()
                 }
             }
-            .listRowBackground(Color(customColor.themeColor))
+            
         }
-        .navigationBarTitle("Task")
     }
 }

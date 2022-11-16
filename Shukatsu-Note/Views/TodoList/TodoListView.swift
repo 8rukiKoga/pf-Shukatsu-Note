@@ -32,6 +32,8 @@ struct TodoListView: View {
     @State private var showingTaskCountAlert: Bool = false
     // 新規タスク追加シートの表示・非表示
     @State var showingSheet: Bool = false
+    // タスク編集シートの表示・非表示
+    @State var showingEditSheet: Bool = false
     
     private var company: Company?
     
@@ -47,10 +49,13 @@ struct TodoListView: View {
                         NoItemView(listType: .task)
                     } else {
                         ForEach(tasks) { task in
-                            ZStack {
-                                NavigationLink(destination: TaskView(task: task, status: task.done, taskName: task.name ?? "", date: task.date ?? Date(), dateIsSet: task.date != nil ? true : false, remindDate: task.remindAt ?? Date(), reminderIsSet: task.remindAt != nil ? true : false, company: companies.first(where: { $0.id == task.companyId }) as Company?)) { EmptyView() }
-                                    .opacity(0)
+                            Button {
+                                showingEditSheet = true
+                            } label: {
                                 TodoListRowView(task: task)
+                            }
+                            .fullScreenCover(isPresented: $showingEditSheet) {
+                                TaskView(showingEditSheet: $showingEditSheet, task: task, taskName: task.name ?? "", date: task.date ?? Date(), dateIsSet: task.date != nil ? true : false, remindDate: task.remindAt ?? Date(), reminderIsSet: task.remindAt != nil ? true : false, company: companies.first(where: { $0.id == task.companyId }) as Company?)
                             }
                         }
                         .onDelete(perform: deleteTask)
