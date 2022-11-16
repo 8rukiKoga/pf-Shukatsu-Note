@@ -37,14 +37,16 @@ struct TodoListView: View {
                         NoItemView(listType: .task)
                     } else {
                         ForEach(tasks) { task in
-                            NavigationLink(destination: TaskView(task: task, status: task.done, taskName: task.name ?? "", date: task.date ?? Date(), dateIsSet: task.date != nil ? true : false, remindDate: task.remindAt ?? Date(), reminderIsSet: task.remindAt != nil ? true : false, company: companies.first(where: { $0.id == task.companyId }) as Company?)) {
+                            ZStack {
+                                NavigationLink(destination: TaskView(task: task, status: task.done, taskName: task.name ?? "", date: task.date ?? Date(), dateIsSet: task.date != nil ? true : false, remindDate: task.remindAt ?? Date(), reminderIsSet: task.remindAt != nil ? true : false, company: companies.first(where: { $0.id == task.companyId }) as Company?)) { EmptyView() }
+                                    .opacity(0)
                                 TodoListRowView(task: task)
                             }
                         }
                         .onDelete(perform: deleteTask)
                     }
                 }
-                .listStyle(PlainListStyle())
+                .listStyle(InsetGroupedListStyle())
                 .padding(.bottom, 80)
                 
                 VStack {
