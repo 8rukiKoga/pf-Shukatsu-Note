@@ -26,7 +26,7 @@ struct NoteRowView: View {
             Spacer()
         }
         .frame(height: 25)
-        .padding()
+        .padding(8)
         
     }
 }
