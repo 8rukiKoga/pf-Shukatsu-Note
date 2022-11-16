@@ -58,14 +58,17 @@ struct FolderRowView: View {
                     }
                     Spacer()
                     HStack {
-                        Image(systemName: "book.circle")
-                        Text("\(note)")
+                        HStack {
+                            Image(systemName: "book.circle")
+                            Text("\(note)")
+                        }
+                        Divider()
+                        HStack {
+                            Image(systemName: "checkmark.circle")
+                            Text("\(task)")
+                        }
                     }
-                    Divider()
-                    HStack {
-                        Image(systemName: "checkmark.circle")
-                        Text("\(task)")
-                    }
+                    .font(.footnote)
                 }
                 .foregroundColor(.gray)
                 .padding(.horizontal, 7)
@@ -73,6 +76,6 @@ struct FolderRowView: View {
             .padding()
         }
         .cornerRadius(10)
-        .shadow(color: Color(.darkGray).opacity(0.6), radius: 4, x: 1, y: 1)
+//        .shadow(color: Color(.darkGray).opacity(0.6), radius: 4, x: 1, y: 1)
     }
 }
