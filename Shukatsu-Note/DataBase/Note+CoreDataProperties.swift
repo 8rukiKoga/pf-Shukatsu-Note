@@ -34,6 +34,7 @@ extension Note {
         
         let newNote = Note(context: context)
         newNote.createdAt = Date()
+        newNote.updatedAt = Date()
         newNote.id = UUID().uuidString
         newNote.companyId = companyId
         

@@ -13,7 +13,10 @@ struct CompanyView: View {
     @Environment(\.managedObjectContext) private var context
     @FetchRequest(
         entity: Company.entity(),
-        sortDescriptors: [NSSortDescriptor(keyPath: \Company.star, ascending: false)],
+        sortDescriptors: [
+            NSSortDescriptor(keyPath: \Company.star, ascending: false),
+            NSSortDescriptor(keyPath: \Company.createdAt, ascending: true)
+        ],
         predicate: nil
     ) private var companies: FetchedResults<Company>
     
@@ -25,7 +28,11 @@ struct CompanyView: View {
     
     @FetchRequest(
         entity: Task.entity(),
-        sortDescriptors: [NSSortDescriptor(keyPath: \Task.createdAt, ascending: false)],
+        sortDescriptors: [
+            NSSortDescriptor(keyPath: \Task.doneAt, ascending: true),
+            NSSortDescriptor(keyPath: \Task.date, ascending: true),
+            NSSortDescriptor(keyPath: \Task.createdAt, ascending: false),
+        ],
         predicate: nil
     ) private var tasks: FetchedResults<Task>
     

@@ -12,7 +12,10 @@ struct AddCompanyPopupView: View {
     @Environment(\.managedObjectContext) private var context
     @FetchRequest(
         entity: Company.entity(),
-        sortDescriptors: [NSSortDescriptor(keyPath: \Company.star, ascending: false)],
+        sortDescriptors: [
+            NSSortDescriptor(keyPath: \Company.star, ascending: false),
+            NSSortDescriptor(keyPath: \Company.createdAt, ascending: true)
+        ],
         predicate: nil
     ) private var companies: FetchedResults<Company>
     

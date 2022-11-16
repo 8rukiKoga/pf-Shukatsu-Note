@@ -103,6 +103,8 @@ extension Task {
         
         if task.done {
             task.doneAt = Date()
+        } else {
+            task.doneAt = nil
         }
         
         do {
