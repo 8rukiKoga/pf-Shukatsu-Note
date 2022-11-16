@@ -10,6 +10,7 @@ import SwiftUI
 struct AddTodoView: View {
     
     @Environment(\.managedObjectContext) private var context
+    @EnvironmentObject private var customColor: CustomColor
     @FetchRequest(
         entity: Company.entity(),
         sortDescriptors: [NSSortDescriptor(keyPath: \Company.star, ascending: false)],
@@ -45,7 +46,7 @@ struct AddTodoView: View {
     var body: some View {
         
         ZStack {
-            Color(CustomColor.customBrown)
+            Color(.systemGray4)
                 .ignoresSafeArea()
             
             VStack(spacing: 28) {
@@ -68,8 +69,8 @@ struct AddTodoView: View {
                 .padding()
                 
                 ZStack {
-                    Color(.systemGray4)
-                        .opacity(0.7)
+                    Color(customColor.themeColor)
+                        .opacity(0.5)
                     
                     VStack(alignment: .center) {
                         HStack {

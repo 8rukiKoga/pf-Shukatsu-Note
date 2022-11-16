@@ -32,6 +32,9 @@ struct TodoListView: View {
         
         NavigationView {
             ZStack {
+                Color(.systemGray6)
+                    .ignoresSafeArea()
+                
                 List {
                     if tasks.isEmpty {
                         NoItemView(listType: .task)
@@ -61,7 +64,7 @@ struct TodoListView: View {
                     } label: {
                         ZStack {
                             RoundedRectangle(cornerRadius: 5)
-                                .foregroundColor(Color(CustomColor.customBrown))
+                                .foregroundColor(Color(.systemGray4))
                                 .frame(width: UIScreen.main.bounds.width - 20, height: 50)
                                 .shadow(color: .gray, radius: 5, x: 2, y: 2)
                             VStack {
