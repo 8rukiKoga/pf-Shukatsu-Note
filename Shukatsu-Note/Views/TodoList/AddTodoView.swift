@@ -121,7 +121,7 @@ struct AddTodoView: View {
                                     }
                                     HStack {
                                         Text("end").font(.caption2)
-                                        DatePicker("", selection: $endDate)
+                                        DatePicker("", selection: $endDate, in: date...)
                                     }
                                 }
                                 .padding(.horizontal)

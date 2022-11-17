@@ -77,7 +77,7 @@ struct TaskView: View {
                     
                     if dateIsSet {
                         DatePicker("開始", selection: $date)
-                        DatePicker("終了", selection: $endDate)
+                        DatePicker("終了", selection: $endDate, in: date...)
                     }
                 }
                 
