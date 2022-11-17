@@ -189,6 +189,9 @@ struct AddTodoView: View {
                     Spacer()
                     Button {
                         if taskName.count > 0 && TextCountValidation.shared.isTextCountValid(text: taskName, type: .comAndTaskText) {
+                            if !dateIsSet {
+                                reminderIsSet = false
+                            }
                             // todoリストに追加
                             Task.create(in: context, name: taskName, date: dateIsSet ? date : nil, endDate: endDate, remindDate: reminderIsSet ? remindDate : nil, company: company)
                             // モーダルシートを閉じる

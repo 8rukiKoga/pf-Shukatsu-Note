@@ -121,8 +121,10 @@ extension Task {
                            task: Task,
                            companyId: String?,
                            name: String?,
+                           dateIsSet: Bool,
                            date: Date?,
                            endDate: Date?,
+                           reminderIsSet: Bool,
                            remindAt: Date?) {
         
         task.name = name
@@ -131,6 +133,13 @@ extension Task {
         task.remindAt = remindAt
         task.companyId = companyId
         
+        if !dateIsSet {
+            task.date = nil
+            task.endAt = nil
+        }
+        if !reminderIsSet {
+            task.remindAt = nil
+        }
         
         
         do {

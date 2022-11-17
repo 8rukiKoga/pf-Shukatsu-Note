@@ -187,8 +187,11 @@ struct TaskView: View {
                                 // ボタンを活性化
                                 isBtnEnabled = true
                             } else {
+                                if !dateIsSet {
+                                    reminderIsSet = false
+                                }
                                 // db保存
-                                Task.updateTask(in: context, task: task, companyId: company?.id, name: taskName, date: date, endDate: endDate, remindAt: remindDate)
+                                Task.updateTask(in: context, task: task, companyId: company?.id, name: taskName, dateIsSet: dateIsSet, date: date, endDate: endDate, reminderIsSet: reminderIsSet, remindAt: remindDate)
                                 // 既にある通知予定の通知を削除
                                 UNUserNotificationCenter.current().getPendingNotificationRequests { requests in
                                     requests.forEach {
