@@ -202,7 +202,7 @@ struct TaskView: View {
                                     // 通知リクエスト作成
                                     if dateIsSet {
                                         if reminderIsSet {
-                                            NotificationManager.instance.scheduleNotification(id: task.id!, date: date, time: remindDate, taskName: task.name!)
+                                            NotificationManager.instance.scheduleNotification(id: task.id!, date: date, time: remindDate, companyName: company?.name, taskName: task.name!)
                                         }
                                     }
                                     // バイブレーション

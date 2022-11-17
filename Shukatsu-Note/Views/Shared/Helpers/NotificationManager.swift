@@ -22,11 +22,15 @@ class NotificationManager {
     }
     
     // 通知作成
-    func scheduleNotification(id: String, date: Date, time: Date, taskName: String) {
+    func scheduleNotification(id: String, date: Date, time: Date, companyName: String?, taskName: String) {
         // 通知の内容
         let content = UNMutableNotificationContent()
         content.title = NSLocalizedString("本日のタスク", comment: "")
-        content.subtitle = taskName
+        if let companyName = companyName {
+            content.subtitle = "\("【" + companyName + "】" + taskName)"
+        } else {
+            content.subtitle = taskName
+        }
         content.sound = .default
         content.badge = 1
         

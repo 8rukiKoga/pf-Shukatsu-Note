@@ -30,7 +30,7 @@ extension Task {
 
 extension Task {
         
-    static func create(in context: NSManagedObjectContext, name: String, date: Date?, endDate: Date?, remindDate: Date?, companyId: String?) {
+    static func create(in context: NSManagedObjectContext, name: String, date: Date?, endDate: Date?, remindDate: Date?, company: Company?) {
         
         let newTask = Task(context: context)
         newTask.createdAt = Date()
@@ -39,13 +39,13 @@ extension Task {
         newTask.date = date
         newTask.endAt = endDate
         newTask.remindAt = remindDate
-        newTask.companyId = companyId
+        newTask.companyId = company?.id
         newTask.done = false
         
         if newTask.date != nil {
             if newTask.remindAt != nil {
                 // 通知予定
-                NotificationManager.instance.scheduleNotification(id: newTask.id!, date: date!, time: remindDate!, taskName: newTask.name!)
+                NotificationManager.instance.scheduleNotification(id: newTask.id!, date: date!, time: remindDate!, companyName: company?.name, taskName: newTask.name!)
             }
         }
         

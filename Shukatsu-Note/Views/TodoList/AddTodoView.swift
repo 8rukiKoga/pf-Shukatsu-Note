@@ -190,7 +190,7 @@ struct AddTodoView: View {
                     Button {
                         if taskName.count > 0 && TextCountValidation.shared.isTextCountValid(text: taskName, type: .comAndTaskText) {
                             // todoリストに追加
-                            Task.create(in: context, name: taskName, date: dateIsSet ? date : nil, endDate: endDate, remindDate: reminderIsSet ? remindDate : nil, companyId: company?.id)
+                            Task.create(in: context, name: taskName, date: dateIsSet ? date : nil, endDate: endDate, remindDate: reminderIsSet ? remindDate : nil, company: company)
                             // モーダルシートを閉じる
                             showingSheet = false
                             // バイブレーション
