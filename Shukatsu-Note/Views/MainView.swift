@@ -38,7 +38,10 @@ struct MainView: View {
     @EnvironmentObject private var customColor: CustomColor
     // tabviewの背景色の設定
     init() {
+        // タブバーの色
         UITabBar.appearance().backgroundColor = UIColor.systemGray6
+        // DatePickerの時間を10分間隔に設定できるようにする
+        UIDatePicker.appearance().minuteInterval = 10
     }
     
     var body: some View {

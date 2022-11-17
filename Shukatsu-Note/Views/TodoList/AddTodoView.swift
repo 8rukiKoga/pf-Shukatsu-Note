@@ -22,6 +22,8 @@ struct AddTodoView: View {
     // 新規タスク追加シートの表示・非表示
     @Binding var showingSheet: Bool
     
+    @FocusState private var inputFocus: Bool
+    
     @State private var showingAlert: Bool = false
     // スクリーン幅を取得
     let screenWidth = UIScreen.main.bounds.width
@@ -53,7 +55,7 @@ struct AddTodoView: View {
             Color(.systemGray4)
                 .ignoresSafeArea()
             
-            VStack {
+            ScrollView() {
                 HStack {
                     Text("Add Todo")
                         .font(.title).bold()
@@ -77,111 +79,126 @@ struct AddTodoView: View {
                     Color(customColor.themeColor)
                         .opacity(0.5)
                     
-                    VStack(alignment: .center) {
-                        HStack {
-                            Text(NSLocalizedString("タスク名", comment: "")).font(.footnote)
-                            Spacer()
-                        }
-                        .padding(.horizontal)
-                        
-                        TextField(NSLocalizedString("タスク名を入力", comment: ""), text: $taskName)
-                            .padding(10)
-                            .frame(width: isIphone ? screenWidth / 1.2 : screenWidth / 1.4)
-                            .background(Color(.systemGray5))
-                            .cornerRadius(7)
-                        
-                        Text("\(taskName.count) / \(ValidationCounts.comAndTaskText.rawValue)")
-                            .font(.caption2)
-                            .foregroundColor(TextCountValidation.shared.isTextCountValid(text: taskName, type: .comAndTaskText) ? .gray : .red)
-                            .padding(.bottom)
-                        
-                        HStack {
-                            Text(NSLocalizedString("日時", comment: "")).font(.footnote)
-                            Toggle("", isOn: $dateIsSet)
-                                .animation(.easeInOut, value: dateIsSet)
-                            
-                            if !dateIsSet {
-                                Text(NSLocalizedString("日付未指定", comment: ""))
-                                    .foregroundColor(.gray)
-                            }
-                        }
-                        .padding(.horizontal)
-                        
-                        if dateIsSet {
+                    VStack(alignment: .center, spacing: 10) {
+                        VStack {
                             HStack {
-                                VStack {
-                                    Text("start").font(.caption2)
-                                    DatePicker("", selection: $date)
-                                }
-                                    .scaleEffect(x: 0.9, y: 0.9)
-                                Text("〜").bold()
-                                VStack {
-                                    Text("end").font(.caption2)
-                                    DatePicker("", selection: $endDate)
-                                        .scaleEffect(x: 0.9, y: 0.9)
-                                }
+                                Text(NSLocalizedString("タスク名", comment: "")).font(.footnote)
+                                Spacer()
                             }
+                            .padding(.horizontal)
+                            
+                            TextField(NSLocalizedString("タスク名を入力", comment: ""), text: $taskName)
+                                .focused($inputFocus)
+                                .padding(10)
+                                .frame(width: isIphone ? screenWidth / 1.2 : screenWidth / 1.4)
+                                .background(Color(.systemGray5))
+                                .cornerRadius(7)
+                            
+                            Text("\(taskName.count) / \(ValidationCounts.comAndTaskText.rawValue)")
+                                .font(.caption2)
+                                .foregroundColor(TextCountValidation.shared.isTextCountValid(text: taskName, type: .comAndTaskText) ? .gray : .red)
+                                .padding(.bottom)
                         }
                         
-                        if dateIsSet {
-                            VStack {
-                                HStack {
-                                    Text(NSLocalizedString("リマインダー", comment: "")).font(.footnote)
-                                    
-                                    Toggle("", isOn: $reminderIsSet)
-                                        .animation(.easeInOut, value: reminderIsSet)
-                                    if reminderIsSet {
-                                        DatePicker("", selection: $remindDate, displayedComponents: .hourAndMinute)
-                                            .transition(.slide)
-                                    } else {
-                                        Text(NSLocalizedString("未設定", comment: ""))
-                                            .foregroundColor(.gray)
-                                    }
-                                }
-                                if reminderIsSet {
-                                    HStack {
-                                        Spacer()
-                                        Text(NSLocalizedString("タスク当日の設定した時刻に通知が届きます。", comment: ""))
-                                            .font(.caption)
-                                            .foregroundColor(Color(.systemGray6))
-                                            .transition(.opacity)
-                                    }
-                                    .padding(.bottom, 5)
+                        VStack {
+                            HStack {
+                                Text(NSLocalizedString("日時", comment: "")).font(.footnote)
+                                Toggle("", isOn: $dateIsSet)
+                                    .animation(.easeInOut, value: dateIsSet)
+                                
+                                if !dateIsSet {
+                                    Text(NSLocalizedString("日付未指定", comment: ""))
+                                        .foregroundColor(.gray)
                                 }
                             }
                             .padding(.horizontal)
-                        }
-                        
-                        HStack {
-                            Text(NSLocalizedString("企業", comment: ""))
-                                .font(.footnote)
-                                .padding(.trailing, 3)
                             
-                            ZStack {
-                                Color(.systemGray5)
-                                    .cornerRadius(7)
-                                
-                                Picker("", selection: $company) {
-                                    Text(NSLocalizedString("未選択", comment: ""))
-                                    ForEach(companies) { company in
-                                        // もともとopt型で宣言しているので、ピッカーのtagの方でもopt型に変換しないと適用されない(xcode上ではエラーにならないけど)
-                                        Text(company.name ?? "").tag(company as Company?)
+                            if dateIsSet {
+                                VStack {
+                                    HStack {
+                                        Text("start").font(.caption2)
+                                        DatePicker("", selection: $date)
+                                    }
+                                    HStack {
+                                        Text("end").font(.caption2)
+                                        DatePicker("", selection: $endDate)
                                     }
                                 }
-                                .pickerStyle(.menu)
-                                .transition(.slide)
+                                .padding(.horizontal)
                             }
-                            .frame(height: 40)
-                            
                         }
-                        .padding(.horizontal, 18)
+                        
+                        VStack {
+                            if dateIsSet {
+                                VStack {
+                                    HStack {
+                                        Text(NSLocalizedString("リマインダー", comment: "")).font(.footnote)
+                                        
+                                        Toggle("", isOn: $reminderIsSet)
+                                            .animation(.easeInOut, value: reminderIsSet)
+                                        if reminderIsSet {
+                                            DatePicker("", selection: $remindDate, displayedComponents: .hourAndMinute)
+                                                .transition(.slide)
+                                        } else {
+                                            Text(NSLocalizedString("未設定", comment: ""))
+                                                .foregroundColor(.gray)
+                                        }
+                                    }
+                                    if reminderIsSet {
+                                        HStack {
+                                            Spacer()
+                                            Text(NSLocalizedString("タスク当日の設定した時刻に通知が届きます。", comment: ""))
+                                                .font(.caption)
+                                                .foregroundColor(Color(.systemGray6))
+                                                .transition(.opacity)
+                                        }
+                                        .padding(.bottom, 5)
+                                    }
+                                }
+                                .padding(.horizontal)
+                            }
+                        }
+                        
+                        VStack {
+                            HStack {
+                                Text(NSLocalizedString("企業", comment: ""))
+                                    .font(.footnote)
+                                    .padding(.trailing, 3)
+                                
+                                ZStack {
+                                    Color(.systemGray5)
+                                        .cornerRadius(7)
+                                    
+                                    Picker("", selection: $company) {
+                                        Text(NSLocalizedString("未選択", comment: ""))
+                                        ForEach(companies) { company in
+                                            // もともとopt型で宣言しているので、ピッカーのtagの方でもopt型に変換しないと適用されない(xcode上ではエラーにならないけど)
+                                            Text(company.name ?? "").tag(company as Company?)
+                                        }
+                                    }
+                                    .pickerStyle(.menu)
+                                    .transition(.slide)
+                                }
+                                .frame(height: 40)
+                                
+                            }
+                            .padding(.horizontal, 18)
+                        }
                     }
-                    .frame(height: 270)
+                    .frame(height: 400)
                 }
-                .frame(width: isIphone ? screenWidth / 1.1 : screenWidth / 1.3, height: 350)
+                .frame(width: isIphone ? screenWidth / 1.1 : screenWidth / 1.3, height: 400)
                 .cornerRadius(7)
                 Spacer()
             }
+            .gesture(
+                // 下にドラッグした時に、キーボードを閉じる
+                DragGesture().onChanged({ value in
+                    if value.translation.height > 0 {
+                        inputFocus = false
+                    }
+                })
+            )
             
             VStack {
                 Spacer()

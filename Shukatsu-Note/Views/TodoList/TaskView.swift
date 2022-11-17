@@ -25,6 +25,9 @@ struct TaskView: View {
     
     var eventStore = EKEventStore()
     
+    @FocusState private var inputFocus: Bool
+    
+    
     // ボタンの活性・非活性
     @State private var isBtnEnabled: Bool = true
     // 文字数アラート表示・非表示
@@ -49,6 +52,7 @@ struct TaskView: View {
                 Section(NSLocalizedString("タスク名", comment: "")) {
                     VStack {
                         TextField(NSLocalizedString("タスク名を入力", comment: ""), text: $taskName)
+                            .focused($inputFocus)
                             .padding(10)
                             .background(Color(.systemGray5))
                             .cornerRadius(7)
@@ -115,6 +119,14 @@ struct TaskView: View {
                     }
                 }
             }
+            .gesture(
+                // 下にドラッグした時に、キーボードを閉じる
+                DragGesture().onChanged({ value in
+                    if value.translation.height > 0 {
+                        inputFocus = false
+                    }
+                })
+            )
             
             VStack {
                 Spacer()
