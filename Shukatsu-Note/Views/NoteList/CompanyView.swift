@@ -72,12 +72,12 @@ struct CompanyView: View {
                                 // ユーザーが画像を設定している場合
                                 Image(uiImage: UIImage(data: imageData)!)
                                     .resizable()
-                                    .modifier(CompanyImageMod())
+                                    .modifier(CompanyImageMod(size: 80))
                             } else {
                                 // ユーザーがまだ画像を設定していない場合
                                 Image(uiImage: UIImage(named: "default-companyImage")!)
                                     .resizable()
-                                    .modifier(CompanyImageMod())
+                                    .modifier(CompanyImageMod(size: 80))
                             }
                             
                             Spacer()

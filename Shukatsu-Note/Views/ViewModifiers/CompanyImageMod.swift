@@ -8,11 +8,17 @@
 import SwiftUI
 
 struct CompanyImageMod: ViewModifier {
+    
+    var size: CGFloat = 60
+    
     func body(content: Content) -> some View {
         content
             .scaledToFill()
-            .frame(width: 120, height: 120)
-            .clipShape(Circle())
-            .shadow(color: .gray, radius: 2, x: 0, y: 0)
+            .frame(width: size, height: size)
+            .cornerRadius(10)
+            .overlay(
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(Color(.lightGray), lineWidth: 1)
+            )
     }
 }

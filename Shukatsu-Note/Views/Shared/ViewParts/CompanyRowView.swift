@@ -27,12 +27,12 @@ struct FolderRowView: View {
                     if let companyImage = companyImage {
                         Image(uiImage: UIImage(data: companyImage)!)
                             .resizable()
-                            .modifier(CompanyRowImageMod())
+                            .modifier(CompanyImageMod(size: 45))
                     } else {
                         // ユーザーがまだ画像を設定していない場合
                         Image(uiImage: UIImage(named: "default-companyImage")!)
                             .resizable()
-                            .modifier(CompanyRowImageMod())
+                            .modifier(CompanyImageMod(size: 45))
                     }
                     
                     VStack(alignment: .center) {

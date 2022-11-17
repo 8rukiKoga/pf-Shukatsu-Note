@@ -50,7 +50,7 @@ struct EditCompanyView: View {
                             
                             Image(uiImage: companyImage)
                                 .resizable()
-                                .modifier(CompanyImageMod())
+                                .modifier(CompanyImageMod(size: 80))
                                 .onTapGesture {
                                     showingPhotoPicker = true
                                 }
