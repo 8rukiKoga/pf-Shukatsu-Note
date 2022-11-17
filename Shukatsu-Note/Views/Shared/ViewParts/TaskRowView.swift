@@ -46,6 +46,7 @@ struct TodoListRowView: View {
             VStack(alignment: .leading) {
                 if let companyName = companies.first(where: { $0.id == task.companyId })?.name {
                     Text("-\(companyName)-")
+                        .foregroundColor(Color(.label))
                         .font(.system(size: 8))
                         .padding(.bottom, 1)
                 }
@@ -54,9 +55,8 @@ struct TodoListRowView: View {
                     if let taskDate = task.date {
                         Image(systemName: "calendar.circle")
                             .font(.system(size: 9))
-                        Text(CustomDateFormatter.shared.convertDateToString(from: taskDate))
-                            .font(.system(size: 10))
-                            .padding(.trailing, 1)
+                        Text("\(CustomDateFormatter.shared.convertDateToString(from: taskDate)) \(task.endAt != nil ? "〜 " + CustomDateFormatter.shared.convertDateToString(from: task.endAt!) : "")")
+                            .font(.system(size: 9))
                     }
                     
                     if let reminderTime = task.remindAt {
@@ -65,7 +65,7 @@ struct TodoListRowView: View {
                         Image(systemName: "bell.circle")
                             .font(.system(size: 9))
                         Text(CustomDateFormatter.shared.convertTimeToString(from: reminderTime))
-                            .font(.system(size: 10))
+                            .font(.system(size: 9))
                             .padding(.trailing, 1)
                     }
                 }
@@ -80,6 +80,8 @@ struct TodoListRowView: View {
                         .fixedSize(horizontal: false, vertical: true)
                 } else {
                     Text(task.name ?? "")
+                        .padding(.vertical, 1)
+                        .foregroundColor(Color(.label))
                         .padding(.vertical, 1)
                     // 文字が...で省略されないようにする
                         .fixedSize(horizontal: false, vertical: true)

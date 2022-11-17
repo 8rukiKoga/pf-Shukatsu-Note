@@ -22,6 +22,7 @@ extension Task {
     @NSManaged public var companyId: String?
     @NSManaged public var name: String?
     @NSManaged public var date: Date?
+    @NSManaged public var endAt: Date?
     @NSManaged public var remindAt: Date?
     @NSManaged public var done: Bool
 
@@ -29,13 +30,14 @@ extension Task {
 
 extension Task {
         
-    static func create(in context: NSManagedObjectContext, name: String, date: Date?, remindDate: Date?, companyId: String?) {
+    static func create(in context: NSManagedObjectContext, name: String, date: Date?, endDate: Date?, remindDate: Date?, companyId: String?) {
         
         let newTask = Task(context: context)
         newTask.createdAt = Date()
         newTask.id = UUID().uuidString
         newTask.name = name
         newTask.date = date
+        newTask.endAt = endDate
         newTask.remindAt = remindDate
         newTask.companyId = companyId
         newTask.done = false
@@ -120,10 +122,12 @@ extension Task {
                            companyId: String?,
                            name: String?,
                            date: Date?,
+                           endDate: Date?,
                            remindAt: Date?) {
         
         task.name = name
         task.date = date
+        task.endAt = endDate
         task.remindAt = remindAt
         task.companyId = companyId
         

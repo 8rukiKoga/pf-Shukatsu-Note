@@ -22,6 +22,6 @@ struct FloatingBtnMod: ViewModifier {
             .cornerRadius(size / 2)
             .shadow(color: .gray, radius: 3, x: 1, y: 1)
         // Buttonの端からの距離
-            .padding(EdgeInsets(top: 0, leading: 0, bottom: 50, trailing: 20))
+            .padding(EdgeInsets(top: 0, leading: 0, bottom: 80, trailing: 20))
     }
 }

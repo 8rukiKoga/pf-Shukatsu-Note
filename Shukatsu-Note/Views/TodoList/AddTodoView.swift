@@ -27,10 +27,10 @@ struct AddTodoView: View {
     let screenWidth = UIScreen.main.bounds.width
     var isIphone: Bool {
         if UIDevice.current.userInterfaceIdiom == .phone {
-           // 使用デバイスがiPhoneの場合
+            // 使用デバイスがiPhoneの場合
             return true
         } else {
-           // 使用デバイスがiPadの場合
+            // 使用デバイスがiPadの場合
             return false
         }
     }
@@ -39,6 +39,7 @@ struct AddTodoView: View {
     // 日付を指定しているか判断
     @State private var dateIsSet: Bool = true
     @State private var date = Date()
+    @State private var endDate = Date() + (60 * 30)
     // リマインダーを指定しているか判断
     @State private var reminderIsSet: Bool = false
     @State private var remindDate: Date = Date()
@@ -52,7 +53,7 @@ struct AddTodoView: View {
             Color(.systemGray4)
                 .ignoresSafeArea()
             
-            VStack(spacing: 28) {
+            VStack {
                 HStack {
                     Text("Add Todo")
                         .font(.title).bold()
@@ -70,6 +71,7 @@ struct AddTodoView: View {
                     .padding(6)
                 }
                 .padding()
+                .padding(.bottom, 10)
                 
                 ZStack {
                     Color(customColor.themeColor)
@@ -94,20 +96,32 @@ struct AddTodoView: View {
                             .padding(.bottom)
                         
                         HStack {
-                            Text(NSLocalizedString("日付", comment: "")).font(.footnote)
-                            
+                            Text(NSLocalizedString("日時", comment: "")).font(.footnote)
                             Toggle("", isOn: $dateIsSet)
                                 .animation(.easeInOut, value: dateIsSet)
                             
-                            if dateIsSet {
-                                DatePicker("", selection: $date)
-                                    .transition(.slide)
-                            } else {
+                            if !dateIsSet {
                                 Text(NSLocalizedString("日付未指定", comment: ""))
                                     .foregroundColor(.gray)
                             }
                         }
                         .padding(.horizontal)
+                        
+                        if dateIsSet {
+                            HStack {
+                                VStack {
+                                    Text("start").font(.caption2)
+                                    DatePicker("", selection: $date)
+                                }
+                                    .scaleEffect(x: 0.9, y: 0.9)
+                                Text("〜").bold()
+                                VStack {
+                                    Text("end").font(.caption2)
+                                    DatePicker("", selection: $endDate)
+                                        .scaleEffect(x: 0.9, y: 0.9)
+                                }
+                            }
+                        }
                         
                         if dateIsSet {
                             VStack {
@@ -164,7 +178,7 @@ struct AddTodoView: View {
                     }
                     .frame(height: 270)
                 }
-                .frame(width: isIphone ? screenWidth / 1.1 : screenWidth / 1.3, height: 300)
+                .frame(width: isIphone ? screenWidth / 1.1 : screenWidth / 1.3, height: 350)
                 .cornerRadius(7)
                 Spacer()
             }
@@ -176,7 +190,7 @@ struct AddTodoView: View {
                     Button {
                         if taskName.count > 0 && TextCountValidation.shared.isTextCountValid(text: taskName, type: .comAndTaskText) {
                             // todoリストに追加
-                            Task.create(in: context, name: taskName, date: dateIsSet ? date : nil, remindDate: reminderIsSet ? remindDate : nil, companyId: company?.id)
+                            Task.create(in: context, name: taskName, date: dateIsSet ? date : nil, endDate: endDate, remindDate: reminderIsSet ? remindDate : nil, companyId: company?.id)
                             // モーダルシートを閉じる
                             showingSheet = false
                             // バイブレーション
