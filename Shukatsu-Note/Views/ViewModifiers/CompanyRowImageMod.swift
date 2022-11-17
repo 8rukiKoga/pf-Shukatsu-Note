@@ -11,7 +11,7 @@ struct CompanyRowImageMod: ViewModifier {
     func body(content: Content) -> some View {
         content
             .scaledToFill()
-            .frame(width: 60, height: 60)
+            .frame(width: 45, height: 45)
             .cornerRadius(10)
             .overlay(
                 RoundedRectangle(cornerRadius: 10)

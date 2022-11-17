@@ -95,7 +95,7 @@ struct MyNotesView: View {
                                     NavigationLink(destination: CompanyView(company: company)) { EmptyView() }
                                     // navilinkの矢印を消す
                                         .opacity(0)
-                                    FolderRowView(name: company.name ?? "", star: Int(company.star), note: notes.filter{ $0.companyId == company.id }.count, task: tasks.filter{ $0.companyId == company.id }.count)
+                                    FolderRowView(companyImage: company.image,name: company.name ?? "", star: Int(company.star), note: notes.filter{ $0.companyId == company.id }.count, task: tasks.filter{ $0.companyId == company.id }.count)
                                 }
                             }
                             .onDelete(perform: deleteCompany)
