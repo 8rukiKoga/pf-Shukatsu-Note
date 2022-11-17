@@ -45,7 +45,7 @@ struct TodoListRowView: View {
             
             VStack(alignment: .leading) {
                 if let companyName = companies.first(where: { $0.id == task.companyId })?.name {
-                    Text("-\(companyName)-")
+                    Text("\(companyName)")
                         .foregroundColor(Color(.label))
                         .font(.system(size: 8))
                         .padding(.bottom, 1)
