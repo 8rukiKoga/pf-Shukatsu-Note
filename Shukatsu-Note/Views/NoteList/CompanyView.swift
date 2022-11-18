@@ -136,9 +136,12 @@ struct CompanyView: View {
                                     if companyUrl.isEmpty {
                                         Text("")
                                     } else if VerifyUrl.shared.verifyUrl(urlString: companyUrl) {
-                                        Link(companyUrl, destination: (URL(string: companyUrl)!))
+                                        Text(companyUrl)
                                             .foregroundColor(Color(.link))
                                             .font(.caption)
+                                            .onTapGesture {
+                                                UrlOpener.shared.openUrl(url: companyUrl)
+                                            }
                                     } else {
                                         Text(companyUrl)
                                             .strikethrough()

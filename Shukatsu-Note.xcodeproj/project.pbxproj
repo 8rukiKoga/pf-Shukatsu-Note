@@ -21,6 +21,7 @@
 		0D93AF7128F011F900FA5E25 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0D93AF7328F011F900FA5E25 /* InfoPlist.strings */; };
 		0D956A7728D06AB300DFBD6E /* VibrationGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D956A7628D06AB300DFBD6E /* VibrationGenerator.swift */; };
 		0D956A7B28D08EDC00DFBD6E /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D956A7A28D08EDC00DFBD6E /* UserPreferences.swift */; };
+		0DA51EBD292746B900497160 /* UrlOpener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA51EBC292746B900497160 /* UrlOpener.swift */; };
 		0DAD563D29238ABB00D00A45 /* shukatsu-note-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DAD563C29238ABB00D00A45 /* shukatsu-note-icon.png */; };
 		0DB2B262289E952800A81149 /* Shukatsu_NoteApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B261289E952800A81149 /* Shukatsu_NoteApp.swift */; };
 		0DB2B264289E952800A81149 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB2B263289E952800A81149 /* MainView.swift */; };
@@ -71,6 +72,7 @@
 		0D93AF7228F011F900FA5E25 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0D956A7628D06AB300DFBD6E /* VibrationGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibrationGenerator.swift; sourceTree = "<group>"; };
 		0D956A7A28D08EDC00DFBD6E /* UserPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferences.swift; sourceTree = "<group>"; };
+		0DA51EBC292746B900497160 /* UrlOpener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlOpener.swift; sourceTree = "<group>"; };
 		0DAD563C29238ABB00D00A45 /* shukatsu-note-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shukatsu-note-icon.png"; sourceTree = "<group>"; };
 		0DB2B25E289E952800A81149 /* Shukatsu-Note.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Shukatsu-Note.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DB2B261289E952800A81149 /* Shukatsu_NoteApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shukatsu_NoteApp.swift; sourceTree = "<group>"; };
@@ -249,6 +251,7 @@
 				0DF64A7728C626F90074A14F /* CustomDateFormatter.swift */,
 				0DB5209728CE023F00D7AE6A /* VerifyUrl.swift */,
 				0D1F147A28D1DE8600CFE1DE /* TextCountValidation.swift */,
+				0DA51EBC292746B900497160 /* UrlOpener.swift */,
 			);
 			path = Functions;
 			sourceTree = "<group>";
@@ -378,6 +381,7 @@
 				0DB2B283289E96AF00A81149 /* AddTodoView.swift in Sources */,
 				0DF5FDDD28CAF9D900FD8184 /* Task+CoreDataClass.swift in Sources */,
 				0DB2B264289E952800A81149 /* MainView.swift in Sources */,
+				0DA51EBD292746B900497160 /* UrlOpener.swift in Sources */,
 				0DB2B2B9289FE43F00A81149 /* AddCompanyPopupView.swift in Sources */,
 				0D956A7728D06AB300DFBD6E /* VibrationGenerator.swift in Sources */,
 				0DF5FDD928CAE69900FD8184 /* Note+CoreDataClass.swift in Sources */,
