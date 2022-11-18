@@ -13,6 +13,8 @@ struct SettingsView: View {
     
     @State private var url: String = ""
     
+    @State var showingWalkthrough: Bool = false
+    
     var body: some View {
         
         NavigationView {
@@ -63,17 +65,27 @@ struct SettingsView: View {
                     
                     Section(header: Text(NSLocalizedString("このアプリについて", comment: "")).foregroundColor(Color(customColor.themeColor))) {
                         
+                        Button {
+                            showingWalkthrough = true
+                        } label: {
+                            Text("使い方を見る")
+                        }
+                        .fullScreenCover(isPresented: $showingWalkthrough) {
+                            WalkthroughView(showingWalkthrough: $showingWalkthrough)
+                        }
+                        
+                        Button {
+                            UrlOpener.shared.openUrl(url: "https://8rukikoga.github.io/pf-Portfolio/ShukatsuNote.html")
+                        } label: {
+                            Text(NSLocalizedString("プライバシーポリシーを読む", comment: ""))
+                        }
+                        
                         HStack {
                             Text(NSLocalizedString("バージョン", comment: ""))
                             
                             Spacer()
                             
                             Text("1.4")
-                        }
-                        Button {
-                            UrlOpener.shared.openUrl(url: "https://8rukikoga.github.io/pf-Portfolio/ShukatsuNote.html")
-                        } label: {
-                            Text(NSLocalizedString("プライバシーポリシー", comment: ""))
                         }
                     }
                 }
