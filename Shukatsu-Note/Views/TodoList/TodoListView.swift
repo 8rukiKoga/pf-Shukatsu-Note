@@ -7,6 +7,7 @@
 
 import SwiftUI
 import CoreData
+import EventKit
 
 struct TodoListView: View {
     
@@ -28,6 +29,9 @@ struct TodoListView: View {
         ],
         predicate: nil
     ) private var companies: FetchedResults<Company>
+    
+    var eventStore = EKEventStore()
+    
     // 登録タスク数バリデーションの表示・非表示
     @State private var showingTaskCountAlert: Bool = false
     // 新規タスク追加シートの表示・非表示
@@ -102,6 +106,21 @@ struct TodoListView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     EditButton()
                 }
+            }
+        }
+        .onAppear() {
+            // 通知リクエスト
+            NotificationManager.instance.requestAuth()
+            
+            if EKEventStore.authorizationStatus(for: .event) == .notDetermined{
+                eventStore.requestAccess(to: .event, completion: { (granted, error) in
+                    if granted && error == nil {
+                        print("granted")
+                    }
+                    else{
+                        print("not granted")
+                    }
+                })
             }
         }
     }

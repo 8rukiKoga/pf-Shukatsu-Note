@@ -86,9 +86,6 @@ struct MainView: View {
                 showingWalkthrough = true
             }
             
-            // 通知リクエスト
-            NotificationManager.instance.requestAuth()
-            
             // バッジカウントを減らす
             UIApplication.shared.applicationIconBadgeNumber = 0
             // ロック画面にある通知を消す
@@ -97,6 +94,8 @@ struct MainView: View {
         .fullScreenCover(isPresented: $showingWalkthrough) {
             WalkthroughView(showingWalkthrough: $showingWalkthrough)
                 .onDisappear() {
+                    // 通知リクエスト
+                    NotificationManager.instance.requestAuth()
                     isWalkthroughSeen = true
                 }
         }
