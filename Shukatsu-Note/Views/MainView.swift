@@ -34,6 +34,9 @@ struct MainView: View {
     ) private var tasks: FetchedResults<Task>
     // 初回起動かどうかを判断し、それを保存する変数
     @AppStorage("is_initial_launch") var isInitialLaunch: Bool = true
+    // ウォークスルーを見たか判定
+    @AppStorage("is_walkthrough_seen") var isWalkthroughSeen: Bool = false
+    @State var showingWalkthrough: Bool = false
     // カスタムカラーの呼び出し
     @EnvironmentObject private var customColor: CustomColor
     // tabviewの背景色の設定
@@ -78,13 +81,24 @@ struct MainView: View {
                 Task.createDefaultCompanyTask(in: context)
                 isInitialLaunch = false
             }
-            // 通知リクエスト (初回起動時のみ)
+            
+            if !isWalkthroughSeen {
+                showingWalkthrough = true
+            }
+            
+            // 通知リクエスト
             NotificationManager.instance.requestAuth()
             
             // バッジカウントを減らす
             UIApplication.shared.applicationIconBadgeNumber = 0
             // ロック画面にある通知を消す
             UNUserNotificationCenter.current().removeAllDeliveredNotifications()
+        }
+        .fullScreenCover(isPresented: $showingWalkthrough) {
+            WalkthroughView(showingWalkthrough: $showingWalkthrough)
+                .onDisappear() {
+                    isWalkthroughSeen = true
+                }
         }
         
     }
