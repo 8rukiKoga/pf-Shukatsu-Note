@@ -81,7 +81,9 @@ extension Task {
         newTask1.id = UUID().uuidString
         newTask1.companyId = "default_company"
         newTask1.name = NSLocalizedString("タスクが完了したら、タップしましょう。", comment: "")
-        newTask1.date = Date()
+        let today = Date()
+        newTask1.date = Calendar.current.date(byAdding: .hour, value: -5, to: today)!
+        newTask1.endAt = Calendar.current.date(byAdding: .hour, value: -4, to: today)!
         newTask1.done = false
         
         let newTask2 = Task(context: context)
@@ -89,8 +91,11 @@ extension Task {
         newTask2.id = UUID().uuidString
         newTask2.companyId = "default_company"
         newTask2.name = NSLocalizedString("1dayインターンシップ", comment: "")
-        newTask2.date = Date()
+        newTask2.date = Calendar.current.date(byAdding: .hour, value: -24, to: today)!
+        newTask2.endAt = Calendar.current.date(byAdding: .hour, value: -23, to: today)!
+        newTask2.remindAt = Calendar.current.date(byAdding: .hour, value: -25, to: today)!
         newTask2.done = true
+        newTask2.doneAt = Calendar.current.date(byAdding: .hour, value: -25, to: today)!
         
         do {
             try context.save()
