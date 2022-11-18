@@ -168,7 +168,7 @@ struct TaskView: View {
                                         showingCalenderAlert = true
                                     }
                                     catch {
-                                        calenderAlertText = NSLocalizedString("保存に失敗しました。\n", comment: "")
+                                        calenderAlertText = NSLocalizedString("保存に失敗しました。\n入力内容が誤っている可能性があります。", comment: "")
                                         showingCalenderAlert = true
                                     }
                                 }
