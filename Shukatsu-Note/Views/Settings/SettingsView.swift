@@ -22,21 +22,33 @@ struct SettingsView: View {
                 List {
                     
                     Section(header: Text(NSLocalizedString("アプリの設定", comment: "")).foregroundColor(Color(customColor.themeColor))) {
-                        NavigationLink(NSLocalizedString("テーマカラーを変更する", comment: ""), destination: ColorSettingView())
+                        HStack {
+                            Image(systemName: "paintpalette")
+                                .font(.caption)
+                            NavigationLink(NSLocalizedString("テーマカラーを変更する", comment: ""), destination: ColorSettingView())
+                        }
                     }
                     
                     Section(header: Text(NSLocalizedString("サポート", comment: "")).foregroundColor(Color(customColor.themeColor))) {
                         Button {
                             UrlOpener.shared.openUrl(url: "https://apps.apple.com/app/id1645528668")
                         } label: {
-                            Text(NSLocalizedString("就活ノート を評価する", comment: ""))
+                            HStack {
+                                Image(systemName: "star")
+                                    .font(.caption)
+                                Text(NSLocalizedString("就活ノート を評価する", comment: ""))
+                            }
                         }
                         
                         Button {
                             UrlOpener.shared.openUrl(url: "https://docs.google.com/forms/d/e/1FAIpQLSdWUjv9hDJB4TMZ-e2Mxx37jgR2qenCR2LS8AJQ1jbuqryS4Q/viewform?usp=sf_link")
                         } label: {
-                            Text(NSLocalizedString("お問い合わせをする\n(不具合・機能のリクエストなど)", comment: ""))
-                                .font(.system(size: 15))
+                            HStack {
+                                Image(systemName: "bubble.right")
+                                    .font(.caption)
+                                Text(NSLocalizedString("お問い合わせをする\n(不具合・機能のリクエストなど)", comment: ""))
+                                    .font(.system(size: 15))
+                            }
                         }
                     }
                     
@@ -68,7 +80,11 @@ struct SettingsView: View {
                         Button {
                             showingWalkthrough = true
                         } label: {
-                            Text("使い方を見る")
+                            HStack {
+                                Image(systemName: "book")
+                                    .font(.caption)
+                                Text("使い方を見る")
+                            }
                         }
                         .fullScreenCover(isPresented: $showingWalkthrough) {
                             WalkthroughView(showingWalkthrough: $showingWalkthrough)
@@ -77,11 +93,17 @@ struct SettingsView: View {
                         Button {
                             UrlOpener.shared.openUrl(url: "https://8rukikoga.github.io/pf-Portfolio/ShukatsuNote.html")
                         } label: {
-                            Text(NSLocalizedString("プライバシーポリシーを読む", comment: ""))
+                            HStack {
+                                Image(systemName: "person")
+                                    .font(.caption)
+                                Text(NSLocalizedString("プライバシーポリシーを読む", comment: ""))
+                            }
                         }
                         
                         HStack {
-                            Text(NSLocalizedString("バージョン", comment: ""))
+                            Image(systemName: "timelapse")
+                                .font(.caption)
+                                Text(NSLocalizedString("バージョン", comment: ""))
                             
                             Spacer()
                             
