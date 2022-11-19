@@ -19,8 +19,12 @@ final class CustomDateFormatter {
         formatter.timeStyle = .short
     }
     
-    func convertDateToString(from date: Date) -> String {
-        formatter.dateFormat = "yyyy.MM.dd HH:mm"
+    func convertDateToString(from date: Date, isAllDay: Bool) -> String {
+        if isAllDay {
+            formatter.dateFormat = "yyyy.MM.dd"
+        } else {
+            formatter.dateFormat = "yyyy.MM.dd HH:mm"
+        }
         return formatter.string(from: date)
     }
     

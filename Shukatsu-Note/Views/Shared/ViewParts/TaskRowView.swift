@@ -55,8 +55,14 @@ struct TodoListRowView: View {
                     if let taskDate = task.date {
                         Image(systemName: "calendar.circle")
                             .font(.system(size: 9))
-                        Text("\(CustomDateFormatter.shared.convertDateToString(from: taskDate)) \(task.endAt != nil ? "〜 " + CustomDateFormatter.shared.convertDateToString(from: task.endAt!) : "")")
-                            .font(.system(size: 9))
+                        
+                        if let endDate = task.endAt {
+                            Text("\(CustomDateFormatter.shared.convertDateToString(from: taskDate, isAllDay: false) + "〜 " + CustomDateFormatter.shared.convertDateToString(from: endDate, isAllDay: false))")
+                                .font(.system(size: 9))
+                        } else {
+                            Text("\(CustomDateFormatter.shared.convertDateToString(from: taskDate, isAllDay: true))")
+                                .font(.system(size: 9))
+                        }
                     }
                     
                     if let reminderTime = task.remindAt {
