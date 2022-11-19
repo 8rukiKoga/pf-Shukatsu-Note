@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ColorSettingView: View {
     
-    @EnvironmentObject private var customColor: CustomColor
+    @AppStorage(wrappedValue: "ThemeColor1", "theme_color") var themeColor
     
     private let colorSet: [String] = [
         CustomColor.themeColor1, CustomColor.themeColor2, CustomColor.themeColor3, CustomColor.themeColor4, CustomColor.themeColor5, CustomColor.themeColor6
@@ -20,7 +20,7 @@ struct ColorSettingView: View {
         VStack  {
             VStack(spacing: 100) {
                 
-                Color(customColor.themeColor)
+                Color(themeColor)
                     .frame(width: 230, height: 80)
                     .cornerRadius(13)
                 
@@ -28,7 +28,7 @@ struct ColorSettingView: View {
                     LazyVGrid(columns: Array(repeating: .init(.flexible(), spacing: 0), count: 3), spacing: 0, content: {
                         ForEach(colorSet, id: \.self) { color in
                             Button {
-                                customColor.themeColor = color
+                                themeColor = color
                             } label: {
                                 Color(color)
                                     .frame(width: 60, height: 60)

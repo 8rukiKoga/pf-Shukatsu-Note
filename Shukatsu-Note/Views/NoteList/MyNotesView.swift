@@ -34,8 +34,6 @@ struct MyNotesView: View {
         ],
         predicate: nil
     ) private var tasks: FetchedResults<Task>
-    // テーマカラー呼び出し
-    @EnvironmentObject private var customColor: CustomColor
     // 新規企業企業のポップアップの表示・非表示
     @State private var showingPopup: Bool = false
     // 新規企業企業のポップアップの表示・非表示

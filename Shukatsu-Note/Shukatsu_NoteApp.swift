@@ -10,7 +10,6 @@ import SwiftUI
 @main
 struct Shukatsu_NoteApp: App {
     let persistenceController = PersistenceController.shared
-    @StateObject var customColor = CustomColor()
     @AppStorage(wrappedValue: 0, "appearanceMode") var appearanceMode
     
     var body: some Scene {
@@ -18,7 +17,6 @@ struct Shukatsu_NoteApp: App {
             MainView()
                 .applyAppearenceSetting(AppearanceMode(rawValue: appearanceMode) ?? .followSystem)
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
-                .environmentObject(customColor)
         }
     }
 }

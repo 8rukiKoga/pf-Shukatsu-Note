@@ -9,8 +9,6 @@ import SwiftUI
 
 struct FolderRowView: View {
     
-    @EnvironmentObject private var customColor: CustomColor
-    
     var companyImage: Data?
     var name: String
     var star: Int

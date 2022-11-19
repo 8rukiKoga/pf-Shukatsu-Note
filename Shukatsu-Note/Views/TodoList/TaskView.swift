@@ -13,7 +13,6 @@ struct TaskView: View {
     @Binding var showingEditSheet: Bool
     
     @Environment(\.managedObjectContext) private var context
-    @EnvironmentObject private var customColor: CustomColor
     @FetchRequest(
         entity: Company.entity(),
         sortDescriptors: [

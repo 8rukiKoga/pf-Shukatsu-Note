@@ -37,8 +37,8 @@ struct MainView: View {
     // ウォークスルーを見たか判定
     @AppStorage("is_walkthrough_seen") var isWalkthroughSeen: Bool = false
     @State var showingWalkthrough: Bool = false
-    // カスタムカラーの呼び出し
-    @EnvironmentObject private var customColor: CustomColor
+    // テーマカラーの呼び出し
+    @AppStorage(wrappedValue: "ThemeColor1", "theme_color") var themeColor
     // tabviewの背景色の設定
     init() {
         // タブバーの色
@@ -68,7 +68,7 @@ struct MainView: View {
             
         }
         // アプリのアクセントカラーを変更
-        .accentColor(Color(customColor.themeColor))
+        .accentColor(Color(themeColor))
         // iPadのときにもプッシュ遷移する
         .navigationViewStyle(StackNavigationViewStyle())
         // 初回起動時のデフォルトデータを設置

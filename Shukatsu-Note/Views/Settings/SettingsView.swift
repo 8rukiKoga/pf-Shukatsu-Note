@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SettingsView: View {
     
-    @EnvironmentObject private var customColor: CustomColor
+    @AppStorage(wrappedValue: "ThemeColor1", "theme_color") var themeColor
     @AppStorage(wrappedValue: 0, "appearanceMode") var appearanceMode
     
     @State private var url: String = ""
@@ -22,7 +22,7 @@ struct SettingsView: View {
             VStack {
                 Form {
                     
-                    Section(header: Text(NSLocalizedString("アプリの設定", comment: "")).foregroundColor(Color(customColor.themeColor))) {
+                    Section(header: Text(NSLocalizedString("アプリの設定", comment: "")).foregroundColor(Color(themeColor))) {
                         HStack {
                             Image(systemName: "paintpalette")
                                 .font(.caption)
@@ -43,7 +43,7 @@ struct SettingsView: View {
                         }
                     }
                     
-                    Section(header: Text(NSLocalizedString("サポート", comment: "")).foregroundColor(Color(customColor.themeColor))) {
+                    Section(header: Text(NSLocalizedString("サポート", comment: "")).foregroundColor(Color(themeColor))) {
                         Button {
                             UrlOpener.shared.openUrl(url: "https://apps.apple.com/app/id1645528668")
                         } label: {
@@ -66,7 +66,7 @@ struct SettingsView: View {
                         }
                     }
                     
-                    Section(header: Text(NSLocalizedString("開発者の他のアプリ", comment: "")).foregroundColor(Color(customColor.themeColor))) {
+                    Section(header: Text(NSLocalizedString("開発者の他のアプリ", comment: "")).foregroundColor(Color(themeColor))) {
                         Button {
                             UrlOpener.shared.openUrl(url: "https://apps.apple.com/us/app/%E3%81%95%E3%81%B6%E3%81%99%E3%81%8F%E7%AE%A1%E7%90%86/id1617774926?itsct=apps_box_link&itscg=30200")
                         } label: {
@@ -88,7 +88,7 @@ struct SettingsView: View {
                         }
                     }
                     
-                    Section(header: Text(NSLocalizedString("このアプリについて", comment: "")).foregroundColor(Color(customColor.themeColor))) {
+                    Section(header: Text(NSLocalizedString("このアプリについて", comment: "")).foregroundColor(Color(themeColor))) {
                         
                         Button {
                             showingWalkthrough = true

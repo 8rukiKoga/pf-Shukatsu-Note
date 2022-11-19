@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct FloatingBtnMod: ViewModifier {
-    @EnvironmentObject var customColor: CustomColor
+    @AppStorage(wrappedValue: "ThemeColor1", "theme_color") var themeColor
     
     var size: CGFloat = 55
     
@@ -18,7 +18,7 @@ struct FloatingBtnMod: ViewModifier {
             .foregroundColor(.white)
             .frame(width: size, height: size)
         // うしろの丸の設定
-            .background(Color(customColor.themeColor))
+            .background(Color(themeColor))
             .cornerRadius(size / 2)
             .shadow(color: .gray, radius: 3, x: 1, y: 1)
         // Buttonの端からの距離
