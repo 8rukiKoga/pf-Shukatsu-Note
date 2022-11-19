@@ -10,6 +10,7 @@ import SwiftUI
 struct SettingsView: View {
     
     @EnvironmentObject private var customColor: CustomColor
+    @AppStorage(wrappedValue: 0, "appearanceMode") var appearanceMode
     
     @State private var url: String = ""
     
@@ -19,13 +20,26 @@ struct SettingsView: View {
         
         NavigationView {
             VStack {
-                List {
+                Form {
                     
                     Section(header: Text(NSLocalizedString("アプリの設定", comment: "")).foregroundColor(Color(customColor.themeColor))) {
                         HStack {
                             Image(systemName: "paintpalette")
                                 .font(.caption)
                             NavigationLink(NSLocalizedString("テーマカラーを変更する", comment: ""), destination: ColorSettingView())
+                        }
+                        
+                        HStack {
+                            Image(systemName: "rectangle.on.rectangle.angled")
+                                .font(.caption)
+                            Picker("テーマを変更する", selection: $appearanceMode) {
+                                Text("端末のテーマ")
+                                    .tag(0)
+                                Text("ダークモード")
+                                    .tag(1)
+                                Text("ライトモード")
+                                    .tag(2)
+                            }
                         }
                     }
                     
@@ -63,16 +77,15 @@ struct SettingsView: View {
                                 
                                 VStack(alignment: .leading) {
                                     Text(NSLocalizedString("さぶすく管理", comment: ""))
-                                        .foregroundColor(Color(.label))
                                         .font(.body)
                                     
                                     Text(NSLocalizedString("登録しているサブスクを見える化するアプリ", comment: ""))
+                                        .foregroundColor(.gray)
+                                        .font(.caption)
                                 }
                                 .padding(.leading, 2)
                             }
                         }
-                        .foregroundColor(.gray)
-                        .font(.system(size: 10))
                     }
                     
                     Section(header: Text(NSLocalizedString("このアプリについて", comment: "")).foregroundColor(Color(customColor.themeColor))) {
@@ -103,7 +116,7 @@ struct SettingsView: View {
                         HStack {
                             Image(systemName: "timelapse")
                                 .font(.caption)
-                                Text(NSLocalizedString("バージョン", comment: ""))
+                            Text(NSLocalizedString("バージョン", comment: ""))
                             
                             Spacer()
                             
@@ -111,6 +124,7 @@ struct SettingsView: View {
                         }
                     }
                 }
+                .foregroundColor(Color(.label))
                 .listStyle(.plain)
             }
             .navigationTitle("Settings")
