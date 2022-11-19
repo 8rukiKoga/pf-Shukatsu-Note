@@ -42,10 +42,11 @@ extension Task {
         newTask.companyId = company?.id
         newTask.done = false
         
-        if newTask.date != nil {
-            if newTask.remindAt != nil {
+        if let date = newTask.date {
+            if let remindAt = newTask.remindAt {
                 // 通知予定
-                NotificationManager.instance.scheduleNotification(id: newTask.id!, date: date!, time: remindDate!, companyName: company?.name, taskName: newTask.name!)
+                NotificationManager.instance.scheduleNotification(id: newTask.id!, date: date, time: remindAt, companyName: company?.name, taskName: newTask.name!)
+                print("notification is scheduled")
             }
         }
         
@@ -129,6 +130,7 @@ extension Task {
                            dateIsSet: Bool,
                            date: Date?,
                            endDate: Date?,
+                           endDateIsSet: Bool,
                            reminderIsSet: Bool,
                            remindAt: Date?) {
         
@@ -140,6 +142,8 @@ extension Task {
         
         if !dateIsSet {
             task.date = nil
+        }
+        if !endDateIsSet {
             task.endAt = nil
         }
         if !reminderIsSet {

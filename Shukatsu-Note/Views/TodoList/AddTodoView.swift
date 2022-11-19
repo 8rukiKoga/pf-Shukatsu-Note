@@ -25,8 +25,6 @@ struct AddTodoView: View {
     @FocusState private var inputFocus: Bool
     
     @State private var showingAlert: Bool = false
-    // スクリーン幅を取得
-    let screenWidth = UIScreen.main.bounds.width
     var isIphone: Bool {
         if UIDevice.current.userInterfaceIdiom == .phone {
             // 使用デバイスがiPhoneの場合
@@ -41,6 +39,7 @@ struct AddTodoView: View {
     // 日付を指定しているか判断
     @State private var dateIsSet: Bool = true
     @State private var date = Date()
+    @State private var endDateIsSet: Bool = false
     @State private var endDate = Date() + (60 * 30)
     // リマインダーを指定しているか判断
     @State private var reminderIsSet: Bool = false
@@ -90,7 +89,6 @@ struct AddTodoView: View {
                             TextField(NSLocalizedString("タスク名を入力", comment: ""), text: $taskName)
                                 .focused($inputFocus)
                                 .padding(10)
-                                .frame(width: isIphone ? screenWidth / 1.2 : screenWidth / 1.4)
                                 .background(Color(.systemGray5))
                                 .cornerRadius(7)
                             
@@ -102,7 +100,7 @@ struct AddTodoView: View {
                         
                         VStack {
                             HStack {
-                                Text(NSLocalizedString("日時", comment: "")).font(.footnote)
+                                Text(NSLocalizedString("日付", comment: "")).font(.footnote)
                                 Toggle("", isOn: $dateIsSet)
                                     .animation(.easeInOut, value: dateIsSet)
                                 
@@ -114,15 +112,31 @@ struct AddTodoView: View {
                             .padding(.horizontal)
                             
                             if dateIsSet {
+                                HStack {
+                                    Text(NSLocalizedString("終了日時も設定する", comment: "")).font(.footnote)
+                                    Toggle("", isOn: $endDateIsSet)
+                                        .animation(.easeInOut, value: endDateIsSet)
+                                }
+                                .padding(.horizontal)
+                                
                                 VStack {
-                                    HStack {
-                                        Text("start").font(.caption2)
-                                        DatePicker("", selection: $date)
+                                    if endDateIsSet {
+                                        HStack {
+                                            Text("Start").font(.caption2)
+                                            DatePicker("", selection: $date)
+                                        }
+                                        
+                                        HStack {
+                                            Text("End").font(.caption2)
+                                            DatePicker("", selection: $endDate, in: date...)
+                                        }
+                                    } else {
+                                        HStack {
+                                            Text("日付").font(.caption2)
+                                            DatePicker("", selection: $date, displayedComponents: .date)
+                                        }
                                     }
-                                    HStack {
-                                        Text("end").font(.caption2)
-                                        DatePicker("", selection: $endDate, in: date...)
-                                    }
+                                    
                                 }
                                 .padding(.horizontal)
                             }
@@ -185,10 +199,11 @@ struct AddTodoView: View {
                             .padding(.horizontal, 18)
                         }
                     }
-                    .frame(height: 400)
+                    .padding()
                 }
-                .frame(width: isIphone ? screenWidth / 1.1 : screenWidth / 1.3, height: 400)
                 .cornerRadius(7)
+                .padding()
+                
                 Spacer()
             }
             .gesture(
@@ -208,9 +223,10 @@ struct AddTodoView: View {
                         if taskName.count > 0 && TextCountValidation.shared.isTextCountValid(text: taskName, type: .comAndTaskText) {
                             if !dateIsSet {
                                 reminderIsSet = false
+                                endDateIsSet = false
                             }
                             // todoリストに追加
-                            Task.create(in: context, name: taskName, date: dateIsSet ? date : nil, endDate: endDate, remindDate: reminderIsSet ? remindDate : nil, company: company)
+                            Task.create(in: context, name: taskName, date: dateIsSet ? date : nil, endDate: endDateIsSet ? endDate : nil, remindDate: reminderIsSet ? remindDate : nil, company: company)
                             // モーダルシートを閉じる
                             showingSheet = false
                             // バイブレーション

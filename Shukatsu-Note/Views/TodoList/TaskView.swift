@@ -42,6 +42,7 @@ struct TaskView: View {
     @State var date: Date = Date()
     @State var endDate: Date = Date() + (60 * 30)
     @State var dateIsSet: Bool = true
+    @State var endDateIsSet: Bool = false
     @State var remindDate: Date = Date()
     @State var reminderIsSet: Bool = false
     @State var company: Company?
@@ -65,20 +66,33 @@ struct TaskView: View {
                 
                 
                 Section(NSLocalizedString("日付", comment: "")) {
-                    HStack {
-                        Toggle(NSLocalizedString("日付", comment: ""), isOn: $dateIsSet)
-                            .animation(.easeInOut, value: dateIsSet)
-                        if !dateIsSet {
-                            Text(NSLocalizedString("日付未指定", comment: ""))
-                                .foregroundColor(.gray)
-                                .transition(.slide)
+                    Toggle(NSLocalizedString("日付", comment: ""), isOn: $dateIsSet)
+                        .animation(.easeInOut, value: dateIsSet)
+                    
+                    
+                    if dateIsSet {
+                        Toggle(NSLocalizedString("終了日時も設定する", comment: ""), isOn: $endDateIsSet)
+                            .animation(.easeInOut, value: endDateIsSet)
+                        
+                        if !endDateIsSet {
+                            DatePicker("日付", selection: $date, displayedComponents: .date)
+                        } else {
+                            DatePicker("開始", selection: $date)
                         }
                     }
                     
-                    if dateIsSet {
-                        DatePicker("開始", selection: $date)
-                        DatePicker("終了", selection: $endDate, in: date...)
+                    if !dateIsSet {
+                        Text(NSLocalizedString("日付未指定", comment: ""))
+                            .foregroundColor(.gray)
+                            .transition(.slide)
                     }
+                    
+                    if endDateIsSet {
+                        if endDateIsSet {
+                            DatePicker("終了", selection: $endDate, in: date...)
+                        }
+                    }
+                    
                 }
                 
                 if dateIsSet {
@@ -157,11 +171,20 @@ struct TaskView: View {
                                         event.title = taskName
                                     }
                                     
+                                    if dateIsSet {
+                                        
+                                        if endDateIsSet {
+                                            event.startDate = date
+                                            event.endDate = endDate
+                                        } else {
+                                            event.startDate = date
+                                            event.endDate = Calendar.current.date(byAdding: .minute, value: 1, to: date)! // 保存するために終了日が必須そうなので、終了日を書いておく
+                                            event.isAllDay = true
+                                        }
+                                        
+                                        event.calendar = eventStore.defaultCalendarForNewEvents
+                                    }
                                     
-                                    event.startDate = date // 開始日
-                                    event.endDate = endDate // 終了日
-                                    event.isAllDay = false
-                                    event.calendar = eventStore.defaultCalendarForNewEvents
                                     do {
                                         try eventStore.save(event, span: .thisEvent)
                                         calenderAlertText = NSLocalizedString("カレンダーに保存されました！", comment: "")
@@ -201,9 +224,10 @@ struct TaskView: View {
                             } else {
                                 if !dateIsSet {
                                     reminderIsSet = false
+                                    endDateIsSet = false
                                 }
                                 // db保存
-                                Task.updateTask(in: context, task: task, companyId: company?.id, name: taskName, dateIsSet: dateIsSet, date: date, endDate: endDate, reminderIsSet: reminderIsSet, remindAt: remindDate)
+                                Task.updateTask(in: context, task: task, companyId: company?.id, name: taskName, dateIsSet: dateIsSet, date: date, endDate: endDate, endDateIsSet: endDateIsSet, reminderIsSet: reminderIsSet, remindAt: remindDate)
                                 // 既にある通知予定の通知を削除
                                 UNUserNotificationCenter.current().getPendingNotificationRequests { requests in
                                     requests.forEach {
