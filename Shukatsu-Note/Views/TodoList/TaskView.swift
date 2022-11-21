@@ -44,7 +44,7 @@ struct TaskView: View {
     @State var endDateIsSet: Bool = false
     @State var remindDate: Date = Date()
     @State var reminderIsSet: Bool = false
-    @State var company: Company?
+    @State var companyId: String?
     
     var body: some View {
         ZStack {
@@ -120,11 +120,10 @@ struct TaskView: View {
                 
                 Section(NSLocalizedString("企業", comment: "")) {
                     HStack {
-                        Picker("", selection: $company) {
-                            Text(NSLocalizedString("未選択", comment: ""))
+                        Picker("", selection: $companyId) {
+                            Text(NSLocalizedString("未選択", comment: "")).tag("")
                             ForEach(companies) { company in
-                                // もともとopt型で宣言しているので、ピッカーのtagの方でもopt型に変換しないと適用されない(xcode上ではエラーにならないけど)
-                                Text(company.name ?? "").tag(company as Company?)
+                                Text(company.name ?? "").tag(company.id)
                             }
                         }
                         .pickerStyle(.menu)
@@ -226,7 +225,7 @@ struct TaskView: View {
                                     endDateIsSet = false
                                 }
                                 // db保存
-                                Task.updateTask(in: context, task: task, companyId: company?.id, name: taskName, dateIsSet: dateIsSet, date: date, endDate: endDate, endDateIsSet: endDateIsSet, reminderIsSet: reminderIsSet, remindAt: remindDate)
+                                Task.updateTask(in: context, task: task, companyId: companyId, name: taskName, dateIsSet: dateIsSet, date: date, endDate: endDate, endDateIsSet: endDateIsSet, reminderIsSet: reminderIsSet, remindAt: remindDate)
                                 // 既にある通知予定の通知を削除
                                 UNUserNotificationCenter.current().getPendingNotificationRequests { requests in
                                     requests.forEach {
@@ -240,7 +239,7 @@ struct TaskView: View {
                                     // 通知リクエスト作成
                                     if dateIsSet {
                                         if reminderIsSet {
-                                            NotificationManager.instance.scheduleNotification(id: task.id!, date: date, time: remindDate, companyName: company?.name, taskName: task.name!)
+                                            NotificationManager.instance.scheduleNotification(id: task.id!, date: date, time: remindDate, companyName: companyId != "" ? companies.first(where: { $0.id == companyId })?.name : nil, taskName: task.name!)
                                         }
                                     }
                                     // バイブレーション

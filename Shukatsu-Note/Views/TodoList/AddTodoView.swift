@@ -25,15 +25,6 @@ struct AddTodoView: View {
     @FocusState private var inputFocus: Bool
     
     @State private var showingAlert: Bool = false
-    var isIphone: Bool {
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            // 使用デバイスがiPhoneの場合
-            return true
-        } else {
-            // 使用デバイスがiPadの場合
-            return false
-        }
-    }
     
     @State private var taskName: String = ""
     // 日付を指定しているか判断
@@ -46,7 +37,7 @@ struct AddTodoView: View {
     @State private var remindDate: Date = Date()
     // 企業を指定しているか判断
     @State private var companyIsSet: Bool = false
-    @State private var company: Company?
+    @State private var companyId: String?
     
     var body: some View {
         
@@ -184,11 +175,10 @@ struct AddTodoView: View {
                                 ZStack {
                                     Color(.systemGray5)
                                     
-                                    Picker("", selection: $company) {
-                                        Text(NSLocalizedString("未選択", comment: ""))
+                                    Picker("", selection: $companyId) {
+                                        Text(NSLocalizedString("未選択", comment: "")).tag("")
                                         ForEach(companies) { company in
-                                            // もともとopt型で宣言しているので、ピッカーのtagの方でもopt型に変換しないと適用されない(xcode上ではエラーにならないけど)
-                                            Text(company.name ?? "").tag(company as Company?)
+                                            Text(company.name ?? "").tag(company.id)
                                         }
                                     }
                                     .padding(.vertical, 2)
@@ -226,8 +216,7 @@ struct AddTodoView: View {
                                 reminderIsSet = false
                                 endDateIsSet = false
                             }
-                            // todoリストに追加
-                            Task.create(in: context, name: taskName, date: dateIsSet ? date : nil, endDate: endDateIsSet ? endDate : nil, remindDate: reminderIsSet ? remindDate : nil, company: company)
+                            Task.create(in: context, name: taskName, date: dateIsSet ? date : nil, endDate: endDateIsSet ? endDate : nil, remindDate: reminderIsSet ? remindDate : nil, company: companies.first(where: { $0.id == companyId }))
                             // モーダルシートを閉じる
                             showingSheet = false
                             // バイブレーション
