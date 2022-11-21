@@ -32,12 +32,12 @@ struct SettingsView: View {
                         HStack {
                             Image(systemName: "rectangle.on.rectangle.angled")
                                 .font(.caption)
-                            Picker("テーマを変更する", selection: $appearanceMode) {
-                                Text("端末のテーマ")
+                            Picker(NSLocalizedString("テーマを変更する", comment: ""), selection: $appearanceMode) {
+                                Text(NSLocalizedString("端末のテーマ", comment: ""))
                                     .tag(0)
-                                Text("ダークモード")
+                                Text(NSLocalizedString("ダークモード", comment: ""))
                                     .tag(1)
-                                Text("ライトモード")
+                                Text(NSLocalizedString("ライトモード", comment: ""))
                                     .tag(2)
                             }
                         }
@@ -96,7 +96,7 @@ struct SettingsView: View {
                             HStack {
                                 Image(systemName: "book")
                                     .font(.caption)
-                                Text("使い方を見る")
+                                Text(NSLocalizedString("使い方を見る", comment: ""))
                             }
                         }
                         .fullScreenCover(isPresented: $showingWalkthrough) {

@@ -211,8 +211,10 @@ struct CompanyView: View {
                             .padding()
                         }
                     }
+                } header: {
+                    Text("Memo")
                 }
-                
+                .textCase(nil)
                 
                 Section {
                     // 表示するタスクをフィルタリング
