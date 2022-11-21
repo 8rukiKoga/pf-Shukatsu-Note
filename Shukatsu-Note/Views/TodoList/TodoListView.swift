@@ -59,7 +59,7 @@ struct TodoListView: View {
                                 TodoListRowView(task: task)
                             }
                             .fullScreenCover(isPresented: $showingEditSheet) {
-                                TaskView(showingEditSheet: $showingEditSheet, task: task, taskName: task.name ?? "", date: task.date ?? Date(), endDate: task.endAt ?? Date() + (60 * 30), dateIsSet: task.date != nil ? true : false, remindDate: task.remindAt ?? Date(), reminderIsSet: task.remindAt != nil ? true : false, company: companies.first(where: { $0.id == task.companyId }) as Company?)
+                                TaskView(showingEditSheet: $showingEditSheet, task: task, taskName: task.name ?? "", date: task.date ?? Date(), endDate: task.endAt ?? Date() + (60 * 30), dateIsSet: task.date != nil ? true : false, endDateIsSet: task.endAt != nil ? true : false, remindDate: task.remindAt ?? Date(), reminderIsSet: task.remindAt != nil ? true : false, company: companies.first(where: { $0.id == task.companyId }) as Company?)
                             }
                         }
                         .onDelete(perform: deleteTask)
