@@ -179,9 +179,10 @@ struct AddTodoView: View {
                                     .font(.footnote)
                                     .padding(.trailing, 3)
                                 
+                                Spacer()
+                                
                                 ZStack {
                                     Color(.systemGray5)
-                                        .cornerRadius(7)
                                     
                                     Picker("", selection: $company) {
                                         Text(NSLocalizedString("未選択", comment: ""))
@@ -190,13 +191,13 @@ struct AddTodoView: View {
                                             Text(company.name ?? "").tag(company as Company?)
                                         }
                                     }
-                                    .pickerStyle(.menu)
-                                    .transition(.slide)
+                                    .padding(.vertical, 2)
+                                    .padding(.horizontal)
                                 }
-                                .frame(height: 40)
-                                
+                                .frame(maxWidth: 230)
+                                .cornerRadius(7)
                             }
-                            .padding(.horizontal, 18)
+                            .padding(.horizontal)
                         }
                     }
                     .padding()
