@@ -14,8 +14,8 @@ struct WalkthroughView: View {
     let screens = 5
     @State var currentScreen: Int = 1
     
-    @State var title: String = "就活管理をスマホ1つで"
-    @State var description: String = "紙で管理していた就活・企業の管理をスマホ1つでおこなうことができます。"
+    @State var title: String = NSLocalizedString("就活管理をスマホ1つで", comment: "")
+    @State var description: String = NSLocalizedString("紙で管理していた就活・企業の管理をスマホ1つでおこなうことができます。", comment: "")
     @State var bgColor: String = "ThemeColor1"
     @State var img: String = "WalkThroughImage1"
     
@@ -122,23 +122,23 @@ struct WalkthroughView: View {
                                     currentScreen += 1
                                     
                                     if currentScreen == 2 {
-                                        title = "ノート機能"
-                                        description = "就活でメモしておきたいことを記録できます。\nノートは企業に紐づけることもできます。"
+                                        title = NSLocalizedString("ノート機能", comment: "")
+                                        description = NSLocalizedString("就活でメモしておきたいことを記録できます。\nノートは企業に紐づけることもできます。", comment: "")
                                         bgColor = "ThemeColor5"
                                         img = "WalkThroughImage2"
                                     } else if currentScreen == 3 {
-                                        title = "TODO機能"
-                                        description = "企業の説明会・面接などのタスクをTODOリストに保存できます。\n登録したタスクはiPhoneのカレンダーに保存することもできます。"
+                                        title = NSLocalizedString("TODO機能", comment: "")
+                                        description = NSLocalizedString("企業の説明会・面接などのタスクをTODOリストに保存できます。\n登録したタスクはiPhoneのカレンダーに保存することもできます。", comment: "")
                                         bgColor = "ThemeColor2"
                                         img = "WalkThroughImage3"
                                     } else if currentScreen == 4 {
-                                        title = "リマインダー機能"
-                                        description = "タスクのリマインダーをオンにすれば、設定した時間に通知が届きます。"
+                                        title = NSLocalizedString("リマインダー機能", comment: "")
+                                        description = NSLocalizedString("タスクのリマインダーをオンにすれば、設定した時間に通知が届きます。", comment: "")
                                         bgColor = "ThemeColor4"
                                         img = "WalkThroughImage4"
                                     } else if currentScreen == 5 {
-                                        title = "さあ、はじめよう"
-                                        description = "就職活動を賢く管理し、あなたの志望する企業の内定を勝ち取りましょう。"
+                                        title = NSLocalizedString("さあ、はじめよう", comment: "")
+                                        description = NSLocalizedString("就職活動を賢く管理し、あなたの志望する企業の内定を勝ち取りましょう。", comment: "")
                                         bgColor = "ThemeColor1"
                                         img = "WalkThroughImage5"
                                     } else if currentScreen > 5 {
