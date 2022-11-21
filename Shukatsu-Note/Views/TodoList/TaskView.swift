@@ -194,7 +194,7 @@ struct TaskView: View {
                                     }
                                 }
                                 else{
-                                    calenderAlertText = "カレンダーに保存するためには、\n設定>\nプライバシー>\nカレンダー\nでアクセスを許可して下さい。"
+                                    calenderAlertText = NSLocalizedString("カレンダーに保存するためには、\n設定>就活ノート>カレンダー\nでアクセスを許可して下さい。", comment: "")
                                     showingCalenderAlert = true
                                 }
                                 
@@ -226,22 +226,13 @@ struct TaskView: View {
                                 }
                                 // db保存
                                 Task.updateTask(in: context, task: task, companyId: companyId, name: taskName, dateIsSet: dateIsSet, date: date, endDate: endDate, endDateIsSet: endDateIsSet, reminderIsSet: reminderIsSet, remindAt: remindDate)
-                                // 既にある通知予定の通知を削除
-                                UNUserNotificationCenter.current().getPendingNotificationRequests { requests in
-                                    requests.forEach {
-                                        if $0.identifier == task.id {
-                                            NotificationManager.instance.cancelNotification(id: task.id!)
-                                        }
-                                    }
-                                }
+                                // 通知スケジュール
+                                makeSureScheduleOneNotification(taskId: task.id!)
+                                
                                 // 削除した後に登録したいため、遅延させる
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                                     // 通知リクエスト作成
-                                    if dateIsSet {
-                                        if reminderIsSet {
-                                            NotificationManager.instance.scheduleNotification(id: task.id!, date: date, time: remindDate, companyName: companyId != "" ? companies.first(where: { $0.id == companyId })?.name : nil, taskName: task.name!)
-                                        }
-                                    }
+                                    createNotificationRequest(dateIsSet: dateIsSet, reminderIsSet: reminderIsSet, id: task.id!, name: taskName, date: date, time: remindDate, company: companies.first(where: { $0.id == companyId }))
                                     // バイブレーション
                                     VibrationGenerator.vibGenerator.notificationOccurred(.success)
                                     // 前の画面に戻る
@@ -264,4 +255,24 @@ struct TaskView: View {
             
         }
     }
+    
+    private func makeSureScheduleOneNotification(taskId: String) {
+        // 既にある通知予定の通知を削除
+        UNUserNotificationCenter.current().getPendingNotificationRequests { requests in
+            requests.forEach {
+                if $0.identifier == taskId {
+                    NotificationManager.instance.cancelNotification(id: taskId)
+                }
+            }
+        }
+    }
+    
+    private func createNotificationRequest(dateIsSet: Bool, reminderIsSet: Bool, id: String, name: String, date: Date, time: Date, company: Company?) {
+        if dateIsSet {
+            if reminderIsSet {
+                NotificationManager.instance.scheduleNotification(id: id, date: date, time: time, companyName: company?.name != "" ? company?.name : nil, taskName: name)
+            }
+        }
+    }
+    
 }

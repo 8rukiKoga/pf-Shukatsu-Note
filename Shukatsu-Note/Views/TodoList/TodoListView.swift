@@ -111,7 +111,7 @@ struct TodoListView: View {
         .onAppear() {
             // 通知リクエスト
             NotificationManager.instance.requestAuth()
-            
+            // カレンダーアクセスのリクエスト
             if EKEventStore.authorizationStatus(for: .event) == .notDetermined{
                 eventStore.requestAccess(to: .event, completion: { (granted, error) in
                     if granted && error == nil {
