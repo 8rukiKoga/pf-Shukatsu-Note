@@ -74,9 +74,9 @@ struct TaskView: View {
                             .animation(.easeInOut, value: endDateIsSet)
                         
                         if !endDateIsSet {
-                            DatePicker("日付", selection: $date, displayedComponents: .date)
+                            DatePicker(NSLocalizedString("日付", comment: ""), selection: $date, displayedComponents: .date)
                         } else {
-                            DatePicker("開始", selection: $date)
+                            DatePicker(NSLocalizedString("開始", comment: ""), selection: $date)
                         }
                     }
                     
@@ -88,7 +88,7 @@ struct TaskView: View {
                     
                     if endDateIsSet {
                         if endDateIsSet {
-                            DatePicker("終了", selection: $endDate, in: date...)
+                            DatePicker(NSLocalizedString("終了", comment: ""), selection: $endDate, in: date...)
                         }
                     }
                     

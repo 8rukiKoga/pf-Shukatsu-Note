@@ -59,7 +59,7 @@
 "プライバシーポリシーを読む" = "Read privacy policy";
 "バージョン" = "Version";
 
-// Todo
+// TodoList
 "Todoを追加" = "Add Todo";
 "登録可能タスク数の上限(%d)に達しています。" = "You can't set task more than %d";
 
@@ -69,8 +69,18 @@
 "タスク名を入力" = "Input task name";
 "日付" = "Date";
 "日付未指定" = "Not set";
+"終了日時も設定する" = "Set end date";
+"リマインダー" = "Reminder";
 "企業" = "Company";
 "タスク名は1文字以上%d文字以内で入力してください。" = "Task name must be within 1 - %d letters";
+"タスク当日の設定した時刻に通知が届きます。" = "You will receive a notification at the set time on the day of the task.";
+
+// Task
+"開始" = "Start";
+"終了" = "End";
+"時刻" = "Time";
+"タスク当日の設定した時刻に通知が届きます。\niPhoneの設定から「就活ノート」の通知をオンにしておいてください。" = "You will receive a notification at the set time on the day of the task.\nPlease turn on JobNote notifications from iPhone settings.";
+
 
 
 // ListHeader
