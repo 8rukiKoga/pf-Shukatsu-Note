@@ -131,8 +131,9 @@ struct TaskView: View {
                     }
                 }
                 
-                Section {Text("").opacity(0)}// floatボタンのための余白
+                Section {Text("")}// floatボタンのための余白
                     .frame(height: 100)
+                    .listRowBackground(Color.clear)
             }
             .gesture(
                 // 下にドラッグした時に、キーボードを閉じる
