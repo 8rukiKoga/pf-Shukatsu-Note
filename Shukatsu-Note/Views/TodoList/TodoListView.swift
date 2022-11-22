@@ -53,14 +53,21 @@ struct TodoListView: View {
                         NoItemView(listType: .task)
                     } else {
                         ForEach(tasks) { task in
-                            Button {
-                                showingEditSheet = true
-                            } label: {
+                            ZStack {
+                                NavigationLink(destination: TaskView(task: task, taskName: task.name ?? "", date: task.date ?? Date(), endDate: task.endAt ?? Date() + (60 * 30), dateIsSet: task.date != nil ? true : false, endDateIsSet: task.endAt != nil ? true : false, remindDate: task.remindAt ?? Date(), reminderIsSet: task.remindAt != nil ? true : false, companyId: companies.first(where: { $0.id == task.companyId })?.id ?? "")) { EmptyView() }.opacity(0)
+                                
                                 TodoListRowView(task: task)
                             }
-                            .fullScreenCover(isPresented: $showingEditSheet) {
-                                TaskView(showingEditSheet: $showingEditSheet, task: task, taskName: task.name ?? "", date: task.date ?? Date(), endDate: task.endAt ?? Date() + (60 * 30), dateIsSet: task.date != nil ? true : false, endDateIsSet: task.endAt != nil ? true : false, remindDate: task.remindAt ?? Date(), reminderIsSet: task.remindAt != nil ? true : false, companyId: companies.first(where: { $0.id == task.companyId })?.id ?? "")
-                            }
+
+                            // なぜかsimulatorでバグるので、fullscreencoverではなくnavigationlinkで実装する
+//                            Button {
+//                                showingEditSheet = true
+//                            } label: {
+//                                TodoListRowView(task: task)
+//                            }
+//                            .fullScreenCover(isPresented: $showingEditSheet) {
+//                                TaskView(showingEditSheet: $showingEditSheet, task: task, taskName: task.name ?? "", date: task.date ?? Date(), endDate: task.endAt ?? Date() + (60 * 30), dateIsSet: task.date != nil ? true : false, endDateIsSet: task.endAt != nil ? true : false, remindDate: task.remindAt ?? Date(), reminderIsSet: task.remindAt != nil ? true : false, companyId: companies.first(where: { $0.id == task.companyId })?.id ?? "")
+//                            }
                         }
                         .onDelete(perform: deleteTask)
                     }

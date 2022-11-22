@@ -30,7 +30,7 @@ extension Task {
 
 extension Task {
         
-    static func create(in context: NSManagedObjectContext, name: String, date: Date?, endDate: Date?, remindDate: Date?, company: Company?) {
+    static func create(in context: NSManagedObjectContext, name: String, date: Date?, endDate: Date?, remindDate: Date?, companyId: String?, companyName: String?) {
         
         let newTask = Task(context: context)
         newTask.createdAt = Date()
@@ -39,13 +39,13 @@ extension Task {
         newTask.date = date
         newTask.endAt = endDate
         newTask.remindAt = remindDate
-        newTask.companyId = company?.id
+        newTask.companyId = companyId
         newTask.done = false
         
         if let date = newTask.date {
             if let remindAt = newTask.remindAt {
                 // 通知予定
-                NotificationManager.instance.scheduleNotification(id: newTask.id!, date: date, time: remindAt, companyName: company?.name, taskName: newTask.name!)
+                NotificationManager.instance.scheduleNotification(id: newTask.id!, date: date, time: remindAt, companyName: companyName, taskName: newTask.name!)
                 print("notification is scheduled")
             }
         }
@@ -60,13 +60,7 @@ extension Task {
     
     static func createDefaultTask(in context: NSManagedObjectContext) {
         
-        let newTask = Task(context: context)
-        newTask.createdAt = Date()
-        newTask.id = UUID().uuidString
-        newTask.companyId = nil
-        newTask.name = NSLocalizedString("自己分析をする", comment: "")
-        newTask.date = nil
-        newTask.done = false
+        create(in: context, name: NSLocalizedString("自己分析をする", comment: ""), date: nil, endDate: nil, remindDate: nil, companyId: nil, companyName: nil)
         
         do {
             try context.save()
@@ -77,32 +71,11 @@ extension Task {
     
     static func createDefaultCompanyTask(in context: NSManagedObjectContext) {
         
-        let newTask1 = Task(context: context)
-        newTask1.createdAt = Date()
-        newTask1.id = UUID().uuidString
-        newTask1.companyId = "default_company"
-        newTask1.name = NSLocalizedString("タスクが完了したら、タップしましょう。", comment: "")
         let today = Date()
-        newTask1.date = Calendar.current.date(byAdding: .hour, value: -5, to: today)!
-        newTask1.endAt = Calendar.current.date(byAdding: .hour, value: -4, to: today)!
-        newTask1.done = false
         
-        let newTask2 = Task(context: context)
-        newTask2.createdAt = Date()
-        newTask2.id = UUID().uuidString
-        newTask2.companyId = "default_company"
-        newTask2.name = NSLocalizedString("1dayインターンシップ", comment: "")
-        newTask2.date = Calendar.current.date(byAdding: .hour, value: -24, to: today)!
-        newTask2.endAt = Calendar.current.date(byAdding: .hour, value: -23, to: today)!
-        newTask2.remindAt = Calendar.current.date(byAdding: .hour, value: -25, to: today)!
-        newTask2.done = true
-        newTask2.doneAt = Calendar.current.date(byAdding: .hour, value: -25, to: today)!
+        create(in: context, name: NSLocalizedString("タスクが完了したら、タップしましょう。", comment: ""), date: Calendar.current.date(byAdding: .hour, value: -5, to: today)!, endDate: Calendar.current.date(byAdding: .hour, value: -4, to: today)!, remindDate: nil, companyId: "default_company", companyName: NSLocalizedString("さんぷる株式会社", comment: ""))
         
-        do {
-            try context.save()
-        } catch {
-            print(error)
-        }
+        create(in: context, name: NSLocalizedString("1dayインターンシップ", comment: ""), date: Calendar.current.date(byAdding: .hour, value: -24, to: today)!, endDate: Calendar.current.date(byAdding: .hour, value: -23, to: today)!, remindDate: Calendar.current.date(byAdding: .hour, value: -25, to: today)!, companyId: "default_company", companyName: NSLocalizedString("さんぷる株式会社", comment: ""))
     }
     
     static func updateStatus(in context: NSManagedObjectContext, task: Task) {

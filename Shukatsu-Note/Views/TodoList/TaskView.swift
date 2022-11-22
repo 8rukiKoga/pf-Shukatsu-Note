@@ -10,7 +10,7 @@ import EventKit
 
 struct TaskView: View {
     // シートの表示・非表示
-    @Binding var showingEditSheet: Bool
+//    @Binding var showingEditSheet: Bool
     
     @Environment(\.managedObjectContext) private var context
     @FetchRequest(
@@ -35,15 +35,15 @@ struct TaskView: View {
     @State private var showingCalenderAlert: Bool = false
     @State private var calenderAlertText: String = NSLocalizedString("カレンダーに保存されました！", comment: "")
     
-    let task: Task!
+    var task: Task
     
     @State var taskName: String
-    @State var date: Date = Date()
-    @State var endDate: Date = Date() + (60 * 30)
-    @State var dateIsSet: Bool = true
-    @State var endDateIsSet: Bool = false
-    @State var remindDate: Date = Date()
-    @State var reminderIsSet: Bool = false
+    @State var date: Date
+    @State var endDate: Date
+    @State var dateIsSet: Bool
+    @State var endDateIsSet: Bool
+    @State var remindDate: Date
+    @State var reminderIsSet: Bool
     @State var companyId: String?
     
     var body: some View {
@@ -130,6 +130,9 @@ struct TaskView: View {
                         .transition(.slide)
                     }
                 }
+                
+                Section {Text("").opacity(0)}// floatボタンのための余白
+                    .frame(height: 100)
             }
             .gesture(
                 // 下にドラッグした時に、キーボードを閉じる
@@ -226,8 +229,10 @@ struct TaskView: View {
                                 }
                                 // db保存
                                 Task.updateTask(in: context, task: task, companyId: companyId, name: taskName, dateIsSet: dateIsSet, date: date, endDate: endDate, endDateIsSet: endDateIsSet, reminderIsSet: reminderIsSet, remindAt: remindDate)
-                                // 通知スケジュール
-                                makeSureScheduleOneNotification(taskId: task.id!)
+                                if let taskId = task.id {
+                                    // 通知スケジュール
+                                    makeSureScheduleOneNotification(taskId: taskId)
+                                }
                                 
                                 // 削除した後に登録したいため、遅延させる
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
@@ -236,7 +241,7 @@ struct TaskView: View {
                                     // バイブレーション
                                     VibrationGenerator.vibGenerator.notificationOccurred(.success)
                                     // 前の画面に戻る
-                                    showingEditSheet = false
+//                                    showingEditSheet = false
                                 }
                             }
                         } label: {
@@ -252,8 +257,8 @@ struct TaskView: View {
                     }
                 }
             }
-            
         }
+        .navigationBarTitle("Task", displayMode: .inline)
     }
     
     private func makeSureScheduleOneNotification(taskId: String) {

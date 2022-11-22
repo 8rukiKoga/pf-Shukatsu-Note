@@ -216,7 +216,13 @@ struct AddTodoView: View {
                                 reminderIsSet = false
                                 endDateIsSet = false
                             }
-                            Task.create(in: context, name: taskName, date: dateIsSet ? date : nil, endDate: endDateIsSet ? endDate : nil, remindDate: reminderIsSet ? remindDate : nil, company: companies.first(where: { $0.id == companyId }))
+                            
+                            if let company = companies.first(where: { $0.id == companyId }) {
+                                Task.create(in: context, name: taskName, date: dateIsSet ? date : nil, endDate: endDateIsSet ? endDate : nil, remindDate: reminderIsSet ? remindDate : nil, companyId: company.id, companyName: company.name)
+                            } else {
+                                Task.create(in: context, name: taskName, date: dateIsSet ? date : nil, endDate: endDateIsSet ? endDate : nil, remindDate: reminderIsSet ? remindDate : nil, companyId: nil, companyName: nil)
+                            }
+                            
                             // モーダルシートを閉じる
                             showingSheet = false
                             // バイブレーション
