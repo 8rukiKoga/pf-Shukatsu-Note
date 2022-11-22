@@ -122,10 +122,10 @@ struct TodoListView: View {
             if EKEventStore.authorizationStatus(for: .event) == .notDetermined{
                 eventStore.requestAccess(to: .event, completion: { (granted, error) in
                     if granted && error == nil {
-                        print("granted")
+                        // granted
                     }
                     else{
-                        print("not granted")
+                        // not granted
                     }
                 })
             }
