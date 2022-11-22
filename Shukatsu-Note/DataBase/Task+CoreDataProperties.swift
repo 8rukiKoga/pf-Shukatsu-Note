@@ -61,12 +61,6 @@ extension Task {
     static func createDefaultTask(in context: NSManagedObjectContext) {
         
         create(in: context, name: NSLocalizedString("自己分析をする", comment: ""), date: nil, endDate: nil, remindDate: nil, companyId: nil, companyName: nil)
-        
-        do {
-            try context.save()
-        } catch {
-            print(error)
-        }
     }
     
     static func createDefaultCompanyTask(in context: NSManagedObjectContext) {
