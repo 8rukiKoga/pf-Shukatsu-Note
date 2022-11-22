@@ -120,7 +120,7 @@ struct SettingsView: View {
                             
                             Spacer()
                             
-                            Text("1.4")
+                            Text("2.0")
                         }
                     }
                 }
