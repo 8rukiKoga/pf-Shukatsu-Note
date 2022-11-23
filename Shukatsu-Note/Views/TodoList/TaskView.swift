@@ -11,7 +11,7 @@ import EventKit
 struct TaskView: View {
     // シートの表示・非表示
 //    @Binding var showingEditSheet: Bool
-    
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @Environment(\.managedObjectContext) private var context
     @FetchRequest(
         entity: Company.entity(),
@@ -49,6 +49,10 @@ struct TaskView: View {
     var body: some View {
         ZStack {
             List {
+                Section {Text("")}// 余白
+                    .frame(height: 10)
+                    .listRowBackground(Color.clear)
+                
                 Section(NSLocalizedString("タスク名", comment: "")) {
                     VStack {
                         TextField(NSLocalizedString("タスク名を入力", comment: ""), text: $taskName)
@@ -244,6 +248,8 @@ struct TaskView: View {
                                     // 前の画面に戻る
 //                                    showingEditSheet = false
                                 }
+                                
+                                self.presentationMode.wrappedValue.dismiss()
                             }
                         } label: {
                             ZStack {
@@ -259,7 +265,7 @@ struct TaskView: View {
                 }
             }
         }
-        .navigationBarTitle("Task", displayMode: .inline)
+        .navigationBarHidden(true)
     }
     
     private func makeSureScheduleOneNotification(taskId: String) {
