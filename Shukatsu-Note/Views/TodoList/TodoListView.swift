@@ -92,7 +92,7 @@ struct TodoListView: View {
                                 .shadow(color: .gray, radius: 5, x: 2, y: 2)
                             VStack {
                                 Text(NSLocalizedString("Todoを追加", comment: ""))
-                                    .foregroundColor(Color(.systemBackground))
+                                    .foregroundColor(Color(.white))
                                     .bold()
                             }
                         }
