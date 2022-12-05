@@ -120,7 +120,7 @@ struct SettingsView: View {
                             
                             Spacer()
                             
-                            Text("2.0.1")
+                            Text("2.0.2")
                         }
                     }
                 }
