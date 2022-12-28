@@ -3,7 +3,6 @@
 - XCode 13.4.1
 - Swift 5.6.1
 - SwiftUI
-- MVVM
 - CoreData
 
 ## 開発を始めた理由
