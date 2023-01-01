@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct FolderRowView: View {
+struct FolderRowView: View, StarConvertor {
     
     var companyImage: Data?
     var name: String
@@ -48,7 +48,7 @@ struct FolderRowView: View {
                 HStack {
                     Spacer()
                     HStack {
-                        Text(StarConvertor.shared.convertIntToStars(count: star))
+                        Text(convertIntToStars(count: Int(star)))
                             .foregroundColor(star != 0 ? Color(.systemYellow) : Color(.gray))
                             .font(star != 0 ? .system(size: 15) : .system(size: 10))
                             .fontWeight(star != 0 ? .bold : .none)

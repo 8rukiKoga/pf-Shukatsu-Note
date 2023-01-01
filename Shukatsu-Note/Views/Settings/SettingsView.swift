@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SettingsView: View {
+struct SettingsView: View, UrlOpener {
     
     @AppStorage(wrappedValue: "ThemeColor1", "theme_color") var themeColor
     @AppStorage(wrappedValue: 0, "appearanceMode") var appearanceMode
@@ -45,7 +45,7 @@ struct SettingsView: View {
                     
                     Section(header: Text(NSLocalizedString("サポート", comment: "")).foregroundColor(Color(themeColor))) {
                         Button {
-                            UrlOpener.shared.openUrl(url: "https://apps.apple.com/app/id1645528668")
+                            openUrl(url: "https://apps.apple.com/app/id1645528668")
                         } label: {
                             HStack {
                                 Image(systemName: "star")
@@ -55,7 +55,7 @@ struct SettingsView: View {
                         }
                         
                         Button {
-                            UrlOpener.shared.openUrl(url: "https://docs.google.com/forms/d/e/1FAIpQLSdWUjv9hDJB4TMZ-e2Mxx37jgR2qenCR2LS8AJQ1jbuqryS4Q/viewform?usp=sf_link")
+                            openUrl(url: "https://docs.google.com/forms/d/e/1FAIpQLSdWUjv9hDJB4TMZ-e2Mxx37jgR2qenCR2LS8AJQ1jbuqryS4Q/viewform?usp=sf_link")
                         } label: {
                             HStack {
                                 Image(systemName: "bubble.right")
@@ -68,7 +68,7 @@ struct SettingsView: View {
                     
                     Section(header: Text(NSLocalizedString("開発者の他のアプリ", comment: "")).foregroundColor(Color(themeColor))) {
                         Button {
-                            UrlOpener.shared.openUrl(url: "https://apps.apple.com/us/app/%E3%81%95%E3%81%B6%E3%81%99%E3%81%8F%E7%AE%A1%E7%90%86/id1617774926?itsct=apps_box_link&itscg=30200")
+                            openUrl(url: "https://apps.apple.com/us/app/%E3%81%95%E3%81%B6%E3%81%99%E3%81%8F%E7%AE%A1%E7%90%86/id1617774926?itsct=apps_box_link&itscg=30200")
                         } label: {
                             HStack {
                                 Image("SabusukuKanriLogo")
@@ -104,7 +104,7 @@ struct SettingsView: View {
                         }
                         
                         Button {
-                            UrlOpener.shared.openUrl(url: "https://8rukikoga.github.io/pf-Portfolio/ShukatsuNote.html")
+                            openUrl(url: "https://8rukikoga.github.io/pf-Portfolio/ShukatsuNote.html")
                         } label: {
                             HStack {
                                 Image(systemName: "person")

@@ -5,12 +5,13 @@
 //  Created by 古賀遥貴 on 2022/08/12.
 //
 
-import SwiftUI
+import Foundation
 
-final class StarConvertor {
-    static let shared = StarConvertor()
-    private init() {}
-    
+protocol StarConvertor {
+    func convertIntToStars(count: Int) -> String
+}
+
+extension StarConvertor {
     func convertIntToStars(count: Int) -> String {
         if count == 1 {
             return "★☆☆☆☆"

@@ -5,15 +5,13 @@
 //  Created by 古賀遥貴 on 2022/09/11.
 //
 
-import Foundation
 import SwiftUI
 
-final class VerifyUrl {
-    
-    static let shared = VerifyUrl()
-    
-    private init() {}
-    
+protocol UrlVerification {
+    func verifyUrl(urlString: String?) -> Bool
+}
+
+extension UrlVerification {
     func verifyUrl (urlString: String?) -> Bool {
         if let urlString = urlString {
             if let url = NSURL(string: urlString) {
@@ -22,7 +20,4 @@ final class VerifyUrl {
         }
         return false
     }
-    
 }
-
-

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AddCompanyPopupView: View {
+struct AddCompanyPopupView: View, TextCountValidation {
     
     @Environment(\.managedObjectContext) private var context
     @FetchRequest(
@@ -55,7 +55,7 @@ struct AddCompanyPopupView: View {
                 
                 Text("\(newCompanyName.count) / \(ValidationCounts.comAndTaskText.rawValue)")
                     .font(.caption2)
-                    .foregroundColor(TextCountValidation.shared.isTextCountValid(text: newCompanyName, type: .comAndTaskText) ? .gray : .red)
+                    .foregroundColor(isTextCountValid(text: newCompanyName, type: .comAndTaskText) ? .gray : .red)
                 
                 Spacer()
                 
@@ -70,7 +70,7 @@ struct AddCompanyPopupView: View {
                     }
                     
                     Button {
-                        if newCompanyName.count > 0 && TextCountValidation.shared.isTextCountValid(text: newCompanyName, type: .comAndTaskText) {
+                        if newCompanyName.count > 0 && isTextCountValid(text: newCompanyName, type: .comAndTaskText) {
                                 Company.create(in: context, name: newCompanyName)
                                 // ポップアップを閉じる
                                 showingPopup = false

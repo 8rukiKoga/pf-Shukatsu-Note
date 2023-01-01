@@ -7,11 +7,11 @@
 
 import SwiftUI
 
-final class UrlOpener {
-    static let shared = UrlOpener()
-    private init() {}
-    
-    // urlを開く
+protocol UrlOpener {
+    func openUrl(url: String)
+}
+
+extension UrlOpener {
     func openUrl(url: String){
         let productURL:URL = URL(string: url)!
         UIApplication.shared.open(productURL)

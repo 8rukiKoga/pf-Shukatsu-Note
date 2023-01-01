@@ -8,7 +8,7 @@
 import SwiftUI
 import StoreKit
 
-struct CompanyView: View {
+struct CompanyView: View, StarConvertor, UrlVerification, UrlOpener {
     
     @Environment(\.managedObjectContext) private var context
     @FetchRequest(
@@ -101,7 +101,7 @@ struct CompanyView: View {
                                 
                                 Spacer()
                                 
-                                Text("\(StarConvertor.shared.convertIntToStars(count: Int(company.star)))")
+                                Text("\(convertIntToStars(count: Int(company.star)))")
                                     .font(company.star != 0 ? .system(size: 18) : .system(size: 13))
                                     .foregroundColor(company.star != 0 ? Color(.systemYellow) : Color(.gray))
                                     .fontWeight(company.star != 0 ? .bold : .none)
@@ -135,12 +135,12 @@ struct CompanyView: View {
                                 if let companyUrl = company.url {
                                     if companyUrl.isEmpty {
                                         Text("")
-                                    } else if VerifyUrl.shared.verifyUrl(urlString: companyUrl) {
+                                    } else if verifyUrl(urlString: companyUrl) {
                                         Text(companyUrl)
                                             .foregroundColor(Color(.link))
                                             .font(.caption)
                                             .onTapGesture {
-                                                UrlOpener.shared.openUrl(url: companyUrl)
+                                                openUrl(url: companyUrl)
                                             }
                                     } else {
                                         Text(companyUrl)

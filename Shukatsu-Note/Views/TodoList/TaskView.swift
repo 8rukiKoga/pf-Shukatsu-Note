@@ -8,7 +8,7 @@
 import SwiftUI
 import EventKit
 
-struct TaskView: View {
+struct TaskView: View, TextCountValidation {
     // シートの表示・非表示
 //    @Binding var showingEditSheet: Bool
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -63,7 +63,7 @@ struct TaskView: View {
                         
                         Text("\(taskName.count) / \(ValidationCounts.comAndTaskText.rawValue)")
                             .font(.caption)
-                            .foregroundColor(TextCountValidation.shared.isTextCountValid(text: taskName, type: .comAndTaskText) ? .gray : .red)
+                            .foregroundColor(isTextCountValid(text: taskName, type: .comAndTaskText) ? .gray : .red)
                     }
                 }
                 
@@ -222,7 +222,7 @@ struct TaskView: View {
                             // 通知を1つのみ登録するため、一度押したらボタンを非活性にする
                             isBtnEnabled = false
                             // もしタスク文字数が許容量を超えていたら
-                            if !TextCountValidation.shared.isTextCountValid(text: taskName, type: .comAndTaskText) {
+                            if !isTextCountValid(text: taskName, type: .comAndTaskText) {
                                 // アラート表示
                                 showingValidationAlert = true
                                 // ボタンを活性化

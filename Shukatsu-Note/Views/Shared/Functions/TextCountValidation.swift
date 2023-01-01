@@ -7,10 +7,11 @@
 
 import Foundation
 
-final class TextCountValidation {
-    static let shared = TextCountValidation()
-    init() { }
-    
+protocol TextCountValidation {
+    func isTextCountValid(text: String, type: ValidationCounts) -> Bool
+}
+
+extension TextCountValidation {
     func isTextCountValid(text: String, type: ValidationCounts) -> Bool {
         if text.count <= type.rawValue {
             return true

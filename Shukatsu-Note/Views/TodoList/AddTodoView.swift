@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AddTodoView: View {
+struct AddTodoView: View, TextCountValidation {
     
     @Environment(\.managedObjectContext) private var context
     @AppStorage(wrappedValue: "ThemeColor1", "theme_color") var themeColor
@@ -85,7 +85,7 @@ struct AddTodoView: View {
                             
                             Text("\(taskName.count) / \(ValidationCounts.comAndTaskText.rawValue)")
                                 .font(.caption2)
-                                .foregroundColor(TextCountValidation.shared.isTextCountValid(text: taskName, type: .comAndTaskText) ? .gray : .red)
+                                .foregroundColor(isTextCountValid(text: taskName, type: .comAndTaskText) ? .gray : .red)
                                 .padding(.bottom)
                         }
                         
@@ -211,7 +211,7 @@ struct AddTodoView: View {
                 HStack {
                     Spacer()
                     Button {
-                        if taskName.count > 0 && TextCountValidation.shared.isTextCountValid(text: taskName, type: .comAndTaskText) {
+                        if taskName.count > 0 && isTextCountValid(text: taskName, type: .comAndTaskText) {
                             if !dateIsSet {
                                 reminderIsSet = false
                                 endDateIsSet = false
