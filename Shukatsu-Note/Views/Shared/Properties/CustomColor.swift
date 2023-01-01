@@ -9,8 +9,6 @@ import Foundation
 import SwiftUI
 
 class CustomColor {
-    @AppStorage(wrappedValue: "ThemeColor1", "theme_color") var themeColor
-    
     static let themeColor1 = "ThemeColor1"
     static let themeColor2 = "ThemeColor2"
     static let themeColor3 = "ThemeColor3"
