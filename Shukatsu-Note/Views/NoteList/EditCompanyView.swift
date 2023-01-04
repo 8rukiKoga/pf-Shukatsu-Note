@@ -68,6 +68,7 @@ struct EditCompanyView: View, UrlVerification, TextCountValidation {
                     TextField(NSLocalizedString("例) さんぷる株式会社", comment: ""), text: $name)
                         .foregroundColor(isTextCountValid(text: name, type: .comAndTaskText) ? Color(.label) : .red)
                         .listRowBackground(name.count > 0 ? Color("DefaultCellColor") : Color.red.opacity(0.2))
+                        .submitLabel(.done)
                 }
                 Section(NSLocalizedString("志望度", comment: "")) {
                     Picker("", selection: $star) {
@@ -82,6 +83,7 @@ struct EditCompanyView: View, UrlVerification, TextCountValidation {
                 Section(NSLocalizedString("業界", comment: "")) {
                     TextField(NSLocalizedString("例) 旅行", comment: ""), text: $category)
                         .foregroundColor(isTextCountValid(text: category, type: .comAndTaskText) ? Color(.label) : .red)
+                        .submitLabel(.done)
                 }
                 Section(NSLocalizedString("所在地", comment: "")) {
                     if language == "ja" { // 日本語
@@ -99,6 +101,7 @@ struct EditCompanyView: View, UrlVerification, TextCountValidation {
                                     .padding()
                                     .background(Color(.white).opacity(0.2).cornerRadius(12))
                                     .padding(.vertical, 3)
+                                    .submitLabel(.done)
                             }
                         } else {
                             Picker("", selection: $location) {
@@ -131,6 +134,7 @@ struct EditCompanyView: View, UrlVerification, TextCountValidation {
                                     .padding()
                                     .background(Color(.label).opacity(0.1).cornerRadius(12))
                                     .padding(.vertical, 3)
+                                    .submitLabel(.done)
                             }
                         } else {
                             Picker("", selection: $location) {
@@ -150,6 +154,7 @@ struct EditCompanyView: View, UrlVerification, TextCountValidation {
                 Section(NSLocalizedString("関連URL", comment: "")) {
                     TextField("https://sample.co.jp", text: $url)
                         .foregroundColor(verifyUrl(urlString: url) ? .green : .red)
+                        .submitLabel(.done)
                 }
             }
             

@@ -52,6 +52,7 @@ struct AddCompanyPopupView: View, TextCountValidation {
                     .frame(width: popupWidth / 1.3, height: 25)
                     .background(Color(.systemBackground))
                     .cornerRadius(7)
+                    .submitLabel(.done)
                 
                 Text("\(newCompanyName.count) / \(ValidationCounts.comAndTaskText.rawValue)")
                     .font(.caption2)

@@ -60,6 +60,7 @@ struct TaskView: View, TextCountValidation {
                             .padding(10)
                             .background(Color(.systemGray5))
                             .cornerRadius(7)
+                            .submitLabel(.done)
                         
                         Text("\(taskName.count) / \(ValidationCounts.comAndTaskText.rawValue)")
                             .font(.caption)
